@@ -17,7 +17,7 @@ public class Calendar {
     /**
      * A constant, representing the total number of days in the month.
      */
-    public static int NUMBER_OF_DAYS = 31;
+    public static final int NUMBER_OF_DAYS = 31;
     /**
      * An instance field, an array of lists of flights.
      * Each list of flights is supposed to store accurate information about every flight at that day.

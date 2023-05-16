@@ -16,15 +16,15 @@ public class Destinations {
     /**
      * A String constant, the destination of Toronto.
      */
-    public static String TORONTO = "Toronto";
+    public static final String TORONTO = "Toronto";
     /**
      * A String constant, the destination of Ottawa.
      */
-    public static String Ottawa = "Ottawa";
+    public static final String OTTAWA = "Ottawa";
     /**
      * A String constant, the destination of Vancouver.
      */
-    public static String Vancouver = "Vancouver";
+    public static final String VANCOUVER = "Vancouver";
 
     /**
      * A private constructor, makes the class impossible to instantiate.
