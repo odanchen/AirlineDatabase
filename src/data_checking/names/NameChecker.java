@@ -1,15 +1,15 @@
 package data_checking.names;
 
 public class NameChecker {
-    private final String CORRECT = "placeholder";
-    private static final String ILLEGAL_SYMBOLS = "placeholder";
+    private static final String CORRECT = "Correct";
+    private static final String ILLEGAL_SYMBOLS = "Illegal symbols found in the name";
 
     private NameChecker() {
 
     }
 
-    private static void isNameSymbolic(char c) {
-
+    private static boolean isNameSymbol(char c) {
+        return false;
     }
 
     public static boolean isNameCorrect(String name) {
