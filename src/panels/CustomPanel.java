@@ -16,14 +16,13 @@ import java.net.URI;
 
 public abstract class CustomPanel extends JPanel implements ActionListener {
     protected frame.ApplicationFrame applicationFrame;
-    protected JPanel centerPanel;
-    private Logo logo;
+    protected JPanel centerPanel = new JPanel();
     protected JPanel buttonPanel;
-    private JButton homeButton;
-    private JButton flightSearchButton;
-    private JButton calendarButton;
-    private JButton manualButton;
-    private JButton exitButton;
+    private static final String homeButton = "Home";
+    private static final String flightSearchButton = "Search for a Flight";
+    private static final String calendarButton = "Calendar";
+    private static final String manualButton = "User Manual";
+    private static final String exitButton = "Exit";
     //protected Calendar calendar;
 
     /**
@@ -31,72 +30,52 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
      * @author Aidan Baker
      */
     public CustomPanel(ApplicationFrame applicationFrame) {
+        this.applicationFrame = applicationFrame;
         setLayout(new BorderLayout());
+        //bottom button bar
+        buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(1, 5));
 
-        {
-            //bottom button bar
-            buttonPanel = new JPanel();
-            buttonPanel.setLayout(new GridLayout(1, 5));
+        addBottomButton(homeButton, 30);
+        addBottomButton(flightSearchButton, 25);
+        addBottomButton(calendarButton, 30);
+        addBottomButton(manualButton, 30);
+        addBottomButton(exitButton, 30);
 
-            //home button
-            homeButton = new JButton("Home");
-            homeButton.setFont(new Font("Arial", Font.BOLD, 30));
-            homeButton.addActionListener(this);
-            buttonPanel.add(homeButton);
+        //add button panel to bottom of frame
+        //buttonPanel.setPreferredSize(new Dimension(1200, 75));
+        add(buttonPanel, BorderLayout.SOUTH);
 
-            //flight search button
-            flightSearchButton = new JButton("Search for a Flight");
-            flightSearchButton.setFont(new Font("Arial", Font.BOLD, 25));
-            flightSearchButton.addActionListener(this);
-            buttonPanel.add(flightSearchButton);
+        add(new Logo(), BorderLayout.NORTH);
+        setVisible(false);
+    }
 
-            //calendar button
-            calendarButton = new JButton("Calendar");
-            calendarButton.setFont(new Font("Arial", Font.BOLD, 30));
-            calendarButton.addActionListener(this);
-            buttonPanel.add(calendarButton);
-
-            //user manual button
-            manualButton = new JButton("User Manual");
-            manualButton.setFont(new Font("Arial", Font.BOLD, 30));
-            manualButton.addActionListener(this);
-            buttonPanel.add(manualButton);
-
-            //exit button
-            exitButton = new JButton("Exit");
-            exitButton.setFont(new Font("Arial", Font.BOLD, 30));
-            exitButton.addActionListener(this);
-            buttonPanel.add(exitButton);
-
-            //add button panel to bottom of frame
-            buttonPanel.setPreferredSize(new Dimension(1200, 75));
-            add(buttonPanel, BorderLayout.SOUTH);
-        } //button panel
-
-        {
-            logo = new Logo();
-            logo.setPreferredSize(new Dimension(150, 150));
-            add(logo, BorderLayout.NORTH);
-        } //logo
+    private void addBottomButton(String text, int fontSize) {
+        JButton button = new JButton(text);
+        button.setFont(new Font("Arial", Font.BOLD, fontSize));
+        button.setActionCommand(text);
+        button.addActionListener(this);
+        buttonPanel.add(button);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Object source = e.getSource();
-        if (source.equals(homeButton)) {
-            //applicationFrame.switchToHome();
-        } else if (source.equals(flightSearchButton)) {
-            //applicationFrame.switchToSearch();
-        } else if (source.equals(calendarButton)) {
-            //applicationFrame.switchToCalendar();
-        } else if (source.equals(manualButton)) {
+        String actionCommand = e.getActionCommand();
+        if (actionCommand.equals(homeButton)) {
+            applicationFrame.switchToHome();
+        } else if (actionCommand.equals(flightSearchButton)) {
+            applicationFrame.switchToSearch();
+        } else if (actionCommand.equals(calendarButton)) {
+            applicationFrame.switchToCalendar();
+        } else if (actionCommand.equals(manualButton)) {
             try {
                 Desktop.getDesktop().browse(URI.create("https://docs.google.com/document/d/1MoQYM9OzFQPjyVoqWxH3KVLu8QRYIB-3qXgkCfCr4uc/edit?usp=sharing"));
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-        } else if (source.equals(exitButton)) {
-            System.exit(0);
+        } else if (actionCommand.equals(exitButton)) {
+            int ans = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Exit", JOptionPane.YES_NO_OPTION);
+            if (ans == JOptionPane.YES_OPTION) System.exit(0);
         }
     }
 }

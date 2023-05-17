@@ -23,9 +23,5 @@ public class Main {
      */
     public static void main(String[] args) {
         new ApplicationFrame();
-
-        JFrame frame = new JFrame();
-        frame.setSize(1400, 850);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

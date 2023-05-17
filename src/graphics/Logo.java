@@ -18,7 +18,7 @@ public class Logo extends JComponent {
      * @author Aidan Baker
      */
     public Logo() {
-        setPreferredSize(new Dimension(500, 500));
+        setPreferredSize(new Dimension(150, 150));
     }
     /**
      * @param point the point that needs to be moved to fit the scale

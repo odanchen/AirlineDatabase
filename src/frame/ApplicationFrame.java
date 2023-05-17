@@ -14,7 +14,7 @@ public class ApplicationFrame extends JFrame {
     private final CustomPanel seatPanel = new SearchPanel(this);
     private final CustomPanel userInputPanel = new UserInputPanel(this);
     private final CustomPanel exportPanel = new ExportPanel(this);
-    private CustomPanel currentPanel = loadingPanel;
+    private CustomPanel currentPanel = homePanel;
 
     public ApplicationFrame() {
         super();
@@ -30,6 +30,9 @@ public class ApplicationFrame extends JFrame {
         centerPanel.add(exportPanel);
         add(centerPanel, BorderLayout.CENTER);
         setSize(1400, 850);
+        homePanel.setVisible(true);
+        setVisible(true);
+
     }
 
     public void switchToHome() {
