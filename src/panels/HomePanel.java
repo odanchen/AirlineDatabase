@@ -1,11 +1,13 @@
 package panels;
 
+import frame.ApplicationFrame;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class HomePanel extends CustomPanel {
-    public HomePanel() {
-        super();
+    public HomePanel(ApplicationFrame applicationFrame) {
+        super(applicationFrame);
 
         JPanel centerPanel = new JPanel();
 

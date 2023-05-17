@@ -5,6 +5,7 @@ version #1
  */
 package panels;
 
+import frame.ApplicationFrame;
 import graphics.Logo;
 
 import javax.swing.*;
@@ -14,7 +15,7 @@ import java.awt.event.ActionListener;
 import java.net.URI;
 
 public abstract class CustomPanel extends JPanel implements ActionListener {
-    //protected ApplicationFrame applicationFrame;
+    protected frame.ApplicationFrame applicationFrame;
     protected JPanel centerPanel;
     private Logo logo;
     protected JPanel buttonPanel;
@@ -29,7 +30,7 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
      * The constructor for the CustomPanel class.
      * @author Aidan Baker
      */
-    public CustomPanel() {
+    public CustomPanel(ApplicationFrame applicationFrame) {
         setLayout(new BorderLayout());
 
         {
