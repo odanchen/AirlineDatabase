@@ -1,4 +1,9 @@
 package panels;
 
-public class LoadingPanel {
+import frame.ApplicationFrame;
+
+public class LoadingPanel extends CustomPanel {
+    public LoadingPanel(ApplicationFrame applicationFrame) {
+        super(applicationFrame);
+    }
 }

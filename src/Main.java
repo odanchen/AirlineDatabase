@@ -4,6 +4,7 @@ time spent: 5 minutes
 version #1
 */
 
+import frame.ApplicationFrame;
 import panels.CustomPanel;
 import panels.*;
 
@@ -26,12 +27,5 @@ public class Main {
         JFrame frame = new JFrame();
         frame.setSize(1400, 850);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        CustomPanel panel = new HomePanel();
-
-        frame.add(panel);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-
     }
 }
