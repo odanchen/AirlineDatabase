@@ -18,7 +18,7 @@ public class Logo extends JComponent {
      * @author Aidan Baker
      */
     public Logo() {
-
+        setPreferredSize(new Dimension(500, 500));
     }
     /**
      * @param point the point that needs to be moved to fit the scale
@@ -27,7 +27,7 @@ public class Logo extends JComponent {
      */
     private int scale(double point) {
         int minSize = Math.min(getWidth(), getHeight());
-        return (int) (point * minSize / 500);
+        return (int) (point * minSize / 100);
     }
 
     /**
