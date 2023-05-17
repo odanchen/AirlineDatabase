@@ -5,10 +5,6 @@ version #1
 */
 
 import frame.ApplicationFrame;
-import panels.CustomPanel;
-import panels.*;
-
-import javax.swing.*;
 
 /**
  * The Main class, acts as a driver to the program.
