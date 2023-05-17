@@ -63,3 +63,4 @@ public class Logo extends JComponent {
         g.fillPolygon(planeCoords_x, planeCoords_y, planeCoords_x.length);
     }
 }
+
