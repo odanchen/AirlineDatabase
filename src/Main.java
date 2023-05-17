@@ -4,6 +4,11 @@ time spent: 5 minutes
 version #1
 */
 
+import panels.CustomPanel;
+import panels.*;
+
+import javax.swing.*;
+
 /**
  * The Main class, acts as a driver to the program.
  *
@@ -17,5 +22,16 @@ public class Main {
      */
     public static void main(String[] args) {
         new ApplicationFrame();
+
+        JFrame frame = new JFrame();
+        frame.setSize(1400, 850);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        CustomPanel panel = new HomePanel();
+
+        frame.add(panel);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+
     }
 }
