@@ -35,7 +35,7 @@ public class FilePathConstructor {
      * @author Oleksandr Danchenko
      */
     public static File getFlightListFile() {
-        return new File(String.join(File.separator, new String[]{"src", "database", "data", "flights.flt"}));
+        return new File(String.join(File.separator, new String[]{getDefaultPath(), "flights.flt"}));
     }
 
     /**
@@ -46,7 +46,14 @@ public class FilePathConstructor {
      * @author Oleksandr Danchenko
      */
     public static File getSeatFile(String filename) {
-        return new File(String.join(File.separator, new String[]{"src", "database", "data", "seating", filename + SEATING_FILE_EXT}));
+        return new File(String.join(File.separator, new String[]{getDefaultPath(), "seating", filename + SEATING_FILE_EXT}));
+    }
+
+    private static String getDefaultPath() {
+        if (System.getProperty("user.dir").endsWith("src")) {
+            return String.join(File.separator, new String[]{"database", "data"});
+        }
+        return String.join(File.separator, new String[]{"src", "database", "data"});
     }
 }
 
