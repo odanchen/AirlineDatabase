@@ -11,6 +11,18 @@ package data_record;
  */
 public class Route {
     /**
+     * A String constant, the destination of Toronto.
+     */
+    public static final String TORONTO = "Toronto";
+    /**
+     * A String constant, the destination of Ottawa.
+     */
+    public static final String OTTAWA = "Ottawa";
+    /**
+     * A String constant, the destination of Vancouver.
+     */
+    public static final String VANCOUVER = "Vancouver";
+    /**
      * An instance String field, represents the place of departure for the flight.
      */
     private final String departure;
@@ -74,6 +86,6 @@ public class Route {
      */
     @Override
     public String toString() {
-        return departure + "\\" + destination;
+        return departure + "=" + destination;
     }
 }
