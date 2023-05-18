@@ -53,6 +53,16 @@ public class Date implements DatabaseItem {
     }
 
     /**
+     * A getter method for the day of the date.
+     *
+     * @return the day of the month of the current date.
+     * @author Oleksandr Danchenko
+     */
+    public int getDay() {
+        return day;
+    }
+
+    /**
      * Checks if a date of birth is correct.
      *
      * @param dateOfBirth The date of birth to check.
