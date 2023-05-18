@@ -6,7 +6,7 @@ version #1
 
 package data_record;
 
-public class Date {
+public class Date implements DatabaseItem {
     /**
      * The message when the entered date of birth is correct.
      */
@@ -211,7 +211,8 @@ public class Date {
      * @return a database String representation of the date.
      * @author Oleksandr Danchenko
      */
-    public String toDataBaseString() {
+    @Override
+    public String data() {
         return day + "/" + month + "/" + year;
     }
 }

@@ -6,7 +6,7 @@ version #1
 
 package data_record;
 
-public class FlightInfo {
+public class FlightInfo implements DatabaseItem {
     /**
      * A field representing the route of the flight.
      */
@@ -140,6 +140,17 @@ public class FlightInfo {
      */
     public Date getDate() {
         return date;
+    }
+
+    /**
+     * Converts the flight info into a String in the way it is supposed to be represented in a database.
+     *
+     * @return a database String representation of the flight inf object.
+     * @author Oleksandr Danchenko
+     */
+    @Override
+    public String data() {
+        return route.data() + "=" + fileName + "=" + isCancelled + "=" + seatsLeft + "=" + departureTime + "=" + date.data();
     }
 }
 

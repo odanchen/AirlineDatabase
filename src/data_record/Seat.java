@@ -12,7 +12,7 @@ package data_record;
  *
  * @author Oleksandr Dacnhenko
  */
-public class Seat {
+public class Seat implements DatabaseItem {
     /**
      * A field representing a passenger occupying the seat.
      */
@@ -29,12 +29,12 @@ public class Seat {
     /**
      * A constructor of the class, initializes the object.
      *
-     * @param passenger the passenger on the seat.
-     * @param price     the price of the seat.
      * @param number    the number of the seat in a plane.
+     * @param price     the price of the seat.
+     * @param passenger the passenger on the seat.
      * @author Oleksandr Danchenko
      */
-    public Seat(Person passenger, int price, int number) {
+    public Seat(int number, int price, Person passenger) {
         this.passenger = passenger;
         this.price = price;
         this.number = number;
@@ -43,11 +43,11 @@ public class Seat {
     /**
      * A constructor of the class, initializes the object when the seat is empty.
      *
-     * @param price  the price of the seat.
      * @param number the number of the seat in a plane.
+     * @param price  the price of the seat.
      * @author Oleksandr Danchenko
      */
-    public Seat(int price, int number) {
+    public Seat(int number, int price) {
         this.passenger = null;
         this.price = price;
         this.number = number;
@@ -109,5 +109,16 @@ public class Seat {
      */
     public void cancel() {
         this.passenger = null;
+    }
+
+    /**
+     * Converts the seat into a String in the way it is supposed to be represented in a database.
+     *
+     * @return a database String representation of the seat.
+     * @author Oleksandr Danchenko
+     */
+    @Override
+    public String data() {
+        return number + "=" + price + "=" + passenger.data();
     }
 }
