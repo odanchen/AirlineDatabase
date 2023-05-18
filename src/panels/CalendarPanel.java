@@ -1,3 +1,8 @@
+/*
+Author: Aidan Baker
+time spent: 20 minutes
+version #1
+*/
 package panels;
 
 import data_record.Calendar;
@@ -7,11 +12,27 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * The CalendarPanel class, displays the calendar for the month of August 2023.
+ * @see panels.CustomPanel
+ * @author Aidan Baker
+ */
 public class CalendarPanel extends CustomPanel {
+    /**
+     * the array of labels for the days of the week
+     */
     private final JLabel[] dayLabels = new JLabel[7];
-    private JButton[] dayButtons = new JButton[Calendar.NUMBER_OF_DAYS];
-    private JPanel calendarPanel;
 
+    /**
+     * the array of buttons for each day of the month
+     */
+    private JButton[] dayButtons = new JButton[Calendar.NUMBER_OF_DAYS];
+
+    /**
+     * The constructor for the CalendarPanel class.
+     * @param applicationFrame the frame that the panel is displayed on
+     * @author Aidan Baker
+     */
     public CalendarPanel(ApplicationFrame applicationFrame) {
         super(applicationFrame);
         setTitle("August 2023");
@@ -44,7 +65,12 @@ public class CalendarPanel extends CustomPanel {
             centerPanel.add(dayButtons[i]);
         }
     }
-    
+
+    /**
+     * The method that is called when an action is performed.
+     * @param e the action event
+     * @author Aidan Baker
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
