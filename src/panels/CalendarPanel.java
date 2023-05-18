@@ -52,7 +52,7 @@ public class CalendarPanel extends CustomPanel {
 
         //day buttons
         for (int i = 0; i < Calendar.NUMBER_OF_DAYS; i++) {
-            JButton dayButton = new JButton(String.valueOf(i));
+            JButton dayButton = new JButton(String.valueOf(i + 1));
             dayButton.setActionCommand(String.valueOf(i));
             dayButton.addActionListener(this);
             centerPanel.add(dayButton);
