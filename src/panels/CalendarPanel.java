@@ -19,6 +19,7 @@ import java.awt.event.ActionEvent;
  * @see panels.CustomPanel
  */
 public class CalendarPanel extends CustomPanel {
+    private final Calendar calendar;
 
     /**
      * The constructor for the CalendarPanel class.
@@ -26,8 +27,9 @@ public class CalendarPanel extends CustomPanel {
      * @param applicationFrame the frame that the panel is displayed on
      * @author Aidan Baker
      */
-    public CalendarPanel(ApplicationFrame applicationFrame) {
+    public CalendarPanel(ApplicationFrame applicationFrame, Calendar calendar) {
         super(applicationFrame);
+        this.calendar = calendar;
         setTitle("August 2023");
 
         centerPanel.setLayout(new GridLayout(6, 7));

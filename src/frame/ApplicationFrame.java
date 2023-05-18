@@ -8,6 +8,8 @@ package frame;
 
 import javax.swing.*;
 
+import data_record.Calendar;
+import database.interaction.DataReader;
 import panels.*;
 
 import java.awt.*;
@@ -32,12 +34,12 @@ public class ApplicationFrame extends JFrame {
     /**
      * A reference to the calendar panel of the application.
      */
-    private final CustomPanel calendarPanel = new CalendarPanel(this);
+    private final CustomPanel calendarPanel;
 
     /**
      * A reference to the search panel of the application.
      */
-    private final CustomPanel searchPanel = new SearchPanel(this);
+    private final CustomPanel searchPanel;
 
     /**
      * A reference to the flight list panel of the application.
@@ -75,6 +77,9 @@ public class ApplicationFrame extends JFrame {
         super();
         getContentPane().setLayout(new BorderLayout());
         JPanel centerPanel = new JPanel();
+        Calendar calendar = DataReader.getCalendar();
+        calendarPanel = new CalendarPanel(this, calendar);
+        searchPanel = new SearchPanel(this, calendar);
         centerPanel.add(loadingPanel);
         centerPanel.add(homePanel);
         centerPanel.add(calendarPanel);
