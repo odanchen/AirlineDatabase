@@ -5,6 +5,7 @@ version #1
  */
 package panels;
 
+import data_record.Calendar;
 import frame.ApplicationFrame;
 import graphics.Logo;
 
@@ -23,7 +24,7 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
     private static final String calendarButton = "Calendar";
     private static final String manualButton = "User Manual";
     private static final String exitButton = "Exit";
-    //protected Calendar calendar;
+    protected Calendar calendar;
 
     /**
      * The constructor for the CustomPanel class.
@@ -43,10 +44,12 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
         addBottomButton(exitButton, 30);
 
         //add button panel to bottom of frame
-        //buttonPanel.setPreferredSize(new Dimension(1200, 75));
         add(buttonPanel, BorderLayout.SOUTH);
 
         add(new Logo(), BorderLayout.NORTH);
+
+        centerPanel.setPreferredSize(new Dimension(1000, 600));
+        add(centerPanel, BorderLayout.CENTER);
         setVisible(false);
     }
 

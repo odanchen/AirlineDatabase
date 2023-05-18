@@ -30,6 +30,7 @@ public class ApplicationFrame extends JFrame {
         centerPanel.add(exportPanel);
         add(centerPanel, BorderLayout.CENTER);
         setSize(1400, 850);
+        setLocationRelativeTo(null);
         homePanel.setVisible(true);
         setVisible(true);
 
