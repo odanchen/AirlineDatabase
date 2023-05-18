@@ -42,7 +42,7 @@ public class CalendarPanel extends CustomPanel {
             centerPanel.add(dayButtons[i]);
         }
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);

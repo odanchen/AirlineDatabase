@@ -9,6 +9,7 @@ package data_checking;
 
 /**
  * The DayMonthCalculator class provides methods to calculate the number of days in a given month and year.
+ *
  * @author Oleksandr Danchenko
  */
 public class DayMonthCalculator {

@@ -13,7 +13,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class HomePanel extends CustomPanel {
-    private JTextField screenMessage;
+    private JTextField screenMessage = new JTextField();
     private static final String[] MESSAGES = {
             "Welcome to Fly-Away Airlines!",
             "Welcome Back!",
@@ -27,18 +27,22 @@ public class HomePanel extends CustomPanel {
         super(applicationFrame);
         centerPanel.setLayout(new BorderLayout());
 
-        screenMessage = new JTextField(setScreenMessage());
         screenMessage.setFont(new Font("Arial", Font.BOLD, 50));
         screenMessage.setEditable(false);
         screenMessage.setBackground(new Color(238, 238, 238));
         screenMessage.setHorizontalAlignment(JTextField.CENTER);
+        updateScreenMessage();
 
         centerPanel.add(screenMessage, BorderLayout.CENTER);
 
         add(centerPanel, BorderLayout.CENTER);
     }
 
-    public String setScreenMessage() {
+    public String getRandomizesMessage() {
         return MESSAGES[(int) (Math.random() * MESSAGES.length)];
+    }
+
+    public void updateScreenMessage() {
+        screenMessage.setText(getRandomizesMessage());
     }
 }

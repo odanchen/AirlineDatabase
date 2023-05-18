@@ -28,6 +28,7 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
 
     /**
      * The constructor for the CustomPanel class.
+     *
      * @author Aidan Baker
      */
     public CustomPanel(ApplicationFrame applicationFrame) {
@@ -48,7 +49,7 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
 
         add(new Logo(), BorderLayout.NORTH);
 
-        centerPanel.setPreferredSize(new Dimension(1000, 600));
+        centerPanel.setPreferredSize(new Dimension(1000, 500));
         add(centerPanel, BorderLayout.CENTER);
         setVisible(false);
     }
@@ -64,21 +65,27 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String actionCommand = e.getActionCommand();
-        if (actionCommand.equals(homeButton)) {
-            applicationFrame.switchToHome();
-        } else if (actionCommand.equals(flightSearchButton)) {
-            applicationFrame.switchToSearch();
-        } else if (actionCommand.equals(calendarButton)) {
-            applicationFrame.switchToCalendar();
-        } else if (actionCommand.equals(manualButton)) {
-            try {
-                Desktop.getDesktop().browse(URI.create("https://docs.google.com/document/d/1MoQYM9OzFQPjyVoqWxH3KVLu8QRYIB-3qXgkCfCr4uc/edit?usp=sharing"));
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        } else if (actionCommand.equals(exitButton)) {
-            int ans = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Exit", JOptionPane.YES_NO_OPTION);
-            if (ans == JOptionPane.YES_OPTION) System.exit(0);
+        switch (actionCommand) {
+            case homeButton:
+                applicationFrame.switchToHome();
+                break;
+            case flightSearchButton:
+                applicationFrame.switchToSearch();
+                break;
+            case calendarButton:
+                applicationFrame.switchToCalendar();
+                break;
+            case manualButton:
+                try {
+                    Desktop.getDesktop().browse(URI.create("https://docs.google.com/document/d/1MoQYM9OzFQPjyVoqWxH3KVLu8QRYIB-3qXgkCfCr4uc/edit?usp=sharing"));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                break;
+            case exitButton:
+                int ans = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Exit", JOptionPane.YES_NO_OPTION);
+                if (ans == JOptionPane.YES_OPTION) System.exit(0);
+                break;
         }
     }
 }

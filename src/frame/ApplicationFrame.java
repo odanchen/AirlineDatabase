@@ -1,6 +1,7 @@
 package frame;
 
 import javax.swing.*;
+
 import panels.*;
 
 import java.awt.*;
@@ -11,14 +12,14 @@ public class ApplicationFrame extends JFrame {
     private final CustomPanel calendarPanel = new CalendarPanel(this);
     private final CustomPanel searchPanel = new SearchPanel(this);
     private final CustomPanel flightListPanel = new FlightListPanel(this);
-    private final CustomPanel seatPanel = new SearchPanel(this);
+    private final CustomPanel seatPanel = new SeatPanel(this);
     private final CustomPanel userInputPanel = new UserInputPanel(this);
     private final CustomPanel exportPanel = new ExportPanel(this);
-    private CustomPanel currentPanel = homePanel;
+    private CustomPanel currentPanel = loadingPanel;
 
     public ApplicationFrame() {
         super();
-        setLayout(new BorderLayout());
+        getContentPane().setLayout(new BorderLayout());
         JPanel centerPanel = new JPanel();
         centerPanel.add(loadingPanel);
         centerPanel.add(homePanel);
@@ -29,17 +30,18 @@ public class ApplicationFrame extends JFrame {
         centerPanel.add(userInputPanel);
         centerPanel.add(exportPanel);
         add(centerPanel, BorderLayout.CENTER);
-        setSize(1400, 850);
+        setSize(1400, 750);
         setLocationRelativeTo(null);
-        homePanel.setVisible(true);
+        loadingPanel.setVisible(true);
         setVisible(true);
-
+        ((LoadingPanel) loadingPanel).showSplashScreen();
     }
 
     public void switchToHome() {
         currentPanel.setVisible(false);
         homePanel.setVisible(true);
         currentPanel = homePanel;
+        ((HomePanel) homePanel).updateScreenMessage();
     }
 
     public void switchToCalendar() {
