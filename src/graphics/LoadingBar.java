@@ -17,6 +17,7 @@ public class LoadingBar extends JComponent {
     @Override
     public void paint(Graphics g) {
         g.setColor(Color.BLACK);
+        g.drawRect(getWidth() / 3, getHeight() / 2, 334, 40);
         g.fillRect(getWidth() / 3, getHeight() / 2, pixelCnt, 40);
     }
 }
