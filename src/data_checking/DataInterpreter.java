@@ -23,7 +23,7 @@ public class DataInterpreter {
      * @return a FlightInfo object representing the flight information
      * @author Oleksandr Danchenko
      */
-    public FlightInfo getFlightInfo(String info) {
+    public static FlightInfo getFlightInfo(String info) {
         String[] data = info.split("=");
         return new FlightInfo(new Route(data[0], data[1], Integer.parseInt(data[2])), data[3],
                 Boolean.parseBoolean(data[4]), Integer.parseInt(data[5]), Integer.parseInt(data[6]), new Date(data[7]));
@@ -36,7 +36,7 @@ public class DataInterpreter {
      * @return a Seat object representing the seat information
      * @author Oleksandr Danchenko
      */
-    public Seat getSeat(String info) {
+    public static Seat getSeat(String info) {
         String[] data = info.split("=");
         if (data.length == 2)
             return new Seat(Integer.parseInt(data[0]), Integer.parseInt(data[1]));

@@ -119,6 +119,7 @@ public class Seat implements DatabaseItem {
      */
     @Override
     public String data() {
-        return number + "=" + price + "=" + passenger.data();
+        if (passenger != null) return number + "=" + price + "=" + passenger.data();
+        return number + "=" + price;
     }
 }
