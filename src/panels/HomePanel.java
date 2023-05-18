@@ -13,7 +13,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class HomePanel extends CustomPanel {
-    private JTextField screenMessage = new JTextField();
+    private final JTextField screenMessage = new JTextField();
     private static final String[] MESSAGES = {
             "Welcome to Fly-Away Airlines!",
             "Welcome Back!",
