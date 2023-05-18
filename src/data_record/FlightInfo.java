@@ -10,11 +10,11 @@ public class FlightInfo {
     /**
      * A field representing the route of the flight.
      */
-    private Route route;
+    private final Route route;
     /**
      * The name of the file the seating information is going to be stored in.
      */
-    private String fileName;
+    private final String fileName;
     /**
      * A flag indicating whether the flight is cancelled.
      */
@@ -26,11 +26,11 @@ public class FlightInfo {
     /**
      * The time of departure of the flight.
      */
-    private int departureTime;
+    private final int departureTime;
     /**
      * The date of the flight.
      */
-    private String date;
+    private final Date date;
 
     /**
      * Constructs a FlightInfo object with the specified information.
@@ -43,7 +43,7 @@ public class FlightInfo {
      * @param date          The date of the flight.
      * @author Oleksandr Danchenko
      */
-    public FlightInfo(Route route, String fileName, boolean isCancelled, int seatsLeft, int departureTime, String date) {
+    public FlightInfo(Route route, String fileName, boolean isCancelled, int seatsLeft, int departureTime, Date date) {
         this.route = route;
         this.fileName = fileName;
         this.isCancelled = isCancelled;
@@ -138,7 +138,7 @@ public class FlightInfo {
      * @return The date of the flight.
      * @author Oleksandr Danchenko
      */
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 }

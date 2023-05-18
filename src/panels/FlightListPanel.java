@@ -19,8 +19,8 @@ import java.awt.*;
  */
 public class FlightListPanel extends CustomPanel {
     private DefaultTableModel tableModel = new DefaultTableModel(
-            new Object[][] {},
-            new String[] {"Origin", "Destination", "Date", "Time (est)", "# Seats Available", "Status"}
+            new Object[][]{},
+            new String[]{"Origin", "Destination", "Date", "Time (est)", "# Seats Available", "Status"}
     );
     private JTable table = new JTable(tableModel);
 

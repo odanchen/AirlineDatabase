@@ -14,22 +14,15 @@ import java.awt.event.ActionEvent;
 
 /**
  * The CalendarPanel class, displays the calendar for the month of August 2023.
- * @see panels.CustomPanel
+ *
  * @author Aidan Baker
+ * @see panels.CustomPanel
  */
 public class CalendarPanel extends CustomPanel {
-    /**
-     * the array of labels for the days of the week
-     */
-    private final JLabel[] dayLabels = new JLabel[7];
-
-    /**
-     * the array of buttons for each day of the month
-     */
-    private JButton[] dayButtons = new JButton[Calendar.NUMBER_OF_DAYS];
 
     /**
      * The constructor for the CalendarPanel class.
+     *
      * @param applicationFrame the frame that the panel is displayed on
      * @author Aidan Baker
      */
@@ -40,6 +33,7 @@ public class CalendarPanel extends CustomPanel {
         centerPanel.setLayout(new GridLayout(6, 7));
 
         //day labels
+        JLabel[] dayLabels = new JLabel[7];
         dayLabels[0] = new JLabel("         Sunday");
         dayLabels[1] = new JLabel("         Monday");
         dayLabels[2] = new JLabel("         Tuesday");
@@ -48,8 +42,7 @@ public class CalendarPanel extends CustomPanel {
         dayLabels[5] = new JLabel("         Friday");
         dayLabels[6] = new JLabel("         Saturday");
 
-        for (JLabel dayLabel :
-                dayLabels) {
+        for (JLabel dayLabel : dayLabels) {
             dayLabel.setFont(new Font("Arial", Font.BOLD, 20));
             centerPanel.add(dayLabel);
         }
@@ -58,19 +51,21 @@ public class CalendarPanel extends CustomPanel {
         centerPanel.add(new JLabel(""));
 
         //day buttons
-        for (int i = 0; i < dayButtons.length; i++) {
-            dayButtons[i] = new JButton(Integer.toString(i + 1));
-            dayButtons[i].setActionCommand(Integer.toString(i));
-            dayButtons[i].addActionListener(this);
-            centerPanel.add(dayButtons[i]);
+        for (int i = 0; i < Calendar.NUMBER_OF_DAYS; i++) {
+            JButton dayButton = new JButton(String.valueOf(i));
+            dayButton.setActionCommand(String.valueOf(i));
+            dayButton.addActionListener(this);
+            centerPanel.add(dayButton);
         }
     }
 
     /**
      * The method that is called when an action is performed.
+     *
      * @param e the action event
      * @author Aidan Baker
      */
+
     @Override
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);

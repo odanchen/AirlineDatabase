@@ -51,16 +51,16 @@ public class Logo extends JComponent {
         );
 
         //plane
-        int[] planeCoords_x = {8, 21, 185, 239, 266, 250, 206, 220, 211, 161, 112, 81, 88, 78, 52, 10, 19, 72, 89, 140};
-        int[] planeCoords_y = {89, 79, 93, 45, 33, 65, 113, 278, 291, 159, 205, 226, 279, 289, 249, 221, 212, 218, 188, 140};
+        int[] planeCordsX = {8, 21, 185, 239, 266, 250, 206, 220, 211, 161, 112, 81, 88, 78, 52, 10, 19, 72, 89, 140};
+        int[] planeCordsY = {89, 79, 93, 45, 33, 65, 113, 278, 291, 159, 205, 226, 279, 289, 249, 221, 212, 218, 188, 140};
 
-        for (int i = 0; i < planeCoords_x.length; i++) {
-            planeCoords_x[i] = (int) (scale(planeCoords_x[i]) / 3.5 + 7);
-            planeCoords_y[i] = (int) (scale(planeCoords_y[i]) / 3.5 + 4);
+        for (int i = 0; i < planeCordsX.length; i++) {
+            planeCordsX[i] = (int) (scale(planeCordsX[i]) / 3.5 + 7);
+            planeCordsY[i] = (int) (scale(planeCordsY[i]) / 3.5 + 4);
         }
 
         g.setColor(Color.black);
-        g.fillPolygon(planeCoords_x, planeCoords_y, planeCoords_x.length);
+        g.fillPolygon(planeCordsX, planeCordsY, planeCordsX.length);
     }
 }
 
