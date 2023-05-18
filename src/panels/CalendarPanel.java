@@ -69,9 +69,9 @@ public class CalendarPanel extends CustomPanel {
     @Override
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
-
+        int dayNumber;
         try {
-            int dayNumber = Integer.parseInt(e.getActionCommand());
+            dayNumber = Integer.parseInt(e.getActionCommand());
         } catch (NumberFormatException exception) {
             return;
         }
