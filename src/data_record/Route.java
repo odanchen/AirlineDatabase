@@ -9,7 +9,7 @@ package data_record;
 /**
  * A Route class. Represents the two places a flight happens between and the time it takes for the flight.
  */
-public class Route {
+public class Route implements DatabaseItem {
     /**
      * A String constant, the destination of Toronto.
      */
@@ -80,12 +80,13 @@ public class Route {
     }
 
     /**
-     * A method which generates a String representation of the Route object.
+     * A method which generates a database String representation of the Route object.
      *
-     * @return a String representation of the object.
+     * @return a database String representation of the object.
+     * @author Oleksandr Danchenko
      */
     @Override
-    public String toString() {
-        return departure + "=" + destination;
+    public String data() {
+        return departure + "=" + destination + "=" + flightTime;
     }
 }

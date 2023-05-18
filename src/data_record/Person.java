@@ -12,7 +12,7 @@ package data_record;
  *
  * @author Oleksandr Danchenko
  */
-public class Person {
+public class Person implements DatabaseItem {
     /**
      * A String field, represents the first name of the person.
      */
@@ -24,7 +24,7 @@ public class Person {
     /**
      * A String field, represents the first date of birth of the person in the "DD-MM-YYYY" format.
      */
-    private String dateOfBirth;
+    private Date dateOfBirth;
     /**
      * A String field, represents the phone number of the person.
      */
@@ -33,10 +33,6 @@ public class Person {
      * A String field, represents the email of the person.
      */
     private String email;
-    /**
-     * A String field, represents the age of the person.
-     */
-    private int age;
 
     /**
      * Constructs a person object with the specified information.
@@ -48,7 +44,7 @@ public class Person {
      * @param email       The email address of the person.
      * @author Oleksandr Danchenko
      */
-    public Person(String firstName, String lastName, String dateOfBirth, String phoneNumber, String email) {
+    public Person(String firstName, String lastName, Date dateOfBirth, String phoneNumber, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -82,7 +78,7 @@ public class Person {
      * @return The date of birth of the person in the format "DD-MM-YYYY".
      * @author Oleksandr Danchenko
      */
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
@@ -104,16 +100,6 @@ public class Person {
      */
     public String getEmail() {
         return email;
-    }
-
-    /**
-     * Returns the age of the person.
-     *
-     * @return The age of the person.
-     * @author Oleksandr Danchenko
-     */
-    public int getAge() {
-        return age;
     }
 
     /**
@@ -142,7 +128,7 @@ public class Person {
      * @param dateOfBirth The new date of birth of the person in the format "DD-MM-YYYY".
      * @author Oleksandr Danchenko
      */
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -164,5 +150,16 @@ public class Person {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * Converts the person into a String in the way it is supposed to be represented in a database.
+     *
+     * @return a database String representation of the person.
+     * @author Oleksandr Danchenko
+     */
+    @Override
+    public String data() {
+        return firstName + "=" + lastName + "=" + dateOfBirth.data() + "=" + phoneNumber + "=" + email;
     }
 }
