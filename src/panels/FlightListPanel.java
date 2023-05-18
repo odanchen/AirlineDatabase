@@ -1,3 +1,8 @@
+/*
+Author: Aidan Baker
+time spent: 15 minutes
+version #1
+*/
 package panels;
 
 import frame.ApplicationFrame;
@@ -7,6 +12,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 
+/**
+ * The FlightListPanel class, displays the list of flights.
+ * @see panels.CustomPanel
+ * @author Aidan Baker
+ */
 public class FlightListPanel extends CustomPanel {
     private DefaultTableModel tableModel = new DefaultTableModel(
             new Object[][]{},
@@ -16,7 +26,7 @@ public class FlightListPanel extends CustomPanel {
 
     public FlightListPanel(ApplicationFrame applicationFrame) {
         super(applicationFrame);
-
+        setTitle("Flights");
         //table
         setupTable();
     }
@@ -31,6 +41,7 @@ public class FlightListPanel extends CustomPanel {
 
         JScrollPane scrollPane = new JScrollPane(table);
 
+        centerPanel.setLayout(new GridLayout(1, 1));
         centerPanel.add(scrollPane, BorderLayout.CENTER);
     }
 }
