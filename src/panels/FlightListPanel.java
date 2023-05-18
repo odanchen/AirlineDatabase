@@ -16,7 +16,7 @@ public class FlightListPanel extends CustomPanel {
 
     public FlightListPanel(ApplicationFrame applicationFrame) {
         super(applicationFrame);
-
+        setTitle("Flights");
         //table
         setupTable();
     }
@@ -31,6 +31,7 @@ public class FlightListPanel extends CustomPanel {
 
         JScrollPane scrollPane = new JScrollPane(table);
 
+        centerPanel.setLayout(new GridLayout(1, 1));
         centerPanel.add(scrollPane, BorderLayout.CENTER);
     }
 }

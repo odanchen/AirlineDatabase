@@ -27,12 +27,12 @@ public class HomePanel extends CustomPanel {
         super(applicationFrame);
         centerPanel.setLayout(new BorderLayout());
 
+        //screen message
         screenMessage = new JTextField(setScreenMessage());
         screenMessage.setFont(new Font("Arial", Font.BOLD, 50));
         screenMessage.setEditable(false);
         screenMessage.setBackground(new Color(238, 238, 238));
         screenMessage.setHorizontalAlignment(JTextField.CENTER);
-
         centerPanel.add(screenMessage, BorderLayout.CENTER);
 
         add(centerPanel, BorderLayout.CENTER);

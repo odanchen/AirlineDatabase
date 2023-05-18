@@ -19,6 +19,7 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
     protected frame.ApplicationFrame applicationFrame;
     protected JPanel centerPanel = new JPanel();
     protected JPanel buttonPanel;
+    protected JPanel topPanel;
     private static final String homeButton = "Home";
     private static final String flightSearchButton = "Search for a Flight";
     private static final String calendarButton = "Calendar";
@@ -46,7 +47,10 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
         //add button panel to bottom of frame
         add(buttonPanel, BorderLayout.SOUTH);
 
-        add(new Logo(), BorderLayout.NORTH);
+        topPanel = new JPanel();
+        topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.X_AXIS));
+        topPanel.add(new Logo());
+        add(topPanel, BorderLayout.NORTH);
 
         centerPanel.setPreferredSize(new Dimension(1000, 600));
         add(centerPanel, BorderLayout.CENTER);
@@ -59,6 +63,12 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
         button.setActionCommand(text);
         button.addActionListener(this);
         buttonPanel.add(button);
+    }
+
+    protected void setTitle(String title) {
+        JLabel titleLabel = new JLabel(title);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 80));
+        topPanel.add(titleLabel);
     }
 
     @Override
