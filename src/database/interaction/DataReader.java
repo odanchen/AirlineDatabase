@@ -6,11 +6,9 @@ version #1
 
 package database.interaction;
 
-import data_checking.DataInterpreter;
-import data_checking.FilePathConstructor;
-import data_record.Calendar;
-import data_record.FlightInfo;
-import data_record.Seat;
+import logic.data_record.Calendar;
+import logic.data_record.FlightInfo;
+import logic.data_record.Seat;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

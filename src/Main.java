@@ -4,7 +4,7 @@ time spent: 5 minutes
 version #1
 */
 
-import frame.ApplicationFrame;
+import gui.ApplicationFrame;
 
 /**
  * The Main class, acts as a driver to the program.
