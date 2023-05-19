@@ -53,8 +53,8 @@ public class CalendarPanel extends CustomPanel {
         centerPanel.add(new JLabel(""));
 
         //day buttons
-        for (int i = 0; i < Calendar.NUMBER_OF_DAYS; i++) {
-            JButton dayButton = new JButton(String.valueOf(i + 1));
+        for (int i = 1; i <= Calendar.NUMBER_OF_DAYS; i++) {
+            JButton dayButton = new JButton(String.valueOf(i));
             dayButton.setActionCommand(String.valueOf(i));
             dayButton.addActionListener(this);
             centerPanel.add(dayButton);
@@ -75,9 +75,8 @@ public class CalendarPanel extends CustomPanel {
         try {
             dayNumber = Integer.parseInt(e.getActionCommand());
         } catch (NumberFormatException exception) {
-            return;
+            throw new RuntimeException();
         }
-        //calendar.getDay(dayNumber);
-        applicationFrame.switchToFlight();
+        applicationFrame.switchToFlight(calendar.getDay(dayNumber));
     }
 }
