@@ -72,12 +72,12 @@ public class SearchPanel extends CustomPanel {
         super.actionPerformed(e);
         if (e.getActionCommand().equals("Search")) {
             if (getSelectedDeparture().equals("")) {
-                if (getSelectedDestination().equals("")) applicationFrame.switchToFlight(getFlights(new AnyFlight()));
-                else applicationFrame.switchToFlight(getFlights(new HasDestination(getSelectedDestination())));
+                if (getSelectedDestination().equals("")) applicationFrame.switchToFlightList(getFlights(new AnyFlight()));
+                else applicationFrame.switchToFlightList(getFlights(new HasDestination(getSelectedDestination())));
             } else if (getSelectedDestination().equals("")) {
-                applicationFrame.switchToFlight(getFlights(new HasDeparture(getSelectedDeparture())));
+                applicationFrame.switchToFlightList(getFlights(new HasDeparture(getSelectedDeparture())));
             } else {
-                applicationFrame.switchToFlight(getFlights(new HasRoute(getSelectedDeparture(), getSelectedDestination())));
+                applicationFrame.switchToFlightList(getFlights(new HasRoute(getSelectedDeparture(), getSelectedDestination())));
             }
         }
     }

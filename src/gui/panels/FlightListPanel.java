@@ -12,6 +12,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.List;
 
 /**
@@ -33,6 +34,7 @@ public class FlightListPanel extends CustomPanel {
      * The table of flights.
      */
     private final JTable table = new JTable(model);
+    private JPanel tablePanel;
 
     /**
      * Constructs a FlightListPanel object with the specified ApplicationFrame reference.
@@ -43,7 +45,16 @@ public class FlightListPanel extends CustomPanel {
     public FlightListPanel(ApplicationFrame applicationFrame) {
         super(applicationFrame);
         setTitle("Flights");
+
+        JButton bookFlight = new JButton("Book Flight");
+        bookFlight.setActionCommand("bookFlight");
+        bookFlight.addActionListener(this);
+
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+        centerPanel.add(bookFlight);
+
         setupTable();
+        centerPanel.add(tablePanel);
     }
 
     /**
@@ -84,8 +95,9 @@ public class FlightListPanel extends CustomPanel {
 
         JScrollPane scrollPane = new JScrollPane(table);
 
-        centerPanel.setLayout(new GridLayout(1, 1));
-        centerPanel.add(scrollPane, BorderLayout.CENTER);
+        tablePanel = new JPanel();
+        tablePanel.setLayout(new GridLayout(1, 1));
+        tablePanel.add(scrollPane);
     }
 
     /**
@@ -134,6 +146,17 @@ public class FlightListPanel extends CustomPanel {
     private String fixTime(int time) {
         if (time < 10) return "0" + time;
         return String.valueOf(time);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        super.actionPerformed(e);
+
+        if (e.getActionCommand().equals("bookFlight") && table.getSelectedRow() != -1) {
+            applicationFrame.switchToSeat();
+        } else if (e.getActionCommand().equals("bookFlight")) {
+            JOptionPane.showMessageDialog(this, "Please select a flight to book.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
 

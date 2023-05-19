@@ -77,6 +77,6 @@ public class CalendarPanel extends CustomPanel {
         } catch (NumberFormatException exception) {
             throw new RuntimeException();
         }
-        applicationFrame.switchToFlight(calendar.getDay(dayNumber));
+        applicationFrame.switchToFlightList(calendar.getDay(dayNumber));
     }
 }
