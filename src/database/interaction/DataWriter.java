@@ -34,7 +34,7 @@ public class DataWriter {
     public static void updateFlightList(Calendar calendar) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(FilePathConstructor.getFlightListFile()));
-            for (int i = 0; i < Calendar.NUMBER_OF_DAYS; i++) {
+            for (int i = 1; i <= Calendar.NUMBER_OF_DAYS; i++) {
                 for (FlightInfo info : calendar.getDay(i)) {
                     writer.write(info.data() + '\n');
                 }
