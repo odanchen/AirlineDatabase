@@ -39,16 +39,13 @@ public class DataReader {
      */
     public static Calendar getCalendar() {
         List<FlightInfo>[] calendar = new List[Calendar.NUMBER_OF_DAYS];
+        for (int i = 0; i < calendar.length; i++) calendar[i] = new ArrayList<FlightInfo>();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(FilePathConstructor.getFlightListFile()));
             String line = reader.readLine();
             while (line != null) {
                 FlightInfo info = DataInterpreter.getFlightInfo(line);
-                int day = info.getDate().getDay() - 1;
-                if (calendar[day] == null) {
-                    calendar[day] = new ArrayList<>();
-                }
-                calendar[day].add(info);
+                calendar[info.getDate().getDay() - 1].add(info);
                 line = reader.readLine();
             }
             reader.close();

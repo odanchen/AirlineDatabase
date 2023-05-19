@@ -11,8 +11,10 @@ import javax.swing.*;
 import logic.data_record.Calendar;
 import database.interaction.DataReader;
 import gui.panels.*;
+import logic.data_record.FlightInfo;
 
 import java.awt.*;
+import java.util.List;
 
 /**
  * The ApplicationFrame class represents the main frame of the application.
@@ -140,9 +142,9 @@ public class ApplicationFrame extends JFrame {
      *
      * @author Oleksandr Dacnehnko
      */
-    public void switchToFlight() {
+    public void switchToFlight(List<FlightInfo> flightList) {
         currentPanel.setVisible(false);
-        flightListPanel.setVisible(true);
+        ((FlightListPanel)flightListPanel).showPanel(flightList);
         currentPanel = flightListPanel;
     }
 
