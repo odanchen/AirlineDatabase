@@ -49,6 +49,12 @@ public class FilePathConstructor {
         return new File(String.join(File.separator, new String[]{getDefaultPath(), "seating", filename + SEATING_FILE_EXT}));
     }
 
+    /**
+     * Creates the unchangeable part of the relative path to a file in the database
+     *
+     * @return the unchangeable part of the relative path to a file in the database
+     * @author Oleksandr Danchenko
+     */
     private static String getDefaultPath() {
         if (System.getProperty("user.dir").endsWith("src")) {
             return String.join(File.separator, new String[]{"database", "data"});
