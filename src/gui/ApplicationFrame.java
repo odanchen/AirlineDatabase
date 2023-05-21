@@ -11,6 +11,7 @@ import javax.swing.*;
 import logic.data_record.Calendar;
 import database.interaction.DataReader;
 import gui.panels.*;
+import logic.data_record.Flight;
 import logic.data_record.FlightInfo;
 
 import java.awt.*;
@@ -154,9 +155,9 @@ public class ApplicationFrame extends JFrame {
      *
      * @author Oleksandr Dacnehnko
      */
-    public void switchToSeat() {
+    public void switchToSeat(Flight flight) {
         currentPanel.setVisible(false);
-        seatPanel.setVisible(true);
+        ((SeatPanel) seatPanel).makeVisible(flight);
         currentPanel = seatPanel;
     }
 

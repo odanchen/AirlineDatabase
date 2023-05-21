@@ -1,12 +1,35 @@
+/*
+Author: Oleksandr Danchenko
+time spent: 5 minutes
+version #1
+*/
+
 package logic.filtering;
 
 import logic.data_record.FlightInfo;
 
-public class AnyFlight implements FlightFilter{
+/**
+ * A class, implementation of the FlightFilter class, used to pass a flight with any characteristics.
+ *
+ * @author Oleksandr Danchenko
+ */
+public class AnyFlight implements FlightFilter {
+    /**
+     * A constructor of the class.
+     *
+     * @author Oleksandr Danchenko
+     */
     public AnyFlight() {
 
     }
 
+    /**
+     * Passes a flight with any characteristics.
+     *
+     * @param flight the flight to be evaluated.
+     * @return true.
+     * @author Oleksandr Danchenko
+     */
     @Override
     public boolean predicate(FlightInfo flight) {
         return true;

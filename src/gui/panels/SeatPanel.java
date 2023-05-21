@@ -7,7 +7,7 @@ package gui.panels;
 
 import gui.ApplicationFrame;
 import gui.graphics.PlaneImage;
-import logic.data_record.FlightInfo;
+import logic.data_record.Flight;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +18,7 @@ public class SeatPanel extends CustomPanel {
      * The flight to be booked.
      * @see logic.data_record.FlightInfo
      */
-    private FlightInfo flight;
+    private Flight flight;
 
     /**
      * The button to export the manifest.
@@ -38,12 +38,12 @@ public class SeatPanel extends CustomPanel {
     /**
      * The text field to display some basic flight information.
      */
-    private JTextField flightInfo;
+    private final JTextField flightInfo = new JTextField();
 
     /**
      * The buttons for selecting seats.
      */
-    private JButton[] seats = new JButton[10];
+    private final JButton[] seats = new JButton[10];
 
     /**
      * The panel that contains the seat buttons.
@@ -55,14 +55,16 @@ public class SeatPanel extends CustomPanel {
         centerPanel.setLayout(new GridLayout(3, 1));
         setTitle("Seat Selection");
 
-        flightInfo = new JTextField();
-        flightInfo.setText("Toronto -> Ottawa\n" +
-                "Date: 2021-03-20\n" +
-                "Time: 12:00\n");
-
         centerPanel.add(flightInfo);
         setupSeatButtons();
         centerPanel.add(seatButtonPanel);
+    }
+
+    public void makeVisible(Flight flight) {
+        this.flight = flight;
+        flightInfo.setText(flight.getDeparture() + " -> " + flight.getDestination() +
+                ", " + flight.getDate() + ", " + flight.getUserDepartureTime());
+        setVisible(true);
     }
 
     private void setupSeatButtons() {
