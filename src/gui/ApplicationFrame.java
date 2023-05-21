@@ -141,6 +141,7 @@ public class ApplicationFrame extends JFrame {
      * Switches the current panel to the flight list panel.
      * Hides the current panel and shows the flight list panel.
      *
+     * @param flightList the list of flights to chose from in the panel.
      * @author Oleksandr Dacnehnko
      */
     public void switchToFlightList(List<FlightInfo> flightList) {
@@ -153,6 +154,7 @@ public class ApplicationFrame extends JFrame {
      * Switches the current panel to the seat panel.
      * Hides the current panel and shows the seat panel.
      *
+     * @param flight the flight for the user to book a seat on.
      * @author Oleksandr Dacnehnko
      */
     public void switchToSeat(Flight flight) {
