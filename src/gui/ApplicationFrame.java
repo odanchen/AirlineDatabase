@@ -11,6 +11,7 @@ import javax.swing.*;
 import logic.data_record.Calendar;
 import database.interaction.DataReader;
 import gui.panels.*;
+import logic.data_record.Flight;
 import logic.data_record.FlightInfo;
 
 import java.awt.*;
@@ -140,9 +141,10 @@ public class ApplicationFrame extends JFrame {
      * Switches the current panel to the flight list panel.
      * Hides the current panel and shows the flight list panel.
      *
+     * @param flightList the list of flights to chose from in the panel.
      * @author Oleksandr Dacnehnko
      */
-    public void switchToFlight(List<FlightInfo> flightList) {
+    public void switchToFlightList(List<FlightInfo> flightList) {
         currentPanel.setVisible(false);
         ((FlightListPanel)flightListPanel).showPanel(flightList);
         currentPanel = flightListPanel;
@@ -152,11 +154,12 @@ public class ApplicationFrame extends JFrame {
      * Switches the current panel to the seat panel.
      * Hides the current panel and shows the seat panel.
      *
+     * @param flight the flight for the user to book a seat on.
      * @author Oleksandr Dacnehnko
      */
-    public void switchToSeat() {
+    public void switchToSeat(Flight flight) {
         currentPanel.setVisible(false);
-        seatPanel.setVisible(true);
+        ((SeatPanel) seatPanel).makeVisible(flight);
         currentPanel = seatPanel;
     }
 

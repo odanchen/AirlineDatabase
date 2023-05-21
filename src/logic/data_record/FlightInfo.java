@@ -133,6 +133,29 @@ public class FlightInfo implements DatabaseItem {
     }
 
     /**
+     * Interprets the time and returns a formatted string representation.
+     *
+     * @return the interpreted departure time string.
+     * @author Oleksandr Danchenko
+     */
+    public String getUserDepartureTime() {
+        if (departureTime <= 60 * 12) return departureTime / 60 + ":" + fixTime(departureTime % 60) + " a.m.";
+        return (departureTime % (60 * 12)) / 60 + ":" + fixTime(departureTime % 60) + " p.m.";
+    }
+
+    /**
+     * Fixes the time format by adding a leading zero if the time value is less than 10.
+     *
+     * @param time the time value.
+     * @return the fixed time string.
+     * @author Oleksandr Danchenko
+     */
+    private String fixTime(int time) {
+        if (time < 10) return "0" + time;
+        return String.valueOf(time);
+    }
+
+    /**
      * Returns the date of the flight.
      *
      * @return The date of the flight.

@@ -1,6 +1,6 @@
 /*
 Author: Oleksandr Danchenko
-time spent: 20 minutes
+time spent: 25 minutes
 version #1
 */
 

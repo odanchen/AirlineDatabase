@@ -6,6 +6,7 @@ version #1
 
 import gui.ApplicationFrame;
 
+
 /**
  * The Main class, acts as a driver to the program.
  *
