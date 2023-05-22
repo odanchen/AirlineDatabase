@@ -39,12 +39,6 @@ public class SeatPanel extends CustomPanel {
      * The text field to display some basic flight information.
      */
     private final JTextField flightInfo = new JTextField();
-
-    /**
-     * The buttons for selecting seats.
-     */
-    private final JButton[] seats = new JButton[10];
-
     /**
      * The panel that contains the seat buttons.
      */
@@ -58,6 +52,7 @@ public class SeatPanel extends CustomPanel {
         centerPanel.add(flightInfo);
         setupSeatButtons();
         centerPanel.add(seatButtonPanel);
+        flightInfo.setEditable(false);
     }
 
     public void makeVisible(Flight flight) {
@@ -71,11 +66,11 @@ public class SeatPanel extends CustomPanel {
         seatButtonPanel = new JPanel();
         seatButtonPanel.setLayout(new GridLayout(2, 10));
 
-        for (int i = 0; i < seats.length; i++) {
-            seats[i] = new JButton(Integer.toString(i + 1));
-            seats[i].setActionCommand(Integer.toString(i + 1));
-            seats[i].addActionListener(this);
-            seatButtonPanel.add(seats[i]);
+        for (int i = 0; i < 10; i++) {
+            JButton button = new JButton(Integer.toString(i + 1));
+            button.setActionCommand(Integer.toString(i + 1));
+            button.addActionListener(this);
+            seatButtonPanel.add(button);
             seatButtonPanel.add(new JLabel());
         }
     }
@@ -83,7 +78,10 @@ public class SeatPanel extends CustomPanel {
     @Override
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
-
-        //todo
+        try {
+            applicationFrame.switchToInput(flight.getSeating()[Integer.parseInt(e.getActionCommand()) - 1]);
+        } catch (Exception ex){
+            throw new RuntimeException(ex);
+        }
     }
 }

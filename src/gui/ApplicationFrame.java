@@ -13,6 +13,7 @@ import database.interaction.DataReader;
 import gui.panels.*;
 import logic.data_record.Flight;
 import logic.data_record.FlightInfo;
+import logic.data_record.Seat;
 
 import java.awt.*;
 import java.util.List;
@@ -169,9 +170,9 @@ public class ApplicationFrame extends JFrame {
      *
      * @author Oleksandr Dacnehnko
      */
-    public void switchToInput() {
+    public void switchToInput(Seat seat) {
         currentPanel.setVisible(false);
-        userInputPanel.setVisible(true);
+        ((UserInputPanel) userInputPanel).makeVisible(seat);
         currentPanel = userInputPanel;
     }
 
