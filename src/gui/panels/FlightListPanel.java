@@ -1,6 +1,6 @@
 /*
 Author: Aidan Baker, Oleksandr Danchenko
-time spent: 45 minutes
+time spent: 55 minutes
 version #1
 */
 package gui.panels;
@@ -9,12 +9,14 @@ import database.interaction.DataReader;
 import gui.ApplicationFrame;
 import logic.data_record.Flight;
 import logic.data_record.FlightInfo;
+import logic.sorting.flights.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -49,15 +51,28 @@ public class FlightListPanel extends CustomPanel {
         super(applicationFrame);
         setTitle("Flights");
 
-        JButton bookFlight = new JButton("Book Flight");
-        bookFlight.setActionCommand("bookFlight");
-        bookFlight.addActionListener(this);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(1, 6));
+
+        addButton("Book Flight", "bookFlight", buttonPanel);
+        addButton("Sort by remaining seats", "sortSeats", buttonPanel);
+        addButton("Sort by status", "sortStatus", buttonPanel);
+        addButton("Sort by departure", "sortDeparture", buttonPanel);
+        addButton("Sort by destination", "sortDestination", buttonPanel);
+        addButton("Sort by date and time", "sortDate", buttonPanel);
 
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-        centerPanel.add(bookFlight);
+        centerPanel.add(buttonPanel);
 
         setupTable();
         centerPanel.add(tablePanel);
+    }
+
+    private void addButton(String message, String command, JPanel buttonPanel) {
+        JButton button = new JButton(message);
+        button.setActionCommand(command);
+        button.addActionListener(this);
+        buttonPanel.add(button);
     }
 
     /**
@@ -67,6 +82,11 @@ public class FlightListPanel extends CustomPanel {
      * @author Oleksandr Danchenko
      */
     public void showPanel(List<FlightInfo> flightList) {
+        fillTable(flightList);
+        setVisible(true);
+    }
+
+    private void fillTable(List<FlightInfo> flightList) {
         this.flightList = flightList;
         for (int row = table.getRowCount() - 1; row >= 0; row--)
             model.removeRow(row);
@@ -81,7 +101,6 @@ public class FlightListPanel extends CustomPanel {
             contents[6] = interpretStatus(flightInfo.isCancelled());
             model.addRow(contents);
         }
-        setVisible(true);
     }
 
     /**
@@ -128,9 +147,22 @@ public class FlightListPanel extends CustomPanel {
         return time + " minutes";
     }
 
+    private FlightComparator getComparator(String command) {
+        switch (command) {
+            case "sortSeats": return new SortByRemainingSeats();
+            case "sortStatus": return new SortByStatus();
+            case "sortDeparture": return new SortByDeparture();
+            case "sortDestination": return new SortByDestination();
+            default: return new SortByDateAndTime();
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
+        if (e.getActionCommand().startsWith("sort")) {
+            fillTable(FlightSorter.sort(flightList, getComparator(e.getActionCommand())));
+        }
 
         if (e.getActionCommand().equals("bookFlight") && table.getSelectedRow() != -1) {
             FlightInfo flight = flightList.get(table.getSelectedRow());

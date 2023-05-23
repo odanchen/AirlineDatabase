@@ -1,6 +1,7 @@
 /*
 Author: Oleksandr Danchenko
 time spent: 30 minutes
+Date: 15 May 2023
 version #1
 */
 
@@ -54,9 +55,9 @@ public class FlightSorter {
      * @author Oleksandr Danchenko
      */
     private static List<FlightInfo> merge(List<FlightInfo> list1, List<FlightInfo> list2, FlightComparator comparator) {
-        int idx1 = 0, idx2 = 0, ansIdx = 0;
+        int idx1 = 0, idx2 = 0;
         List<FlightInfo> ans = new ArrayList<>(list1.size() + list2.size());
-        while (ansIdx < list1.size() + list2.size()) {
+        while (ans.size() < list1.size() + list2.size()) {
             if (idx1 < list1.size() && (idx2 == list2.size() || comparator.compare(list1.get(idx1), list2.get(idx2)) <= 0)) {
                 ans.add(list1.get(idx1++));
             } else {
