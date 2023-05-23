@@ -1,3 +1,10 @@
+/*
+Author: Oleksandr Danchenko
+time spent: 20 minutes
+Date: 18 May 2023
+version #1
+ */
+
 package database.interaction;
 
 import logic.data_record.*;

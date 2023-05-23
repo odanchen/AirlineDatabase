@@ -44,6 +44,27 @@ public class Date implements DatabaseItem {
     }
 
     /**
+     * A getter method for the month of the date.
+     *
+     * @return the month of the year of the current date.
+     * @author Oleksandr Danchenko
+     */
+    public int getMonth() {
+        return month;
+    }
+
+    /**
+     * A getter method for the year of the date.
+     *
+     * @return the year of the current date.
+     * @author Oleksandr Danchenko
+     */
+    public int getYear() {
+        return year;
+    }
+
+
+    /**
      * Converts a numerical representation of the month into a String representation of the month.
      *
      * @param month the month to be converted.

@@ -1,7 +1,11 @@
 /*
 Author: Aidan Baker, Oleksandr Danchenko
-time spent: 45 minutes
-version #1
+time spent: 55 minutes
+Date: 19 May 2023
+version #2
+Changes: Added the way to sort data in the table - buttons to sort data using different criteria.
+        time spent: 20 minutes
+        Date: 23 May 2023
 */
 package gui.panels;
 
@@ -9,12 +13,14 @@ import database.interaction.DataReader;
 import gui.ApplicationFrame;
 import logic.data_record.Flight;
 import logic.data_record.FlightInfo;
+import logic.sorting.flights.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,7 +42,13 @@ public class FlightListPanel extends CustomPanel {
      * The table of flights.
      */
     private final JTable table = new JTable(model);
+    /**
+     * The current list of flights.
+     */
     private List<FlightInfo> flightList;
+    /**
+     * The panel that stores the table
+     */
     private JPanel tablePanel;
 
     /**
@@ -49,12 +61,18 @@ public class FlightListPanel extends CustomPanel {
         super(applicationFrame);
         setTitle("Flights");
 
-        JButton bookFlight = new JButton("Book Flight");
-        bookFlight.setActionCommand("bookFlight");
-        bookFlight.addActionListener(this);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(1, 6));
+
+        addButton("Book Flight", "bookFlight", buttonPanel);
+        addButton("Sort by remaining seats", "sortSeats", buttonPanel);
+        addButton("Sort by status", "sortStatus", buttonPanel);
+        addButton("Sort by departure", "sortDeparture", buttonPanel);
+        addButton("Sort by destination", "sortDestination", buttonPanel);
+        addButton("Sort by date and time", "sortDate", buttonPanel);
 
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-        centerPanel.add(bookFlight);
+        centerPanel.add(buttonPanel);
 
         setupTable();
         centerPanel.add(tablePanel);
@@ -67,6 +85,17 @@ public class FlightListPanel extends CustomPanel {
      * @author Oleksandr Danchenko
      */
     public void showPanel(List<FlightInfo> flightList) {
+        fillTable(flightList);
+        setVisible(true);
+    }
+
+    /**
+     * Empties the table from the previously stored data and fills it with the new.
+     *
+     * @param flightList the new list of data.
+     * @author Oleksandr Danchenko
+     */
+    private void fillTable(List<FlightInfo> flightList) {
         this.flightList = flightList;
         for (int row = table.getRowCount() - 1; row >= 0; row--)
             model.removeRow(row);
@@ -81,7 +110,6 @@ public class FlightListPanel extends CustomPanel {
             contents[6] = interpretStatus(flightInfo.isCancelled());
             model.addRow(contents);
         }
-        setVisible(true);
     }
 
     /**
@@ -128,9 +156,35 @@ public class FlightListPanel extends CustomPanel {
         return time + " minutes";
     }
 
+    /**
+     * Picks the comparator corresponding to the action command.
+     *
+     * @param command the action command.
+     * @return an instance of the comparator corresponding to the message.
+     * @author Oleksandr Danchenko
+     */
+    private FlightComparator getComparator(String command) {
+        switch (command) {
+            case "sortSeats": return new SortByRemainingSeats();
+            case "sortStatus": return new SortByStatus();
+            case "sortDeparture": return new SortByDeparture();
+            case "sortDestination": return new SortByDestination();
+            default: return new SortByDateAndTime();
+        }
+    }
+
+    /**
+     * Action to be performed when an event is generated.
+     *
+     * @param e the event to be processed
+     * @author Oleksandr Danchenko
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
+        if (e.getActionCommand().startsWith("sort")) {
+            fillTable(FlightSorter.sort(flightList, getComparator(e.getActionCommand())));
+        }
 
         if (e.getActionCommand().equals("bookFlight") && table.getSelectedRow() != -1) {
             FlightInfo flight = flightList.get(table.getSelectedRow());

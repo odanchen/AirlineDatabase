@@ -1,6 +1,7 @@
 /*
 Author: Oleksandr Danchenko
 time spent: 20 minutes
+Date 16 May 2023
 version #1
 */
 
@@ -196,4 +197,3 @@ public class FlightInfo implements DatabaseItem {
         return route.data() + "=" + fileName + "=" + isCancelled + "=" + seatsLeft + "=" + departureTime + "=" + date.data();
     }
 }
-

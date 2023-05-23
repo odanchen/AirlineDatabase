@@ -1,6 +1,7 @@
 /*
 Author: Oleksandr Danchenko
 time spent: 10 minutes
+Date: 15 May 2023
 version #1
 */
 
@@ -17,22 +18,16 @@ public interface SeatComparator {
     /**
      * A constant GREATER, the number to be returned by the method compare.
      * Used when the first argument is considered to be greater than the second one.
-     *
-     * @author Oleksandr Danchenko
      */
     public static final int GREATER = 1;
     /**
      * A constant EQUAL, the number to be returned by the method compare.
      * Used when the first argument is considered to be equal than the second one.
-     *
-     * @author Oleksandr Dacnehnko
      */
     public static final int EQUAL = 0;
     /**
      * A constant GREATER, the number to be returned by the method compare.
      * Used when the first argument is considered to be LESSER than the second one.
-     *
-     * @author Oleksandr Dancehnko
      */
     public static final int LESSER = -1;
 
