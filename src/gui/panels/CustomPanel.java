@@ -72,6 +72,21 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
         topPanel.add(titleLabel);
     }
 
+    /**
+     * Adds a button with specific characteristics to a specified panel.
+     *
+     * @param message the message displayed on the button.
+     * @param command the action command of the button.
+     * @param buttonPanel the panel, to which the button is added.
+     * @author Oleksandr Danchenko
+     */
+    protected void addButton(String message, String command, JPanel buttonPanel) {
+        JButton button = new JButton(message);
+        button.setActionCommand(command);
+        button.addActionListener(this);
+        buttonPanel.add(button);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String actionCommand = e.getActionCommand();

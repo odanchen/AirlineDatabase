@@ -1,7 +1,11 @@
 /*
 Author: Aidan Baker, Oleksandr Danchenko
 time spent: 55 minutes
-version #1
+Date: 19 May 2023
+version #2
+Changes: Added the way to sort data in the table - buttons to sort data using different criteria.
+        time spent: 20 minutes
+        Date: 23 May 2023
 */
 package gui.panels;
 
@@ -38,7 +42,13 @@ public class FlightListPanel extends CustomPanel {
      * The table of flights.
      */
     private final JTable table = new JTable(model);
+    /**
+     * The current list of flights.
+     */
     private List<FlightInfo> flightList;
+    /**
+     * The panel that stores the table
+     */
     private JPanel tablePanel;
 
     /**
@@ -68,13 +78,6 @@ public class FlightListPanel extends CustomPanel {
         centerPanel.add(tablePanel);
     }
 
-    private void addButton(String message, String command, JPanel buttonPanel) {
-        JButton button = new JButton(message);
-        button.setActionCommand(command);
-        button.addActionListener(this);
-        buttonPanel.add(button);
-    }
-
     /**
      * Displays the flight information in the panel.
      *
@@ -86,6 +89,12 @@ public class FlightListPanel extends CustomPanel {
         setVisible(true);
     }
 
+    /**
+     * Empties the table from the previously stored data and fills it with the new.
+     *
+     * @param flightList the new list of data.
+     * @author Oleksandr Danchenko
+     */
     private void fillTable(List<FlightInfo> flightList) {
         this.flightList = flightList;
         for (int row = table.getRowCount() - 1; row >= 0; row--)
@@ -147,6 +156,13 @@ public class FlightListPanel extends CustomPanel {
         return time + " minutes";
     }
 
+    /**
+     * Picks the comparator corresponding to the action command.
+     *
+     * @param command the action command.
+     * @return an instance of the comparator corresponding to the message.
+     * @author Oleksandr Danchenko
+     */
     private FlightComparator getComparator(String command) {
         switch (command) {
             case "sortSeats": return new SortByRemainingSeats();
@@ -157,6 +173,12 @@ public class FlightListPanel extends CustomPanel {
         }
     }
 
+    /**
+     * Action to be performed when an event is generated.
+     *
+     * @param e the event to be processed
+     * @author Oleksandr Danchenko
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);

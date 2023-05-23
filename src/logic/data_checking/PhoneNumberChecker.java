@@ -1,8 +1,11 @@
 /*
 Author: Oleksandr Danchenko
-time spent: 35 minutes
+time spent: 20 minutes
+Date: 16 May 2023
 version #2
 changes: changed the class to be a descendant of the DataChecker abstract class.
+        Date : 22 May 2023.
+        time spent : 10 minutes.
 */
 
 package logic.data_checking;

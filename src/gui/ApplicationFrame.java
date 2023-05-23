@@ -1,6 +1,7 @@
 /*
 Author: Oleksandr Danchenko
-time spent: 25 minutes
+time spent: 40 minutes
+Date: 17 May 2023
 version #1
  */
 
@@ -95,6 +96,7 @@ public class ApplicationFrame extends JFrame {
         centerPanel.add(exportPanel);
         add(centerPanel, BorderLayout.CENTER);
         setSize(1400, 750);
+        setResizable(false);
         setLocationRelativeTo(null);
         loadingPanel.setVisible(true);
         setVisible(true);
