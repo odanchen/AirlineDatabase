@@ -1,7 +1,8 @@
 /*
 Author: Oleksandr Danchenko
-time spent: 25 minutes
-version #1
+time spent: 35 minutes
+version #2
+changes: changed the class to be a descendant of the DataChecker abstract class.
 */
 
 package logic.data_checking;
@@ -11,15 +12,7 @@ package logic.data_checking;
  *
  * @author Oleksandr Danchenko
  */
-public class PhoneNumberChecker {
-    /**
-     * The message when the entered phone number is correct.
-     */
-    private static final String CORRECT = "Correct";
-    /**
-     * The message when the phone number contains illegal symbols.
-     */
-    private static final String ILLEGAL_SYMBOLS = "Illegal symbols found";
+public class PhoneNumberChecker extends DataChecker {
     /**
      * The message, when the phone number does not contain enough digits.
      */
@@ -34,39 +27,27 @@ public class PhoneNumberChecker {
     private static final String WRONG_FORMAT = "Wrong format";
 
     /**
-     * Private constructor to prevent instantiation of the PhoneNumberChecker class.
+     * A constructor, initializes the object.
      *
+     * @param number the number to be checked.
      * @author Oleksandr Danchenko
      */
-    private PhoneNumberChecker() {
-
-    }
-
-    /**
-     * Checks if a phone number is correct.
-     *
-     * @param number The phone number to check.
-     * @return true if the phone number is correct, false otherwise.
-     * @author Oleksandr Danchenko
-     */
-    public boolean isPhoneNumberCorrect(String number) {
-        return getErrorMessage(number).equals(CORRECT);
+    public PhoneNumberChecker(String number) {
+        super(number);
     }
 
     /**
      * Gets the error message for a phone number.
      *
-     * @param number The phone number to check.
      * @return The error message indicating the issue with the phone number.
      * @author Oleksandr Danchenko
      */
-    public String getErrorMessage(String number) {
-        for (int i = 0; i < number.length(); i++) {
-            if (!isPhoneChar(number.charAt(i))) return ILLEGAL_SYMBOLS;
-        }
-        if (countDigits(number) < 10) return NOT_ENOUGH_DIGITS;
-        if (countDigits(number) > 10) return TOO_MUCH_DIGITS;
-        if (!(checkFormatOne(number) || checkFormatTwo(number) || checkFormatThree(number))) return WRONG_FORMAT;
+    public String getErrorMessage() {
+        if (data.equals("")) return EMPTY;
+        if (areIllegalSymbolsPresent()) return ILLEGAL_SYMBOLS;
+        if (countDigits(data) < 10) return NOT_ENOUGH_DIGITS;
+        if (countDigits(data) > 10) return TOO_MUCH_DIGITS;
+        if (!(checkFormatOne(data) || checkFormatTwo(data) || checkFormatThree(data))) return WRONG_FORMAT;
         return CORRECT;
     }
 
@@ -77,7 +58,7 @@ public class PhoneNumberChecker {
      * @return The number of digits in the phone number.
      * @author Oleksandr Danchenko
      */
-    private int countDigits(String number) {
+    private static int countDigits(String number) {
         int cnt = 0;
         for (int i = 0; i < number.length(); i++) {
             if (number.charAt(i) >= '0' && number.charAt(i) <= '9') cnt++;
@@ -92,8 +73,8 @@ public class PhoneNumberChecker {
      * @return true if the character is a valid phone number character, false otherwise.
      * @author Oleksandr Danchenko
      */
-    private boolean isPhoneChar(char c) {
-        return (c >= '0' && c <= '9') || c == ' ' || c == '-';
+    protected boolean isIllegalSymbol(char c) {
+        return (c < '0' || c > '9') && c != ' ' && c != '-';
     }
 
     /**

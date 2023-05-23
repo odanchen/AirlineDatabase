@@ -156,6 +156,26 @@ public class FlightInfo implements DatabaseItem {
     }
 
     /**
+     * A method that is called when an empty seat is booked.
+     * Decrements the number of seats left.
+     *
+     * @author Oleksandr Danchenko
+     */
+    public void bookSeat() {
+        seatsLeft--;
+    }
+
+    /**
+     * A method that is called when a seat is freed.
+     * Increments the number of seats left.
+     *
+     * @author Oleksandr Danchenko
+     */
+    public void freeSeat() {
+        seatsLeft++;
+    }
+
+    /**
      * Returns the date of the flight.
      *
      * @return The date of the flight.
