@@ -87,6 +87,18 @@ public class Date implements DatabaseItem {
      */
     @Override
     public String data() {
-        return day + "/" + month + "/" + year;
+        return fixDate(day) + "/" + fixDate(month) + "/" + year;
+    }
+
+    /**
+     * Fixes the date to be in correct format.
+     *
+     * @param date the day or the month of a date.
+     * @return the day or month in the correct format.
+     * @author Oleksandr Danchenko
+     */
+    private String fixDate(int date) {
+        if (date < 10) return "0" + date;
+        return String.valueOf(date);
     }
 }

@@ -102,5 +102,10 @@ public class Flight {
     public String getUserDepartureTime() {
         return flightInfo.getUserDepartureTime();
     }
+
+    public void bookSeat(Seat seat, Person passenger) {
+        if (seat.isEmpty()) flightInfo.bookSeat();
+        seat.setPassenger(passenger);
+    }
 }
 

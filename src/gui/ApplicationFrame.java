@@ -58,7 +58,7 @@ public class ApplicationFrame extends JFrame {
     /**
      * A reference to the user input panel of the application.
      */
-    private final CustomPanel userInputPanel = new UserInputPanel(this);
+    private final CustomPanel userInputPanel;
 
     /**
      * A reference to the export panel of the application.
@@ -84,6 +84,7 @@ public class ApplicationFrame extends JFrame {
         Calendar calendar = DataReader.getCalendar();
         calendarPanel = new CalendarPanel(this, calendar);
         searchPanel = new SearchPanel(this, calendar);
+        userInputPanel = new UserInputPanel(this, calendar);
         centerPanel.add(loadingPanel);
         centerPanel.add(homePanel);
         centerPanel.add(calendarPanel);
@@ -170,9 +171,9 @@ public class ApplicationFrame extends JFrame {
      *
      * @author Oleksandr Dacnehnko
      */
-    public void switchToInput(Seat seat) {
+    public void switchToInput(Flight flight, Seat seat) {
         currentPanel.setVisible(false);
-        ((UserInputPanel) userInputPanel).makeVisible(seat);
+        ((UserInputPanel) userInputPanel).makeVisible(flight, seat);
         currentPanel = userInputPanel;
     }
 

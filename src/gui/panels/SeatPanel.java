@@ -79,7 +79,7 @@ public class SeatPanel extends CustomPanel {
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
         try {
-            applicationFrame.switchToInput(flight.getSeating()[Integer.parseInt(e.getActionCommand()) - 1]);
+            applicationFrame.switchToInput(flight, flight.getSeating()[Integer.parseInt(e.getActionCommand()) - 1]);
         } catch (Exception ex){
             throw new RuntimeException(ex);
         }
