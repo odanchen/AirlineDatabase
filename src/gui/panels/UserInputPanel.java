@@ -19,6 +19,7 @@ public class UserInputPanel extends CustomPanel {
     private final Calendar calendar;
     private Seat seat;
     private Flight flight;
+    private final JButton backButton = new JButton("Back");
     private final JTextField firstNameField = new JTextField();
     private final JTextField firstNameErrorFiled = new JTextField();
     private final JTextField lastNameFiled = new JTextField();
@@ -37,6 +38,7 @@ public class UserInputPanel extends CustomPanel {
     public UserInputPanel(ApplicationFrame applicationFrame, Calendar calendar) {
         super(applicationFrame);
         this.calendar = calendar;
+        setTitle("Customer Information");
         centerPanel.setLayout(new GridLayout(6, 1));
         addInputSection("Enter your first name", firstNameField, firstNameErrorFiled);
         addInputSection("Enter your last name", lastNameFiled, lastNameErrorField);
@@ -57,6 +59,13 @@ public class UserInputPanel extends CustomPanel {
         fieldPanel.add(errorField);
         holdPanel.add(fieldPanel);
         centerPanel.add(holdPanel);
+
+        backButton.setActionCommand("back");
+        backButton.addActionListener(this);
+        JPanel backButtonPanel = new JPanel();
+        backButtonPanel.setLayout(new GridLayout(1, 1));
+        backButtonPanel.add(backButton);
+        topPanel.add(backButtonPanel);
     }
 
     private void addPricePanel() {
@@ -112,12 +121,16 @@ public class UserInputPanel extends CustomPanel {
 
     private void loadData() {
         if (seat.isEmpty()) {
+            bookButton.setText("Book the seat");
+
             firstNameField.setText("");
             lastNameFiled.setText("");
             dateOfBirthField.setText("");
             emailField.setText("");
             phoneNumberField.setText("");
         } else {
+            bookButton.setText("Update Reservation");
+
             firstNameField.setText(seat.getPassenger().getFirstName());
             lastNameFiled.setText(seat.getPassenger().getLastName());
             dateOfBirthField.setText(seat.getPassenger().getDateOfBirth().data());
@@ -151,6 +164,16 @@ public class UserInputPanel extends CustomPanel {
                     applicationFrame.switchToHome();
                 }
             }
+        } else if (e.getActionCommand().equals("cancel")) {
+            if (JOptionPane.showConfirmDialog(null, "Please, confirm cancellation of the seat", "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+//                flight.cancelSeat(seat); todo (cancelSeat method)
+//                DataWriter.updateSeatingInformation(flight.getSeating(), flight.getFilename());
+//                DataWriter.updateFlightList(calendar);
+//                JOptionPane.showMessageDialog(null, "Seat cancelled successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+//                applicationFrame.switchToHome();
+            }
+        } else if (e.getActionCommand().equals("back")) {
+            applicationFrame.switchBackToSeat();
         }
     }
 }

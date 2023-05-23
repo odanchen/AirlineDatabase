@@ -72,11 +72,13 @@ public class CalendarPanel extends CustomPanel {
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
         int dayNumber;
+
         try {
             dayNumber = Integer.parseInt(e.getActionCommand());
         } catch (NumberFormatException exception) {
             throw new RuntimeException();
         }
+
         applicationFrame.switchToFlightList(calendar.getDay(dayNumber));
     }
 }

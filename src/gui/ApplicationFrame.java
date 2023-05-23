@@ -166,6 +166,26 @@ public class ApplicationFrame extends JFrame {
     }
 
     /**
+     * Returns to the seat selector panel with its previous state.
+     * @author Aidan Baker
+     */
+    public void switchBackToSeat() {
+        currentPanel.setVisible(false);
+        seatPanel.setVisible(true);
+        currentPanel = seatPanel;
+    }
+
+    /**
+     * Returns to the flight list panel with its previous state.
+     * @author Aidan Baker
+     */
+    public void switchBackToList() {
+        currentPanel.setVisible(false);
+        flightListPanel.setVisible(true);
+        currentPanel = flightListPanel;
+    }
+
+    /**
      * Switches the current panel to the user input panel.
      * Hides the current panel and shows the user input panel.
      *
@@ -174,6 +194,7 @@ public class ApplicationFrame extends JFrame {
     public void switchToInput(Flight flight, Seat seat) {
         currentPanel.setVisible(false);
         ((UserInputPanel) userInputPanel).makeVisible(flight, seat);
+
         currentPanel = userInputPanel;
     }
 
