@@ -124,6 +124,11 @@ public class UserInputPanel extends CustomPanel {
             emailField.setText(seat.getPassenger().getEmail());
             phoneNumberField.setText(seat.getPassenger().getPhoneNumber());
         }
+        firstNameErrorFiled.setText("");
+        lastNameErrorField.setText("");
+        dateOfBirthErrorField.setText("");
+        phoneNumberErrorField.setText("");
+        emailErrorField.setText("");
     }
 
     private Person getEnteredPassengerInfo() {
