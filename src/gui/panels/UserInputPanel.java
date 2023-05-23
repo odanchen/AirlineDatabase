@@ -156,21 +156,25 @@ public class UserInputPanel extends CustomPanel {
             if (!checkData()) {
                 JOptionPane.showMessageDialog(null, "The provided input contains errors", "Input warning", JOptionPane.WARNING_MESSAGE);
             } else {
-                if (JOptionPane.showConfirmDialog(null, "Please, confirm booking of the seat", "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                String message;
+                if (bookButton.getText().equals("Book the seat")) message = "Please confirm booking of the seat";
+                else message = "Please confirm update of the reservation";
+
+                if (JOptionPane.showConfirmDialog(null, message, "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                     flight.bookSeat(seat, getEnteredPassengerInfo());
                     DataWriter.updateSeatingInformation(flight.getSeating(), flight.getFilename());
                     DataWriter.updateFlightList(calendar);
                     JOptionPane.showMessageDialog(null, "Seat booked successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    applicationFrame.switchToHome();
+                    applicationFrame.switchBackToSeat();
                 }
             }
         } else if (e.getActionCommand().equals("cancel")) {
-            if (JOptionPane.showConfirmDialog(null, "Please, confirm cancellation of the seat", "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-//                flight.cancelSeat(seat); todo (cancelSeat method)
-//                DataWriter.updateSeatingInformation(flight.getSeating(), flight.getFilename());
-//                DataWriter.updateFlightList(calendar);
-//                JOptionPane.showMessageDialog(null, "Seat cancelled successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-//                applicationFrame.switchToHome();
+            if (JOptionPane.showConfirmDialog(null, "Please confirm cancellation of the seat", "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                flight.cancelSeat(seat);
+                DataWriter.updateSeatingInformation(flight.getSeating(), flight.getFilename());
+                DataWriter.updateFlightList(calendar);
+                JOptionPane.showMessageDialog(null, "Seat cancelled successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                applicationFrame.switchBackToSeat();
             }
         } else if (e.getActionCommand().equals("back")) {
             applicationFrame.switchBackToSeat();

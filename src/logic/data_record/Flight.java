@@ -107,5 +107,10 @@ public class Flight {
         if (seat.isEmpty()) flightInfo.bookSeat();
         seat.setPassenger(passenger);
     }
+
+    public void cancelSeat(Seat seat) {
+        flightInfo.cancelSeat();
+        seat.setPassenger(null);
+    }
 }
 
