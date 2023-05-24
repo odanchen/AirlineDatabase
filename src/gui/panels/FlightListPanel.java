@@ -199,6 +199,7 @@ public class FlightListPanel extends CustomPanel {
                 else flightList.get(table.getSelectedRow()).renew();
                 DataWriter.updateFlightList(calendar);
                 fillTable(flightList);
+                showSuccessMessage("Action completed successfully");
             }
         }
     }

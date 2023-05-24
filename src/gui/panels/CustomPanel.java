@@ -98,6 +98,16 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
     }
 
     /**
+     * Shows a success message in a dialog window.
+     *
+     * @param message the message to be displayed.
+     * @author Oleksandr Danchenko
+     */
+    protected void showSuccessMessage(String message) {
+        JOptionPane.showMessageDialog(null, message, "Success", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    /**
      * Shows a confirmation message in a dialog window.
      *
      * @param message the message to be displayed.
