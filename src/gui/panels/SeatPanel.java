@@ -55,13 +55,11 @@ public class SeatPanel extends CustomPanel {
         centerPanel.setLayout(new GridLayout(3, 1));
         setTitle("Seat Selection");
 
-        backButton = new JButton("Back");
-        backButton.setActionCommand("back");
-        backButton.addActionListener(this);
+        setBackButtonVisibility(true);
 
         JPanel upperSection = new JPanel();
         JPanel optionButtons = new JPanel();
-        optionButtons.setLayout(new GridLayout(1, 3));
+        optionButtons.setLayout(new GridLayout(1, 2));
 
         exportManifestButton = new JButton("Export Manifest");
         exportManifestButton.setActionCommand("export");
@@ -69,7 +67,6 @@ public class SeatPanel extends CustomPanel {
 
         cancelFlightButton = new JButton("Cancel Flight");
 
-        optionButtons.add(backButton);
         optionButtons.add(exportManifestButton);
         optionButtons.add(cancelFlightButton);
 

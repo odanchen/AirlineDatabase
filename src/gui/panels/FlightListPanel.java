@@ -65,6 +65,9 @@ public class FlightListPanel extends CustomPanel {
     public FlightListPanel(ApplicationFrame applicationFrame, Calendar calendar) {
         super(applicationFrame);
         this.calendar = calendar;
+
+        //todo button to export flight manifest
+
         setTitle("Flights");
 
         JPanel actionButtons = new JPanel();
@@ -134,7 +137,7 @@ public class FlightListPanel extends CustomPanel {
         table.setGridColor(Color.BLACK);
 
         JTableHeader header = table.getTableHeader();
-        header.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        header.setFont(new Font(Font.SERIF, Font.BOLD, 20));
         header.setBackground(Color.lightGray);
 
         JScrollPane scrollPane = new JScrollPane(table);

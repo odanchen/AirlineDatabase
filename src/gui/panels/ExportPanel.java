@@ -12,10 +12,6 @@ public class ExportPanel extends CustomPanel {
      */
     private JPanel optionButtons;
 
-    /**
-     * The button to go back to the previous panel.
-     */
-    private JButton backButton;
 
     /**
      * The button to sort the manifest by seat number.
@@ -47,6 +43,8 @@ public class ExportPanel extends CustomPanel {
         super(applicationFrame);
         setTitle("Flight Manifest");
 
+        setBackButtonVisibility(true);
+
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
         setupButtons();
 
@@ -58,11 +56,6 @@ public class ExportPanel extends CustomPanel {
     private void setupButtons() {
         optionButtons = new JPanel();
         optionButtons.setLayout(new BoxLayout(optionButtons, BoxLayout.X_AXIS));
-
-        backButton = new JButton("Back");
-        backButton.setActionCommand("back");
-        backButton.addActionListener(this);
-        optionButtons.add(backButton);
 
         sortBySeatNumber = new JButton("Sort by Seat #");
         sortBySeatNumber.setActionCommand("sort by number");
