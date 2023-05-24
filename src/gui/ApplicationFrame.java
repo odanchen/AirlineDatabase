@@ -1,6 +1,7 @@
 /*
 Author: Oleksandr Danchenko
-time spent: 25 minutes
+time spent: 40 minutes
+Date: 17 May 2023
 version #1
  */
 
@@ -48,7 +49,7 @@ public class ApplicationFrame extends JFrame {
     /**
      * A reference to the flight list panel of the application.
      */
-    private final CustomPanel flightListPanel = new FlightListPanel(this);
+    private final CustomPanel flightListPanel;
 
     /**
      * A reference to the seat panel of the application.
@@ -85,6 +86,7 @@ public class ApplicationFrame extends JFrame {
         calendarPanel = new CalendarPanel(this, calendar);
         searchPanel = new SearchPanel(this, calendar);
         userInputPanel = new UserInputPanel(this, calendar);
+        flightListPanel = new FlightListPanel(this, calendar);
         centerPanel.add(loadingPanel);
         centerPanel.add(homePanel);
         centerPanel.add(calendarPanel);
@@ -95,6 +97,7 @@ public class ApplicationFrame extends JFrame {
         centerPanel.add(exportPanel);
         add(centerPanel, BorderLayout.CENTER);
         setSize(1400, 750);
+        setResizable(false);
         setLocationRelativeTo(null);
         loadingPanel.setVisible(true);
         setVisible(true);

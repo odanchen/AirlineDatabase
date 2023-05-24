@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 public class SeatPanel extends CustomPanel {
     /**
      * The flight to be booked.
+     *
      * @see logic.data_record.FlightInfo
      */
     private Flight flight;
@@ -109,6 +110,14 @@ public class SeatPanel extends CustomPanel {
         }
     }
 
+    private boolean isSeatButtonPressed(ActionEvent e) {
+        try {
+            return Integer.parseInt(e.getActionCommand()) >= 1 && Integer.parseInt(e.getActionCommand()) <= 10;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
@@ -119,10 +128,8 @@ public class SeatPanel extends CustomPanel {
             applicationFrame.switchToExport();
         }
 
-        try {
+        if (isSeatButtonPressed(e)) {
             applicationFrame.switchToInput(flight, flight.getSeating()[Integer.parseInt(e.getActionCommand()) - 1]);
-        } catch (Exception ex){
-            throw new RuntimeException(ex);
         }
     }
 }

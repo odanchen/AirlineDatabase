@@ -61,24 +61,25 @@ public class CalendarPanel extends CustomPanel {
         }
     }
 
+    private boolean isDayButtonPressed(ActionEvent e) {
+        try {
+            return Integer.parseInt(e.getActionCommand()) >= 1 && Integer.parseInt(e.getActionCommand()) <= Calendar.NUMBER_OF_DAYS;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
+
     /**
      * The method that is called when an action is performed.
      *
      * @param e the action event
      * @author Aidan Baker
      */
-
     @Override
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
-        int dayNumber;
-
-        try {
-            dayNumber = Integer.parseInt(e.getActionCommand());
-        } catch (NumberFormatException exception) {
-            throw new RuntimeException();
+        if (isDayButtonPressed(e)) {
+            applicationFrame.switchToFlightList(calendar.getDay(Integer.parseInt(e.getActionCommand())));
         }
-
-        applicationFrame.switchToFlightList(calendar.getDay(dayNumber));
     }
 }

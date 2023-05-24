@@ -1,6 +1,7 @@
 /*
 Author: Oleksandr Danchenko
 time spent: 20 minutes
+Date 16 May 2023
 version #1
 */
 
@@ -194,6 +195,24 @@ public class FlightInfo implements DatabaseItem {
     }
 
     /**
+     * Cancels the flight.
+     *
+     * @author OleksandrDanchenko
+     */
+    public void cancel() {
+        isCancelled = true;
+    }
+
+    /**
+     * Renews the flight.
+     *
+     * @author Oleksandr Danchenko
+     */
+    public void renew() {
+        isCancelled = false;
+    }
+
+    /**
      * Converts the flight info into a String in the way it is supposed to be represented in a database.
      *
      * @return a database String representation of the flight inf object.
@@ -204,4 +223,3 @@ public class FlightInfo implements DatabaseItem {
         return route.data() + "=" + fileName + "=" + isCancelled + "=" + seatsLeft + "=" + departureTime + "=" + date.data();
     }
 }
-

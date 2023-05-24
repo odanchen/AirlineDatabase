@@ -103,9 +103,27 @@ public class Flight {
         return flightInfo.getUserDepartureTime();
     }
 
-    public void bookSeat(Seat seat, Person passenger) {
-        if (seat.isEmpty()) flightInfo.bookSeat();
-        seat.setPassenger(passenger);
+    /**
+     * A method that is used to book a seat in the flight.
+     *
+     * @param seatNumber the seat to be booked.
+     * @param passenger the passenger to occupy the seat.
+     * @author Oleksandr Danchenko
+     */
+    public void bookSeat(int seatNumber, Person passenger) {
+        if (seating[seatNumber - 1].isEmpty()) flightInfo.bookSeat();
+        seating[seatNumber - 1].setPassenger(passenger);
+    }
+
+    /**
+     * A method that is used to free a seat in the flight.
+     *
+     * @param seatNumber the seat to be freed.
+     * @author Oleksandr Danchenko
+     */
+    public void cancelSeat(int seatNumber) {
+        seating[seatNumber - 1].cancel();
+        flightInfo.freeSeat();
     }
 
     public void cancelSeat(Seat seat) {

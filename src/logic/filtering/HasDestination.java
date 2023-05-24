@@ -1,6 +1,7 @@
 /*
 Author: Oleksandr Danchenko
 time spent: 5 minutes
+Date: 19 May 2023
 version #1
 */
 
