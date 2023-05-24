@@ -151,19 +151,23 @@ public class UserInputPanel extends CustomPanel {
             showErrorMessage("The provided input contains errors");
             return;
         }
-        if (userConfirm("Please confirm booking the seat")) {
-            flight.bookSeat(seat.getNumber(), getEnteredPassengerInfo());
-            String message;
-            if (seat.isEmpty()) message = "Please confirm booking of the seat";
-            else message = "Please confirm update of the reservation";
 
-            if (userConfirm(message)) {
-                flight.bookSeat(seat.getNumber(), getEnteredPassengerInfo());
-                DataWriter.updateSeatingInformation(flight.getSeating(), flight.getFilename());
-                DataWriter.updateFlightList(calendar);
-                showSuccessMessage("Seat booked successfully!");
-                applicationFrame.switchToHome();
-            }
+        String[] messages = new String[2];
+        if (seat.isEmpty()) {
+            messages[0] = "Please confirm booking of the seat";
+            messages[1] = "Seat booked successfully!";
+        }
+        else {
+            messages[0] = "Please confirm update of the reservation";
+            messages[1] = "Reservation updated successfully!";
+        }
+
+        if (userConfirm(messages[0])) {
+            flight.bookSeat(seat.getNumber(), getEnteredPassengerInfo());
+            DataWriter.updateSeatingInformation(flight.getSeating(), flight.getFilename());
+            DataWriter.updateFlightList(calendar);
+            showSuccessMessage(messages[1]);
+            applicationFrame.switchToHome();
         }
     }
 
