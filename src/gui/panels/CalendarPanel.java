@@ -28,11 +28,9 @@ public class CalendarPanel extends ScreenPanel {
      * @author Aidan Baker
      */
     public CalendarPanel(ApplicationFrame applicationFrame, Calendar calendar) {
-        super(applicationFrame);
+        super(applicationFrame, new GridLayout(6, 7));
         this.calendar = calendar;
         setTitle("August 2023");
-
-        centerPanel.setLayout(new GridLayout(6, 7));
 
         //day labels
         JLabel[] dayLabels = new JLabel[7];

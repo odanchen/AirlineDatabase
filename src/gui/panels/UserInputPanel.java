@@ -38,10 +38,9 @@ public class UserInputPanel extends ScreenPanel {
 
 
     public UserInputPanel(ApplicationFrame applicationFrame, Calendar calendar) {
-        super(applicationFrame);
+        super(applicationFrame, new GridLayout(6, 1));
         this.calendar = calendar;
         setTitle("Customer Information");
-        centerPanel.setLayout(new GridLayout(6, 1));
         addInputSection("Enter your first name", firstNameField, firstNameErrorFiled);
         addInputSection("Enter your last name", lastNameFiled, lastNameErrorField);
         addInputSection("Enter your phone number in one of the following formats - " +

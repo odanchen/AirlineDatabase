@@ -52,8 +52,7 @@ public class SeatPanel extends ScreenPanel {
     private CustomPanel seatButtonPanel = new CustomPanel(new GridLayout(2, 9));
 
     public SeatPanel(ApplicationFrame applicationFrame) {
-        super(applicationFrame);
-        centerPanel.setLayout(new GridLayout(3, 1));
+        super(applicationFrame, new GridLayout(3, 1));
         setTitle("Seat Selection");
 
         setBackButtonVisibility(true);

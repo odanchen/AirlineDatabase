@@ -21,11 +21,9 @@ public class SearchPanel extends ScreenPanel {
     private final CustomPanel destinationPanel = new CustomPanel(new GridLayout(4, 1));
 
     public SearchPanel(ApplicationFrame applicationFrame, Calendar calendar) {
-        super(applicationFrame);
+        super(applicationFrame, new BorderLayout());
         this.calendar = calendar;
 
-        centerPanel.setLayout(new BorderLayout());
-        destinationPanel.setLayout(new GridLayout(4, 1));
         addButtons("", true);
         addButtons(Route.TORONTO, false);
         addButtons(Route.OTTAWA, false);

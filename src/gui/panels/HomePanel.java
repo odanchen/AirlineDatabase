@@ -46,8 +46,7 @@ public class HomePanel extends ScreenPanel {
      * @author Aidan Baker
      */
     public HomePanel(ApplicationFrame applicationFrame) {
-        super(applicationFrame);
-        centerPanel.setLayout(new BorderLayout());
+        super(applicationFrame, new BorderLayout());
 
         //screen message
         screenMessage.setFont(new Font("Arial", Font.BOLD, 50));

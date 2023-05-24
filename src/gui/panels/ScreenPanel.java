@@ -36,7 +36,7 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
      *
      * @author Aidan Baker
      */
-    public ScreenPanel(ApplicationFrame applicationFrame) {
+    private ScreenPanel(ApplicationFrame applicationFrame) {
         this.applicationFrame = applicationFrame;
         setLayout(new BorderLayout());
         //bottom button bar
@@ -67,6 +67,16 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
         centerPanel.setPreferredSize(new Dimension(1000, 500));
         add(centerPanel, BorderLayout.CENTER);
         setVisible(false);
+    }
+
+    public ScreenPanel(ApplicationFrame applicationFrame, LayoutManager centerPanelManager) {
+        this(applicationFrame);
+        centerPanel.setLayout(centerPanelManager);
+    }
+
+    public ScreenPanel(ApplicationFrame applicationFrame, int axis) {
+        this(applicationFrame);
+        centerPanel.setLayout(new BoxLayout(centerPanel, axis));
     }
 
     protected void setTitle(String title) {

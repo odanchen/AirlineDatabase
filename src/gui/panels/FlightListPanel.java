@@ -64,7 +64,7 @@ public class FlightListPanel extends ScreenPanel {
      * @author Aidan Baker
      */
     public FlightListPanel(ApplicationFrame applicationFrame, Calendar calendar) {
-        super(applicationFrame);
+        super(applicationFrame, BoxLayout.Y_AXIS);
         this.calendar = calendar;
 
         //todo button to export flight manifest
@@ -83,7 +83,6 @@ public class FlightListPanel extends ScreenPanel {
         addButton("Sort by destination", "sortDestination", sortingButtons);
         addButton("Sort by date and time", "sortDate", sortingButtons);
 
-        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
         centerPanel.add(actionButtons);
         centerPanel.add(sortingButtons);
 

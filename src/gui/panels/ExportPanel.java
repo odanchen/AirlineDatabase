@@ -42,12 +42,11 @@ public class ExportPanel extends ScreenPanel {
 
 
     public ExportPanel(ApplicationFrame applicationFrame) {
-        super(applicationFrame);
+        super(applicationFrame, BoxLayout.Y_AXIS);
         setTitle("Flight Manifest");
 
         setBackButtonVisibility(true);
 
-        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
         setupButtons();
 
         filePreview = new JTextArea("File Preview here");
