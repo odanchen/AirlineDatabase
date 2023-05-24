@@ -5,7 +5,7 @@ version #1
  */
 package gui.panels;
 
-import logic.data_record.Calendar;
+import gui.buttons.CustomButton;
 import gui.ApplicationFrame;
 import gui.graphics.Logo;
 
@@ -39,11 +39,11 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1, 5));
 
-        addBottomButton(homeButton, 30);
-        addBottomButton(flightSearchButton, 25);
-        addBottomButton(calendarButton, 30);
-        addBottomButton(manualButton, 30);
-        addBottomButton(exitButton, 30);
+        addButton(homeButton, homeButton, buttonPanel, 30);
+        addButton(flightSearchButton, flightSearchButton, buttonPanel, 25);
+        addButton(calendarButton, calendarButton, buttonPanel, 30);
+        addButton(manualButton, manualButton, buttonPanel, 30);
+        addButton(exitButton, exitButton, buttonPanel, 30);
 
         //add button panel to bottom of frame
         add(buttonPanel, BorderLayout.SOUTH);
@@ -56,14 +56,6 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
         centerPanel.setPreferredSize(new Dimension(1000, 500));
         add(centerPanel, BorderLayout.CENTER);
         setVisible(false);
-    }
-
-    private void addBottomButton(String text, int fontSize) {
-        JButton button = new JButton(text);
-        button.setFont(new Font("Arial", Font.BOLD, fontSize));
-        button.setActionCommand(text);
-        button.addActionListener(this);
-        buttonPanel.add(button);
     }
 
     protected void setTitle(String title) {
@@ -81,8 +73,16 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
      * @author Oleksandr Danchenko
      */
     protected void addButton(String message, String command, JPanel buttonPanel) {
-        JButton button = new JButton(message);
+        CustomButton button = new CustomButton(message);
         button.setActionCommand(command);
+        button.addActionListener(this);
+        buttonPanel.add(button);
+    }
+
+    private void addButton(String message, String command, JPanel buttonPanel, int fontSize) {
+        CustomButton button = new CustomButton(message);
+        button.setFont(new Font("Arial", Font.BOLD, fontSize));
+        button.setActionCommand(message);
         button.addActionListener(this);
         buttonPanel.add(button);
     }
@@ -135,8 +135,7 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
                     ex.printStackTrace();
                 }
                 break;
-            case exitButton:
-                if (userConfirm("Are you sure you want to exit?")) System.exit(0);
+            case exitButton: if (userConfirm("Are you sure you want to exit?")) System.exit(0);
                 break;
         }
     }
