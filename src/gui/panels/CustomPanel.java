@@ -5,7 +5,6 @@ version #1
  */
 package gui.panels;
 
-import logic.data_record.Calendar;
 import gui.ApplicationFrame;
 import gui.graphics.Logo;
 
@@ -20,6 +19,9 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
     protected JPanel centerPanel = new JPanel();
     protected JPanel buttonPanel;
     protected JPanel topPanel;
+    private JButton backButton = new JButton("<");
+    private JLabel placeHolder = new JLabel("");
+    private JPanel backAndLogoPanel = new JPanel();
     private static final String homeButton = "Home";
     private static final String flightSearchButton = "Search for a Flight";
     private static final String calendarButton = "Calendar";
@@ -50,6 +52,20 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
 
         topPanel = new JPanel();
         topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.X_AXIS));
+
+        backAndLogoPanel.setLayout(new GridLayout(1, 2));
+
+        placeHolder.setPreferredSize(new Dimension(51, 50));
+        placeHolder.setVisible(true);
+
+        backButton.setFont(new Font("Arial", Font.BOLD, 30));
+        backButton.setActionCommand("back");
+        backButton.addActionListener(this);
+        backButton.setVisible(false);
+        backButton.setPreferredSize(new Dimension(50, 50));
+        topPanel.add(backButton);
+        topPanel.add(placeHolder);
+
         topPanel.add(new Logo());
         add(topPanel, BorderLayout.NORTH);
 
@@ -116,6 +132,16 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
      */
     protected boolean userConfirm(String message) {
         return JOptionPane.showConfirmDialog(null, message, "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+    }
+
+    /**
+     * Makes the back button at the top left visible or invisible.
+     *
+     * @param visible whether the back button should be visible or not.
+     */
+    public void setBackButtonVisibility(boolean visible) {
+        backButton.setVisible(visible);
+        placeHolder.setVisible(!visible);
     }
 
     @Override
