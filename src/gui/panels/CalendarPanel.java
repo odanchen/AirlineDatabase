@@ -54,10 +54,7 @@ public class CalendarPanel extends ScreenPanel {
 
         //day buttons
         for (int i = 1; i <= Calendar.NUMBER_OF_DAYS; i++) {
-            JButton dayButton = new JButton(String.valueOf(i));
-            dayButton.setActionCommand(String.valueOf(i));
-            dayButton.addActionListener(this);
-            centerPanel.add(dayButton);
+            addButton(String.valueOf(i), String.valueOf(i), centerPanel);
         }
     }
 

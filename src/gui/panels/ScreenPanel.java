@@ -41,11 +41,11 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
         setLayout(new BorderLayout());
         //bottom button bar
 
-        addButton(homeButton, homeButton, buttonPanel, 30);
+        addButton(homeButton, homeButton, buttonPanel, 25);
         addButton(flightSearchButton, flightSearchButton, buttonPanel, 25);
-        addButton(calendarButton, calendarButton, buttonPanel, 30);
-        addButton(manualButton, manualButton, buttonPanel, 30);
-        addButton(exitButton, exitButton, buttonPanel, 30);
+        addButton(calendarButton, calendarButton, buttonPanel, 25);
+        addButton(manualButton, manualButton, buttonPanel, 25);
+        addButton(exitButton, exitButton, buttonPanel, 25);
 
         //add button panel to bottom of frame
         add(buttonPanel, BorderLayout.SOUTH);
@@ -56,11 +56,9 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
         placeHolder.setVisible(true);
 
         backButton.setFont(new Font("Arial", Font.BOLD, 30));
-        backButton.setActionCommand("back");
-        backButton.addActionListener(this);
         backButton.setVisible(false);
         backButton.setPreferredSize(new Dimension(50, 50));
-        topPanel.add(backButton);
+        addButton(backButton, "back", topPanel);
         topPanel.add(placeHolder);
 
         topPanel.add(new Logo());
@@ -77,6 +75,16 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
         topPanel.add(titleLabel);
     }
 
+    private void addButton(String message, String command, JPanel buttonPanel, int fontSize) {
+        addButton(new CustomButton(message, fontSize),command, buttonPanel);
+    }
+
+    protected void addButton(JButton button, String command, JPanel buttonPanel) {
+        button.setActionCommand(command);
+        button.addActionListener(this);
+        buttonPanel.add(button);
+    }
+
     /**
      * Adds a button with specific characteristics to a specified panel.
      *
@@ -86,18 +94,7 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
      * @author Oleksandr Danchenko
      */
     protected void addButton(String message, String command, JPanel buttonPanel) {
-        CustomButton button = new CustomButton(message);
-        button.setActionCommand(command);
-        button.addActionListener(this);
-        buttonPanel.add(button);
-    }
-
-    private void addButton(String message, String command, JPanel buttonPanel, int fontSize) {
-        CustomButton button = new CustomButton(message);
-        button.setFont(new Font("Arial", Font.BOLD, fontSize));
-        button.setActionCommand(message);
-        button.addActionListener(this);
-        buttonPanel.add(button);
+        addButton(message, command, buttonPanel, CustomButton.DEFAULT_FONT_SIZE);
     }
 
     /**

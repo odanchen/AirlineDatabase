@@ -1,7 +1,5 @@
 package gui.components;
 
-import gui.panels.ScreenPanel;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,7 +8,7 @@ public class CustomLabel extends JLabel {
     public CustomLabel(String text) {
         super(text);
         setBackground(CustomPanel.backgroundWhite);
-        setForeground(CustomButton.buttonBlue);
+        setForeground(CustomButton.BUTTON_BLUE);
     }
 
     @Override
