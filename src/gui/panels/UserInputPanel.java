@@ -48,10 +48,8 @@ public class UserInputPanel extends CustomPanel {
         addInputSection("Enter your email", emailField, emailErrorField);
         addInputSection("Enter your date of birth in the following format = \"dd/mm/yyyy\"", dateOfBirthField, dateOfBirthErrorField);
         addPricePanel();
-        JPanel backButtonPanel = new JPanel();
-        backButtonPanel.setLayout(new GridLayout(1, 1));
-        addButton("Back", "back", backButtonPanel);
-        topPanel.add(backButtonPanel);
+
+        setBackButtonVisibility(true);
     }
 
     private void addInputSection(String title, JTextField inputField, JTextField errorField) {
