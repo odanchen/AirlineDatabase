@@ -3,14 +3,16 @@ Author: Aidan Baker, Oleksandr Danchenko
 time spent: 55 minutes
 Date: 19 May 2023
 version #2
-Changes: Added the way to sort data in the table - buttons to sort data using different criteria.
-        time spent: 20 minutes
+Changes: Added the way to sort data in the table - buttons to sort data using different criteria and to cancel or renew flights.
+        time spent: 50 minutes
         Date: 23 May 2023
 */
 package gui.panels;
 
 import database.interaction.DataReader;
+import database.interaction.DataWriter;
 import gui.ApplicationFrame;
+import logic.data_record.Calendar;
 import logic.data_record.Flight;
 import logic.data_record.FlightInfo;
 import logic.sorting.flights.*;
@@ -20,7 +22,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,6 +51,10 @@ public class FlightListPanel extends CustomPanel {
      * The panel that stores the table
      */
     private JPanel tablePanel;
+    /**
+     * The calendar of flights that month.
+     */
+    private final Calendar calendar;
 
     /**
      * Constructs a FlightListPanel object with the specified ApplicationFrame reference.
@@ -57,22 +62,29 @@ public class FlightListPanel extends CustomPanel {
      * @param applicationFrame the ApplicationFrame object.
      * @author Aidan Baker
      */
-    public FlightListPanel(ApplicationFrame applicationFrame) {
+    public FlightListPanel(ApplicationFrame applicationFrame, Calendar calendar) {
         super(applicationFrame);
+        this.calendar = calendar;
         setTitle("Flights");
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(1, 6));
+        JPanel actionButtons = new JPanel();
+        actionButtons.setLayout(new GridLayout(1, 3));
+        addButton("Book Flight", "bookFlight", actionButtons);
+        addButton("Cancel the flight", "cancel", actionButtons);
+        addButton("Renew the flight", "renew", actionButtons);
 
-        addButton("Book Flight", "bookFlight", buttonPanel);
-        addButton("Sort by remaining seats", "sortSeats", buttonPanel);
-        addButton("Sort by status", "sortStatus", buttonPanel);
-        addButton("Sort by departure", "sortDeparture", buttonPanel);
-        addButton("Sort by destination", "sortDestination", buttonPanel);
-        addButton("Sort by date and time", "sortDate", buttonPanel);
+        JPanel sortingButtons = new JPanel();
+        sortingButtons.setLayout(new GridLayout(1, 5));
+
+        addButton("Sort by remaining seats", "sortSeats", sortingButtons);
+        addButton("Sort by status", "sortStatus", sortingButtons);
+        addButton("Sort by departure", "sortDeparture", sortingButtons);
+        addButton("Sort by destination", "sortDestination", sortingButtons);
+        addButton("Sort by date and time", "sortDate", sortingButtons);
 
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-        centerPanel.add(buttonPanel);
+        centerPanel.add(actionButtons);
+        centerPanel.add(sortingButtons);
 
         setupTable();
         centerPanel.add(tablePanel);
@@ -174,6 +186,46 @@ public class FlightListPanel extends CustomPanel {
     }
 
     /**
+     * An action to be performed after a cancel or renew button was pressed.
+     *
+     * @param toCancel an indicator that the cancel button is the one pressed.
+     * @author Oleksandr Danchenko
+     */
+    private void cancellationEvent(boolean toCancel) {
+        if (toCancel == getSelectedFlight().isCancelled()) showErrorMessage("The action could not be performed");
+        else {
+            if (userConfirm("Are you sure you want to do the action?")) {
+                if (toCancel) getSelectedFlight().cancel();
+                else flightList.get(table.getSelectedRow()).renew();
+                DataWriter.updateFlightList(calendar);
+                fillTable(flightList);
+            }
+        }
+    }
+
+    /**
+     * Gets the flight that is currently selected in the table.
+     *
+     * @return the selected instance of the FlightInfo class or null is nothing is selected.
+     * @author Oleksandr Danchenko
+     */
+    private FlightInfo getSelectedFlight() {
+        if (table.getSelectedRow() == -1) return null;
+        return flightList.get(table.getSelectedRow());
+    }
+
+    /**
+     * Checks if one of the action buttons is pressed - the action that requires a selected flight
+     *
+     * @param command the action command of the event.
+     * @return true if one of the action buttons is pressed, false - otherwise.
+     * @author Oleksandr Danchenko
+     */
+    private boolean isActionButtonPressed(String command) {
+        return command.equals("renew") || command.equals("cancel") || command.equals("bookFlight");
+    }
+
+    /**
      * Action to be performed when an event is generated.
      *
      * @param e the event to be processed
@@ -185,12 +237,16 @@ public class FlightListPanel extends CustomPanel {
         if (e.getActionCommand().startsWith("sort")) {
             fillTable(FlightSorter.sort(flightList, getComparator(e.getActionCommand())));
         }
-
-        if (e.getActionCommand().equals("bookFlight") && table.getSelectedRow() != -1) {
-            FlightInfo flight = flightList.get(table.getSelectedRow());
+        if (isActionButtonPressed(e.getActionCommand()) && getSelectedFlight() == null) {
+            showErrorMessage("No flight selected");
+            return;
+        }
+        if (e.getActionCommand().equals("cancel") || e.getActionCommand().equals("renew")) {
+            cancellationEvent(e.getActionCommand().equals("cancel"));
+        }
+        if (e.getActionCommand().equals("bookFlight")) {
+            FlightInfo flight = getSelectedFlight();
             applicationFrame.switchToSeat(new Flight(flight, DataReader.getSeating(flight.getFileName())));
-        } else if (e.getActionCommand().equals("bookFlight")) {
-            JOptionPane.showMessageDialog(this, "Please select a flight to book.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

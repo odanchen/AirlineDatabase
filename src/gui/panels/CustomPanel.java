@@ -25,7 +25,7 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
     private static final String calendarButton = "Calendar";
     private static final String manualButton = "User Manual";
     private static final String exitButton = "Exit";
-    protected Calendar calendar;
+    private static final String MANUAL_URL = "https://docs.google.com/document/d/1MoQYM9OzFQPjyVoqWxH3KVLu8QRYIB-3qXgkCfCr4uc/edit?usp=sharing";
 
     /**
      * The constructor for the CustomPanel class.
@@ -75,8 +75,8 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
     /**
      * Adds a button with specific characteristics to a specified panel.
      *
-     * @param message the message displayed on the button.
-     * @param command the action command of the button.
+     * @param message     the message displayed on the button.
+     * @param command     the action command of the button.
      * @param buttonPanel the panel, to which the button is added.
      * @author Oleksandr Danchenko
      */
@@ -87,29 +87,46 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
         buttonPanel.add(button);
     }
 
+    /**
+     * Shows an error message in a dialog window.
+     *
+     * @param message the message to be displayed.
+     * @author Oleksandr Danchenko
+     */
+    protected void showErrorMessage(String message) {
+        JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    /**
+     * Shows a confirmation message in a dialog window.
+     *
+     * @param message the message to be displayed.
+     * @return a boolean value representing whether the user confirmed the action.
+     * @author Oleksandr Danchenko
+     */
+    protected boolean userConfirm(String message) {
+        return JOptionPane.showConfirmDialog(null, message, "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String actionCommand = e.getActionCommand();
         switch (actionCommand) {
-            case homeButton:
-                applicationFrame.switchToHome();
+            case homeButton: applicationFrame.switchToHome();
                 break;
-            case flightSearchButton:
-                applicationFrame.switchToSearch();
+            case flightSearchButton: applicationFrame.switchToSearch();
                 break;
-            case calendarButton:
-                applicationFrame.switchToCalendar();
+            case calendarButton: applicationFrame.switchToCalendar();
                 break;
             case manualButton:
                 try {
-                    Desktop.getDesktop().browse(URI.create("https://docs.google.com/document/d/1MoQYM9OzFQPjyVoqWxH3KVLu8QRYIB-3qXgkCfCr4uc/edit?usp=sharing"));
+                    Desktop.getDesktop().browse(URI.create(MANUAL_URL));
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
                 break;
             case exitButton:
-                int ans = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Exit", JOptionPane.YES_NO_OPTION);
-                if (ans == JOptionPane.YES_OPTION) System.exit(0);
+                if (userConfirm("Are you sure you want to exit?")) System.exit(0);
                 break;
         }
     }

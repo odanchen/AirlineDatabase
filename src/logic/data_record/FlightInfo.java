@@ -187,6 +187,24 @@ public class FlightInfo implements DatabaseItem {
     }
 
     /**
+     * Cancels the flight.
+     *
+     * @author OleksandrDanchenko
+     */
+    public void cancel() {
+        isCancelled = true;
+    }
+
+    /**
+     * Renews the flight.
+     *
+     * @author Oleksandr Danchenko
+     */
+    public void renew() {
+        isCancelled = false;
+    }
+
+    /**
      * Converts the flight info into a String in the way it is supposed to be represented in a database.
      *
      * @return a database String representation of the flight inf object.

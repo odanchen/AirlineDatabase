@@ -34,9 +34,9 @@ public class SortByStatus implements FlightComparator {
      */
     @Override
     public int compare(FlightInfo flight1, FlightInfo flight2) {
-        if (!flight1.isCancelled() && flight2.isCancelled()) return GREATER;
+        if (!flight1.isCancelled() && flight2.isCancelled()) return LESSER;
         if (flight1.isCancelled() == flight2.isCancelled()) return EQUAL;
-        return LESSER;
+        return GREATER;
     }
 }
 
