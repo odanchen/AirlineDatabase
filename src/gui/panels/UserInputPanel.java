@@ -9,6 +9,7 @@ package gui.panels;
 
 import database.interaction.DataWriter;
 import gui.ApplicationFrame;
+import gui.buttons.CustomButton;
 import logic.data_checking.*;
 import logic.data_record.*;
 
@@ -31,8 +32,8 @@ public class UserInputPanel extends CustomPanel {
     private final JTextField dateOfBirthField = new JTextField();
     private final JTextField dateOfBirthErrorField = new JTextField();
     private final JTextField priceField = new JTextField();
-    private final JButton bookButton = new JButton("Book the seat");
-    private final JButton cancelButton = new JButton("Cancel booking");
+    private final CustomButton bookButton = new CustomButton("Book the seat");
+    private final CustomButton cancelButton = new CustomButton("Cancel booking");
 
 
     public UserInputPanel(ApplicationFrame applicationFrame, Calendar calendar) {

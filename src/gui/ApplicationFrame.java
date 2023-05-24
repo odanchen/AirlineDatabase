@@ -80,6 +80,7 @@ public class ApplicationFrame extends JFrame {
      */
     public ApplicationFrame() {
         super();
+        getContentPane().setBackground(new Color(248, 249, 249));
         getContentPane().setLayout(new BorderLayout());
         JPanel centerPanel = new JPanel();
         Calendar calendar = DataReader.getCalendar();
@@ -87,6 +88,7 @@ public class ApplicationFrame extends JFrame {
         searchPanel = new SearchPanel(this, calendar);
         userInputPanel = new UserInputPanel(this, calendar);
         flightListPanel = new FlightListPanel(this, calendar);
+        centerPanel.setBackground(new Color(248, 249, 249));
         centerPanel.add(loadingPanel);
         centerPanel.add(homePanel);
         centerPanel.add(calendarPanel);
@@ -102,6 +104,7 @@ public class ApplicationFrame extends JFrame {
         loadingPanel.setVisible(true);
         setVisible(true);
         ((LoadingPanel) loadingPanel).showSplashScreen();
+        repaint();
     }
 
     /**

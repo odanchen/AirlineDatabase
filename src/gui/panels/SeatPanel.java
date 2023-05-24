@@ -61,14 +61,8 @@ public class SeatPanel extends CustomPanel {
         JPanel optionButtons = new JPanel();
         optionButtons.setLayout(new GridLayout(1, 2));
 
-        exportManifestButton = new JButton("Export Manifest");
-        exportManifestButton.setActionCommand("export");
-        exportManifestButton.addActionListener(this);
-
-        cancelFlightButton = new JButton("Cancel Flight");
-
-        optionButtons.add(exportManifestButton);
-        optionButtons.add(cancelFlightButton);
+        addButton("Export Manifest", "export", optionButtons);
+        addButton("Cancel Flight", "cancel", optionButtons);
 
         upperSection.setLayout(new GridLayout(2, 1));
 
