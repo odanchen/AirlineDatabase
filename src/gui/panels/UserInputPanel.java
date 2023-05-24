@@ -10,6 +10,7 @@ package gui.panels;
 import database.interaction.DataWriter;
 import gui.ApplicationFrame;
 import gui.components.CustomButton;
+import gui.components.CustomPanel;
 import logic.data_checking.*;
 import logic.data_record.*;
 
@@ -53,9 +54,8 @@ public class UserInputPanel extends ScreenPanel {
     }
 
     private void addInputSection(String title, JTextField inputField, JTextField errorField) {
-        JPanel holdPanel = new JPanel(), fieldPanel = new JPanel();
-        holdPanel.setLayout(new GridLayout(2, 1));
-        fieldPanel.setLayout(new GridLayout(1, 2));
+        CustomPanel holdPanel = new CustomPanel(new GridLayout(2, 1));
+        CustomPanel fieldPanel = new CustomPanel(new GridLayout(1, 2));
         holdPanel.add(new JLabel(title));
         errorField.setEditable(false);
         fieldPanel.add(inputField);
@@ -66,17 +66,14 @@ public class UserInputPanel extends ScreenPanel {
 
     private void addPricePanel() {
         priceField.setEditable(false);
-        JPanel pricePanel = new JPanel();
-        pricePanel.setLayout(new GridLayout(1, 2));
+        CustomPanel pricePanel = new CustomPanel(new GridLayout(1, 2));
 
-        JPanel infoPanel = new JPanel();
-        infoPanel.setLayout(new GridLayout(1, 2));
+        CustomPanel infoPanel = new CustomPanel(new GridLayout(1, 2));
         infoPanel.add(new JLabel("The price of the seat: "));
         infoPanel.add(priceField);
         pricePanel.add(infoPanel);
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(1, 2));
+        CustomPanel buttonPanel = new CustomPanel(new GridLayout(1, 2));
         cancelButton.setActionCommand("cancel");
         cancelButton.addActionListener(this);
         bookButton.setActionCommand("book");
@@ -155,8 +152,7 @@ public class UserInputPanel extends ScreenPanel {
         if (seat.isEmpty()) {
             messages[0] = "Please confirm booking of the seat";
             messages[1] = "Seat booked successfully!";
-        }
-        else {
+        } else {
             messages[0] = "Please confirm update of the reservation";
             messages[1] = "Reservation updated successfully!";
         }

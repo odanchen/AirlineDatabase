@@ -6,6 +6,7 @@ version #1
 package gui.panels;
 
 import gui.ApplicationFrame;
+import gui.components.CustomPanel;
 import gui.graphics.PlaneImage;
 import logic.data_record.Flight;
 
@@ -48,7 +49,7 @@ public class SeatPanel extends ScreenPanel {
     /**
      * The panel that contains the seat buttons.
      */
-    private JPanel seatButtonPanel;
+    private CustomPanel seatButtonPanel = new CustomPanel(new GridLayout(2, 9));
 
     public SeatPanel(ApplicationFrame applicationFrame) {
         super(applicationFrame);
@@ -57,14 +58,12 @@ public class SeatPanel extends ScreenPanel {
 
         setBackButtonVisibility(true);
 
-        JPanel upperSection = new JPanel();
-        JPanel optionButtons = new JPanel();
-        optionButtons.setLayout(new GridLayout(1, 2));
+        CustomPanel upperSection = new CustomPanel(new GridLayout(2, 1));
+        CustomPanel optionButtons = new CustomPanel(new GridLayout(1, 2));
 
         addButton("Export Manifest", "export", optionButtons);
         addButton("Cancel Flight", "cancel", optionButtons);
 
-        upperSection.setLayout(new GridLayout(2, 1));
 
         upperSection.add(optionButtons);
         upperSection.add(flightInfo);
@@ -87,17 +86,13 @@ public class SeatPanel extends ScreenPanel {
     }
 
     private void setupSeatButtons() {
-        seatButtonPanel = new JPanel();
-        seatButtonPanel.setLayout(new GridLayout(2, 9));
-
         for (int i = 0; i < 10; i++) {
             JButton button = new JButton(Integer.toString(i + 1));
             button.setActionCommand(Integer.toString(i + 1));
             button.addActionListener(this);
             seatButtonPanel.add(button);
 
-            if (i != 4 && i != 9)
-                seatButtonPanel.add(new JLabel());
+            if (i != 4 && i != 9) seatButtonPanel.add(new JLabel());
         }
     }
 

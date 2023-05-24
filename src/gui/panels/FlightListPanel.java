@@ -12,6 +12,7 @@ package gui.panels;
 import database.interaction.DataReader;
 import database.interaction.DataWriter;
 import gui.ApplicationFrame;
+import gui.components.CustomPanel;
 import logic.data_record.Calendar;
 import logic.data_record.Flight;
 import logic.data_record.FlightInfo;
@@ -50,7 +51,7 @@ public class FlightListPanel extends ScreenPanel {
     /**
      * The panel that stores the table
      */
-    private JPanel tablePanel;
+    private final CustomPanel tablePanel = new CustomPanel(new GridLayout(1, 1));
     /**
      * The calendar of flights that month.
      */
@@ -70,15 +71,12 @@ public class FlightListPanel extends ScreenPanel {
 
         setTitle("Flights");
 
-        JPanel actionButtons = new JPanel();
-        actionButtons.setLayout(new GridLayout(1, 3));
+        CustomPanel actionButtons = new CustomPanel(new GridLayout(1, 3));
         addButton("Book Flight", "bookFlight", actionButtons);
         addButton("Cancel the flight", "cancel", actionButtons);
         addButton("Renew the flight", "renew", actionButtons);
 
-        JPanel sortingButtons = new JPanel();
-        sortingButtons.setLayout(new GridLayout(1, 5));
-
+        CustomPanel sortingButtons = new CustomPanel(new GridLayout(1, 5));
         addButton("Sort by remaining seats", "sortSeats", sortingButtons);
         addButton("Sort by status", "sortStatus", sortingButtons);
         addButton("Sort by departure", "sortDeparture", sortingButtons);
@@ -142,8 +140,6 @@ public class FlightListPanel extends ScreenPanel {
 
         JScrollPane scrollPane = new JScrollPane(table);
 
-        tablePanel = new JPanel();
-        tablePanel.setLayout(new GridLayout(1, 1));
         tablePanel.add(scrollPane);
     }
 

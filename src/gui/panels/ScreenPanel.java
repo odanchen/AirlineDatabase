@@ -7,6 +7,7 @@ package gui.panels;
 
 import gui.components.CustomButton;
 import gui.ApplicationFrame;
+import gui.components.CustomPanel;
 import gui.graphics.Logo;
 
 import javax.swing.*;
@@ -15,14 +16,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URI;
 
-public abstract class ScreenPanel extends JPanel implements ActionListener {
+public abstract class ScreenPanel extends CustomPanel implements ActionListener {
     protected ApplicationFrame applicationFrame;
-    protected JPanel centerPanel = new JPanel();
-    protected JPanel buttonPanel;
-    protected JPanel topPanel;
-    private JButton backButton = new JButton("<");
-    private JLabel placeHolder = new JLabel("");
-    private JPanel backAndLogoPanel = new JPanel();
+    protected CustomPanel centerPanel = new CustomPanel();
+    protected CustomPanel buttonPanel = new CustomPanel(new GridLayout(1, 5));
+    protected CustomPanel topPanel = new CustomPanel(BoxLayout.X_AXIS);
+    private final JButton backButton = new JButton("<");
+    private final JLabel placeHolder = new JLabel("");
+    private final CustomPanel backAndLogoPanel = new CustomPanel(new GridLayout(1, 2));
     private static final String homeButton = "Home";
     private static final String flightSearchButton = "Search for a Flight";
     private static final String calendarButton = "Calendar";
@@ -39,8 +40,6 @@ public abstract class ScreenPanel extends JPanel implements ActionListener {
         this.applicationFrame = applicationFrame;
         setLayout(new BorderLayout());
         //bottom button bar
-        buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(1, 5));
 
         addButton(homeButton, homeButton, buttonPanel, 30);
         addButton(flightSearchButton, flightSearchButton, buttonPanel, 25);
@@ -50,9 +49,6 @@ public abstract class ScreenPanel extends JPanel implements ActionListener {
 
         //add button panel to bottom of frame
         add(buttonPanel, BorderLayout.SOUTH);
-
-        topPanel = new JPanel();
-        topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.X_AXIS));
 
         backAndLogoPanel.setLayout(new GridLayout(1, 2));
 

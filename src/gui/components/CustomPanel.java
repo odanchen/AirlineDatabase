@@ -12,8 +12,12 @@ public class CustomPanel extends JPanel {
     }
 
     public CustomPanel(LayoutManager manager) {
-        super();
-        setBackground(backgroundWhite);
+        this();
         setLayout(manager);
+    }
+
+    public CustomPanel(int axis) {
+        this();
+        setLayout(new BoxLayout(this, axis));
     }
 }
