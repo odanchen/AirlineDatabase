@@ -5,7 +5,7 @@ version #1
  */
 package gui.panels;
 
-import gui.buttons.CustomButton;
+import gui.components.CustomButton;
 import gui.ApplicationFrame;
 import gui.graphics.Logo;
 
@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URI;
 
-public abstract class CustomPanel extends JPanel implements ActionListener {
+public abstract class ScreenPanel extends JPanel implements ActionListener {
     protected ApplicationFrame applicationFrame;
     protected JPanel centerPanel = new JPanel();
     protected JPanel buttonPanel;
@@ -35,7 +35,7 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
      *
      * @author Aidan Baker
      */
-    public CustomPanel(ApplicationFrame applicationFrame) {
+    public ScreenPanel(ApplicationFrame applicationFrame) {
         this.applicationFrame = applicationFrame;
         setLayout(new BorderLayout());
         //bottom button bar

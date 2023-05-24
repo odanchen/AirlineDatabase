@@ -1,4 +1,6 @@
-package gui.buttons;
+package gui.components;
+
+;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,8 +18,9 @@ public class CustomButton extends JButton {
 
     @Override
     public void paint(Graphics g) {
-
         int w = getWidth(), h = getHeight();
+        g.setColor(CustomPanel.backgroundWhite);
+        g.drawRect(0, 0, w, h);
         g.setColor(buttonBlue);
         g.fillRoundRect((int) (w * 0.05), (int) (h * 0.05), (int) (w * 0.9), (int)(h * 0.9), 7, 7);
         super.paint(g);

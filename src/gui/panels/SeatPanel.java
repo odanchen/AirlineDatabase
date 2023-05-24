@@ -13,7 +13,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class SeatPanel extends CustomPanel {
+public class SeatPanel extends ScreenPanel {
     /**
      * The flight to be booked.
      *

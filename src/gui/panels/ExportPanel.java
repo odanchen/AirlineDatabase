@@ -6,7 +6,7 @@ import gui.ApplicationFrame;
 
 import java.awt.*;
 
-public class ExportPanel extends CustomPanel {
+public class ExportPanel extends ScreenPanel {
     /**
      * The panel that contains the option buttons.
      */

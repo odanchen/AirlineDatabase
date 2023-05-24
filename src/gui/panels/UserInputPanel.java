@@ -9,7 +9,7 @@ package gui.panels;
 
 import database.interaction.DataWriter;
 import gui.ApplicationFrame;
-import gui.buttons.CustomButton;
+import gui.components.CustomButton;
 import logic.data_checking.*;
 import logic.data_record.*;
 
@@ -17,7 +17,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class UserInputPanel extends CustomPanel {
+public class UserInputPanel extends ScreenPanel {
     private final Calendar calendar;
     private Seat seat;
     private Flight flight;

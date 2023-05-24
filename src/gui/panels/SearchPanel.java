@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchPanel extends CustomPanel {
+public class SearchPanel extends ScreenPanel {
     private final Calendar calendar;
     private final ButtonGroup departureGroup = new ButtonGroup();
     private final ButtonGroup destinationGroup = new ButtonGroup();

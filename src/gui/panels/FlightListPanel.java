@@ -28,9 +28,9 @@ import java.util.List;
  * The FlightListPanel class, displays the list of flights.
  *
  * @author Aidan Baker, Oleksandr Danchenko
- * @see gui.panels.CustomPanel
+ * @see ScreenPanel
  */
-public class FlightListPanel extends CustomPanel {
+public class FlightListPanel extends ScreenPanel {
     /**
      * An array of columns in the table.
      */
