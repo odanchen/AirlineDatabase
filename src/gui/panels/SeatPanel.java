@@ -27,6 +27,11 @@ public class SeatPanel extends CustomPanel {
     private JButton exportManifestButton;
 
     /**
+     * The button to cancel the flight.
+     */
+    private JButton cancelFlightButton;
+
+    /**
      * the background image
      */
     private PlaneImage planeImage;
@@ -50,8 +55,31 @@ public class SeatPanel extends CustomPanel {
         centerPanel.setLayout(new GridLayout(3, 1));
         setTitle("Seat Selection");
 
-        centerPanel.add(flightInfo);
+        backButton = new JButton("Back");
+        backButton.setActionCommand("back");
+        backButton.addActionListener(this);
+
+        JPanel upperSection = new JPanel();
+        JPanel optionButtons = new JPanel();
+        optionButtons.setLayout(new GridLayout(1, 3));
+
+        exportManifestButton = new JButton("Export Manifest");
+        exportManifestButton.setActionCommand("export");
+        exportManifestButton.addActionListener(this);
+
+        cancelFlightButton = new JButton("Cancel Flight");
+
+        optionButtons.add(backButton);
+        optionButtons.add(exportManifestButton);
+        optionButtons.add(cancelFlightButton);
+
+        upperSection.setLayout(new GridLayout(2, 1));
+
+        upperSection.add(optionButtons);
+        upperSection.add(flightInfo);
+
         setupSeatButtons();
+        centerPanel.add(upperSection);
         centerPanel.add(seatButtonPanel);
         flightInfo.setEditable(false);
     }
@@ -60,19 +88,25 @@ public class SeatPanel extends CustomPanel {
         this.flight = flight;
         flightInfo.setText(flight.getDeparture() + " -> " + flight.getDestination() +
                 ", " + flight.getDate() + ", " + flight.getUserDepartureTime());
+
+        flightInfo.setFont(new Font("Arial", Font.BOLD, 36));
+        flightInfo.setHorizontalAlignment(JTextField.CENTER);
+
         setVisible(true);
     }
 
     private void setupSeatButtons() {
         seatButtonPanel = new JPanel();
-        seatButtonPanel.setLayout(new GridLayout(2, 10));
+        seatButtonPanel.setLayout(new GridLayout(2, 9));
 
         for (int i = 0; i < 10; i++) {
             JButton button = new JButton(Integer.toString(i + 1));
             button.setActionCommand(Integer.toString(i + 1));
             button.addActionListener(this);
             seatButtonPanel.add(button);
-            seatButtonPanel.add(new JLabel());
+
+            if (i != 4 && i != 9)
+                seatButtonPanel.add(new JLabel());
         }
     }
 
@@ -87,6 +121,13 @@ public class SeatPanel extends CustomPanel {
     @Override
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
+
+        if(e.getActionCommand().equals("back")) {
+            applicationFrame.switchBackToList();
+        } else if (e.getActionCommand().equals("export")) {
+            applicationFrame.switchToExport();
+        }
+
         if (isSeatButtonPressed(e)) {
             applicationFrame.switchToInput(flight, flight.getSeating()[Integer.parseInt(e.getActionCommand()) - 1]);
         }

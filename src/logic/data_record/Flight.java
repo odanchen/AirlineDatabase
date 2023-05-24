@@ -125,5 +125,10 @@ public class Flight {
         seating[seatNumber - 1].cancel();
         flightInfo.freeSeat();
     }
+
+    public void cancelSeat(Seat seat) {
+        flightInfo.cancelSeat();
+        seat.setPassenger(null);
+    }
 }
 

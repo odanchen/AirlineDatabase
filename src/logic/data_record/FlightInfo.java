@@ -167,6 +167,14 @@ public class FlightInfo implements DatabaseItem {
     }
 
     /**
+     * A method that is called when a booked seat is cancelled.
+     * @author Aidan Baker
+     */
+    public void cancelSeat() {
+        seatsLeft++;
+    }
+
+    /**
      * A method that is called when a seat is freed.
      * Increments the number of seats left.
      *

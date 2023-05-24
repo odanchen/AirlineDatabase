@@ -38,6 +38,7 @@ public class UserInputPanel extends CustomPanel {
     public UserInputPanel(ApplicationFrame applicationFrame, Calendar calendar) {
         super(applicationFrame);
         this.calendar = calendar;
+        setTitle("Customer Information");
         centerPanel.setLayout(new GridLayout(6, 1));
         addInputSection("Enter your first name", firstNameField, firstNameErrorFiled);
         addInputSection("Enter your last name", lastNameFiled, lastNameErrorField);
@@ -46,6 +47,10 @@ public class UserInputPanel extends CustomPanel {
         addInputSection("Enter your email", emailField, emailErrorField);
         addInputSection("Enter your date of birth in the following format = \"dd/mm/yyyy\"", dateOfBirthField, dateOfBirthErrorField);
         addPricePanel();
+        JPanel backButtonPanel = new JPanel();
+        backButtonPanel.setLayout(new GridLayout(1, 1));
+        addButton("Back", "back", backButtonPanel);
+        topPanel.add(backButtonPanel);
     }
 
     private void addInputSection(String title, JTextField inputField, JTextField errorField) {
@@ -113,12 +118,16 @@ public class UserInputPanel extends CustomPanel {
 
     private void loadData() {
         if (seat.isEmpty()) {
+            bookButton.setText("Book the seat");
+
             firstNameField.setText("");
             lastNameFiled.setText("");
             dateOfBirthField.setText("");
             emailField.setText("");
             phoneNumberField.setText("");
         } else {
+            bookButton.setText("Update Reservation");
+
             firstNameField.setText(seat.getPassenger().getFirstName());
             lastNameFiled.setText(seat.getPassenger().getLastName());
             dateOfBirthField.setText(seat.getPassenger().getDateOfBirth().data());
@@ -137,29 +146,39 @@ public class UserInputPanel extends CustomPanel {
                 new Date(dateOfBirthField.getText()), phoneNumberField.getText(), emailField.getText());
     }
 
+    private void bookEvent() {
+        if (!checkData()) {
+            showErrorMessage("The provided input contains errors");
+            return;
+        }
+        if (userConfirm("Please confirm booking the seat")) {
+            flight.bookSeat(seat.getNumber(), getEnteredPassengerInfo());
+            String message;
+            if (seat.isEmpty()) message = "Please confirm booking of the seat";
+            else message = "Please confirm update of the reservation";
+
+            if (userConfirm(message)) {
+                flight.bookSeat(seat.getNumber(), getEnteredPassengerInfo());
+                DataWriter.updateSeatingInformation(flight.getSeating(), flight.getFilename());
+                DataWriter.updateFlightList(calendar);
+                showSuccessMessage("Seat booked successfully!");
+                applicationFrame.switchToHome();
+            }
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
+        if (e.getActionCommand().equals("back")) applicationFrame.switchBackToSeat();
         if (e.getActionCommand().equals("cancel")) {
-            if (JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel the booking?", "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            if (userConfirm("Are you sure you want to cancel the booking")) {
                 flight.cancelSeat(seat.getNumber());
                 DataWriter.updateSeatingInformation(flight.getSeating(), flight.getFilename());
                 DataWriter.updateFlightList(calendar);
                 applicationFrame.switchToHome();
             }
         }
-        if (e.getActionCommand().equals("book")) {
-            if (!checkData()) {
-                JOptionPane.showMessageDialog(null, "The provided input contains errors", "Input warning", JOptionPane.WARNING_MESSAGE);
-            } else {
-                if (JOptionPane.showConfirmDialog(null, "Please, confirm booking of the seat", "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                    flight.bookSeat(seat.getNumber(), getEnteredPassengerInfo());
-                    DataWriter.updateSeatingInformation(flight.getSeating(), flight.getFilename());
-                    DataWriter.updateFlightList(calendar);
-                    JOptionPane.showMessageDialog(null, "Seat booked successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    applicationFrame.switchToHome();
-                }
-            }
-        }
+        if (e.getActionCommand().equals("book")) bookEvent();
     }
 }
