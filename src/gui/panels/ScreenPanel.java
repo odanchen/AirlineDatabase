@@ -5,8 +5,9 @@ version #1
  */
 package gui.panels;
 
-import gui.buttons.CustomButton;
+import gui.components.CustomButton;
 import gui.ApplicationFrame;
+import gui.components.CustomPanel;
 import gui.graphics.Logo;
 
 import javax.swing.*;
@@ -15,14 +16,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URI;
 
-public abstract class CustomPanel extends JPanel implements ActionListener {
+public abstract class ScreenPanel extends CustomPanel implements ActionListener {
     protected ApplicationFrame applicationFrame;
-    protected JPanel centerPanel = new JPanel();
-    protected JPanel buttonPanel;
-    protected JPanel topPanel;
-    private JButton backButton = new JButton("<");
-    private JLabel placeHolder = new JLabel("");
-    private JPanel backAndLogoPanel = new JPanel();
+    protected CustomPanel centerPanel = new CustomPanel();
+    protected CustomPanel buttonPanel = new CustomPanel(new GridLayout(1, 5));
+    protected CustomPanel topPanel = new CustomPanel(BoxLayout.X_AXIS);
+    private final JButton backButton = new JButton("<");
+    private final JLabel placeHolder = new JLabel("");
+    private final CustomPanel backAndLogoPanel = new CustomPanel(new GridLayout(1, 2));
     private static final String homeButton = "Home";
     private static final String flightSearchButton = "Search for a Flight";
     private static final String calendarButton = "Calendar";
@@ -35,24 +36,19 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
      *
      * @author Aidan Baker
      */
-    public CustomPanel(ApplicationFrame applicationFrame) {
+    private ScreenPanel(ApplicationFrame applicationFrame) {
         this.applicationFrame = applicationFrame;
         setLayout(new BorderLayout());
         //bottom button bar
-        buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(1, 5));
 
-        addButton(homeButton, homeButton, buttonPanel, 30);
+        addButton(homeButton, homeButton, buttonPanel, 25);
         addButton(flightSearchButton, flightSearchButton, buttonPanel, 25);
-        addButton(calendarButton, calendarButton, buttonPanel, 30);
-        addButton(manualButton, manualButton, buttonPanel, 30);
-        addButton(exitButton, exitButton, buttonPanel, 30);
+        addButton(calendarButton, calendarButton, buttonPanel, 25);
+        addButton(manualButton, manualButton, buttonPanel, 25);
+        addButton(exitButton, exitButton, buttonPanel, 25);
 
         //add button panel to bottom of frame
         add(buttonPanel, BorderLayout.SOUTH);
-
-        topPanel = new JPanel();
-        topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.X_AXIS));
 
         backAndLogoPanel.setLayout(new GridLayout(1, 2));
 
@@ -60,11 +56,9 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
         placeHolder.setVisible(true);
 
         backButton.setFont(new Font("Arial", Font.BOLD, 30));
-        backButton.setActionCommand("back");
-        backButton.addActionListener(this);
         backButton.setVisible(false);
         backButton.setPreferredSize(new Dimension(50, 50));
-        topPanel.add(backButton);
+        addButton(backButton, "back", topPanel);
         topPanel.add(placeHolder);
 
         topPanel.add(new Logo());
@@ -75,10 +69,30 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
         setVisible(false);
     }
 
+    public ScreenPanel(ApplicationFrame applicationFrame, LayoutManager centerPanelManager) {
+        this(applicationFrame);
+        centerPanel.setLayout(centerPanelManager);
+    }
+
+    public ScreenPanel(ApplicationFrame applicationFrame, int axis) {
+        this(applicationFrame);
+        centerPanel.setLayout(new BoxLayout(centerPanel, axis));
+    }
+
     protected void setTitle(String title) {
         JLabel titleLabel = new JLabel(title);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 80));
         topPanel.add(titleLabel);
+    }
+
+    private void addButton(String message, String command, JPanel buttonPanel, int fontSize) {
+        addButton(new CustomButton(message, fontSize),command, buttonPanel);
+    }
+
+    protected void addButton(JButton button, String command, JPanel buttonPanel) {
+        button.setActionCommand(command);
+        button.addActionListener(this);
+        buttonPanel.add(button);
     }
 
     /**
@@ -90,18 +104,7 @@ public abstract class CustomPanel extends JPanel implements ActionListener {
      * @author Oleksandr Danchenko
      */
     protected void addButton(String message, String command, JPanel buttonPanel) {
-        CustomButton button = new CustomButton(message);
-        button.setActionCommand(command);
-        button.addActionListener(this);
-        buttonPanel.add(button);
-    }
-
-    private void addButton(String message, String command, JPanel buttonPanel, int fontSize) {
-        CustomButton button = new CustomButton(message);
-        button.setFont(new Font("Arial", Font.BOLD, fontSize));
-        button.setActionCommand(message);
-        button.addActionListener(this);
-        buttonPanel.add(button);
+        addButton(message, command, buttonPanel, CustomButton.DEFAULT_FONT_SIZE);
     }
 
     /**

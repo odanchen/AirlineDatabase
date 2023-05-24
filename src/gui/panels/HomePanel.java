@@ -15,9 +15,9 @@ import java.awt.*;
  * The HomePanel class, displays the home screen of the program.
  *
  * @author Aidan Baker
- * @see gui.panels.CustomPanel
+ * @see ScreenPanel
  */
-public class HomePanel extends CustomPanel {
+public class HomePanel extends ScreenPanel {
     /**
      * The text field that displays the screen message.
      */
@@ -46,8 +46,7 @@ public class HomePanel extends CustomPanel {
      * @author Aidan Baker
      */
     public HomePanel(ApplicationFrame applicationFrame) {
-        super(applicationFrame);
-        centerPanel.setLayout(new BorderLayout());
+        super(applicationFrame, new BorderLayout());
 
         //screen message
         screenMessage.setFont(new Font("Arial", Font.BOLD, 50));

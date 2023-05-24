@@ -29,47 +29,47 @@ public class ApplicationFrame extends JFrame {
     /**
      * A reference to the loading panel of the application.
      */
-    private final CustomPanel loadingPanel = new LoadingPanel(this);
+    private final ScreenPanel loadingPanel = new LoadingPanel(this);
 
     /**
      * A reference to the home panel of the application.
      */
-    private final CustomPanel homePanel = new HomePanel(this);
+    private final ScreenPanel homePanel = new HomePanel(this);
 
     /**
      * A reference to the calendar panel of the application.
      */
-    private final CustomPanel calendarPanel;
+    private final ScreenPanel calendarPanel;
 
     /**
      * A reference to the search panel of the application.
      */
-    private final CustomPanel searchPanel;
+    private final ScreenPanel searchPanel;
 
     /**
      * A reference to the flight list panel of the application.
      */
-    private final CustomPanel flightListPanel;
+    private final ScreenPanel flightListPanel;
 
     /**
      * A reference to the seat panel of the application.
      */
-    private final CustomPanel seatPanel = new SeatPanel(this);
+    private final ScreenPanel seatPanel = new SeatPanel(this);
 
     /**
      * A reference to the user input panel of the application.
      */
-    private final CustomPanel userInputPanel;
+    private final ScreenPanel userInputPanel;
 
     /**
      * A reference to the export panel of the application.
      */
-    private final CustomPanel exportPanel = new ExportPanel(this);
+    private final ScreenPanel exportPanel = new ExportPanel(this);
 
     /**
      * A reference to the currently active panel in the application.
      */
-    private CustomPanel currentPanel = loadingPanel;
+    private ScreenPanel currentPanel = loadingPanel;
 
     /**
      * Creates a new instance of ApplicationFrame.

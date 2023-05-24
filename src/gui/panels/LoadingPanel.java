@@ -18,7 +18,7 @@ import java.awt.BorderLayout;
  *
  * @author Oleksandr Dacnehnko
  */
-public class LoadingPanel extends CustomPanel {
+public class LoadingPanel extends ScreenPanel {
     /**
      * The animated loading bar component.
      * Fills up while the splash screen is visible.
@@ -32,9 +32,8 @@ public class LoadingPanel extends CustomPanel {
      * @author Oleksandr Dacnehnko
      */
     public LoadingPanel(ApplicationFrame applicationFrame) {
-        super(applicationFrame);
+        super(applicationFrame, new BorderLayout());
         buttonPanel.setVisible(false);
-        centerPanel.setLayout(new BorderLayout());
         centerPanel.add(loadingBar, BorderLayout.CENTER);
     }
 

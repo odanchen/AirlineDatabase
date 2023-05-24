@@ -1,5 +1,6 @@
 package gui.panels;
 
+import gui.components.CustomPanel;
 import logic.data_record.Calendar;
 import gui.ApplicationFrame;
 import logic.data_record.FlightInfo;
@@ -12,26 +13,23 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchPanel extends CustomPanel {
+public class SearchPanel extends ScreenPanel {
     private final Calendar calendar;
     private final ButtonGroup departureGroup = new ButtonGroup();
     private final ButtonGroup destinationGroup = new ButtonGroup();
-    private final JPanel departurePanel = new JPanel();
-    private final JPanel destinationPanel = new JPanel();
+    private final CustomPanel departurePanel = new CustomPanel(new GridLayout(4, 1));
+    private final CustomPanel destinationPanel = new CustomPanel(new GridLayout(4, 1));
 
     public SearchPanel(ApplicationFrame applicationFrame, Calendar calendar) {
-        super(applicationFrame);
+        super(applicationFrame, new BorderLayout());
         this.calendar = calendar;
 
-        centerPanel.setLayout(new BorderLayout());
-        departurePanel.setLayout(new GridLayout(4, 1));
-        destinationPanel.setLayout(new GridLayout(4, 1));
         addButtons("", true);
         addButtons(Route.TORONTO, false);
         addButtons(Route.OTTAWA, false);
         addButtons(Route.VANCOUVER, false);
         centerPanel.add(departurePanel, BorderLayout.WEST);
-        JPanel center = new JPanel();
+        CustomPanel center = new CustomPanel();
         JButton searchButton = new JButton("Search");
         searchButton.addActionListener(this);
         searchButton.setActionCommand("Search");

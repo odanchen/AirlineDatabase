@@ -16,9 +16,9 @@ import java.awt.event.ActionEvent;
  * The CalendarPanel class, displays the calendar for the month of August 2023.
  *
  * @author Aidan Baker
- * @see gui.panels.CustomPanel
+ * @see ScreenPanel
  */
-public class CalendarPanel extends CustomPanel {
+public class CalendarPanel extends ScreenPanel {
     private final Calendar calendar;
 
     /**
@@ -28,11 +28,9 @@ public class CalendarPanel extends CustomPanel {
      * @author Aidan Baker
      */
     public CalendarPanel(ApplicationFrame applicationFrame, Calendar calendar) {
-        super(applicationFrame);
+        super(applicationFrame, new GridLayout(6, 7));
         this.calendar = calendar;
         setTitle("August 2023");
-
-        centerPanel.setLayout(new GridLayout(6, 7));
 
         //day labels
         JLabel[] dayLabels = new JLabel[7];
@@ -54,10 +52,7 @@ public class CalendarPanel extends CustomPanel {
 
         //day buttons
         for (int i = 1; i <= Calendar.NUMBER_OF_DAYS; i++) {
-            JButton dayButton = new JButton(String.valueOf(i));
-            dayButton.setActionCommand(String.valueOf(i));
-            dayButton.addActionListener(this);
-            centerPanel.add(dayButton);
+            addButton(String.valueOf(i), String.valueOf(i), centerPanel);
         }
     }
 

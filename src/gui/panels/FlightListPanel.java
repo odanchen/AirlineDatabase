@@ -12,6 +12,7 @@ package gui.panels;
 import database.interaction.DataReader;
 import database.interaction.DataWriter;
 import gui.ApplicationFrame;
+import gui.components.CustomPanel;
 import logic.data_record.Calendar;
 import logic.data_record.Flight;
 import logic.data_record.FlightInfo;
@@ -28,9 +29,9 @@ import java.util.List;
  * The FlightListPanel class, displays the list of flights.
  *
  * @author Aidan Baker, Oleksandr Danchenko
- * @see gui.panels.CustomPanel
+ * @see ScreenPanel
  */
-public class FlightListPanel extends CustomPanel {
+public class FlightListPanel extends ScreenPanel {
     /**
      * An array of columns in the table.
      */
@@ -50,7 +51,7 @@ public class FlightListPanel extends CustomPanel {
     /**
      * The panel that stores the table
      */
-    private JPanel tablePanel;
+    private final CustomPanel tablePanel = new CustomPanel(new GridLayout(1, 1));
     /**
      * The calendar of flights that month.
      */
@@ -63,29 +64,25 @@ public class FlightListPanel extends CustomPanel {
      * @author Aidan Baker
      */
     public FlightListPanel(ApplicationFrame applicationFrame, Calendar calendar) {
-        super(applicationFrame);
+        super(applicationFrame, BoxLayout.Y_AXIS);
         this.calendar = calendar;
 
         //todo button to export flight manifest
 
         setTitle("Flights");
 
-        JPanel actionButtons = new JPanel();
-        actionButtons.setLayout(new GridLayout(1, 3));
+        CustomPanel actionButtons = new CustomPanel(new GridLayout(1, 3));
         addButton("Book Flight", "bookFlight", actionButtons);
         addButton("Cancel the flight", "cancel", actionButtons);
         addButton("Renew the flight", "renew", actionButtons);
 
-        JPanel sortingButtons = new JPanel();
-        sortingButtons.setLayout(new GridLayout(1, 5));
-
+        CustomPanel sortingButtons = new CustomPanel(new GridLayout(1, 5));
         addButton("Sort by remaining seats", "sortSeats", sortingButtons);
         addButton("Sort by status", "sortStatus", sortingButtons);
         addButton("Sort by departure", "sortDeparture", sortingButtons);
         addButton("Sort by destination", "sortDestination", sortingButtons);
         addButton("Sort by date and time", "sortDate", sortingButtons);
 
-        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
         centerPanel.add(actionButtons);
         centerPanel.add(sortingButtons);
 
@@ -142,8 +139,6 @@ public class FlightListPanel extends CustomPanel {
 
         JScrollPane scrollPane = new JScrollPane(table);
 
-        tablePanel = new JPanel();
-        tablePanel.setLayout(new GridLayout(1, 1));
         tablePanel.add(scrollPane);
     }
 

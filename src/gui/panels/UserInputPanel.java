@@ -9,7 +9,8 @@ package gui.panels;
 
 import database.interaction.DataWriter;
 import gui.ApplicationFrame;
-import gui.buttons.CustomButton;
+import gui.components.CustomButton;
+import gui.components.CustomPanel;
 import logic.data_checking.*;
 import logic.data_record.*;
 
@@ -17,7 +18,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class UserInputPanel extends CustomPanel {
+public class UserInputPanel extends ScreenPanel {
     private final Calendar calendar;
     private Seat seat;
     private Flight flight;
@@ -37,10 +38,9 @@ public class UserInputPanel extends CustomPanel {
 
 
     public UserInputPanel(ApplicationFrame applicationFrame, Calendar calendar) {
-        super(applicationFrame);
+        super(applicationFrame, new GridLayout(6, 1));
         this.calendar = calendar;
         setTitle("Customer Information");
-        centerPanel.setLayout(new GridLayout(6, 1));
         addInputSection("Enter your first name", firstNameField, firstNameErrorFiled);
         addInputSection("Enter your last name", lastNameFiled, lastNameErrorField);
         addInputSection("Enter your phone number in one of the following formats - " +
@@ -53,9 +53,8 @@ public class UserInputPanel extends CustomPanel {
     }
 
     private void addInputSection(String title, JTextField inputField, JTextField errorField) {
-        JPanel holdPanel = new JPanel(), fieldPanel = new JPanel();
-        holdPanel.setLayout(new GridLayout(2, 1));
-        fieldPanel.setLayout(new GridLayout(1, 2));
+        CustomPanel holdPanel = new CustomPanel(new GridLayout(2, 1));
+        CustomPanel fieldPanel = new CustomPanel(new GridLayout(1, 2));
         holdPanel.add(new JLabel(title));
         errorField.setEditable(false);
         fieldPanel.add(inputField);
@@ -66,17 +65,14 @@ public class UserInputPanel extends CustomPanel {
 
     private void addPricePanel() {
         priceField.setEditable(false);
-        JPanel pricePanel = new JPanel();
-        pricePanel.setLayout(new GridLayout(1, 2));
+        CustomPanel pricePanel = new CustomPanel(new GridLayout(1, 2));
 
-        JPanel infoPanel = new JPanel();
-        infoPanel.setLayout(new GridLayout(1, 2));
+        CustomPanel infoPanel = new CustomPanel(new GridLayout(1, 2));
         infoPanel.add(new JLabel("The price of the seat: "));
         infoPanel.add(priceField);
         pricePanel.add(infoPanel);
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(1, 2));
+        CustomPanel buttonPanel = new CustomPanel(new GridLayout(1, 2));
         cancelButton.setActionCommand("cancel");
         cancelButton.addActionListener(this);
         bookButton.setActionCommand("book");
@@ -155,8 +151,7 @@ public class UserInputPanel extends CustomPanel {
         if (seat.isEmpty()) {
             messages[0] = "Please confirm booking of the seat";
             messages[1] = "Seat booked successfully!";
-        }
-        else {
+        } else {
             messages[0] = "Please confirm update of the reservation";
             messages[1] = "Reservation updated successfully!";
         }
