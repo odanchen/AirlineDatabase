@@ -1,6 +1,7 @@
 /*
 Author: Aidan Baker
-time spent: 10 minutes
+time spent: 15 minutes
+Date: 19 May 2023
 version #1
  */
 package gui.panels;
@@ -36,11 +37,6 @@ public class SeatPanel extends ScreenPanel {
      * the background image
      */
     private PlaneImage planeImage;
-
-    /**
-     * The button to go back to the flight list.
-     */
-    private JButton backButton;
 
     /**
      * The text field to display some basic flight information.

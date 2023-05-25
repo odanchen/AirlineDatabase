@@ -5,7 +5,6 @@ Date: 16 May 2023
 version #1
 */
 
-
 package logic.data_record;
 
 /**

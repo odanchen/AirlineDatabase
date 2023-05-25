@@ -1,9 +1,15 @@
+/*
+Author: Aidan Baker
+time spent: 5 minutes
+Date: 23 May 2023
+version #1
+ */
+
 package gui.panels;
 
 import javax.swing.*;
 
 import gui.ApplicationFrame;
-import gui.components.CustomButton;
 import gui.components.CustomPanel;
 
 import java.awt.*;
