@@ -5,6 +5,7 @@ Date: 19 May 2023
 Changes: Completely updated the screens layout and adding swap button
         Author: Aidan Baker
         Date: 24 May 2023
+        Time spent: 50 minutes
 Version #2
  */
 
