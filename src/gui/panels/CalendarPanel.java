@@ -1,8 +1,10 @@
 /*
 Author: Aidan Baker
 time spent: 20 minutes
+Date: 18 May 2023
 version #1
 */
+
 package gui.panels;
 
 import logic.data_record.Calendar;
@@ -56,6 +58,12 @@ public class CalendarPanel extends ScreenPanel {
         }
     }
 
+    /**
+     * A helper method to check if a day button was pressed.
+     *
+     * @param e the action event
+     * @return true if a day button was pressed, false otherwise
+     */
     private boolean isDayButtonPressed(ActionEvent e) {
         try {
             return Integer.parseInt(e.getActionCommand()) >= 1 && Integer.parseInt(e.getActionCommand()) <= Calendar.NUMBER_OF_DAYS;

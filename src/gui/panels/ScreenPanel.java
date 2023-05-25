@@ -1,7 +1,11 @@
 /*
-Author: Aidan Baker
-time spent: todo
-version #1
+Author: Aidan Baker, Oleksandr Danchenko
+time spent: 30 minutes
+Date: 17 May 2023
+changes: Added option to have back button and styling
+        time: 20 minutes
+        Date: 24 May 2023
+version #2
  */
 package gui.panels;
 
@@ -23,7 +27,6 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
     protected CustomPanel topPanel = new CustomPanel(BoxLayout.X_AXIS);
     private final JButton backButton = new JButton("<");
     private final JLabel placeHolder = new JLabel("");
-    private final CustomPanel backAndLogoPanel = new CustomPanel(new GridLayout(1, 2));
     private static final String homeButton = "Home";
     private static final String flightSearchButton = "Search for a Flight";
     private static final String calendarButton = "Calendar";
@@ -50,6 +53,7 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
         //add button panel to bottom of frame
         add(buttonPanel, BorderLayout.SOUTH);
 
+        CustomPanel backAndLogoPanel = new CustomPanel(new GridLayout(1, 2));
         backAndLogoPanel.setLayout(new GridLayout(1, 2));
 
         placeHolder.setPreferredSize(new Dimension(51, 50));

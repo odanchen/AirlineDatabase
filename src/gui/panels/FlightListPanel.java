@@ -7,6 +7,7 @@ Changes: Added the way to sort data in the table - buttons to sort data using di
         time spent: 50 minutes
         Date: 23 May 2023
 */
+
 package gui.panels;
 
 import database.interaction.DataReader;
