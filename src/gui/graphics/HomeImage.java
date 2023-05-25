@@ -18,7 +18,5 @@ public class HomeImage extends JComponent {
     public void paint(Graphics g) {
         g.setColor(CustomPanel.backgroundWhite);
         g.drawImage(image, 0, 0, null);
-        System.out.println(getHeight());
-        System.out.println(getWidth());
     }
 }

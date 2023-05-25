@@ -86,6 +86,7 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
     protected void setTitle(String title) {
         JLabel titleLabel = new JLabel(title);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 80));
+        titleLabel.setForeground(CustomButton.BUTTON_BLUE);
         topPanel.add(titleLabel);
     }
 

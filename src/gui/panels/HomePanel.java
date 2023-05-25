@@ -48,7 +48,6 @@ public class HomePanel extends ScreenPanel {
     public HomePanel(ApplicationFrame applicationFrame) {
         super(applicationFrame, BoxLayout.Y_AXIS);
 
-        System.out.println(centerPanel.getLayout());
         //screen message
         CustomPanel messagePanel = new CustomPanel();
         screenMessage.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 23));

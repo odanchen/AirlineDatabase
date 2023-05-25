@@ -70,7 +70,7 @@ public class FlightListPanel extends ScreenPanel {
 
         //todo button to export flight manifest
 
-        setTitle("Flights");
+        setTitle("Pick a Flight");
 
         CustomPanel actionButtons = new CustomPanel(new GridLayout(1, 3));
         addButton("Book Flight", "bookFlight", actionButtons);
