@@ -10,7 +10,6 @@ import gui.ApplicationFrame;
 import gui.components.CustomButton;
 import gui.components.CustomPanel;
 import gui.graphics.HomeImage;
-import gui.graphics.home_background.HomeBackground;
 import logic.data_record.Route;
 
 import javax.swing.*;
@@ -32,11 +31,16 @@ public class HomePanel extends ScreenPanel {
      * The array of messages that can be displayed on the screen.
      */
     private static final String[] MESSAGES = {
-            "Welcome to Fly-Away Airlines!",
-            "Welcome Back!",
-            "Thank you for your service!",
-            "Welcome to the Flight Reservation System!",
-            "The cookie monster is greeting you!",
+            "Welcome! Explore and book flights effortlessly with our app.",
+            "Hello! Let our app be your travel companion for seamless flight bookings.",
+            "Greetings! Discover new horizons with our user-friendly flight booking app.",
+            "Welcome aboard! Book flights with ease using our app.",
+            "Hello, traveler! Start your journey by booking flights on our app.",
+            "Welcome! Plan your next adventure with our convenient flight booking app.",
+            "Greetings! Fly high with our intuitive flight booking app.",
+            "Hello and happy travels! Begin your trip by booking flights on our app.",
+            "Welcome to a world of possibilities! Explore destinations with our flight booking app.",
+            "Hello! Unlock travel opportunities with our efficient flight booking app."
     };
 
     /**
@@ -48,11 +52,12 @@ public class HomePanel extends ScreenPanel {
     public HomePanel(ApplicationFrame applicationFrame) {
         super(applicationFrame, BoxLayout.Y_AXIS);
 
+        setTitle("Home");
         //screen message
         CustomPanel messagePanel = new CustomPanel();
-        screenMessage.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 23));
+        screenMessage.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 25));
         screenMessage.setEditable(false);
-        screenMessage.setBackground(backgroundWhite);
+        screenMessage.setBackground(BACKGROUND_WHITE);
         screenMessage.setForeground(CustomButton.BUTTON_BLUE);
         screenMessage.setHorizontalAlignment(JTextField.CENTER);
         messagePanel.add(screenMessage);

@@ -7,6 +7,8 @@ version #1
 
 package gui.graphics;
 
+import gui.components.CustomButton;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -52,6 +54,7 @@ public class LoadingBar extends JComponent {
     public void paint(Graphics g) {
         g.setColor(Color.BLACK);
         g.drawRect(getWidth() / 3, getHeight() / 2, 334, 40);
+        g.setColor(CustomButton.BUTTON_BLUE);
         g.fillRect(getWidth() / 3, getHeight() / 2, pixelCnt, 40);
     }
 }

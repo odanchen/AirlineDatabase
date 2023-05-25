@@ -33,6 +33,7 @@ public class LoadingPanel extends ScreenPanel {
      */
     public LoadingPanel(ApplicationFrame applicationFrame) {
         super(applicationFrame, new BorderLayout());
+        topPanel.setVisible(false);
         buttonPanel.setVisible(false);
         centerPanel.add(loadingBar, BorderLayout.CENTER);
     }
@@ -46,7 +47,7 @@ public class LoadingPanel extends ScreenPanel {
      */
     public void showSplashScreen() {
         for (int i = 0; i < 2000000000; i++) {
-            if (i % 100000000 == 0) loadingBar.update(i / 6000000);
+            if (i % 800000 == 0) loadingBar.update(i / 6000000);
         }
         applicationFrame.switchToHome();
     }

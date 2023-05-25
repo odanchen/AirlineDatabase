@@ -16,7 +16,7 @@ public class HomeImage extends JComponent {
 
     @Override
     public void paint(Graphics g) {
-        g.setColor(CustomPanel.backgroundWhite);
+        g.setColor(CustomPanel.BACKGROUND_WHITE);
         g.drawImage(image, 0, 0, null);
     }
 }

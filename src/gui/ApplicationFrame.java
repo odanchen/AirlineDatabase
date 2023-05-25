@@ -81,7 +81,7 @@ public class ApplicationFrame extends JFrame {
      */
     public ApplicationFrame() {
         super();
-        getContentPane().setBackground(CustomPanel.backgroundWhite);
+        getContentPane().setBackground(CustomPanel.BACKGROUND_WHITE);
         getContentPane().setLayout(new BorderLayout());
         CustomPanel centerPanel = new CustomPanel();
         Calendar calendar = DataReader.getCalendar();

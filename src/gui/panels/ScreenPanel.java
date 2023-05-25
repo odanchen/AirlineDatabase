@@ -68,7 +68,7 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
         topPanel.add(new Logo());
         add(topPanel, BorderLayout.NORTH);
 
-        centerPanel.setPreferredSize(new Dimension(1000, 500));
+        centerPanel.setPreferredSize(new Dimension(1000, 530));
         add(centerPanel, BorderLayout.CENTER);
         setVisible(false);
     }
@@ -85,7 +85,7 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
 
     protected void setTitle(String title) {
         JLabel titleLabel = new JLabel(title);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 80));
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 65));
         titleLabel.setForeground(CustomButton.BUTTON_BLUE);
         topPanel.add(titleLabel);
     }
