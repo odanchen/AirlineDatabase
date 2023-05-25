@@ -9,6 +9,7 @@ package gui;
 
 import javax.swing.*;
 
+import gui.components.CustomPanel;
 import logic.data_record.Calendar;
 import database.interaction.DataReader;
 import gui.panels.*;
@@ -80,15 +81,14 @@ public class ApplicationFrame extends JFrame {
      */
     public ApplicationFrame() {
         super();
-        getContentPane().setBackground(new Color(248, 249, 249));
+        getContentPane().setBackground(CustomPanel.backgroundWhite);
         getContentPane().setLayout(new BorderLayout());
-        JPanel centerPanel = new JPanel();
+        CustomPanel centerPanel = new CustomPanel();
         Calendar calendar = DataReader.getCalendar();
         calendarPanel = new CalendarPanel(this, calendar);
         searchPanel = new SearchPanel(this, calendar);
         userInputPanel = new UserInputPanel(this, calendar);
         flightListPanel = new FlightListPanel(this, calendar);
-        centerPanel.setBackground(new Color(248, 249, 249));
         centerPanel.add(loadingPanel);
         centerPanel.add(homePanel);
         centerPanel.add(calendarPanel);

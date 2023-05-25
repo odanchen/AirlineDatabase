@@ -6,7 +6,11 @@ version #1
 package gui.panels;
 
 import gui.ApplicationFrame;
+import gui.components.CustomButton;
+import gui.components.CustomPanel;
+import gui.graphics.HomeImage;
 import gui.graphics.home_background.HomeBackground;
+import logic.data_record.Route;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,29 +39,30 @@ public class HomePanel extends ScreenPanel {
     };
 
     /**
-     * The background image for the home screen.
-     */
-    private HomeBackground homeBackground;
-
-    /**
      * The constructor for the HomePanel class.
      *
      * @param applicationFrame the frame that the panel is displayed on.
      * @author Aidan Baker
      */
     public HomePanel(ApplicationFrame applicationFrame) {
-        super(applicationFrame, new BorderLayout());
+        super(applicationFrame, BoxLayout.Y_AXIS);
 
+        System.out.println(centerPanel.getLayout());
         //screen message
-        screenMessage.setFont(new Font("Arial", Font.BOLD, 50));
+        CustomPanel messagePanel = new CustomPanel();
+        screenMessage.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 23));
         screenMessage.setEditable(false);
-        screenMessage.setBackground(new Color(238, 238, 238));
+        screenMessage.setBackground(backgroundWhite);
+        screenMessage.setForeground(CustomButton.BUTTON_BLUE);
         screenMessage.setHorizontalAlignment(JTextField.CENTER);
-        updateScreenMessage();
+        messagePanel.add(screenMessage);
+        centerPanel.add(messagePanel);
 
-        centerPanel.add(screenMessage, BorderLayout.CENTER);
-
-        add(centerPanel, BorderLayout.CENTER);
+        CustomPanel imagePanel = new CustomPanel(new GridLayout(1, 3));
+        imagePanel.add(new HomeImage(Route.TORONTO));
+        imagePanel.add(new HomeImage(Route.VANCOUVER));
+        imagePanel.add(new HomeImage(Route.OTTAWA));
+        centerPanel.add(imagePanel);
     }
 
     /**

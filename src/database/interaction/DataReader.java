@@ -11,7 +11,10 @@ import logic.data_record.Calendar;
 import logic.data_record.FlightInfo;
 import logic.data_record.Seat;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,5 +83,13 @@ public class DataReader {
             throw new RuntimeException(e);
         }
         return seating;
+    }
+
+    public static BufferedImage readImage(String filename) {
+        try {
+            return ImageIO.read(new File(FilePathConstructor.getImagePath(filename)));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

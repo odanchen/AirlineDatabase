@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CustomPanel extends JPanel {
-    public static final Color backgroundWhite = new Color(248, 249, 249);
+    public static final Color backgroundWhite = new Color(230, 249, 249);
 
     public CustomPanel() {
         super();

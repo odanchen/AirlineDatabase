@@ -7,7 +7,13 @@ version #1
 
 package database.interaction;
 
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 /**
  * The FilePathConstructor class provides methods to construct file paths for flight and seating data files.
@@ -61,6 +67,13 @@ public class FilePathConstructor {
             return String.join(File.separator, new String[]{"database", "data"});
         }
         return String.join(File.separator, new String[]{"src", "database", "data"});
+    }
+
+    public static String getImagePath(String filename) {
+        if (System.getProperty("user.dir").endsWith("src")) {
+            return String.join(File.separator, new String[]{"..", "resources", filename + ".png"});
+        }
+        return String.join(File.separator, new String[]{"resources", filename + ".png"});
     }
 }
 
