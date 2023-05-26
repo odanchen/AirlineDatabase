@@ -216,9 +216,9 @@ public class ApplicationFrame extends JFrame {
      *
      * @author Oleksandr Dacnehnko
      */
-    public void switchToExport() {
+    public void switchToExport(Seat[] seats) {
         currentPanel.setVisible(false);
-        exportPanel.setVisible(true);
+        ((ExportPanel) exportPanel).makeVisible(seats);
         currentPanel = exportPanel;
     }
 }

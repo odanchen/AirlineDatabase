@@ -2,68 +2,94 @@
 Author: Aidan Baker
 time spent: 5 minutes
 Date: 23 May 2023
-version #1
+Changes: Added the functionality to the panel, so you can actually see the manifest.
+        Date: 26 May 2023
+        Time: 30 minutes
+        Author: Aidan Baker
+version #2
  */
 
 package gui.panels;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 
 import gui.ApplicationFrame;
 import gui.components.CustomPanel;
-
-import java.awt.*;
+import logic.data_record.Seat;
 
 public class ExportPanel extends ScreenPanel {
     /**
-     * The panel that contains the option buttons.
+     * The information for each customer on the flight.
      */
-    private CustomPanel optionButtons = new CustomPanel(BoxLayout.X_AXIS);
-
-
-    /**
-     * The button to sort the manifest by seat number.
-     */
-    private JButton sortBySeatNumber = new JButton("Sort by Seat #");;
-
-    /**
-     * The button to sort the manifest by name.
-     */
-    private JButton sortByName = new JButton("Sort by name");
-
-    /**
-     * The button to print the manifest.
-     */
-    private JButton printButton = new JButton("Print");
-
-    /**
-     * The path to the file containing the flight manifest
-     */
-    private String filePath;
+    private Seat[] seats;
 
     /**
      * The text area to display the flight manifest.
      */
-    private JTextArea filePreview;
+    private JTextField[] customerInfoFields = new JTextField[10];
 
-
+    /**
+     * Constructs an ExportPanel object.
+     *
+     * @param applicationFrame The application frame.
+     * @author Aidan Baker
+     */
     public ExportPanel(ApplicationFrame applicationFrame) {
         super(applicationFrame, BoxLayout.Y_AXIS);
         setTitle("Flight Manifest");
 
         setBackButtonVisibility(true);
 
-        setupButtons();
+        CustomPanel optionButtons = new CustomPanel(BoxLayout.X_AXIS);
+        addButton("Sort by Name", "sortName", optionButtons);
+        addButton("Sort by Seat #", "sortSeat", optionButtons);
 
-        filePreview = new JTextArea("File Preview here");
-        filePreview.setPreferredSize(new Dimension(1000, 500));
-        centerPanel.add(filePreview);
+        for (int i = 0; i < customerInfoFields.length; i++) {
+            customerInfoFields[i] = new JTextField();
+            customerInfoFields[i].setEditable(false);
+            customerInfoFields[i].setPreferredSize(new Dimension(1000, 50));
+            centerPanel.add(customerInfoFields[i]);
+        }
     }
 
-    private void setupButtons() {
-        addButton(sortBySeatNumber, "sortSeat",optionButtons);
-        addButton(sortByName, "sortName",optionButtons);
-        addButton(printButton, "print",optionButtons);
-        centerPanel.add(optionButtons);
+    /**
+     * Loads the flight manifest information into the text areas.
+     *
+     * @author Aidan Baker
+     */
+    private void loadManifest() {
+        for (int i = 0; i < customerInfoFields.length; i++) {
+            if (seats[i].getPassenger() != null)
+                customerInfoFields[i].setText(seats[i].toString());
+            else
+                customerInfoFields[i].setText("Seat #" + (i + 1));
+        }
+    }
+
+    /**
+     * Makes the panel visible.
+     *
+     * @param seats The seats on the flight of the manifest to be displayed.
+     * @author Aidan Baker
+     */
+    public void makeVisible(Seat[] seats) {
+        this.seats = seats;
+        loadManifest();
+        setVisible(true);
+    }
+
+    /**
+     * Processes the action events.
+     *
+     * @param e the event to be processed
+     * @author Aidan Baker
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        super.actionPerformed(e);
+
+        //todo sort by name and by seat number
     }
 }
