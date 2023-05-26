@@ -1,5 +1,5 @@
 /*
-Author: Oleksandr Danchenko
+Author: Oleksandr Danchenko & Aidan Baker
 time spent: 40 minutes
 Date: 17 May 2023
 version #1
