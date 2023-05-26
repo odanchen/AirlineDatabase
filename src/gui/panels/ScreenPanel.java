@@ -2,10 +2,15 @@
 Author: Aidan Baker, Oleksandr Danchenko
 time spent: 30 minutes
 Date: 17 May 2023
+version #3
 changes: Added option to have back button and styling
-        time: 20 minutes
+        time spent: 20 minutes
         Date: 24 May 2023
-version #2
+        Author: Aidan Baker
+changes: added methods overloaded addButton() methods for code refactoring, added methods that show different windows
+        time spent: 15 minutes
+        Date 24 May 2023
+        Author: Oleksandr Danchenko
  */
 package gui.panels;
 
@@ -21,22 +26,59 @@ import java.awt.event.ActionListener;
 import java.net.URI;
 
 public abstract class ScreenPanel extends CustomPanel implements ActionListener {
+    /**
+     * A reference to the application frame.
+     */
     protected ApplicationFrame applicationFrame;
+    /**
+     * The panel in the center of the ScreenPanel
+     */
     protected CustomPanel centerPanel = new CustomPanel();
+    /**
+     * The panel at the bottom of a ScreenPanel, used for navigation buttons.
+     */
     protected CustomPanel buttonPanel = new CustomPanel(new GridLayout(1, 5));
+    /**
+     * The panel at the top of the Screen panel, used for a title and a logo.
+     */
     protected CustomPanel topPanel = new CustomPanel(BoxLayout.X_AXIS);
+    /**
+     * The back button, visible on some screens.
+     */
     private final JButton backButton = new JButton("<");
+    /**
+     * A placeholder to hold the logo in the same place when the back button is invisible.
+     */
     private final JLabel placeHolder = new JLabel("");
+    /**
+     * The home button, switches the current screen to home screen when pressed.
+     */
     private static final String homeButton = "Home";
+    /**
+     * The flight search button, switches the current screen to flight search screen when pressed.
+     */
     private static final String flightSearchButton = "Search for a Flight";
+    /**
+     * The calendar button, switches the current screen to calendar screen when pressed.
+     */
     private static final String calendarButton = "Calendar";
+    /**
+     * The user manual button, opens the user manual when pressed screen when pressed.
+     */
     private static final String manualButton = "User Manual";
+    /**
+     * Exits the program when pressed.
+     */
     private static final String exitButton = "Exit";
+    /**
+     * The link to the user manual.
+     */
     private static final String MANUAL_URL = "https://docs.google.com/document/d/1MoQYM9OzFQPjyVoqWxH3KVLu8QRYIB-3qXgkCfCr4uc/edit?usp=sharing";
 
     /**
      * The constructor for the CustomPanel class.
      *
+     * @param applicationFrame the reference to the application frame.
      * @author Aidan Baker
      */
     private ScreenPanel(ApplicationFrame applicationFrame) {
@@ -73,16 +115,36 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
         setVisible(false);
     }
 
+    /**
+     * A constructor that specifies the layout manager for the center panel
+     *
+     * @param applicationFrame   the reference to the application frame.
+     * @param centerPanelManager the layout manager of the center panel.
+     * @author Oleksandr Danchenko
+     */
     public ScreenPanel(ApplicationFrame applicationFrame, LayoutManager centerPanelManager) {
         this(applicationFrame);
         centerPanel.setLayout(centerPanelManager);
     }
 
+    /**
+     * A constructor that specifies the axis for the box layout manager for the center panel
+     *
+     * @param applicationFrame the reference to the application frame.
+     * @param axis             the axis of the bax layout of the center panel.
+     * @author Oleksandr Danchenko
+     */
     public ScreenPanel(ApplicationFrame applicationFrame, int axis) {
         this(applicationFrame);
         centerPanel.setLayout(new BoxLayout(centerPanel, axis));
     }
 
+    /**
+     * Sets the title of the screen to be a specified text.
+     *
+     * @param title the text in the title.
+     * @author Aidan Baker
+     */
     protected void setTitle(String title) {
         JLabel titleLabel = new JLabel(title);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 65));
@@ -90,10 +152,27 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
         topPanel.add(titleLabel);
     }
 
+    /**
+     * A method that adds a button with specified parameters.
+     *
+     * @param message     the message on the button.
+     * @param command     the action command of the button.
+     * @param buttonPanel the panel where the button should be added.
+     * @param fontSize    the font size on the button.
+     * @author Oleksandr Danchenko
+     */
     private void addButton(String message, String command, JPanel buttonPanel, int fontSize) {
-        addButton(new CustomButton(message, fontSize),command, buttonPanel);
+        addButton(new CustomButton(message, fontSize), command, buttonPanel);
     }
 
+    /**
+     * A method that adds a button with specified parameters.
+     *
+     * @param button      the button to be added.
+     * @param command     the action command of the button.
+     * @param buttonPanel the panel where the button should be added.
+     * @author Oleksandr Danchenko
+     */
     protected void addButton(JButton button, String command, JPanel buttonPanel) {
         button.setActionCommand(command);
         button.addActionListener(this);
@@ -153,6 +232,12 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
         placeHolder.setVisible(!visible);
     }
 
+    /**
+     * A method that is executed when a button is pressed.
+     *
+     * @param e the event to be processed
+     * @author Aidan Baker.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String actionCommand = e.getActionCommand();

@@ -1,8 +1,12 @@
 /*
 Author: Aidan Baker
-time spent: 10 minutes
+time spent: 25 minutes
 Date: 17 May 2023
-version #1
+version #2
+Changes: redesigned the panel. Added images of the destinations to it, added more greeting messages.
+    Date: 25 May 2023
+    time spent: 40 minutes
+    Author: Oleksandr Danchenko
  */
 package gui.panels;
 
@@ -47,7 +51,7 @@ public class HomePanel extends ScreenPanel {
      * The constructor for the HomePanel class.
      *
      * @param applicationFrame the frame that the panel is displayed on.
-     * @author Aidan Baker
+     * @author Aidan Baker, Oleksandr Danchenko
      */
     public HomePanel(ApplicationFrame applicationFrame) {
         super(applicationFrame, BoxLayout.Y_AXIS);
