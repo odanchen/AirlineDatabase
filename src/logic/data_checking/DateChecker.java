@@ -82,7 +82,7 @@ public class DateChecker extends DataChecker {
         int day = Integer.parseInt(date.split("/")[0]);
         int month = Integer.parseInt(date.split("/")[1]);
         int year = Integer.parseInt(date.split("/")[2]);
-        return month > 0 && month <= 12 && day > 0 || day <= getDayMonth(month, year);
+        return (month > 0 && month <= 12) && (day > 0 || day <= getDayMonth(month, year));
     }
 
     /**
