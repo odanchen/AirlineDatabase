@@ -2,7 +2,11 @@
 Author: Aidan Baker
 time spent: 40 minutes
 Date: 16 May 2023
-version #1
+Changes: Redesigned the logo to be more appealing
+        Author: Oleksandr Danchenko & Aidan Baker
+        Date: 25 May 2023
+        Time: 85 minutes
+version #2
  */
 package gui.graphics;
 
@@ -39,7 +43,8 @@ public class Logo extends JComponent {
     @Override
     public void paint(Graphics g) {
         g.setColor(CustomButton.BUTTON_BLUE);
-        g.fillOval(305, 20, 85, 100);
+        g.fillRoundRect(305, 20, 85, 100, 45, 45);
+        //g.fillOval(305, 20, 85, 100);
         g.drawImage(image, 0, 0, null);
     }
 }
