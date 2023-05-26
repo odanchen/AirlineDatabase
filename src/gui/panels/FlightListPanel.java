@@ -10,8 +10,8 @@ Changes: Added the way to sort data in the table - buttons to sort data using di
 
 package gui.panels;
 
-import database.interaction.DataReader;
-import database.interaction.DataWriter;
+import resource.DataReader;
+import resource.DataWriter;
 import gui.ApplicationFrame;
 import gui.components.CustomPanel;
 import logic.data_record.Calendar;

@@ -5,12 +5,12 @@ Date: 18 May 2023
 version #1
  */
 
-package database.interaction;
+package resource;
 
 import logic.data_record.*;
 
 /**
- * The DataInterpreter class provides methods for interpreting data strings and converting them into corresponding objects.
+ * The resource.DataInterpreter class provides methods for interpreting data strings and converting them into corresponding objects.
  *
  * @author Oleksandr Danchenko
  */

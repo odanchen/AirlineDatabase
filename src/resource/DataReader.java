@@ -2,10 +2,13 @@
 Author: Oleksandr Danchenko
 time spent: 20 minutes
 Date: 18 May 2023
-version #1
+version #2
+Changes: Added a method to read image files.
+    time spent: 8 minutes.
+    Date: 25 May 2023
  */
 
-package database.interaction;
+package resource;
 
 import logic.data_record.Calendar;
 import logic.data_record.FlightInfo;
@@ -14,13 +17,12 @@ import logic.data_record.Seat;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The DataReader class provides methods to read and retrieve data from files.
+ * The resource.DataReader class provides methods to read and retrieve data from files.
  *
  * @author Oleksandr Danchenko
  */
@@ -85,9 +87,15 @@ public class DataReader {
         return seating;
     }
 
+    /**
+     * Reads an image with the specified file name.
+     *
+     * @param filename the name of the image file.
+     * @return the image stored at that file.
+     */
     public static BufferedImage readImage(String filename) {
         try {
-            return ImageIO.read(new File(FilePathConstructor.getImagePath(filename)));
+            return ImageIO.read(FilePathConstructor.getImageFile(filename));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

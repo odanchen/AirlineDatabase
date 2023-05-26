@@ -1,13 +1,13 @@
 /*
 Author: Oleksandr Danchenko
-time spent: 40 minutes
+time spent: 70 minutes
 Date: 22 May 2023
 version #1
 */
 
 package gui.panels;
 
-import database.interaction.DataWriter;
+import resource.DataWriter;
 import gui.ApplicationFrame;
 import gui.components.CustomButton;
 import gui.components.CustomPanel;
@@ -18,31 +18,89 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * The UserInputPanel class represents a panel for entering customer information and booking or updating a seat reservation.
+ * It extends the ScreenPanel class.
+ */
 public class UserInputPanel extends ScreenPanel {
+    /**
+     * The calendar of flights.
+     */
     private final Calendar calendar;
+    /**
+     * The seat to be booked.
+     */
     private Seat seat;
+    /**
+     * The flight on which the seat is being booked
+     */
     private Flight flight;
+    /**
+     * A text field for the first name of the user.
+     */
     private final JTextField firstNameField = new JTextField();
-    private final JTextField firstNameErrorFiled = new JTextField();
-    private final JTextField lastNameFiled = new JTextField();
+    /**
+     * A text field for the error message for the first name of the user.
+     */
+    private final JTextField firstNameErrorField = new JTextField();
+    /**
+     * A text field for the last name of the user.
+     */
+    private final JTextField lastNameField = new JTextField();
+    /**
+     * A text field for the error message for the last name of the user.
+     */
     private final JTextField lastNameErrorField = new JTextField();
+    /**
+     * A text field for the phone number of the user.
+     */
     private final JTextField phoneNumberField = new JTextField();
+    /**
+     * A text field for the error message for the phone number of the user.
+     */
     private final JTextField phoneNumberErrorField = new JTextField();
+    /**
+     * A text field for the email of the user.
+     */
     private final JTextField emailField = new JTextField();
+    /**
+     * A text field for the error message for the email of the user.
+     */
     private final JTextField emailErrorField = new JTextField();
+    /**
+     * A text field for the date of birth of the user.
+     */
     private final JTextField dateOfBirthField = new JTextField();
+    /**
+     * A text field for the error message for the date of birth of the user.
+     */
     private final JTextField dateOfBirthErrorField = new JTextField();
+    /**
+     * A text field for the price of the seat.
+     */
     private final JTextField priceField = new JTextField();
+    /**
+     * The button, pressing which the seat would be booked.
+     */
     private final CustomButton bookButton = new CustomButton("Book the seat");
+    /**
+     * The button, pressing which the booking of the seat would be cancelled.
+     */
     private final CustomButton cancelButton = new CustomButton("Cancel booking");
 
-
+    /**
+     * Constructs a UserInputPanel object with the specified application frame and calendar.
+     *
+     * @param applicationFrame The application frame
+     * @param calendar         The calendar
+     * @author Oleksandr Danchenko
+     */
     public UserInputPanel(ApplicationFrame applicationFrame, Calendar calendar) {
         super(applicationFrame, new GridLayout(6, 1));
         this.calendar = calendar;
         setTitle("Customer Information");
-        addInputSection("Enter your first name", firstNameField, firstNameErrorFiled);
-        addInputSection("Enter your last name", lastNameFiled, lastNameErrorField);
+        addInputSection("Enter your first name", firstNameField, firstNameErrorField);
+        addInputSection("Enter your last name", lastNameField, lastNameErrorField);
         addInputSection("Enter your phone number in one of the following formats - " +
                 "\"XXXXXXXXXX\", \"XXX XXX XXXX\", \"XXX-XXX-XXXX\"", phoneNumberField, phoneNumberErrorField);
         addInputSection("Enter your email", emailField, emailErrorField);
@@ -52,6 +110,14 @@ public class UserInputPanel extends ScreenPanel {
         setBackButtonVisibility(true);
     }
 
+    /**
+     * Adds an input section to the panel with the specified title, input field, and error field.
+     *
+     * @param title      The title of the input section
+     * @param inputField The input field
+     * @param errorField The error field
+     * @author Oleksandr Danchenko
+     */
     private void addInputSection(String title, JTextField inputField, JTextField errorField) {
         CustomPanel holdPanel = new CustomPanel(new GridLayout(2, 1));
         CustomPanel fieldPanel = new CustomPanel(new GridLayout(1, 2));
@@ -63,6 +129,11 @@ public class UserInputPanel extends ScreenPanel {
         centerPanel.add(holdPanel);
     }
 
+    /**
+     * Adds the price panel to the panel.
+     *
+     * @author Oleksandr Danchenko
+     */
     private void addPricePanel() {
         priceField.setEditable(false);
         CustomPanel pricePanel = new CustomPanel(new GridLayout(1, 2));
@@ -73,25 +144,36 @@ public class UserInputPanel extends ScreenPanel {
         pricePanel.add(infoPanel);
 
         CustomPanel buttonPanel = new CustomPanel(new GridLayout(1, 2));
-        cancelButton.setActionCommand("cancel");
-        cancelButton.addActionListener(this);
-        bookButton.setActionCommand("book");
-        bookButton.addActionListener(this);
-        buttonPanel.add(cancelButton);
-        buttonPanel.add(bookButton);
+        addButton(cancelButton, "cancel", buttonPanel);
+        addButton(bookButton, "book", buttonPanel);
         pricePanel.add(buttonPanel);
         centerPanel.add(pricePanel);
     }
 
+    /**
+     * Checks the data entered for validity.
+     *
+     * @return true if the data is valid, false otherwise
+     * @author Oleksandr Danchenko
+     */
     private boolean checkData() {
         boolean ans = checkPieceOfData(new EmailChecker(emailField.getText()), emailErrorField);
         if (!checkPieceOfData(new PhoneNumberChecker(phoneNumberField.getText()), phoneNumberErrorField)) ans = false;
         if (!checkPieceOfData(new DateChecker(dateOfBirthField.getText()), dateOfBirthErrorField)) ans = false;
-        if (!checkPieceOfData(new NameChecker(firstNameField.getText()), firstNameErrorFiled)) ans = false;
-        if (!checkPieceOfData(new NameChecker(lastNameFiled.getText()), lastNameErrorField)) ans = false;
+        if (!checkPieceOfData(new NameChecker(firstNameField.getText()), firstNameErrorField)) ans = false;
+        if (!checkPieceOfData(new NameChecker(lastNameField.getText()), lastNameErrorField)) ans = false;
         return ans;
     }
 
+    /**
+     * Checks a piece of data entered for validity using the provided data checker.
+     * If the data is invalid, displays the error message in the error field.
+     *
+     * @param checker    The data checker
+     * @param errorField The error field
+     * @return true if the data is valid, false otherwise
+     * @author Oleksandr Danchenko
+     */
     private boolean checkPieceOfData(DataChecker checker, JTextField errorField) {
         if (!checker.isCorrect()) {
             errorField.setText(checker.getErrorMessage());
@@ -102,6 +184,13 @@ public class UserInputPanel extends ScreenPanel {
         }
     }
 
+    /**
+     * Makes the panel visible and sets the flight and seat for booking or updating.
+     *
+     * @param flight The flight
+     * @param seat   The seat
+     * @author Oleksandr Danchenko
+     */
     public void makeVisible(Flight flight, Seat seat) {
         this.flight = flight;
         this.seat = seat;
@@ -111,12 +200,17 @@ public class UserInputPanel extends ScreenPanel {
         setVisible(true);
     }
 
+    /**
+     * Loads the data of the seat and passenger into the input fields.
+     *
+     * @author Oleksandr Danchenko
+     */
     private void loadData() {
         if (seat.isEmpty()) {
             bookButton.setText("Book the seat");
 
             firstNameField.setText("");
-            lastNameFiled.setText("");
+            lastNameField.setText("");
             dateOfBirthField.setText("");
             emailField.setText("");
             phoneNumberField.setText("");
@@ -124,23 +218,34 @@ public class UserInputPanel extends ScreenPanel {
             bookButton.setText("Update Reservation");
 
             firstNameField.setText(seat.getPassenger().getFirstName());
-            lastNameFiled.setText(seat.getPassenger().getLastName());
+            lastNameField.setText(seat.getPassenger().getLastName());
             dateOfBirthField.setText(seat.getPassenger().getDateOfBirth().data());
             emailField.setText(seat.getPassenger().getEmail());
             phoneNumberField.setText(seat.getPassenger().getPhoneNumber());
         }
-        firstNameErrorFiled.setText("");
+        firstNameErrorField.setText("");
         lastNameErrorField.setText("");
         dateOfBirthErrorField.setText("");
         phoneNumberErrorField.setText("");
         emailErrorField.setText("");
     }
 
+    /**
+     * Retrieves the entered passenger information from the input fields.
+     *
+     * @return The entered passenger information.
+     * @author Oleksandr Danchenko
+     */
     private Person getEnteredPassengerInfo() {
-        return new Person(firstNameField.getText(), lastNameFiled.getText(),
+        return new Person(firstNameField.getText(), lastNameField.getText(),
                 new Date(dateOfBirthField.getText()), phoneNumberField.getText(), emailField.getText());
     }
 
+    /**
+     * Handles the book event when the book button is clicked.
+     *
+     * @author Oleksandr Danchenko
+     */
     private void bookEvent() {
         if (!checkData()) {
             showErrorMessage("The provided input contains errors");
@@ -165,6 +270,12 @@ public class UserInputPanel extends ScreenPanel {
         }
     }
 
+    /**
+     * The method that is executed when a button is pressed.
+     *
+     * @param e the event to be processed
+     * @author Oleksandr Danchenko
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);

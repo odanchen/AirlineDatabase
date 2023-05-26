@@ -10,7 +10,7 @@ version #2
  */
 package gui.graphics;
 
-import database.interaction.DataReader;
+import resource.DataReader;
 import gui.components.CustomButton;
 
 import javax.swing.*;

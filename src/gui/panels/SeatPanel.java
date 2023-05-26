@@ -1,6 +1,6 @@
 /*
 Author: Aidan Baker
-time spent: 15 minutes
+time spent: 35 minutes
 Date: 19 May 2023
 version #1
  */
@@ -8,13 +8,18 @@ package gui.panels;
 
 import gui.ApplicationFrame;
 import gui.components.CustomPanel;
-import gui.graphics.PlaneImage;
 import logic.data_record.Flight;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * Represents a panel for seat selection.
+ * Extends the ScreenPanel class.
+ *
+ * @author Aidan Baker
+ */
 public class SeatPanel extends ScreenPanel {
     /**
      * The flight to be booked.
@@ -24,29 +29,21 @@ public class SeatPanel extends ScreenPanel {
     private Flight flight;
 
     /**
-     * The button to export the manifest.
-     */
-    private JButton exportManifestButton;
-
-    /**
-     * The button to cancel the flight.
-     */
-    private JButton cancelFlightButton;
-
-    /**
-     * the background image
-     */
-    private PlaneImage planeImage;
-
-    /**
      * The text field to display some basic flight information.
      */
     private final JTextField flightInfo = new JTextField();
+
     /**
      * The panel that contains the seat buttons.
      */
-    private CustomPanel seatButtonPanel = new CustomPanel(new GridLayout(2, 9));
+    private final CustomPanel seatButtonPanel = new CustomPanel(new GridLayout(2, 9));
 
+    /**
+     * Constructs a SeatPanel object.
+     *
+     * @param applicationFrame The application frame.
+     * @author Aidan Baker
+     */
     public SeatPanel(ApplicationFrame applicationFrame) {
         super(applicationFrame, new GridLayout(3, 1));
         setTitle("Seat Selection");
@@ -59,7 +56,6 @@ public class SeatPanel extends ScreenPanel {
         addButton("Export Manifest", "export", optionButtons);
         addButton("Cancel Flight", "cancel", optionButtons);
 
-
         upperSection.add(optionButtons);
         upperSection.add(flightInfo);
 
@@ -69,6 +65,12 @@ public class SeatPanel extends ScreenPanel {
         flightInfo.setEditable(false);
     }
 
+    /**
+     * Sets the visibility of the panel and displays the flight information.
+     *
+     * @param flight The flight to be displayed.
+     * @author Aidan Baker
+     */
     public void makeVisible(Flight flight) {
         this.flight = flight;
         flightInfo.setText(flight.getDeparture() + " -> " + flight.getDestination() +
@@ -80,17 +82,25 @@ public class SeatPanel extends ScreenPanel {
         setVisible(true);
     }
 
+    /**
+     * Sets up the seat buttons and adds them to the seat button panel.
+     *
+     * @author Aidan Baker
+     */
     private void setupSeatButtons() {
         for (int i = 0; i < 10; i++) {
-            JButton button = new JButton(Integer.toString(i + 1));
-            button.setActionCommand(Integer.toString(i + 1));
-            button.addActionListener(this);
-            seatButtonPanel.add(button);
-
+            addButton(String.valueOf(i + 1), String.valueOf(i + 1), seatButtonPanel);
             if (i != 4 && i != 9) seatButtonPanel.add(new JLabel());
         }
     }
 
+    /**
+     * Checks if the seat button was pressed.
+     *
+     * @param e The ActionEvent object.
+     * @return True if the seat button was pressed, false otherwise.
+     * @author Aidan Baker
+     */
     private boolean isSeatButtonPressed(ActionEvent e) {
         try {
             return Integer.parseInt(e.getActionCommand()) >= 1 && Integer.parseInt(e.getActionCommand()) <= 10;
@@ -99,11 +109,17 @@ public class SeatPanel extends ScreenPanel {
         }
     }
 
+    /**
+     * Performs actions based on the user's interaction with the buttons.
+     *
+     * @param e The ActionEvent object.
+     * @author Aidan Baker
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
 
-        if(e.getActionCommand().equals("back")) {
+        if (e.getActionCommand().equals("back")) {
             applicationFrame.switchBackToList();
         } else if (e.getActionCommand().equals("export")) {
             applicationFrame.switchToExport();
@@ -114,3 +130,4 @@ public class SeatPanel extends ScreenPanel {
         }
     }
 }
+

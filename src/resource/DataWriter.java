@@ -5,7 +5,7 @@ Date: 18 May 2023
 version #1
 */
 
-package database.interaction;
+package resource;
 
 import logic.data_record.Calendar;
 import logic.data_record.FlightInfo;
@@ -15,7 +15,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 
 /**
- * The DataWriter class provides static methods to update flight list and seating information in the database.
+ * The resource.DataWriter class provides static methods to update flight list and seating information in the database.
  *
  * @author Oleksandr Danchenko
  */

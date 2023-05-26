@@ -1,8 +1,12 @@
 /*
-Author: Oleksandr Danchenko & Aidan Baker
+Author: Oleksandr Danchenko
 time spent: 40 minutes
 Date: 17 May 2023
-version #1
+version #2
+changes: added methods to switch back to certain screens to be used when a back button is pressed
+    Author: Aidan baker
+    time spent: 10 minutes
+    Date: 23 May 2023
  */
 
 package gui;
@@ -11,7 +15,7 @@ import javax.swing.*;
 
 import gui.components.CustomPanel;
 import logic.data_record.Calendar;
-import database.interaction.DataReader;
+import resource.DataReader;
 import gui.panels.*;
 import logic.data_record.Flight;
 import logic.data_record.FlightInfo;
@@ -24,7 +28,7 @@ import java.util.List;
  * The ApplicationFrame class represents the main frame of the application.
  * It extends the JFrame class and manages the different gui.panels of the application.
  *
- * @author Oleksandr Dacnehnko
+ * @author Oleksandr Dacnehnko, Aidan Baker
  */
 public class ApplicationFrame extends JFrame {
     /**
@@ -173,6 +177,7 @@ public class ApplicationFrame extends JFrame {
 
     /**
      * Returns to the seat selector panel with its previous state.
+     *
      * @author Aidan Baker
      */
     public void switchBackToSeat() {
@@ -183,6 +188,7 @@ public class ApplicationFrame extends JFrame {
 
     /**
      * Returns to the flight list panel with its previous state.
+     *
      * @author Aidan Baker
      */
     public void switchBackToList() {

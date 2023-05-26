@@ -1,6 +1,6 @@
 /*
 Author: Oleksandr Danchenko, Aidan Baker
-Time Spent: 20 minutes
+Time Spent: 30 minutes
 Date: 19 May 2023
 Changes: Completely updated the screens layout and added swap button
         Author: Aidan Baker
@@ -27,33 +27,38 @@ import java.util.List;
 /**
  * A SearchPanel class, represents a panel for searching flights by departure and destination
  *
- * @see ScreenPanel
  * @author Oleksandr Danchenko
+ * @see ScreenPanel
  */
 public class SearchPanel extends ScreenPanel {
+    /**
+     * The calendar of flights.
+     */
     private final Calendar calendar;
-
     /**
      * Button group for selecting departure
      */
     private final ButtonGroup departureGroup = new ButtonGroup();
-
     /**
      * Button group for selecting destination
      */
     private final ButtonGroup destinationGroup = new ButtonGroup();
-
     /**
      * Panel for departure buttons
      */
     private final CustomPanel departurePanel = new CustomPanel(new GridLayout(4, 1));
-
     /**
      * Panel for destination buttons
      */
     private final CustomPanel destinationPanel = new CustomPanel(new GridLayout(4, 1));
 
-
+    /**
+     * The constructor of the class.
+     *
+     * @param applicationFrame the reference to the application frame object.
+     * @param calendar         the calendar of flights.
+     * @author Aidan Baker
+     */
     public SearchPanel(ApplicationFrame applicationFrame, Calendar calendar) {
         super(applicationFrame, new GridLayout(1, 5));
         this.calendar = calendar;
@@ -76,20 +81,34 @@ public class SearchPanel extends ScreenPanel {
 
     /**
      * A method for adding buttons for each location to the departure and destination panels
-     * @param message the message to be displayed on the button
+     *
+     * @param message  the message to be displayed on the button
      * @param selected whether the button should be selected by default
      * @author Oleksandr Danchenko
      */
     private void addButtons(String message, boolean selected) {
         JRadioButton destButton = new JRadioButton(message), depButton = new JRadioButton(message);
-        destButton.setSelected(selected); depButton.setSelected(selected);
-        destButton.setActionCommand(message); depButton.setActionCommand(message);
-        destButton.setFont(new Font("Arial", Font.PLAIN, 32)); depButton.setFont(new Font("Arial", Font.PLAIN, 32));
-        destButton.setPreferredSize(new Dimension(100, 70)); depButton.setPreferredSize(new Dimension(100, 70));
-        departureGroup.add(depButton); destinationGroup.add(destButton);
-        destinationPanel.add(destButton); departurePanel.add(depButton);
+        destButton.setSelected(selected);
+        depButton.setSelected(selected);
+        destButton.setActionCommand(message);
+        depButton.setActionCommand(message);
+        destButton.setFont(new Font("Arial", Font.PLAIN, 32));
+        depButton.setFont(new Font("Arial", Font.PLAIN, 32));
+        destButton.setPreferredSize(new Dimension(100, 70));
+        depButton.setPreferredSize(new Dimension(100, 70));
+        departureGroup.add(depButton);
+        destinationGroup.add(destButton);
+        destinationPanel.add(destButton);
+        departurePanel.add(depButton);
     }
 
+    /**
+     * Gets all available flights matching a specific criteria.
+     *
+     * @param filter the filter for flights.
+     * @return all flights that pass the filter.
+     * @author Oleksandr Danchenko
+     */
     private List<FlightInfo> getFlights(FlightFilter filter) {
         List<FlightInfo> ans = new ArrayList<FlightInfo>();
         for (int i = 1; i <= Calendar.NUMBER_OF_DAYS; i++) {
@@ -102,6 +121,7 @@ public class SearchPanel extends ScreenPanel {
 
     /**
      * A method for making a subtitle
+     *
      * @param text the text to be displayed on the subtitle
      * @return a JLabel with the text and the correct formatting
      * @author Aidan Baker
@@ -115,12 +135,13 @@ public class SearchPanel extends ScreenPanel {
 
     /**
      * A method for aligning content containing a subtitle vertically in the center of the screen
+     *
      * @param panel the panel to be aligned
-     * @param text the text to be displayed on the subtitle
+     * @param text  the text to be displayed on the subtitle
      * @return a CustomPanel with the correct formatting and the panel passed in as a parameter aligned vertically in the center of the screen
+     * @author Aidan Baker
      * @see CustomPanel
      * @see #makeSubTitle(String)
-     * @author Aidan Baker
      */
     private CustomPanel verticalCenterAlign(JPanel panel, String text) {
         CustomPanel formattedPanel = new CustomPanel(new GridLayout(3, 1));
@@ -131,9 +152,10 @@ public class SearchPanel extends ScreenPanel {
 
     /**
      * A method for adding the search and swap buttons to the center of the screen
+     *
      * @return a JPanel containing the search and swap buttons with the correct formatting
-     * @see CustomPanel
      * @author Aidan Baker
+     * @see CustomPanel
      */
     private JPanel addCenterButtons() {
         CustomPanel centerButtonPanel = new CustomPanel(new GridLayout(3, 1));
@@ -142,18 +164,12 @@ public class SearchPanel extends ScreenPanel {
         CustomPanel innerCenterButtonPanel = new CustomPanel(BoxLayout.Y_AXIS);
 
         CustomPanel searchButtonPanel = new CustomPanel(new GridLayout(1, 1));
-        JButton searchButton = new JButton("Search");
-        searchButton.addActionListener(this);
-        searchButton.setActionCommand("Search");
-        searchButtonPanel.add(searchButton);
+        addButton("Search", "Search", searchButtonPanel);
         searchButtonPanel.setPreferredSize(new Dimension(80, 70));
         innerCenterButtonPanel.add(searchButtonPanel);
 
         CustomPanel swapButtonPanel = new CustomPanel(new GridLayout(1, 1));
-        JButton swapButton = new JButton("Swap");
-        swapButton.addActionListener(this);
-        swapButton.setActionCommand("Swap");
-        swapButtonPanel.add(swapButton);
+        addButton("Swap", "Swap", swapButtonPanel);
         swapButtonPanel.setPreferredSize(new Dimension(80, 70));
         innerCenterButtonPanel.add(swapButtonPanel);
 
@@ -163,7 +179,9 @@ public class SearchPanel extends ScreenPanel {
 
     /**
      * A getter method for the selected departure.
+     *
      * @return the selected departure.
+     * @author Oleksandr Danchenko
      */
     private String getSelectedDeparture() {
         return departureGroup.getSelection().getActionCommand();
@@ -171,18 +189,27 @@ public class SearchPanel extends ScreenPanel {
 
     /**
      * A getter method for the selected destination.
+     *
      * @return the selected destination.
+     * @author Oleksandr Danchenko
      */
     private String getSelectedDestination() {
         return destinationGroup.getSelection().getActionCommand();
     }
 
+    /**
+     * A method that executes whe a button is pressed.
+     *
+     * @param e the event to be processed.
+     * @author Oleksandr danchenko
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
         if (e.getActionCommand().equals("Search")) {
             if (getSelectedDeparture().equals("All")) {
-                if (getSelectedDestination().equals("All")) applicationFrame.switchToFlightList(getFlights(new AnyFlight()));
+                if (getSelectedDestination().equals("All"))
+                    applicationFrame.switchToFlightList(getFlights(new AnyFlight()));
                 else applicationFrame.switchToFlightList(getFlights(new HasDestination(getSelectedDestination())));
             } else if (getSelectedDestination().equals("All")) {
                 applicationFrame.switchToFlightList(getFlights(new HasDeparture(getSelectedDeparture())));

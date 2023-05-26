@@ -1,6 +1,6 @@
 package gui.graphics;
 
-import database.interaction.DataReader;
+import resource.DataReader;
 import gui.components.CustomPanel;
 
 import javax.swing.*;

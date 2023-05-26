@@ -1,8 +1,11 @@
 /*
 Author: Oleksandr Danchenko
 time spent: 30 minutes
+Date: 18 May 2023
 version #2
 change: transferred the data checking part into the DateChecker class.
+    time spent: 15 minutes
+    Date: 22 May 2023
 */
 
 package logic.data_record;

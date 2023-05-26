@@ -1,6 +1,6 @@
 /*
 Author: Oleksandr Danchenko
-time spent: 20 minutes
+time spent: 40 minutes
 Date 16 May 2023
 version #1
 */
@@ -164,14 +164,6 @@ public class FlightInfo implements DatabaseItem {
      */
     public void bookSeat() {
         seatsLeft--;
-    }
-
-    /**
-     * A method that is called when a booked seat is cancelled.
-     * @author Aidan Baker
-     */
-    public void cancelSeat() {
-        seatsLeft++;
     }
 
     /**
