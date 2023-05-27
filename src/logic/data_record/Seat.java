@@ -125,6 +125,7 @@ public class Seat implements DatabaseItem {
 
     @Override
     public String toString() {
+        if (passenger == null) return "Seat #" + number + ", Empty";
         return "Seat #" + number + ", Name: " + passenger.getFirstName() + " " + passenger.getLastName() +
                 ", Phone number: " + passenger.getPhoneNumber() + ", Email: " + passenger.getEmail() + ", DOB: " + passenger.getDateOfBirth();
     }
