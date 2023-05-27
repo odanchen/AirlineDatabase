@@ -88,6 +88,7 @@ public class SeatSorter {
         int length;
         ArrayList<Integer> emptyIdx = new ArrayList<>();
 
+        // filter out the empty seats
         int idxCounter = 0;
         for (int i = 0; i < arr.length; i++) {
             if (!arr[i].isEmpty()) {
@@ -97,6 +98,8 @@ public class SeatSorter {
                 emptyIdx.add(i);
             }
         }
+
+        // add the empty seats to the end of the array
         int emptyIdxCounter = idxCounter;
         for (int idx :
                 emptyIdx) {
@@ -108,6 +111,7 @@ public class SeatSorter {
         if (isNumberComparator) length = emptyIdxCounter;
         else length = idxCounter;
 
+        //sort the array
         for (int i = 0; i < length; i++) {
             int minIdx = i;
             for (int j = i + 1; j < length; j++) {
