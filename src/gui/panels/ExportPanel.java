@@ -18,6 +18,9 @@ import java.awt.event.ActionEvent;
 import gui.ApplicationFrame;
 import gui.components.CustomPanel;
 import logic.data_record.Seat;
+import logic.sorting.seats.SeatSorter;
+import logic.sorting.seats.SortByName;
+import logic.sorting.seats.SortByNumber;
 
 public class ExportPanel extends ScreenPanel {
     /**
@@ -29,6 +32,8 @@ public class ExportPanel extends ScreenPanel {
      * The text area to display the flight manifest.
      */
     private JTextField[] customerInfoFields = new JTextField[10];
+
+    public JPanel previousPanel = new JPanel();
 
     /**
      * Constructs an ExportPanel object.
@@ -45,11 +50,12 @@ public class ExportPanel extends ScreenPanel {
         CustomPanel optionButtons = new CustomPanel(BoxLayout.X_AXIS);
         addButton("Sort by Name", "sortName", optionButtons);
         addButton("Sort by Seat #", "sortSeat", optionButtons);
+        centerPanel.add(optionButtons);
 
         for (int i = 0; i < customerInfoFields.length; i++) {
             customerInfoFields[i] = new JTextField();
             customerInfoFields[i].setEditable(false);
-            customerInfoFields[i].setPreferredSize(new Dimension(1000, 50));
+            customerInfoFields[i].setPreferredSize(new Dimension(1000, 40));
             centerPanel.add(customerInfoFields[i]);
         }
     }
@@ -64,8 +70,19 @@ public class ExportPanel extends ScreenPanel {
             if (seats[i].getPassenger() != null)
                 customerInfoFields[i].setText(seats[i].toString());
             else
-                customerInfoFields[i].setText("Seat #" + (i + 1));
+                customerInfoFields[i].setText("Seat #" + seats[i].getNumber() + ", Empty");
         }
+    }
+
+
+    private void sortByName() {
+        seats = SeatSorter.selectionSort(seats, new SortByName(), false);
+        loadManifest();
+    }
+
+    private void sortByNumber() {
+        seats = SeatSorter.selectionSort(seats, new SortByNumber(), true);
+        loadManifest();
     }
 
     /**
@@ -90,6 +107,15 @@ public class ExportPanel extends ScreenPanel {
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
 
-        //todo sort by name and by seat number
+        //back button
+        if (e.getActionCommand().equals("back")) {
+            applicationFrame.switchBackTo(previousPanel);
+        } else
+
+        //sorting buttons
+        if (e.getActionCommand().equals("sortName"))
+            sortByName();
+        else if (e.getActionCommand().equals("sortSeat"))
+            sortByNumber();
     }
 }

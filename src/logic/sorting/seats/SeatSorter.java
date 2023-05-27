@@ -9,6 +9,8 @@ package logic.sorting.seats;
 
 import logic.data_record.Seat;
 
+import java.util.ArrayList;
+
 /**
  * A SeatSorter class, used to sort seats in a specific order, determined by the comparator used with it.
  * The class is not meant to be instantiated because all of its methods are static.
@@ -79,5 +81,44 @@ public class SeatSorter {
         Seat[] arr2 = subArray(array, array.length / 2, array.length);
 
         return merge(sort(arr1, comparator), sort(arr2, comparator), comparator);
+    }
+
+    public static Seat[] selectionSort(Seat[] arr, SeatComparator comparator, boolean isNumberComparator) {
+        Seat[] newArr = new Seat[arr.length];
+        int length;
+        ArrayList<Integer> emptyIdx = new ArrayList<>();
+
+        int idxCounter = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (!arr[i].isEmpty()) {
+                newArr[idxCounter] = arr[i];
+                idxCounter++;
+            } else {
+                emptyIdx.add(i);
+            }
+        }
+        int emptyIdxCounter = idxCounter;
+        for (int idx :
+                emptyIdx) {
+            newArr[emptyIdxCounter] = arr[idx];
+            emptyIdxCounter++;
+        }
+
+        arr = newArr;
+        if (isNumberComparator) length = emptyIdxCounter;
+        else length = idxCounter;
+
+        for (int i = 0; i < length; i++) {
+            int minIdx = i;
+            for (int j = i + 1; j < length; j++) {
+                if (comparator.compare(arr[j], arr[minIdx]) < 0) {
+                    minIdx = j;
+                }
+            }
+            Seat tmp = arr[i];
+            arr[i] = arr[minIdx];
+            arr[minIdx] = tmp;
+        }
+        return arr;
     }
 }

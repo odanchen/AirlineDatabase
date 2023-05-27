@@ -198,6 +198,17 @@ public class ApplicationFrame extends JFrame {
     }
 
     /**
+     * Returns to the panel that was passed in with it previous state.
+     * @param panel the panel to return to.
+     * @author Aidan Baker
+     */
+    public void switchBackTo(JPanel panel) {
+        currentPanel.setVisible(false);
+        panel.setVisible(true);
+        currentPanel = (ScreenPanel) panel;
+    }
+
+    /**
      * Switches the current panel to the user input panel.
      * Hides the current panel and shows the user input panel.
      *
@@ -218,6 +229,7 @@ public class ApplicationFrame extends JFrame {
      */
     public void switchToExport(Seat[] seats) {
         currentPanel.setVisible(false);
+        ((ExportPanel) exportPanel).previousPanel = currentPanel;
         ((ExportPanel) exportPanel).makeVisible(seats);
         currentPanel = exportPanel;
     }
