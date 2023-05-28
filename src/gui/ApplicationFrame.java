@@ -172,6 +172,7 @@ public class ApplicationFrame extends JFrame {
     public void switchToSeat(Flight flight) {
         currentPanel.setVisible(false);
         ((SeatPanel) seatPanel).makeVisible(flight);
+        ((SeatPanel) seatPanel).colorSeatButtons();
         currentPanel = seatPanel;
     }
 
@@ -193,7 +194,7 @@ public class ApplicationFrame extends JFrame {
      */
     public void switchBackToList() {
         currentPanel.setVisible(false);
-        flightListPanel.setVisible(true);
+        ((FlightListPanel) flightListPanel).showPanel(((FlightListPanel) flightListPanel).getFlightList());
         currentPanel = flightListPanel;
     }
 

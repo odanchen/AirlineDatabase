@@ -184,6 +184,10 @@ public class FlightListPanel extends ScreenPanel {
         }
     }
 
+    public List<FlightInfo> getFlightList() {
+        return flightList;
+    }
+
     /**
      * An action to be performed after a cancel or renew button was pressed.
      *

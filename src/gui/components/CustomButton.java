@@ -24,6 +24,11 @@ public class CustomButton extends JButton {
     public static final int DEFAULT_FONT_SIZE = 15;
 
     /**
+     * The color of the button.
+     */
+    private Color color = BUTTON_BLUE;
+
+    /**
      * A constructor for the CustomButton class.
      *
      * @param text the text to be displayed on the button.
@@ -50,6 +55,14 @@ public class CustomButton extends JButton {
     }
 
     /**
+     * Sets the color used to paint the button.
+     * @param color the color to be used to paint the button.
+     */
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    /**
      * A method that draws the button.
      *
      * @param g the Graphics class instance.
@@ -60,7 +73,7 @@ public class CustomButton extends JButton {
         int w = getWidth(), h = getHeight();
         g.setColor(CustomPanel.BACKGROUND_WHITE);
         g.drawRect(0, 0, w, h);
-        g.setColor(BUTTON_BLUE);
+        g.setColor(color);
         g.fillRoundRect((int) (w * 0.05), (int) (h * 0.05), (int) (w * 0.9), (int) (h * 0.9), 7, 7);
         super.paint(g);
     }

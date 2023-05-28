@@ -266,7 +266,7 @@ public class UserInputPanel extends ScreenPanel {
             DataWriter.updateSeatingInformation(flight.getSeating(), flight.getFilename());
             DataWriter.updateFlightList(calendar);
             showSuccessMessage(messages[1]);
-            applicationFrame.switchToHome();
+            applicationFrame.switchToSeat(flight);
         }
     }
 
@@ -285,7 +285,7 @@ public class UserInputPanel extends ScreenPanel {
                 flight.cancelSeat(seat.getNumber());
                 DataWriter.updateSeatingInformation(flight.getSeating(), flight.getFilename());
                 DataWriter.updateFlightList(calendar);
-                applicationFrame.switchToHome();
+                applicationFrame.switchToSeat(flight);
             }
         }
         if (e.getActionCommand().equals("book")) bookEvent();

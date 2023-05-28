@@ -2,11 +2,16 @@
 Author: Aidan Baker
 time spent: 35 minutes
 Date: 19 May 2023
-version #1
+version #1.5
+changes: Added a method to color the seat buttons based on their availability
+        Date: 28 May 2023
+        time spent: 5 minutes
+        Author: Aidan Baker
  */
 package gui.panels;
 
 import gui.ApplicationFrame;
+import gui.components.CustomButton;
 import gui.components.CustomPanel;
 import logic.data_record.Flight;
 
@@ -37,6 +42,8 @@ public class SeatPanel extends ScreenPanel {
      * The panel that contains the seat buttons.
      */
     private final CustomPanel seatButtonPanel = new CustomPanel(new GridLayout(2, 9));
+
+    private final CustomButton[] seatButtons = new CustomButton[10];
 
     /**
      * Constructs a SeatPanel object.
@@ -89,8 +96,28 @@ public class SeatPanel extends ScreenPanel {
      */
     private void setupSeatButtons() {
         for (int i = 0; i < 10; i++) {
-            addButton(String.valueOf(i + 1), String.valueOf(i + 1), seatButtonPanel);
+            seatButtons[i] = new CustomButton(String.valueOf(i + 1));
+            seatButtons[i].setActionCommand(String.valueOf(i + 1));
+            seatButtons[i].addActionListener(this);
+            seatButtonPanel.add(seatButtons[i]);
+
             if (i != 4 && i != 9) seatButtonPanel.add(new JLabel());
+        }
+    }
+
+    /**
+     * Colors the seat buttons based on whether they are booked.
+     * If the seat is booked, the button is colored light gray otherwise it is colored blue.
+     *
+     * @author Aidan Baker
+     */
+    public void colorSeatButtons() {
+        for (int i = 0; i < 10; i++) {
+            if (!((flight.getSeating())[i].isEmpty())) {
+                seatButtons[i].setColor(Color.LIGHT_GRAY);
+            } else {
+                seatButtons[i].setColor(CustomButton.BUTTON_BLUE);
+            }
         }
     }
 
@@ -125,8 +152,12 @@ public class SeatPanel extends ScreenPanel {
             applicationFrame.switchToExport(flight.getSeating());
         }
 
-        if (isSeatButtonPressed(e)) {
+        else if (isSeatButtonPressed(e)) {
             applicationFrame.switchToInput(flight, flight.getSeating()[Integer.parseInt(e.getActionCommand()) - 1]);
+        }
+
+        else if (e.getActionCommand().equals("cancel")) {
+            //todo
         }
     }
 }
