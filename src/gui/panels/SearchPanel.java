@@ -88,6 +88,10 @@ public class SearchPanel extends ScreenPanel {
      */
     private void addButtons(String message, boolean selected) {
         JRadioButton destButton = new JRadioButton(message), depButton = new JRadioButton(message);
+
+        destButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        depButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         destButton.setSelected(selected);
         depButton.setSelected(selected);
         destButton.setActionCommand(message);
@@ -130,6 +134,7 @@ public class SearchPanel extends ScreenPanel {
         JLabel label = new JLabel(text);
         label.setBackground(new Color(248, 249, 249));
         label.setFont(new Font("Arial", Font.BOLD, 40));
+        label.setHorizontalAlignment(JLabel.CENTER);
         return label;
     }
 

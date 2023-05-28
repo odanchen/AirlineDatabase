@@ -2,7 +2,7 @@
 Author: Aidan Baker
 time spent: 5 minutes
 Date: 23 May 2023
-Changes: Added the functionality to the panel, so you can actually see the manifest.
+Changes: Added the functionality to the panel, so you can actually see the manifest and sort it.
         Date: 26 May 2023
         Time: 30 minutes
         Author: Aidan Baker
