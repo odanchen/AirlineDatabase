@@ -12,6 +12,7 @@ Version #2
 package gui.panels;
 
 import gui.components.CustomPanel;
+import gui.components.CustomRadioButton;
 import logic.data_record.Calendar;
 import gui.ApplicationFrame;
 import logic.data_record.FlightInfo;
@@ -42,7 +43,11 @@ public class SearchPanel extends ScreenPanel {
     /**
      * Button group for selecting destination
      */
+
+    private final CustomRadioButton[] departureButtons = new CustomRadioButton[4];
     private final ButtonGroup destinationGroup = new ButtonGroup();
+
+    private final CustomRadioButton[] destinationButtons = new CustomRadioButton[4];
     /**
      * Panel for departure buttons
      */
@@ -66,10 +71,10 @@ public class SearchPanel extends ScreenPanel {
         departurePanel.setLayout(new BoxLayout(departurePanel, BoxLayout.Y_AXIS));
         destinationPanel.setLayout(new BoxLayout(destinationPanel, BoxLayout.Y_AXIS));
 
-        addButtons("All", true);
-        addButtons(Route.TORONTO, false);
-        addButtons(Route.OTTAWA, false);
-        addButtons(Route.VANCOUVER, false);
+        addButtons("All", 0, true);
+        addButtons(Route.TORONTO, 1, false);
+        addButtons(Route.OTTAWA, 2, false);
+        addButtons(Route.VANCOUVER, 3, false);
 
         //adding content to the main panel
         centerPanel.add(new JLabel(""));
@@ -86,24 +91,23 @@ public class SearchPanel extends ScreenPanel {
      * @param selected whether the button should be selected by default
      * @author Oleksandr Danchenko
      */
-    private void addButtons(String message, boolean selected) {
-        JRadioButton destButton = new JRadioButton(message), depButton = new JRadioButton(message);
+    private void addButtons(String message, int buttonNumber, boolean selected) {
+        destinationButtons[buttonNumber] = new CustomRadioButton(message, selected);
+        departureButtons[buttonNumber] = new CustomRadioButton(message, selected);
 
-        destButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        depButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        destinationButtons[buttonNumber].addActionListener(this);
+        departureButtons[buttonNumber].addActionListener(this);
 
-        destButton.setSelected(selected);
-        depButton.setSelected(selected);
-        destButton.setActionCommand(message);
-        depButton.setActionCommand(message);
-        destButton.setFont(new Font("Arial", Font.PLAIN, 32));
-        depButton.setFont(new Font("Arial", Font.PLAIN, 32));
-        destButton.setPreferredSize(new Dimension(100, 70));
-        depButton.setPreferredSize(new Dimension(100, 70));
-        departureGroup.add(depButton);
-        destinationGroup.add(destButton);
-        destinationPanel.add(destButton);
-        departurePanel.add(depButton);
+        CustomPanel destPanel = new CustomPanel();
+        destPanel.setLayout(new GridLayout(1, 1));
+        destPanel.add(destinationButtons[buttonNumber]);
+
+        CustomPanel depPanel = new CustomPanel();
+        depPanel.setLayout(new GridLayout(1, 1));
+        depPanel.add(departureButtons[buttonNumber]);
+
+        destinationGroup.add(destinationButtons[buttonNumber]); departureGroup.add(departureButtons[buttonNumber]);
+        destinationPanel.add(destPanel); departurePanel.add(depPanel);
     }
 
     /**
@@ -183,6 +187,14 @@ public class SearchPanel extends ScreenPanel {
     }
 
     /**
+     * A method for resetting the selection of the departure and destination buttons to All
+     */
+    public void resetSelection() {
+        departureButtons[0].setSelected(true);
+        destinationButtons[0].setSelected(true);
+    }
+
+    /**
      * A getter method for the selected departure.
      *
      * @return the selected departure.
@@ -211,6 +223,7 @@ public class SearchPanel extends ScreenPanel {
     @Override
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
+        
         if (e.getActionCommand().equals("Search")) {
             if (getSelectedDeparture().equals("All")) {
                 if (getSelectedDestination().equals("All"))
