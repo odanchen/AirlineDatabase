@@ -86,6 +86,8 @@ public class SeatPanel extends ScreenPanel {
         flightInfo.setFont(new Font("Arial", Font.BOLD, 36));
         flightInfo.setHorizontalAlignment(JTextField.CENTER);
 
+        colorSeatButtons();
+
         setVisible(true);
     }
 
@@ -111,7 +113,7 @@ public class SeatPanel extends ScreenPanel {
      *
      * @author Aidan Baker
      */
-    public void colorSeatButtons() {
+    private void colorSeatButtons() {
         for (int i = 0; i < 10; i++) {
             if (!((flight.getSeating())[i].isEmpty())) {
                 seatButtons[i].setColor(Color.LIGHT_GRAY);
