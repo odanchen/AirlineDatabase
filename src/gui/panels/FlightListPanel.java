@@ -74,6 +74,7 @@ public class FlightListPanel extends ScreenPanel {
 
         CustomPanel actionButtons = new CustomPanel(new GridLayout(1, 3));
         addButton("Book Flight", "bookFlight", actionButtons);
+        addButton("View Manifest", "viewManifest", actionButtons);
         addButton("Cancel the flight", "cancel", actionButtons);
         addButton("Renew the flight", "renew", actionButtons);
 
@@ -251,6 +252,10 @@ public class FlightListPanel extends ScreenPanel {
         if (e.getActionCommand().equals("bookFlight")) {
             FlightInfo flight = getSelectedFlight();
             applicationFrame.switchToSeat(new Flight(flight, DataReader.getSeating(flight.getFileName())));
+        }
+        if (e.getActionCommand().equals("viewManifest")) {
+            FlightInfo flight = getSelectedFlight();
+            applicationFrame.switchToExport((new Flight(flight, DataReader.getSeating(flight.getFileName()))).getSeating());
         }
     }
 }
