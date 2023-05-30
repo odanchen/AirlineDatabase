@@ -27,13 +27,16 @@ public class CustomRadioButton extends JRadioButton {
      */
     public CustomRadioButton(String message, boolean isSelected) {
         super(message);
-        setBackground(CustomButton.BUTTON_BLUE);
+        setBackground(new Color(0, 0, 0, 0));
         setBorderPainted(false);
         setForeground(Color.WHITE);
         setFont(new Font("Arial", Font.PLAIN, 32));
         setSelected(isSelected);
         setAlignmentX(Component.CENTER_ALIGNMENT);
         setActionCommand(message);
+        setIcon(new CustomIcon());
+        setPressedIcon(new CustomIcon());
+        setSelectedIcon(new CustomIcon());
         repaint();
     }
 
@@ -43,16 +46,10 @@ public class CustomRadioButton extends JRadioButton {
      */
     @Override
     public void paint(Graphics g) {
-        Color color;
-        if (isSelected()) color = SELECTED_COLOR;
-        else color = CustomButton.BUTTON_BLUE;
-
         int w = getWidth(), h = getHeight();
-        g.setColor(color);
+        if (isSelected()) g.setColor(SELECTED_COLOR);
+        else g.setColor(CustomButton.BUTTON_BLUE);
         g.fillRoundRect((int) (w * 0.02), (int) (h * 0.07), (int) (w * 0.98), (int) (h * 0.93), 7, 7);
-        setIcon(new CustomIcon());
-        setPressedIcon(new CustomIcon());
-        setSelectedIcon(new CustomIcon());
         super.paint(g);
     }
 }

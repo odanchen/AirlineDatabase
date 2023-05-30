@@ -13,6 +13,7 @@ package gui.panels;
 import gui.ApplicationFrame;
 import gui.components.CustomButton;
 import gui.components.CustomPanel;
+import gui.components.CustomRadioButton;
 import gui.graphics.HomeImage;
 import logic.data_record.Route;
 
@@ -55,7 +56,7 @@ public class HomePanel extends ScreenPanel {
      */
     public HomePanel(ApplicationFrame applicationFrame) {
         super(applicationFrame, BoxLayout.Y_AXIS);
-
+        homeButton.setColor(CustomRadioButton.SELECTED_COLOR);
         setTitle("Home");
         //screen message
         CustomPanel messagePanel = new CustomPanel();
