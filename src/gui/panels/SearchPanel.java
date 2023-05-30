@@ -71,6 +71,7 @@ public class SearchPanel extends ScreenPanel {
     public SearchPanel(ApplicationFrame applicationFrame, Calendar calendar) {
         super(applicationFrame, new GridLayout(1, 5));
         this.calendar = calendar;
+        flightSearchButton.setColor(CustomRadioButton.SELECTED_COLOR);
 
         departurePanel.setLayout(new BoxLayout(departurePanel, BoxLayout.Y_AXIS));
         destinationPanel.setLayout(new BoxLayout(destinationPanel, BoxLayout.Y_AXIS));

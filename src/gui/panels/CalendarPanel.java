@@ -7,6 +7,7 @@ version #1
 
 package gui.panels;
 
+import gui.components.CustomRadioButton;
 import logic.data_record.Calendar;
 import gui.ApplicationFrame;
 
@@ -32,6 +33,7 @@ public class CalendarPanel extends ScreenPanel {
     public CalendarPanel(ApplicationFrame applicationFrame, Calendar calendar) {
         super(applicationFrame, new GridLayout(6, 7));
         this.calendar = calendar;
+        calendarButton.setColor(CustomRadioButton.SELECTED_COLOR);
         setTitle("August 2023");
 
         //day labels

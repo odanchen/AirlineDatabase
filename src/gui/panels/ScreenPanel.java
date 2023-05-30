@@ -53,23 +53,15 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
     /**
      * The home button, switches the current screen to home screen when pressed.
      */
-    private static final String homeButton = "Home";
+    protected final CustomButton homeButton = new CustomButton("Home", 25);
     /**
      * The flight search button, switches the current screen to flight search screen when pressed.
      */
-    private static final String flightSearchButton = "Search for a Flight";
+    protected final CustomButton flightSearchButton = new CustomButton("Search for a Flight", 25);
     /**
      * The calendar button, switches the current screen to calendar screen when pressed.
      */
-    private static final String calendarButton = "Calendar";
-    /**
-     * The user manual button, opens the user manual when pressed screen when pressed.
-     */
-    private static final String manualButton = "User Manual";
-    /**
-     * Exits the program when pressed.
-     */
-    private static final String exitButton = "Exit";
+    protected final CustomButton calendarButton = new CustomButton("Calendar", 25);
     /**
      * The link to the user manual.
      */
@@ -86,11 +78,11 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
         setLayout(new BorderLayout());
         //bottom button bar
 
-        addButton(homeButton, homeButton, buttonPanel, 25);
-        addButton(flightSearchButton, flightSearchButton, buttonPanel, 25);
-        addButton(calendarButton, calendarButton, buttonPanel, 25);
-        addButton(manualButton, manualButton, buttonPanel, 25);
-        addButton(exitButton, exitButton, buttonPanel, 25);
+        addButton(homeButton, homeButton.getText(), buttonPanel);
+        addButton(flightSearchButton, flightSearchButton.getText(), buttonPanel);
+        addButton(calendarButton, calendarButton.getText(), buttonPanel);
+        addButton("User Manual", "User Manual", buttonPanel, 25);
+        addButton("Exit", "Exit", buttonPanel, 25);
 
         //add button panel to bottom of frame
         add(buttonPanel, BorderLayout.SOUTH);
@@ -242,20 +234,20 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
     public void actionPerformed(ActionEvent e) {
         String actionCommand = e.getActionCommand();
         switch (actionCommand) {
-            case homeButton: applicationFrame.switchToHome();
+            case "Home": applicationFrame.switchToHome();
                 break;
-            case flightSearchButton: applicationFrame.switchToSearch();
+            case "Search for a Flight": applicationFrame.switchToSearch();
                 break;
-            case calendarButton: applicationFrame.switchToCalendar();
+            case "Calendar": applicationFrame.switchToCalendar();
                 break;
-            case manualButton:
+            case "User Manual" :
                 try {
                     Desktop.getDesktop().browse(URI.create(MANUAL_URL));
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
                 break;
-            case exitButton: if (userConfirm("Are you sure you want to exit?")) System.exit(0);
+            case "Exit" : if (userConfirm("Are you sure you want to exit?")) System.exit(0);
                 break;
         }
     }
