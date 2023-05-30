@@ -1,11 +1,30 @@
+/*
+Author: Aidan Baker
+Time Spent: 20 minutes
+Date: 29 May 2023
+citations: Swing documentation
+ */
 package gui.components;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Represents a custom radio button.
+ * @see JRadioButton
+ * @author Aidan Baker
+ */
 public class CustomRadioButton extends JRadioButton {
+    /**
+     * The color for selected buttons.
+     */
     public static final Color SELECTED_COLOR = new Color(50, 102, 203);
 
+    /**
+     * Constructs a CustomRadioButton object.
+     * @param message The message to be displayed on the button.
+     * @param isSelected Whether the button is selected.
+     */
     public CustomRadioButton(String message, boolean isSelected) {
         super(message);
         setBackground(CustomButton.BUTTON_BLUE);
@@ -18,6 +37,10 @@ public class CustomRadioButton extends JRadioButton {
         repaint();
     }
 
+    /**
+     * Overriden paint method to style the button.
+     * @param g  the <code>Graphics</code> context in which to paint
+     */
     @Override
     public void paint(Graphics g) {
         Color color;

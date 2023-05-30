@@ -33,6 +33,9 @@ public class ExportPanel extends ScreenPanel {
      */
     private final JTextField[] customerInfoFields = new JTextField[10];
 
+    /**
+     * the panel that store the previous panel, so you can return to it
+     */
     public JPanel previousPanel = new JPanel();
 
     /**

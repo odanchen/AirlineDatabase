@@ -158,7 +158,7 @@ public class ApplicationFrame extends JFrame {
      */
     public void switchToFlightList(List<FlightInfo> flightList) {
         currentPanel.setVisible(false);
-        ((FlightListPanel)flightListPanel).showPanel(flightList);
+        ((FlightListPanel) flightListPanel).showPanel(flightList);
         currentPanel = flightListPanel;
     }
 

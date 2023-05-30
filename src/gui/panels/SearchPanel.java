@@ -40,22 +40,32 @@ public class SearchPanel extends ScreenPanel {
      * The calendar of flights.
      */
     private final Calendar calendar;
+
     /**
      * Button group for selecting departure
      */
     private final ButtonGroup departureGroup = new ButtonGroup();
+
     /**
      * Button group for selecting destination
      */
-
     private final List<CustomRadioButton> departureButtons = new ArrayList<CustomRadioButton>(4);
+
+    /**
+     * Button group for selecting destination
+     */
     private final ButtonGroup destinationGroup = new ButtonGroup();
 
+    /**
+     * Button group for selecting destination
+     */
     private final List<CustomRadioButton> destinationButtons = new ArrayList<CustomRadioButton>(4);
+
     /**
      * Panel for departure buttons
      */
     private final CustomPanel departurePanel = new CustomPanel(new GridLayout(4, 1));
+
     /**
      * Panel for destination buttons
      */
@@ -196,6 +206,10 @@ public class SearchPanel extends ScreenPanel {
         setVisible(true);
     }
 
+    /**
+     * A method for swapping selected departure and destination
+     * @author Oleksandr Denchenko
+     */
     private void actionSwap() {
         String sel1 = departureGroup.getSelection().getActionCommand();
         String sel2 = destinationGroup.getSelection().getActionCommand();
@@ -246,8 +260,10 @@ public class SearchPanel extends ScreenPanel {
                 else applicationFrame.switchToFlightList(getFlights(new HasDestination(getSelectedDestination())));
             } else if (getSelectedDestination().equals("All")) {
                 applicationFrame.switchToFlightList(getFlights(new HasDeparture(getSelectedDeparture())));
-            } else {
+            } else if (!(getSelectedDeparture().equals(getSelectedDestination()))) {
                 applicationFrame.switchToFlightList(getFlights(new HasRoute(getSelectedDeparture(), getSelectedDestination())));
+            } else {
+                JOptionPane.showMessageDialog(this, "Departure and destination cannot be the same", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         if (e.getActionCommand().equals("Swap")) actionSwap();
