@@ -68,8 +68,6 @@ public class FlightListPanel extends ScreenPanel {
         super(applicationFrame, BoxLayout.Y_AXIS);
         this.calendar = calendar;
 
-        //todo button to export flight manifest
-
         setTitle("Pick a Flight");
 
         CustomPanel actionButtons = new CustomPanel(new GridLayout(1, 3));

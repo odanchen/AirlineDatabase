@@ -197,6 +197,10 @@ public class UserInputPanel extends ScreenPanel {
         loadData();
         cancelButton.setVisible(!seat.isEmpty());
         priceField.setText(seat.getPrice() / 100 + "." + seat.getPrice() % 100 + "$");
+
+        if (flight.getFlightInfo().isCancelled()) { bookButton.setColor(Color.LIGHT_GRAY); cancelButton.setColor(Color.LIGHT_GRAY); }
+        else { bookButton.setColor(CustomButton.BUTTON_BLUE); cancelButton.setColor(CustomButton.BUTTON_BLUE); }
+
         setVisible(true);
     }
 
@@ -280,7 +284,7 @@ public class UserInputPanel extends ScreenPanel {
     public void actionPerformed(ActionEvent e) {
         super.actionPerformed(e);
         if (e.getActionCommand().equals("back")) applicationFrame.switchBackToSeat();
-        if (e.getActionCommand().equals("cancel")) {
+        if (e.getActionCommand().equals("cancel") && !flight.getFlightInfo().isCancelled()) {
             if (userConfirm("Are you sure you want to cancel the booking")) {
                 flight.cancelSeat(seat.getNumber());
                 DataWriter.updateSeatingInformation(flight.getSeating(), flight.getFilename());
@@ -288,6 +292,6 @@ public class UserInputPanel extends ScreenPanel {
                 applicationFrame.switchToSeat(flight);
             }
         }
-        if (e.getActionCommand().equals("book")) bookEvent();
+        if (e.getActionCommand().equals("book") && !flight.getFlightInfo().isCancelled()) bookEvent();
     }
 }
