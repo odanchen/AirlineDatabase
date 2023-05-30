@@ -194,14 +194,16 @@ public class FlightListPanel extends ScreenPanel {
      * @author Oleksandr Danchenko
      */
     private void cancellationEvent(boolean toCancel) {
-        if (toCancel == getSelectedFlight().isCancelled()) showErrorMessage("The action could not be performed");
-        else {
-            if (userConfirm("Are you sure you want to do the action?")) {
-                if (toCancel) getSelectedFlight().cancel();
-                else flightList.get(table.getSelectedRow()).renew();
-                DataWriter.updateFlightList(calendar);
-                fillTable(flightList);
-                showSuccessMessage("Action completed successfully");
+        if (getSelectedFlight() != null) {
+            if (toCancel == getSelectedFlight().isCancelled()) showErrorMessage("The action could not be performed");
+            else {
+                if (userConfirm("Are you sure you want to do the action?")) {
+                    if (toCancel) getSelectedFlight().cancel();
+                    else flightList.get(table.getSelectedRow()).renew();
+                    DataWriter.updateFlightList(calendar);
+                    fillTable(flightList);
+                    showSuccessMessage("Action completed successfully");
+                }
             }
         }
     }
@@ -249,11 +251,11 @@ public class FlightListPanel extends ScreenPanel {
         }
         if (e.getActionCommand().equals("bookFlight")) {
             FlightInfo flight = getSelectedFlight();
-            applicationFrame.switchToSeat(new Flight(flight, DataReader.getSeating(flight.getFileName())));
+            if(flight != null) applicationFrame.switchToSeat(new Flight(flight, DataReader.getSeating(flight.getFileName())));
         }
         if (e.getActionCommand().equals("viewManifest")) {
             FlightInfo flight = getSelectedFlight();
-            applicationFrame.switchToExport((new Flight(flight, DataReader.getSeating(flight.getFileName()))).getSeating());
+            if(flight != null) applicationFrame.switchToExport((new Flight(flight, DataReader.getSeating(flight.getFileName()))).getSeating());
         }
     }
 }

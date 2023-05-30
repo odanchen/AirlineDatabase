@@ -246,8 +246,10 @@ public class SearchPanel extends ScreenPanel {
                 else applicationFrame.switchToFlightList(getFlights(new HasDestination(getSelectedDestination())));
             } else if (getSelectedDestination().equals("All")) {
                 applicationFrame.switchToFlightList(getFlights(new HasDeparture(getSelectedDeparture())));
-            } else {
+            } else if (!(getSelectedDeparture().equals(getSelectedDestination()))) {
                 applicationFrame.switchToFlightList(getFlights(new HasRoute(getSelectedDeparture(), getSelectedDestination())));
+            } else {
+                JOptionPane.showMessageDialog(this, "Departure and destination cannot be the same", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         if (e.getActionCommand().equals("Swap")) actionSwap();
