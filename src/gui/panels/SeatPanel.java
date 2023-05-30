@@ -43,6 +43,9 @@ public class SeatPanel extends ScreenPanel {
      */
     private final CustomPanel seatButtonPanel = new CustomPanel(new GridLayout(2, 9));
 
+    /**
+     * The array of seat buttons.
+     */
     private final CustomButton[] seatButtons = new CustomButton[10];
 
     /**
@@ -159,7 +162,13 @@ public class SeatPanel extends ScreenPanel {
         }
 
         else if (e.getActionCommand().equals("cancel")) {
-            //todo
+            if (JOptionPane.showConfirmDialog(this, "Are you sure you want to cancel this flight?",
+                    "Cancel Flight", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                flight.getFlightInfo().cancel();
+                JOptionPane.showMessageDialog(this, "Flight cancelled successfully.",
+                        "Flight Cancelled", JOptionPane.INFORMATION_MESSAGE);
+                applicationFrame.switchBackToList();
+            }
         }
     }
 }
