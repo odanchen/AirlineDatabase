@@ -31,7 +31,7 @@ public class ExportPanel extends ScreenPanel {
     /**
      * The text area to display the flight manifest.
      */
-    private JTextField[] customerInfoFields = new JTextField[10];
+    private final JTextField[] customerInfoFields = new JTextField[10];
 
     public JPanel previousPanel = new JPanel();
 
@@ -65,24 +65,13 @@ public class ExportPanel extends ScreenPanel {
      *
      * @author Aidan Baker
      */
-    private void loadManifest() {
+    private void loadManifest(Seat[] seats) {
         for (int i = 0; i < customerInfoFields.length; i++) {
             if (seats[i].getPassenger() != null)
                 customerInfoFields[i].setText(seats[i].toString());
             else
                 customerInfoFields[i].setText("Seat #" + seats[i].getNumber() + ", Empty");
         }
-    }
-
-
-    private void sortByName() {
-        seats = SeatSorter.selectionSort(seats, new SortByName(), false);
-        loadManifest();
-    }
-
-    private void sortByNumber() {
-        seats = SeatSorter.selectionSort(seats, new SortByNumber(), true);
-        loadManifest();
     }
 
     /**
@@ -93,7 +82,7 @@ public class ExportPanel extends ScreenPanel {
      */
     public void makeVisible(Seat[] seats) {
         this.seats = seats;
-        loadManifest();
+        loadManifest(seats);
         setVisible(true);
     }
 
@@ -113,9 +102,7 @@ public class ExportPanel extends ScreenPanel {
         } else
 
         //sorting buttons
-        if (e.getActionCommand().equals("sortName"))
-            sortByName();
-        else if (e.getActionCommand().equals("sortSeat"))
-            sortByNumber();
+        if (e.getActionCommand().equals("sortName")) loadManifest(SeatSorter.sort(seats, new SortByName()));
+        else if (e.getActionCommand().equals("sortSeat")) loadManifest(SeatSorter.sort(seats, new SortByNumber()));
     }
 }

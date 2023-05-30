@@ -36,11 +36,11 @@ public class CustomButton extends JButton {
      */
     public CustomButton(String text) {
         super(text);
-        repaint();
-        setBackground(BUTTON_BLUE);
         setBorderPainted(false);
         setForeground(Color.WHITE);
+        setBackground(new Color(0, 0, 0, 0));
         setFont(new Font(Font.SANS_SERIF, Font.BOLD, DEFAULT_FONT_SIZE));
+        repaint();
     }
 
     /**
@@ -72,7 +72,7 @@ public class CustomButton extends JButton {
     public void paint(Graphics g) {
         int w = getWidth(), h = getHeight();
         g.setColor(CustomPanel.BACKGROUND_WHITE);
-        g.drawRect(0, 0, w, h);
+        g.fillRect(0, 0, w, h);
         g.setColor(color);
         g.fillRoundRect((int) (w * 0.05), (int) (h * 0.05), (int) (w * 0.9), (int) (h * 0.9), 7, 7);
         super.paint(g);

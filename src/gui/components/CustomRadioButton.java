@@ -8,7 +8,6 @@ public class CustomRadioButton extends JRadioButton {
 
     public CustomRadioButton(String message, boolean isSelected) {
         super(message);
-        repaint();
         setBackground(CustomButton.BUTTON_BLUE);
         setBorderPainted(false);
         setForeground(Color.WHITE);
@@ -16,6 +15,7 @@ public class CustomRadioButton extends JRadioButton {
         setSelected(isSelected);
         setAlignmentX(Component.CENTER_ALIGNMENT);
         setActionCommand(message);
+        repaint();
     }
 
     @Override

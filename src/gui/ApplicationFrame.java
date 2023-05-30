@@ -145,8 +145,7 @@ public class ApplicationFrame extends JFrame {
      */
     public void switchToSearch() {
         currentPanel.setVisible(false);
-        searchPanel.setVisible(true);
-        ((SearchPanel) searchPanel).resetSelection();
+        ((SearchPanel)searchPanel).makeVisible();
         currentPanel = searchPanel;
     }
 

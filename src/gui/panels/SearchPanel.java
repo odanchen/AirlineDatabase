@@ -6,7 +6,11 @@ Changes: Completely updated the screens layout and added swap button
         Author: Aidan Baker
         Date: 24 May 2023
         Time spent: 50 minutes
-Version #2
+Changes: Implemented the swap button function, slight refactoring
+        Author: Oleksandr Danchenko
+        time spent: 15 minutes.
+        Date: 29 May 2023.
+Version #3
  */
 
 package gui.panels;
@@ -44,10 +48,10 @@ public class SearchPanel extends ScreenPanel {
      * Button group for selecting destination
      */
 
-    private final CustomRadioButton[] departureButtons = new CustomRadioButton[4];
+    private final List<CustomRadioButton> departureButtons = new ArrayList<CustomRadioButton>(4);
     private final ButtonGroup destinationGroup = new ButtonGroup();
 
-    private final CustomRadioButton[] destinationButtons = new CustomRadioButton[4];
+    private final List<CustomRadioButton> destinationButtons = new ArrayList<CustomRadioButton>(4);
     /**
      * Panel for departure buttons
      */
@@ -71,10 +75,10 @@ public class SearchPanel extends ScreenPanel {
         departurePanel.setLayout(new BoxLayout(departurePanel, BoxLayout.Y_AXIS));
         destinationPanel.setLayout(new BoxLayout(destinationPanel, BoxLayout.Y_AXIS));
 
-        addButtons("All", 0, true);
-        addButtons(Route.TORONTO, 1, false);
-        addButtons(Route.OTTAWA, 2, false);
-        addButtons(Route.VANCOUVER, 3, false);
+        addButtons("All", true);
+        addButtons(Route.TORONTO, false);
+        addButtons(Route.OTTAWA, false);
+        addButtons(Route.VANCOUVER, false);
 
         //adding content to the main panel
         centerPanel.add(new JLabel(""));
@@ -91,23 +95,20 @@ public class SearchPanel extends ScreenPanel {
      * @param selected whether the button should be selected by default
      * @author Oleksandr Danchenko
      */
-    private void addButtons(String message, int buttonNumber, boolean selected) {
-        destinationButtons[buttonNumber] = new CustomRadioButton(message, selected);
-        departureButtons[buttonNumber] = new CustomRadioButton(message, selected);
+    private void addButtons(String message, boolean selected) {
+        destinationButtons.add(new CustomRadioButton(message, selected));
+        departureButtons.add(new CustomRadioButton(message, selected));
 
-        destinationButtons[buttonNumber].addActionListener(this);
-        departureButtons[buttonNumber].addActionListener(this);
+        CustomPanel destPanel = new CustomPanel(new GridLayout(1, 1));
+        destPanel.add(destinationButtons.get(destinationButtons.size() - 1));
 
-        CustomPanel destPanel = new CustomPanel();
-        destPanel.setLayout(new GridLayout(1, 1));
-        destPanel.add(destinationButtons[buttonNumber]);
+        CustomPanel depPanel = new CustomPanel(new GridLayout(1, 1));
+        depPanel.add(departureButtons.get(departureButtons.size() - 1));
 
-        CustomPanel depPanel = new CustomPanel();
-        depPanel.setLayout(new GridLayout(1, 1));
-        depPanel.add(departureButtons[buttonNumber]);
-
-        destinationGroup.add(destinationButtons[buttonNumber]); departureGroup.add(departureButtons[buttonNumber]);
-        destinationPanel.add(destPanel); departurePanel.add(depPanel);
+        destinationGroup.add(destinationButtons.get(destinationButtons.size() - 1));
+        departureGroup.add(departureButtons.get(departureButtons.size() - 1));
+        destinationPanel.add(destPanel);
+        departurePanel.add(depPanel);
     }
 
     /**
@@ -189,9 +190,23 @@ public class SearchPanel extends ScreenPanel {
     /**
      * A method for resetting the selection of the departure and destination buttons to All
      */
-    public void resetSelection() {
-        departureButtons[0].setSelected(true);
-        destinationButtons[0].setSelected(true);
+    public void makeVisible() {
+        departureButtons.get(0).setSelected(true);
+        destinationButtons.get(0).setSelected(true);
+        setVisible(true);
+    }
+
+    private void actionSwap() {
+        String sel1 = departureGroup.getSelection().getActionCommand();
+        String sel2 = destinationGroup.getSelection().getActionCommand();
+        for (CustomRadioButton button : departureButtons) {
+            if (button.getActionCommand().equals(sel2)) button.setSelected(true);
+            else if (button.isSelected()) button.setSelected(false);
+        }
+        for (CustomRadioButton button : destinationButtons) {
+            if (button.getActionCommand().equals(sel1)) button.setSelected(true);
+            else if (button.isSelected()) button.setSelected(false);
+        }
     }
 
     /**
@@ -235,5 +250,6 @@ public class SearchPanel extends ScreenPanel {
                 applicationFrame.switchToFlightList(getFlights(new HasRoute(getSelectedDeparture(), getSelectedDestination())));
             }
         }
+        if (e.getActionCommand().equals("Swap")) actionSwap();
     }
 }

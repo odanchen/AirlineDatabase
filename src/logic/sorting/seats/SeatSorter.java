@@ -2,14 +2,15 @@
 Author: Oleksandr Danchenko
 time spent: 30 minutes
 Date: 15 May 2023
-version #1
+version #2
+Changes: changed the algorithm to be quicksort and improved the comparators for null safety.
+    time spent: 20 minutes.
+    Date 29 May 2023.
 */
 
 package logic.sorting.seats;
 
 import logic.data_record.Seat;
-
-import java.util.ArrayList;
 
 /**
  * A SeatSorter class, used to sort seats in a specific order, determined by the comparator used with it.
@@ -28,42 +29,66 @@ public class SeatSorter {
     }
 
     /**
-     * A static method, creates a subarray of the given array in the given range.
+     * A static method, copy of the given array.
      *
-     * @param array  the array, from which a subarray would be taken.
-     * @param begin the index of the first element in the array taken (inclusive).
-     * @param end   the index of the last element in the array taken (non-inclusive).
-     * @return a range of the array specified by the user
+     * @param array  the array to be copied.
+     * @return a copy of the given array.
      * @author Oleksandr Danchenko
      */
-    private static Seat[] subArray(Seat[] array, int begin, int end) {
-        Seat[] ans = new Seat[end - begin];
-        for (int i = begin; i < end; i++) {
-            ans[i - begin] = array[i];
-        }
+    private static Seat[] copyArr(Seat[] array) {
+        Seat[] ans = new Seat[array.length];
+        for (int i = 0; i  < array.length; i++) ans[i] = array[i];
         return ans;
     }
 
     /**
-     * Merges two sorted arrays into a single sorted array.
+     * Swaps the elements at the two given indexes in the array.
      *
-     * @param arr1      the first array.
-     * @param arr2      the second array.
-     * @param comparator a class which compares two seats.
-     * @return a sorted array containing all elements of both arrays provided.
+     * @param arr the array where the swap would occur.
+     * @param i the index of the first element.
+     * @param j the index of the second element.
      * @author Oleksandr Danchenko
      */
-    private static Seat[] merge(Seat[] arr1, Seat[] arr2, SeatComparator comparator) {
-        int idx1 = 0, idx2 = 0, ansIdx = 0;
-        Seat[] ans = new Seat[arr1.length + arr2.length];
-        while (ansIdx < ans.length) {
-            if (idx1 < arr1.length && (idx2 == arr2.length || comparator.compare(arr1[idx1], arr2[idx2]) <= 0)) {
-                ans[ansIdx] = arr1[idx1++];
-            } else {
-                ans[ansIdx] = arr1[idx2++];
-            }
+    private static void swap(Seat[] arr, int i, int j) {
+        Seat temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    /**
+     * Chooses the pivot and places it in the correct position.
+     *
+     * @param arr the array to be sorted.
+     * @param begin the first index of the range.
+     * @param end the last index of the range.
+     * @param comp the comparator to compare the elements.
+     * @return the index at which the pivot was placed.
+     * @author Oleksadnr Danchenko
+     */
+    private static int placePivot(Seat[] arr, int begin, int end, SeatComparator comp) {
+        int i = begin;
+        for (int j = begin; j < end; j++) {
+            if (comp.compare(arr[j], arr[end]) == SeatComparator.LESSER) swap(arr, j, i++);
         }
-        return ans;
+        swap(arr, end, i);
+        return i;
+    }
+
+    /**
+     * Runs the quicksort algorithm on the specified range of the array.
+     *
+     * @param array the array to be sorted.
+     * @param begin the first index of the range.
+     * @param end the last index of the range.
+     * @param comp the comparator to compare the elements.
+     * @author Oleksandr Danchenko
+     */
+    private static void qSort(Seat[] array, int begin, int end, SeatComparator comp) {
+        if (begin >= end) return;
+
+        int pivot = placePivot(array, begin, end, comp);
+        qSort(array, begin, pivot - 1, comp);
+        qSort(array, pivot + 1, end, comp);
     }
 
     /**
@@ -75,54 +100,8 @@ public class SeatSorter {
      * @author Oleksandr Danchenko.
      */
     public static Seat[] sort(Seat[] array, SeatComparator comparator) {
-        if (array.length <= 1) return array;
-
-        Seat[] arr1 = subArray(array, 0, array.length / 2);
-        Seat[] arr2 = subArray(array, array.length / 2, array.length);
-
-        return merge(sort(arr1, comparator), sort(arr2, comparator), comparator);
-    }
-
-    public static Seat[] selectionSort(Seat[] arr, SeatComparator comparator, boolean isNumberComparator) {
-        Seat[] newArr = new Seat[arr.length];
-        int length;
-        ArrayList<Integer> emptyIdx = new ArrayList<>();
-
-        // filter out the empty seats
-        int idxCounter = 0;
-        for (int i = 0; i < arr.length; i++) {
-            if (!arr[i].isEmpty()) {
-                newArr[idxCounter] = arr[i];
-                idxCounter++;
-            } else {
-                emptyIdx.add(i);
-            }
-        }
-
-        // add the empty seats to the end of the array
-        int emptyIdxCounter = idxCounter;
-        for (int idx :
-                emptyIdx) {
-            newArr[emptyIdxCounter] = arr[idx];
-            emptyIdxCounter++;
-        }
-
-        arr = newArr;
-        if (isNumberComparator) length = emptyIdxCounter;
-        else length = idxCounter;
-
-        //sort the array
-        for (int i = 0; i < length; i++) {
-            int minIdx = i;
-            for (int j = i + 1; j < length; j++) {
-                if (comparator.compare(arr[j], arr[minIdx]) < 0) {
-                    minIdx = j;
-                }
-            }
-            Seat tmp = arr[i];
-            arr[i] = arr[minIdx];
-            arr[minIdx] = tmp;
-        }
-        return arr;
+        Seat[] ans = copyArr(array);
+        qSort(ans, 0, ans.length - 1, comparator);
+        return ans;
     }
 }
