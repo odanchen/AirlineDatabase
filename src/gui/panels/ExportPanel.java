@@ -83,9 +83,11 @@ public class ExportPanel extends ScreenPanel {
      * @param seats The seats on the flight of the manifest to be displayed.
      * @author Aidan Baker
      */
-    public void makeVisible(Seat[] seats) {
+    public void makeVisible(Seat[] seats, ScreenPanel previousPanel) {
         super.makeVisible();
         this.seats = seats;
+        this.previousPanel = previousPanel;
+        applicationFrame.setBackButtonVisibility(true);
         loadManifest(seats);
     }
 

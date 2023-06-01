@@ -98,6 +98,7 @@ public class FlightListPanel extends ScreenPanel {
     public void makeVisible(List<FlightInfo> flightList) {
         super.makeVisible();
         fillTable(flightList);
+        applicationFrame.setBackButtonVisibility(false);
     }
 
     /**

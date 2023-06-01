@@ -15,7 +15,7 @@ public class TopPanel extends CustomPanel {
         super(BoxLayout.X_AXIS);
         setPreferredSize(new Dimension(1400, 120));
         this.applicationFrame = applicationFrame;
-        backButton = new CustomButton("<", "back", applicationFrame, 25);
+        backButton = new CustomButton("<", "back", applicationFrame, 20);
         backButton.setVisible(false);
         backButton.setPreferredSize(new Dimension(50, 50));
         placeholder.setPreferredSize(new Dimension(51, 50));

@@ -215,6 +215,7 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      */
     public void switchBackToSeat() {
         switchScreen(seatPanel);
+        seatPanel.makeVisible();
     }
 
     /**
@@ -224,7 +225,7 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      */
     public void switchBackToList() {
         switchScreen(flightListPanel);
-        flightListPanel.makeVisible();
+        ((FlightListPanel) flightListPanel).makeVisible(((FlightListPanel)flightListPanel).getFlightList());
     }
 
     /**
@@ -259,11 +260,8 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      * @author Oleksandr Dacnehnko
      */
     public void switchToExport(Seat[] seats) {
-        deSelectButtons();
-        currentPanel.setVisible(false);
-        ((ExportPanel) exportPanel).previousPanel = currentPanel;
-        ((ExportPanel) exportPanel).makeVisible(seats);
-        currentPanel = exportPanel;
+        ((ExportPanel) exportPanel).makeVisible(seats, currentPanel);
+        switchScreen(exportPanel);
     }
 
     private void deSelectButtons() {
@@ -274,6 +272,10 @@ public class ApplicationFrame extends JFrame implements ActionListener {
 
     public void setTitle(String text) {
         topPanel.setTitle(text);
+    }
+
+    public void setBackButtonVisibility(boolean visibility) {
+        topPanel.setBackButtonVisibility(visibility);
     }
 
     @Override
@@ -294,6 +296,7 @@ public class ApplicationFrame extends JFrame implements ActionListener {
                 break;
             case "exit" : if (JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) System.exit(0);
                 break;
+            case "back" : currentPanel.actionPerformed(e);
         }
     }
 }

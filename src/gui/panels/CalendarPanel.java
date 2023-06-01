@@ -77,6 +77,12 @@ public class CalendarPanel extends ScreenPanel {
         return "August 2023";
     }
 
+    @Override
+    public void makeVisible() {
+        super.makeVisible();
+        applicationFrame.setBackButtonVisibility(false);
+    }
+
     /**
      * The method that is called when an action is performed.
      *

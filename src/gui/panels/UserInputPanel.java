@@ -197,6 +197,7 @@ public class UserInputPanel extends ScreenPanel {
         loadData();
         cancelButton.setVisible(!seat.isEmpty());
         priceField.setText(seat.getPrice() / 100 + "." + seat.getPrice() % 100 + "$");
+        applicationFrame.setBackButtonVisibility(true);
 
         if (flight.getFlightInfo().isCancelled()) { bookButton.setColor(Color.LIGHT_GRAY); cancelButton.setColor(Color.LIGHT_GRAY); }
         else { bookButton.setColor(CustomButton.BUTTON_BLUE); cancelButton.setColor(CustomButton.BUTTON_BLUE); }

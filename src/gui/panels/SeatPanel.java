@@ -57,8 +57,6 @@ public class SeatPanel extends ScreenPanel {
     public SeatPanel(ApplicationFrame applicationFrame) {
         super(applicationFrame, new GridLayout(3, 1));
 
-        //setBackButtonVisibility(true);
-
         CustomPanel upperSection = new CustomPanel(new GridLayout(2, 1));
         CustomPanel optionButtons = new CustomPanel(new GridLayout(1, 2));
 
@@ -88,7 +86,7 @@ public class SeatPanel extends ScreenPanel {
 
         flightInfo.setFont(new Font("Arial", Font.BOLD, 36));
         flightInfo.setHorizontalAlignment(JTextField.CENTER);
-
+        applicationFrame.setBackButtonVisibility(true);
         colorSeatButtons();
     }
 

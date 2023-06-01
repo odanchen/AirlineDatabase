@@ -86,6 +86,7 @@ public class HomePanel extends ScreenPanel {
     public void makeVisible() {
         super.makeVisible();
         updateScreenMessage();
+        applicationFrame.setBackButtonVisibility(false);
     }
 
     @Override

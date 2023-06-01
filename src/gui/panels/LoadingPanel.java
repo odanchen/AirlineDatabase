@@ -42,6 +42,12 @@ public class LoadingPanel extends ScreenPanel {
         return "Loading";
     }
 
+    @Override
+    public void makeVisible() {
+        super.makeVisible();
+        applicationFrame.setBackButtonVisibility(false);
+    }
+
     /**
      * Displays the splash screen with the loading bar for a couple seconds.
      * The loading bar updates its progress during the time the splash screen exists.

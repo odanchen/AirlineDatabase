@@ -201,10 +201,12 @@ public class SearchPanel extends ScreenPanel {
     /**
      * A method for resetting the selection of the departure and destination buttons to All
      */
+    @Override
     public void makeVisible() {
         super.makeVisible();
         departureButtons.get(0).setSelected(true);
         destinationButtons.get(0).setSelected(true);
+        applicationFrame.setBackButtonVisibility(false);
     }
 
     /**
