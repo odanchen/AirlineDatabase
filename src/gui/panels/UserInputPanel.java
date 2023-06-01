@@ -2,7 +2,11 @@
 Author: Oleksandr Danchenko
 time spent: 70 minutes
 Date: 22 May 2023
-version #1
+version #2
+Changes: implemented the getTitle() and makeVisible() methods added to the ScreenPanel in the process of cleaning up the code.
+    time spent: 5 minutes
+    Date 1 June 2023
+    Author: Oleksandr Danchenko
 */
 
 package gui.panels;
@@ -105,8 +109,6 @@ public class UserInputPanel extends ScreenPanel {
         addInputSection("Enter your email", emailField, emailErrorField);
         addInputSection("Enter your date of birth in the following format = \"dd/mm/yyyy\"", dateOfBirthField, dateOfBirthErrorField);
         addPricePanel();
-
-        //setBackButtonVisibility(true);
     }
 
     /**
@@ -196,7 +198,8 @@ public class UserInputPanel extends ScreenPanel {
         this.seat = seat;
         loadData();
         cancelButton.setVisible(!seat.isEmpty());
-        priceField.setText(seat.getPrice() / 100 + "." + seat.getPrice() % 100 + "$");
+        if (seat.getPrice() % 100 < 10) priceField.setText(seat.getPrice() / 100 + ".0" + seat.getPrice() % 100 + "$");
+        else priceField.setText(seat.getPrice() / 100 + "." + seat.getPrice() % 100 + "$");
         applicationFrame.setBackButtonVisibility(true);
 
         if (flight.getFlightInfo().isCancelled()) { bookButton.setColor(Color.LIGHT_GRAY); cancelButton.setColor(Color.LIGHT_GRAY); }
@@ -273,6 +276,12 @@ public class UserInputPanel extends ScreenPanel {
         }
     }
 
+    /**
+     * Returns the title of the screen.
+     *
+     * @return "Enter your information"
+     * @author Oleksandr Danchenko
+     */
     @Override
     public String getTitle() {
         return "Enter your information";

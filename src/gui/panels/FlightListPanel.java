@@ -2,10 +2,14 @@
 Author: Aidan Baker, Oleksandr Danchenko
 time spent: 55 minutes
 Date: 19 May 2023
-version #2
+version #3
 Changes: Added the way to sort data in the table - buttons to sort data using different criteria and to cancel or renew flights.
         time spent: 50 minutes
         Date: 23 May 2023
+Changes: implemented the getTitle() and makeVisible() methods added to the ScreenPanel in the process of cleaning up the code.
+    time spent: 5 minutes
+    Date 1 June 2023
+    Author: Oleksandr Danchenko
 */
 
 package gui.panels;
@@ -183,6 +187,12 @@ public class FlightListPanel extends ScreenPanel {
         }
     }
 
+    /**
+     * A getter method for the current flight list.
+     *
+     * @return the current flight list.
+     * @author Aidan Baker
+     */
     public List<FlightInfo> getFlightList() {
         return flightList;
     }
@@ -230,6 +240,12 @@ public class FlightListPanel extends ScreenPanel {
         return command.equals("renew") || command.equals("cancel") || command.equals("bookFlight");
     }
 
+    /**
+     * Returns the title of the screen.
+     *
+     * @return "Flight list".
+     * @author Oleksandr Danchenko
+     */
     @Override
     public String getTitle() {
         return "Flight list";

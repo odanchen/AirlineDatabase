@@ -2,7 +2,11 @@
 Author: Oleksandr Danchenko
 time spent: 20 minutes
 Date: 17 May 2023
-version #1
+version #2
+Changes: implemented the getTitle() and makeVisible() methods added to the ScreenPanel in the process of cleaning up the code.
+    time spent: 5 minutes
+    Date 1 June 2023
+    Author: Oleksandr Danchenko
  */
 
 package gui.panels;
@@ -37,16 +41,27 @@ public class LoadingPanel extends ScreenPanel {
         centerPanel.add(loadingBar, BorderLayout.CENTER);
     }
 
+    /**
+     * Returns the title of the screen.
+     *
+     * @return "Loading"
+     * @author Oleksandr Danchenko
+     */
     @Override
     public String getTitle() {
         return "Loading";
     }
 
+    /**
+     * Makes the screen visible and runs the splash screen.
+     *
+     * @author Oleksandr Danchenko
+     */
     @Override
     public void makeVisible() {
         super.makeVisible();
         applicationFrame.setBackButtonVisibility(false);
-        applicationFrame.setHoodVisibility(false);
+        applicationFrame.setHudVisibility(false);
         showSplashScreen();
     }
 
@@ -61,7 +76,7 @@ public class LoadingPanel extends ScreenPanel {
         for (int i = 0; i < 2000000000; i++) {
             if (i % 800000 == 0) loadingBar.update(i / 6000000);
         }
-        applicationFrame.setHoodVisibility(true);
+        applicationFrame.setHudVisibility(true);
         applicationFrame.switchToHome();
     }
 }

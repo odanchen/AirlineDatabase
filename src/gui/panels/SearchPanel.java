@@ -2,6 +2,7 @@
 Author: Oleksandr Danchenko, Aidan Baker
 Time Spent: 30 minutes
 Date: 19 May 2023
+Version #4
 Changes: Completely updated the screens layout and added swap button
         Author: Aidan Baker
         Date: 24 May 2023
@@ -10,7 +11,10 @@ Changes: Implemented the swap button function, slight refactoring
         Author: Oleksandr Danchenko
         time spent: 15 minutes.
         Date: 29 May 2023.
-Version #3
+Changes: implemented the getTitle() and makeVisible() methods added to the ScreenPanel in the process of cleaning up the code.
+    time spent: 5 minutes
+    Date 1 June 2023
+    Author: Oleksandr Danchenko
  */
 
 package gui.panels;
@@ -198,7 +202,9 @@ public class SearchPanel extends ScreenPanel {
     }
 
     /**
-     * A method for resetting the selection of the departure and destination buttons to All
+     * A method to be executed when switched to the screen.
+     *
+     * @author Oleksandr Danchenko
      */
     @Override
     public void makeVisible() {
@@ -245,6 +251,12 @@ public class SearchPanel extends ScreenPanel {
         return destinationGroup.getSelection().getActionCommand();
     }
 
+    /**
+     * Returns the title of the screen.
+     *
+     * @return "Search for a Flight"
+     * @author Oleksandr Danchenko
+     */
     @Override
     public String getTitle() {
         return "Search for a Flight";

@@ -2,7 +2,7 @@
 Author: Aidan Baker
 Time Spent: 20 minutes
 Date: 29 May 2023
-citations: Swing documentation
+citations: https://docs.oracle.com/javase/tutorial/uiswing/components/button.html
  */
 package gui.components;
 
@@ -42,7 +42,9 @@ public class CustomRadioButton extends JRadioButton {
 
     /**
      * Overriden paint method to style the button.
+     *
      * @param g  the <code>Graphics</code> context in which to paint
+     * @author Aidan Baker
      */
     @Override
     public void paint(Graphics g) {

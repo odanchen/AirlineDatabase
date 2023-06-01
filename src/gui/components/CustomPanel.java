@@ -12,6 +12,8 @@ import java.awt.*;
 
 /**
  * A custom panel class, a panel that is designed to look in the style of the app.
+ *
+ * @author Oleksandr Danchenko
  */
 public class CustomPanel extends JPanel {
     /**

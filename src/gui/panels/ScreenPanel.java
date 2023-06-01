@@ -2,7 +2,7 @@
 Author: Aidan Baker, Oleksandr Danchenko
 time spent: 30 minutes
 Date: 17 May 2023
-version #3
+version #4
 changes: Added option to have back button and styling
         time spent: 20 minutes
         Date: 24 May 2023
@@ -11,6 +11,10 @@ changes: added methods overloaded addButton() methods for code refactoring, adde
         time spent: 15 minutes
         Date 24 May 2023
         Author: Oleksandr Danchenko
+changes: Transferred the top panel and the bottom panel to the application frame from the screen panel
+    time spent: 35 minutes.
+    Date 31 May 2023.
+    Author Oleksandr Danchenko
  */
 package gui.panels;
 
@@ -107,8 +111,19 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
         return JOptionPane.showConfirmDialog(null, message, "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
 
+    /**
+     * Returns the title of the screen.
+     *
+     * @return the title of the screen.
+     * @author Oleksandr Danchenko
+     */
     public abstract String getTitle();
 
+    /**
+     * A method to be called when a screen is being switched to
+     *
+     * @author Oleksandr Danchenko
+     */
     public void makeVisible() {
         applicationFrame.setTitle(getTitle());
         setVisible(true);
