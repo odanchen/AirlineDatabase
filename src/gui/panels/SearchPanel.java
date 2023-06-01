@@ -97,6 +97,7 @@ public class SearchPanel extends ScreenPanel {
         centerPanel.add(addCenterButtons());
         centerPanel.add(verticalCenterAlign(destinationPanel, "Destination"));
         centerPanel.add(new JLabel(""));
+
     }
 
     /**
@@ -186,12 +187,10 @@ public class SearchPanel extends ScreenPanel {
 
         CustomPanel searchButtonPanel = new CustomPanel(new GridLayout(1, 1));
         searchButtonPanel.add(new CustomButton("Search", "Search", this));
-        searchButtonPanel.setPreferredSize(new Dimension(80, 70));
         innerCenterButtonPanel.add(searchButtonPanel);
 
         CustomPanel swapButtonPanel = new CustomPanel(new GridLayout(1, 1));
-        searchButtonPanel.add(new CustomButton("Swap", "Swap", this));
-        swapButtonPanel.setPreferredSize(new Dimension(80, 70));
+        swapButtonPanel.add(new CustomButton("Swap", "Swap", this));
         innerCenterButtonPanel.add(swapButtonPanel);
 
         centerButtonPanel.add(innerCenterButtonPanel);

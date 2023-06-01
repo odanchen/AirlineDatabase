@@ -66,6 +66,11 @@ public class CustomButton extends JButton {
         setActionCommand(command);
     }
 
+    public CustomButton(String text, String command, ActionListener listener, int fontSize, Dimension dimension) {
+        this(text, command, listener, fontSize);
+        setPreferredSize(dimension);
+    }
+
     /**
      * Sets the color used to paint the button.
      * @param color the color to be used to paint the button.

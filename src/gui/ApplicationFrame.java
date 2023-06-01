@@ -112,13 +112,12 @@ public class ApplicationFrame extends JFrame implements ActionListener {
         Calendar calendar = DataReader.getCalendar();
 
         add(topPanel = new TopPanel(this), BorderLayout.NORTH);
-        buttonPanel.add(homeButton = new CustomButton("Home", "home", this, 25));
-        buttonPanel.add(searchButton = new CustomButton("Search for a Flight", "search", this, 25));
-        buttonPanel.add(calendarButton = new CustomButton("Calendar", "calendar", this, 25));
-        buttonPanel.add(new CustomButton("User Manual", "manual", this, 25));
-        buttonPanel.add(new CustomButton("Exit", "exit", this, 25));
+        buttonPanel.add(homeButton = new CustomButton("Home", "home", this, 25, new Dimension(150, 55)));
+        buttonPanel.add(searchButton = new CustomButton("Search for a Flight", "search", this, 25, new Dimension(150, 55)));
+        buttonPanel.add(calendarButton = new CustomButton("Calendar", "calendar", this, 25, new Dimension(150, 55)));
+        buttonPanel.add(new CustomButton("User Manual", "manual", this, 25, new Dimension(150, 55)));
+        buttonPanel.add(new CustomButton("Exit", "exit", this, 25, new Dimension(150, 55)));
         //add button panel to bottom of frame
-        buttonPanel.setPreferredSize(new Dimension(1400, 40));
         add(buttonPanel, BorderLayout.SOUTH);
 
         centerPanel.add(loadingPanel = new LoadingPanel(this));
