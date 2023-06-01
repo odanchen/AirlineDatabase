@@ -16,7 +16,7 @@ public class NameChecker extends DataChecker {
     /**
      * The array of delimiters used for name validation.
      */
-    private static final char[] delimiters = {' ', '\'', '-', '_'};
+    private static final char[] delimiters = {' ', '\'', '-'};
 
     /**
      * Error message constant for multiple delimiters found in a row.
@@ -37,11 +37,6 @@ public class NameChecker extends DataChecker {
      * Error message constant for a name starting with a delimiter.
      */
     private static final String DELIMITER_BEGINNING = "The name starts with a delimiter";
-
-    /**
-     * Error message constant for a name starting with a digit.
-     */
-    private static final String DIGIT_BEGINNING = "The first symbol of the name is a digit";
 
     /**
      * Constructs a NameChecker object with the specified name.
@@ -71,7 +66,6 @@ public class NameChecker extends DataChecker {
         for (int i = 0; i < data.length(); i++) {
             if (i == 0 || isDelimiter(data.charAt(i - 1))) {
                 if (data.charAt(i) >= 'a' && data.charAt(i) <= 'z') return UNCAPITALIZED_NAME;
-                else if (data.charAt(i) >= '0' && data.charAt(i) <= '9') return DIGIT_BEGINNING;
             }
         }
         return CORRECT;
@@ -86,8 +80,7 @@ public class NameChecker extends DataChecker {
      */
     @Override
     protected boolean isIllegalSymbol(char c) {
-        return (c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < '0' || c > '9') && c != ' ' && c != '\'' &&
-                c != '-' && c != '_';
+        return (c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && c != ' ' && c != '\'' && c != '-';
     }
 
     /**

@@ -2,7 +2,11 @@
 Author: Oleksandr Danchenko
 time spent: 25 minutes
 Date: 23 May 2023
-version #1
+version #2
+Changes: implemented logic to check that the date entered is not in the future and not too far in the past.
+    Time spent: 15 minutes.
+    Date: 31 May 2023
+    Author: Oleksandr Danchenko
 */
 
 package logic.data_checking;
@@ -20,6 +24,15 @@ public class DateChecker extends DataChecker {
      * The message when the entered date does not exist.
      */
     private static final String NONEXISTENT_DATE = "The date entered does not exist";
+    /**
+     * The message when the entered date is yet to come.
+     */
+    private static final String DATE_IN_FUTURE = "The date entered hasn't yet occurred";
+
+    /**
+     * The message when the entered date is too far in the past.
+     */
+    private static final String DATE_IN_PAST = "The date entered is too far in the past";
 
     /**
      * A constructor of the class, initializes the object.
@@ -43,7 +56,7 @@ public class DateChecker extends DataChecker {
         if (data.length() != 10) return WRONG_LENGTH;
         if (areIllegalSymbolsPresent()) return ILLEGAL_SYMBOLS;
         if (countSlash() != 2 || data.charAt(2) != '/' || data.charAt(5) != '/') return WRONG_FORMAT;
-        if (!exists(data)) return NONEXISTENT_DATE;
+        if (!getLegality(data).equals(CORRECT)) return getLegality(data);
         return CORRECT;
     }
 
@@ -74,15 +87,29 @@ public class DateChecker extends DataChecker {
 
     /**
      * Checks if the date exists.
+     * Verifies that the date could be someone's date of birth - not in the future and not too far in the past.
      *
-     * @return true if the date exists, false - otherwise.
+     * @return the error message for the existence of the date.
      * @author Oleksandr Danchenko
      */
-    private boolean exists(String date) {
+    private String getLegality(String date) {
         int day = Integer.parseInt(date.split("/")[0]);
         int month = Integer.parseInt(date.split("/")[1]);
         int year = Integer.parseInt(date.split("/")[2]);
-        return (month > 0 && month <= 12) && (day > 0 || day <= getDayMonth(month, year));
+        if (month <= 0 || month > 12 || day <= 0 || day > getDayMonth(month, year)) return NONEXISTENT_DATE;
+
+        if (year > 2023) return DATE_IN_FUTURE;
+        if (year == 2023) {
+            if (month > 6) return DATE_IN_FUTURE;
+            else if (day > 9) return DATE_IN_FUTURE;
+        }
+
+        if (year < 1907) return DATE_IN_PAST;
+        if (year == 1907) {
+            if (month < 3) return DATE_IN_PAST;
+            else if (day < 4) return DATE_IN_PAST;
+        }
+        return CORRECT;
     }
 
     /**

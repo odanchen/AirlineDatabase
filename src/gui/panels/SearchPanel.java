@@ -15,6 +15,7 @@ Version #3
 
 package gui.panels;
 
+import gui.components.CustomButton;
 import gui.components.CustomPanel;
 import gui.components.CustomRadioButton;
 import logic.data_record.Calendar;
@@ -81,7 +82,6 @@ public class SearchPanel extends ScreenPanel {
     public SearchPanel(ApplicationFrame applicationFrame, Calendar calendar) {
         super(applicationFrame, new GridLayout(1, 5));
         this.calendar = calendar;
-        flightSearchButton.setColor(CustomRadioButton.SELECTED_COLOR);
 
         departurePanel.setLayout(new BoxLayout(departurePanel, BoxLayout.Y_AXIS));
         destinationPanel.setLayout(new BoxLayout(destinationPanel, BoxLayout.Y_AXIS));
@@ -185,12 +185,12 @@ public class SearchPanel extends ScreenPanel {
         CustomPanel innerCenterButtonPanel = new CustomPanel(BoxLayout.Y_AXIS);
 
         CustomPanel searchButtonPanel = new CustomPanel(new GridLayout(1, 1));
-        addButton("Search", "Search", searchButtonPanel);
+        searchButtonPanel.add(new CustomButton("Search", "Search", this));
         searchButtonPanel.setPreferredSize(new Dimension(80, 70));
         innerCenterButtonPanel.add(searchButtonPanel);
 
         CustomPanel swapButtonPanel = new CustomPanel(new GridLayout(1, 1));
-        addButton("Swap", "Swap", swapButtonPanel);
+        searchButtonPanel.add(new CustomButton("Swap", "Swap", this));
         swapButtonPanel.setPreferredSize(new Dimension(80, 70));
         innerCenterButtonPanel.add(swapButtonPanel);
 

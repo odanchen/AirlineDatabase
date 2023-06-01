@@ -33,8 +33,7 @@ public class LoadingPanel extends ScreenPanel {
      */
     public LoadingPanel(ApplicationFrame applicationFrame) {
         super(applicationFrame, new BorderLayout());
-        topPanel.setVisible(false);
-        buttonPanel.setVisible(false);
+        //buttonPanel.setVisible(false);
         centerPanel.add(loadingBar, BorderLayout.CENTER);
     }
 

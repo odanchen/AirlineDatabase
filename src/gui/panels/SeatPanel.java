@@ -56,15 +56,15 @@ public class SeatPanel extends ScreenPanel {
      */
     public SeatPanel(ApplicationFrame applicationFrame) {
         super(applicationFrame, new GridLayout(3, 1));
-        setTitle("Seat Selection");
+        applicationFrame.setTitle("Seat Selection");
 
-        setBackButtonVisibility(true);
+        //setBackButtonVisibility(true);
 
         CustomPanel upperSection = new CustomPanel(new GridLayout(2, 1));
         CustomPanel optionButtons = new CustomPanel(new GridLayout(1, 2));
 
-        addButton("View Manifest", "export", optionButtons);
-        addButton("Cancel Flight", "cancel", optionButtons);
+        optionButtons.add(new CustomButton("View Manifest", "export", this));
+        optionButtons.add(new CustomButton("Cancel Flight", "cacnel", this));
 
         upperSection.add(optionButtons);
         upperSection.add(flightInfo);
@@ -101,9 +101,7 @@ public class SeatPanel extends ScreenPanel {
      */
     private void setupSeatButtons() {
         for (int i = 0; i < 10; i++) {
-            seatButtons[i] = new CustomButton(String.valueOf(i + 1));
-            seatButtons[i].setActionCommand(String.valueOf(i + 1));
-            seatButtons[i].addActionListener(this);
+            seatButtons[i] = new CustomButton(String.valueOf(i + 1), String.valueOf(i + 1), this);
             seatButtonPanel.add(seatButtons[i]);
 
             if (i != 4 && i != 9) seatButtonPanel.add(new JLabel());

@@ -16,6 +16,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 import gui.ApplicationFrame;
+import gui.components.CustomButton;
 import gui.components.CustomPanel;
 import logic.data_record.Seat;
 import logic.sorting.seats.SeatSorter;
@@ -46,13 +47,13 @@ public class ExportPanel extends ScreenPanel {
      */
     public ExportPanel(ApplicationFrame applicationFrame) {
         super(applicationFrame, BoxLayout.Y_AXIS);
-        setTitle("Flight Manifest");
+        applicationFrame.setTitle("Flight Manifest");
 
-        setBackButtonVisibility(true);
+        //setBackButtonVisibility(true);
 
         CustomPanel optionButtons = new CustomPanel(BoxLayout.X_AXIS);
-        addButton("Sort by Name", "sortName", optionButtons);
-        addButton("Sort by Seat #", "sortSeat", optionButtons);
+        optionButtons.add(new CustomButton("SortByName", "sortName", this));
+        optionButtons.add(new CustomButton("Sort by seat #", "sortSeat", this));
         centerPanel.add(optionButtons);
 
         for (int i = 0; i < customerInfoFields.length; i++) {

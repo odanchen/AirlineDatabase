@@ -7,7 +7,7 @@ version #1
 
 package gui.panels;
 
-import gui.components.CustomRadioButton;
+import gui.components.CustomButton;
 import logic.data_record.Calendar;
 import gui.ApplicationFrame;
 
@@ -33,8 +33,7 @@ public class CalendarPanel extends ScreenPanel {
     public CalendarPanel(ApplicationFrame applicationFrame, Calendar calendar) {
         super(applicationFrame, new GridLayout(6, 7));
         this.calendar = calendar;
-        calendarButton.setColor(CustomRadioButton.SELECTED_COLOR);
-        setTitle("August 2023");
+        applicationFrame.setTitle("August 2023");
 
         //day labels
         JLabel[] dayLabels = new JLabel[7];
@@ -56,7 +55,7 @@ public class CalendarPanel extends ScreenPanel {
 
         //day buttons
         for (int i = 1; i <= Calendar.NUMBER_OF_DAYS; i++) {
-            addButton(String.valueOf(i), String.valueOf(i), centerPanel);
+            centerPanel.add(new CustomButton(String.valueOf(i), String.valueOf(i), this));
         }
     }
 

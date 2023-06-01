@@ -10,6 +10,7 @@ Changes: Added the way to sort data in the table - buttons to sort data using di
 
 package gui.panels;
 
+import gui.components.CustomButton;
 import resource.DataReader;
 import resource.DataWriter;
 import gui.ApplicationFrame;
@@ -68,20 +69,20 @@ public class FlightListPanel extends ScreenPanel {
         super(applicationFrame, BoxLayout.Y_AXIS);
         this.calendar = calendar;
 
-        setTitle("Pick a Flight");
+        applicationFrame.setTitle("Pick a Flight");
 
-        CustomPanel actionButtons = new CustomPanel(new GridLayout(1, 3));
-        addButton("Book Flight", "bookFlight", actionButtons);
-        addButton("View Manifest", "viewManifest", actionButtons);
-        addButton("Cancel the flight", "cancel", actionButtons);
-        addButton("Renew the flight", "renew", actionButtons);
+        CustomPanel actionButtons = new CustomPanel(new GridLayout(1, 4));
+        actionButtons.add(new CustomButton("Book Flight", "bookFlight", this));
+        actionButtons.add(new CustomButton("View Manifest", "viewManifest", this));
+        actionButtons.add(new CustomButton("Cancel the Flight", "cancel", this));
+        actionButtons.add(new CustomButton("Renew the flight", "renew", this));
 
         CustomPanel sortingButtons = new CustomPanel(new GridLayout(1, 5));
-        addButton("Sort by remaining seats", "sortSeats", sortingButtons);
-        addButton("Sort by status", "sortStatus", sortingButtons);
-        addButton("Sort by departure", "sortDeparture", sortingButtons);
-        addButton("Sort by destination", "sortDestination", sortingButtons);
-        addButton("Sort by date and time", "sortDate", sortingButtons);
+        sortingButtons.add(new CustomButton("Sort by remaining seats", "sortSeats", this));
+        sortingButtons.add(new CustomButton("Sort by status", "sortStatus", this));
+        sortingButtons.add(new CustomButton("Sort by departure", "sortDeparture", this));
+        sortingButtons.add(new CustomButton("Sort by destination", "sortDestination", this));
+        sortingButtons.add(new CustomButton("Sort by date and time", "sortDate", this));
 
         centerPanel.add(actionButtons);
         centerPanel.add(sortingButtons);
