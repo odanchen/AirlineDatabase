@@ -55,7 +55,6 @@ public class HomePanel extends ScreenPanel {
      */
     public HomePanel(ApplicationFrame applicationFrame) {
         super(applicationFrame, BoxLayout.Y_AXIS);
-        applicationFrame.setTitle("Home");
         //screen message
         CustomPanel messagePanel = new CustomPanel();
         screenMessage.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 25));
@@ -81,6 +80,17 @@ public class HomePanel extends ScreenPanel {
      */
     public String getRandomizesMessage() {
         return MESSAGES[(int) (Math.random() * MESSAGES.length)];
+    }
+
+    @Override
+    public void makeVisible() {
+        super.makeVisible();
+        updateScreenMessage();
+    }
+
+    @Override
+    public String getTitle() {
+        return "Home";
     }
 
     /**

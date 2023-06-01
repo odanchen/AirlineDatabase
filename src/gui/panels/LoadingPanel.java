@@ -37,6 +37,11 @@ public class LoadingPanel extends ScreenPanel {
         centerPanel.add(loadingBar, BorderLayout.CENTER);
     }
 
+    @Override
+    public String getTitle() {
+        return "Loading";
+    }
+
     /**
      * Displays the splash screen with the loading bar for a couple seconds.
      * The loading bar updates its progress during the time the splash screen exists.

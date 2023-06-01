@@ -27,6 +27,7 @@ public class TopPanel extends CustomPanel {
         title.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 55));
         title.setForeground(CustomButton.BUTTON_BLUE);
         title.setEditable(false);
+        title.setHorizontalAlignment(JTextField.CENTER);
         add(title);
     }
 
@@ -38,6 +39,7 @@ public class TopPanel extends CustomPanel {
      */
     public void setTitle(String text) {
         title.setText(text);
+        title.repaint();
     }
 
     /**

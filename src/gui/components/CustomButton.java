@@ -72,6 +72,7 @@ public class CustomButton extends JButton {
      */
     public void setColor(Color color) {
         this.color = color;
+        repaint();
     }
 
     /**

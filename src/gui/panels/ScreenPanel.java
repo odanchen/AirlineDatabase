@@ -107,6 +107,13 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
         return JOptionPane.showConfirmDialog(null, message, "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
 
+    public abstract String getTitle();
+
+    public void makeVisible() {
+        applicationFrame.setTitle(getTitle());
+        setVisible(true);
+    }
+
     /**
      * A method that is executed when a button is pressed.
      *

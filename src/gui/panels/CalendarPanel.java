@@ -33,7 +33,6 @@ public class CalendarPanel extends ScreenPanel {
     public CalendarPanel(ApplicationFrame applicationFrame, Calendar calendar) {
         super(applicationFrame, new GridLayout(6, 7));
         this.calendar = calendar;
-        applicationFrame.setTitle("August 2023");
 
         //day labels
         JLabel[] dayLabels = new JLabel[7];
@@ -71,6 +70,11 @@ public class CalendarPanel extends ScreenPanel {
         } catch (Exception ex) {
             return false;
         }
+    }
+
+    @Override
+    public String getTitle() {
+        return "August 2023";
     }
 
     /**

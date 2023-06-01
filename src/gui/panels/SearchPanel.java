@@ -202,9 +202,9 @@ public class SearchPanel extends ScreenPanel {
      * A method for resetting the selection of the departure and destination buttons to All
      */
     public void makeVisible() {
+        super.makeVisible();
         departureButtons.get(0).setSelected(true);
         destinationButtons.get(0).setSelected(true);
-        setVisible(true);
     }
 
     /**
@@ -242,6 +242,11 @@ public class SearchPanel extends ScreenPanel {
      */
     private String getSelectedDestination() {
         return destinationGroup.getSelection().getActionCommand();
+    }
+
+    @Override
+    public String getTitle() {
+        return "Search for a Flight";
     }
 
     /**

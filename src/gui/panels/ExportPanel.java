@@ -47,7 +47,6 @@ public class ExportPanel extends ScreenPanel {
      */
     public ExportPanel(ApplicationFrame applicationFrame) {
         super(applicationFrame, BoxLayout.Y_AXIS);
-        applicationFrame.setTitle("Flight Manifest");
 
         //setBackButtonVisibility(true);
 
@@ -85,9 +84,14 @@ public class ExportPanel extends ScreenPanel {
      * @author Aidan Baker
      */
     public void makeVisible(Seat[] seats) {
+        super.makeVisible();
         this.seats = seats;
         loadManifest(seats);
-        setVisible(true);
+    }
+
+    @Override
+    public String getTitle() {
+        return "Flight Manifest";
     }
 
     /**

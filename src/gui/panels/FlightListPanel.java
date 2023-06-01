@@ -69,8 +69,6 @@ public class FlightListPanel extends ScreenPanel {
         super(applicationFrame, BoxLayout.Y_AXIS);
         this.calendar = calendar;
 
-        applicationFrame.setTitle("Pick a Flight");
-
         CustomPanel actionButtons = new CustomPanel(new GridLayout(1, 4));
         actionButtons.add(new CustomButton("Book Flight", "bookFlight", this));
         actionButtons.add(new CustomButton("View Manifest", "viewManifest", this));
@@ -97,9 +95,9 @@ public class FlightListPanel extends ScreenPanel {
      * @param flightList the list of FlightInfo objects to display.
      * @author Oleksandr Danchenko
      */
-    public void showPanel(List<FlightInfo> flightList) {
+    public void makeVisible(List<FlightInfo> flightList) {
+        super.makeVisible();
         fillTable(flightList);
-        setVisible(true);
     }
 
     /**
@@ -229,6 +227,11 @@ public class FlightListPanel extends ScreenPanel {
      */
     private boolean isActionButtonPressed(String command) {
         return command.equals("renew") || command.equals("cancel") || command.equals("bookFlight");
+    }
+
+    @Override
+    public String getTitle() {
+        return "Flight list";
     }
 
     /**

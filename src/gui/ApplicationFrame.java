@@ -15,6 +15,7 @@ import javax.swing.*;
 
 import gui.components.CustomButton;
 import gui.components.CustomPanel;
+import gui.components.CustomRadioButton;
 import gui.components.TopPanel;
 import logic.data_record.Calendar;
 import resource.DataReader;
@@ -140,6 +141,12 @@ public class ApplicationFrame extends JFrame implements ActionListener {
         ((LoadingPanel) loadingPanel).showSplashScreen();
     }
 
+    private void switchScreen(ScreenPanel newScreen) {
+        deSelectButtons();
+        currentPanel.setVisible(false);
+        currentPanel = newScreen;
+    }
+
     /**
      * Switches the current panel to the home panel.
      * Hides the current panel and shows the home panel.
@@ -148,10 +155,9 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      * @author Oleksandr Dacnehnko
      */
     public void switchToHome() {
-        currentPanel.setVisible(false);
-        homePanel.setVisible(true);
-        currentPanel = homePanel;
-        ((HomePanel) homePanel).updateScreenMessage();
+        switchScreen(homePanel);
+        homePanel.makeVisible();
+        homeButton.setColor(CustomRadioButton.SELECTED_COLOR);
     }
 
     /**
@@ -161,9 +167,9 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      * @author Oleksandr Dacnehnko
      */
     public void switchToCalendar() {
-        currentPanel.setVisible(false);
-        calendarPanel.setVisible(true);
-        currentPanel = calendarPanel;
+        switchScreen(calendarPanel);
+        calendarPanel.makeVisible();
+        calendarButton.setColor(CustomRadioButton.SELECTED_COLOR);
     }
 
     /**
@@ -173,9 +179,9 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      * @author Oleksandr Dacnehnko
      */
     public void switchToSearch() {
-        currentPanel.setVisible(false);
-        ((SearchPanel)searchPanel).makeVisible();
-        currentPanel = searchPanel;
+        switchScreen(searchPanel);
+        searchPanel.makeVisible();
+        searchButton.setColor(CustomRadioButton.SELECTED_COLOR);
     }
 
     /**
@@ -186,9 +192,8 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      * @author Oleksandr Dacnehnko
      */
     public void switchToFlightList(List<FlightInfo> flightList) {
-        currentPanel.setVisible(false);
-        ((FlightListPanel) flightListPanel).showPanel(flightList);
-        currentPanel = flightListPanel;
+        switchScreen(flightListPanel);
+        ((FlightListPanel) flightListPanel).makeVisible(flightList);
     }
 
     /**
@@ -199,9 +204,8 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      * @author Oleksandr Dacnehnko
      */
     public void switchToSeat(Flight flight) {
-        currentPanel.setVisible(false);
+        switchScreen(seatPanel);
         ((SeatPanel) seatPanel).makeVisible(flight);
-        currentPanel = seatPanel;
     }
 
     /**
@@ -210,9 +214,7 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      * @author Aidan Baker
      */
     public void switchBackToSeat() {
-        currentPanel.setVisible(false);
-        seatPanel.setVisible(true);
-        currentPanel = seatPanel;
+        switchScreen(seatPanel);
     }
 
     /**
@@ -221,9 +223,8 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      * @author Aidan Baker
      */
     public void switchBackToList() {
-        currentPanel.setVisible(false);
-        ((FlightListPanel) flightListPanel).showPanel(((FlightListPanel) flightListPanel).getFlightList());
-        currentPanel = flightListPanel;
+        switchScreen(flightListPanel);
+        flightListPanel.makeVisible();
     }
 
     /**
@@ -232,6 +233,7 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      * @author Aidan Baker
      */
     public void switchBackTo(JPanel panel) {
+        deSelectButtons();
         currentPanel.setVisible(false);
         panel.setVisible(true);
         currentPanel = (ScreenPanel) panel;
@@ -244,9 +246,9 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      * @author Oleksandr Dacnehnko
      */
     public void switchToInput(Flight flight, Seat seat) {
+        deSelectButtons();
         currentPanel.setVisible(false);
         ((UserInputPanel) userInputPanel).makeVisible(flight, seat);
-
         currentPanel = userInputPanel;
     }
 
@@ -257,10 +259,17 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      * @author Oleksandr Dacnehnko
      */
     public void switchToExport(Seat[] seats) {
+        deSelectButtons();
         currentPanel.setVisible(false);
         ((ExportPanel) exportPanel).previousPanel = currentPanel;
         ((ExportPanel) exportPanel).makeVisible(seats);
         currentPanel = exportPanel;
+    }
+
+    private void deSelectButtons() {
+        homeButton.setColor(CustomButton.BUTTON_BLUE);
+        searchButton.setColor(CustomButton.BUTTON_BLUE);
+        calendarButton.setColor(CustomButton.BUTTON_BLUE);
     }
 
     public void setTitle(String text) {
@@ -283,7 +292,7 @@ public class ApplicationFrame extends JFrame implements ActionListener {
                     ex.printStackTrace();
                 }
                 break;
-            case "exit" : /*if (userConfirm("Are you sure you want to exit?"))*/ System.exit(0);
+            case "exit" : if (JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) System.exit(0);
                 break;
         }
     }

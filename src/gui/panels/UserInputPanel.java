@@ -98,7 +98,6 @@ public class UserInputPanel extends ScreenPanel {
     public UserInputPanel(ApplicationFrame applicationFrame, Calendar calendar) {
         super(applicationFrame, new GridLayout(6, 1));
         this.calendar = calendar;
-        applicationFrame.setTitle("Customer Information");
         addInputSection("Enter your first name", firstNameField, firstNameErrorField);
         addInputSection("Enter your last name", lastNameField, lastNameErrorField);
         addInputSection("Enter your phone number in one of the following formats - " +
@@ -192,6 +191,7 @@ public class UserInputPanel extends ScreenPanel {
      * @author Oleksandr Danchenko
      */
     public void makeVisible(Flight flight, Seat seat) {
+        super.makeVisible();
         this.flight = flight;
         this.seat = seat;
         loadData();
@@ -200,8 +200,6 @@ public class UserInputPanel extends ScreenPanel {
 
         if (flight.getFlightInfo().isCancelled()) { bookButton.setColor(Color.LIGHT_GRAY); cancelButton.setColor(Color.LIGHT_GRAY); }
         else { bookButton.setColor(CustomButton.BUTTON_BLUE); cancelButton.setColor(CustomButton.BUTTON_BLUE); }
-
-        setVisible(true);
     }
 
     /**
@@ -272,6 +270,11 @@ public class UserInputPanel extends ScreenPanel {
             showSuccessMessage(messages[1]);
             applicationFrame.switchToSeat(flight);
         }
+    }
+
+    @Override
+    public String getTitle() {
+        return "Enter your information";
     }
 
     /**

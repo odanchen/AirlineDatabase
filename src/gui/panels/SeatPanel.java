@@ -56,7 +56,6 @@ public class SeatPanel extends ScreenPanel {
      */
     public SeatPanel(ApplicationFrame applicationFrame) {
         super(applicationFrame, new GridLayout(3, 1));
-        applicationFrame.setTitle("Seat Selection");
 
         //setBackButtonVisibility(true);
 
@@ -82,6 +81,7 @@ public class SeatPanel extends ScreenPanel {
      * @author Aidan Baker
      */
     public void makeVisible(Flight flight) {
+        super.makeVisible();
         this.flight = flight;
         flightInfo.setText(flight.getDeparture() + " -> " + flight.getDestination() +
                 ", " + flight.getDate() + ", " + flight.getUserDepartureTime());
@@ -90,8 +90,6 @@ public class SeatPanel extends ScreenPanel {
         flightInfo.setHorizontalAlignment(JTextField.CENTER);
 
         colorSeatButtons();
-
-        setVisible(true);
     }
 
     /**
@@ -137,6 +135,11 @@ public class SeatPanel extends ScreenPanel {
         } catch (Exception ex) {
             return false;
         }
+    }
+
+    @Override
+    public String getTitle() {
+        return "Seat Selection";
     }
 
     /**
