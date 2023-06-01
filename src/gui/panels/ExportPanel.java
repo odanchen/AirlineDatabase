@@ -16,6 +16,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 import gui.ApplicationFrame;
+import gui.components.CustomButton;
 import gui.components.CustomPanel;
 import logic.data_record.Seat;
 import logic.sorting.seats.SeatSorter;
@@ -46,13 +47,12 @@ public class ExportPanel extends ScreenPanel {
      */
     public ExportPanel(ApplicationFrame applicationFrame) {
         super(applicationFrame, BoxLayout.Y_AXIS);
-        setTitle("Flight Manifest");
 
-        setBackButtonVisibility(true);
+        //setBackButtonVisibility(true);
 
         CustomPanel optionButtons = new CustomPanel(BoxLayout.X_AXIS);
-        addButton("Sort by Name", "sortName", optionButtons);
-        addButton("Sort by Seat #", "sortSeat", optionButtons);
+        optionButtons.add(new CustomButton("SortByName", "sortName", this));
+        optionButtons.add(new CustomButton("Sort by seat #", "sortSeat", this));
         centerPanel.add(optionButtons);
 
         for (int i = 0; i < customerInfoFields.length; i++) {
@@ -83,10 +83,17 @@ public class ExportPanel extends ScreenPanel {
      * @param seats The seats on the flight of the manifest to be displayed.
      * @author Aidan Baker
      */
-    public void makeVisible(Seat[] seats) {
+    public void makeVisible(Seat[] seats, ScreenPanel previousPanel) {
+        super.makeVisible();
         this.seats = seats;
+        this.previousPanel = previousPanel;
+        applicationFrame.setBackButtonVisibility(true);
         loadManifest(seats);
-        setVisible(true);
+    }
+
+    @Override
+    public String getTitle() {
+        return "Flight Manifest";
     }
 
     /**

@@ -13,7 +13,10 @@ package gui;
 
 import javax.swing.*;
 
+import gui.components.CustomButton;
 import gui.components.CustomPanel;
+import gui.components.CustomRadioButton;
+import gui.components.TopPanel;
 import logic.data_record.Calendar;
 import resource.DataReader;
 import gui.panels.*;
@@ -22,6 +25,9 @@ import logic.data_record.FlightInfo;
 import logic.data_record.Seat;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.URI;
 import java.util.List;
 
 /**
@@ -30,16 +36,16 @@ import java.util.List;
  *
  * @author Oleksandr Dacnehnko, Aidan Baker
  */
-public class ApplicationFrame extends JFrame {
+public class ApplicationFrame extends JFrame implements ActionListener {
     /**
      * A reference to the loading panel of the application.
      */
-    private final ScreenPanel loadingPanel = new LoadingPanel(this);
+    private final ScreenPanel loadingPanel;
 
     /**
      * A reference to the home panel of the application.
      */
-    private final ScreenPanel homePanel = new HomePanel(this);
+    private final ScreenPanel homePanel;
 
     /**
      * A reference to the calendar panel of the application.
@@ -59,7 +65,7 @@ public class ApplicationFrame extends JFrame {
     /**
      * A reference to the seat panel of the application.
      */
-    private final ScreenPanel seatPanel = new SeatPanel(this);
+    private final ScreenPanel seatPanel;
 
     /**
      * A reference to the user input panel of the application.
@@ -69,12 +75,27 @@ public class ApplicationFrame extends JFrame {
     /**
      * A reference to the export panel of the application.
      */
-    private final ScreenPanel exportPanel = new ExportPanel(this);
+    private final ScreenPanel exportPanel;
 
+    private final TopPanel topPanel;
     /**
      * A reference to the currently active panel in the application.
      */
-    private ScreenPanel currentPanel = loadingPanel;
+    private ScreenPanel currentPanel;
+
+    /**
+     * The panel at the bottom of a ScreenPanel, used for navigation buttons.
+     */
+    protected CustomPanel buttonPanel = new CustomPanel(new GridLayout(1, 5));
+
+    public CustomButton homeButton;
+    public CustomButton searchButton;
+    public CustomButton calendarButton;
+    /**
+     * The link to the user manual.
+     */
+    private static final String MANUAL_URL = "https://docs.google.com/document/d/1MoQYM9OzFQPjyVoqWxH3KVLu8QRYIB-3qXgkCfCr4uc/edit?usp=sharing";
+
 
     /**
      * Creates a new instance of ApplicationFrame.
@@ -89,26 +110,39 @@ public class ApplicationFrame extends JFrame {
         getContentPane().setLayout(new BorderLayout());
         CustomPanel centerPanel = new CustomPanel();
         Calendar calendar = DataReader.getCalendar();
-        calendarPanel = new CalendarPanel(this, calendar);
-        searchPanel = new SearchPanel(this, calendar);
-        userInputPanel = new UserInputPanel(this, calendar);
-        flightListPanel = new FlightListPanel(this, calendar);
-        centerPanel.add(loadingPanel);
-        centerPanel.add(homePanel);
-        centerPanel.add(calendarPanel);
-        centerPanel.add(searchPanel);
-        centerPanel.add(flightListPanel);
-        centerPanel.add(seatPanel);
-        centerPanel.add(userInputPanel);
-        centerPanel.add(exportPanel);
+
+        add(topPanel = new TopPanel(this), BorderLayout.NORTH);
+        buttonPanel.add(homeButton = new CustomButton("Home", "home", this, 25, new Dimension(150, 55)));
+        buttonPanel.add(searchButton = new CustomButton("Search for a Flight", "search", this, 25, new Dimension(150, 55)));
+        buttonPanel.add(calendarButton = new CustomButton("Calendar", "calendar", this, 25, new Dimension(150, 55)));
+        buttonPanel.add(new CustomButton("User Manual", "manual", this, 25, new Dimension(150, 55)));
+        buttonPanel.add(new CustomButton("Exit", "exit", this, 25, new Dimension(150, 55)));
+        //add button panel to bottom of frame
+        add(buttonPanel, BorderLayout.SOUTH);
+
+        centerPanel.add(loadingPanel = new LoadingPanel(this));
+        centerPanel.add(homePanel = new HomePanel(this));
+        centerPanel.add(calendarPanel = new CalendarPanel(this, calendar));
+        centerPanel.add(searchPanel = new SearchPanel(this, calendar));
+        centerPanel.add(flightListPanel = new FlightListPanel(this, calendar));
+        centerPanel.add(seatPanel = new SeatPanel(this));
+        centerPanel.add(userInputPanel = new UserInputPanel(this, calendar));
+        centerPanel.add(exportPanel = new ExportPanel(this));
+        currentPanel = loadingPanel;
         add(centerPanel, BorderLayout.CENTER);
         setSize(1400, 750);
         setResizable(false);
         setLocationRelativeTo(null);
-        loadingPanel.setVisible(true);
         setVisible(true);
-        ((LoadingPanel) loadingPanel).showSplashScreen();
+
         repaint();
+        loadingPanel.makeVisible();
+    }
+
+    private void switchScreen(ScreenPanel newScreen) {
+        deSelectButtons();
+        currentPanel.setVisible(false);
+        currentPanel = newScreen;
     }
 
     /**
@@ -119,10 +153,9 @@ public class ApplicationFrame extends JFrame {
      * @author Oleksandr Dacnehnko
      */
     public void switchToHome() {
-        currentPanel.setVisible(false);
-        homePanel.setVisible(true);
-        currentPanel = homePanel;
-        ((HomePanel) homePanel).updateScreenMessage();
+        switchScreen(homePanel);
+        homePanel.makeVisible();
+        homeButton.setColor(CustomRadioButton.SELECTED_COLOR);
     }
 
     /**
@@ -132,9 +165,9 @@ public class ApplicationFrame extends JFrame {
      * @author Oleksandr Dacnehnko
      */
     public void switchToCalendar() {
-        currentPanel.setVisible(false);
-        calendarPanel.setVisible(true);
-        currentPanel = calendarPanel;
+        switchScreen(calendarPanel);
+        calendarPanel.makeVisible();
+        calendarButton.setColor(CustomRadioButton.SELECTED_COLOR);
     }
 
     /**
@@ -144,9 +177,9 @@ public class ApplicationFrame extends JFrame {
      * @author Oleksandr Dacnehnko
      */
     public void switchToSearch() {
-        currentPanel.setVisible(false);
-        ((SearchPanel)searchPanel).makeVisible();
-        currentPanel = searchPanel;
+        switchScreen(searchPanel);
+        searchPanel.makeVisible();
+        searchButton.setColor(CustomRadioButton.SELECTED_COLOR);
     }
 
     /**
@@ -157,9 +190,8 @@ public class ApplicationFrame extends JFrame {
      * @author Oleksandr Dacnehnko
      */
     public void switchToFlightList(List<FlightInfo> flightList) {
-        currentPanel.setVisible(false);
-        ((FlightListPanel) flightListPanel).showPanel(flightList);
-        currentPanel = flightListPanel;
+        switchScreen(flightListPanel);
+        ((FlightListPanel) flightListPanel).makeVisible(flightList);
     }
 
     /**
@@ -170,9 +202,8 @@ public class ApplicationFrame extends JFrame {
      * @author Oleksandr Dacnehnko
      */
     public void switchToSeat(Flight flight) {
-        currentPanel.setVisible(false);
+        switchScreen(seatPanel);
         ((SeatPanel) seatPanel).makeVisible(flight);
-        currentPanel = seatPanel;
     }
 
     /**
@@ -181,9 +212,8 @@ public class ApplicationFrame extends JFrame {
      * @author Aidan Baker
      */
     public void switchBackToSeat() {
-        currentPanel.setVisible(false);
-        seatPanel.setVisible(true);
-        currentPanel = seatPanel;
+        switchScreen(seatPanel);
+        seatPanel.makeVisible();
     }
 
     /**
@@ -192,9 +222,8 @@ public class ApplicationFrame extends JFrame {
      * @author Aidan Baker
      */
     public void switchBackToList() {
-        currentPanel.setVisible(false);
-        ((FlightListPanel) flightListPanel).showPanel(((FlightListPanel) flightListPanel).getFlightList());
-        currentPanel = flightListPanel;
+        switchScreen(flightListPanel);
+        ((FlightListPanel) flightListPanel).makeVisible(((FlightListPanel)flightListPanel).getFlightList());
     }
 
     /**
@@ -203,6 +232,7 @@ public class ApplicationFrame extends JFrame {
      * @author Aidan Baker
      */
     public void switchBackTo(JPanel panel) {
+        deSelectButtons();
         currentPanel.setVisible(false);
         panel.setVisible(true);
         currentPanel = (ScreenPanel) panel;
@@ -215,9 +245,9 @@ public class ApplicationFrame extends JFrame {
      * @author Oleksandr Dacnehnko
      */
     public void switchToInput(Flight flight, Seat seat) {
+        deSelectButtons();
         currentPanel.setVisible(false);
         ((UserInputPanel) userInputPanel).makeVisible(flight, seat);
-
         currentPanel = userInputPanel;
     }
 
@@ -228,9 +258,48 @@ public class ApplicationFrame extends JFrame {
      * @author Oleksandr Dacnehnko
      */
     public void switchToExport(Seat[] seats) {
-        currentPanel.setVisible(false);
-        ((ExportPanel) exportPanel).previousPanel = currentPanel;
-        ((ExportPanel) exportPanel).makeVisible(seats);
-        currentPanel = exportPanel;
+        ((ExportPanel) exportPanel).makeVisible(seats, currentPanel);
+        switchScreen(exportPanel);
+    }
+
+    private void deSelectButtons() {
+        homeButton.setColor(CustomButton.BUTTON_BLUE);
+        searchButton.setColor(CustomButton.BUTTON_BLUE);
+        calendarButton.setColor(CustomButton.BUTTON_BLUE);
+    }
+
+    public void setTitle(String text) {
+        topPanel.setTitle(text);
+    }
+
+    public void setBackButtonVisibility(boolean visibility) {
+        topPanel.setBackButtonVisibility(visibility);
+    }
+
+    public void setHoodVisibility(boolean visibility) {
+        topPanel.setVisible(visibility);
+        buttonPanel.setVisible(visibility);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        switch (e.getActionCommand()) {
+            case "home": switchToHome();
+                break;
+            case "search": switchToSearch();
+                break;
+            case "calendar": switchToCalendar();
+                break;
+            case "manual" :
+                try {
+                    Desktop.getDesktop().browse(URI.create(MANUAL_URL));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                break;
+            case "exit" : if (JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) System.exit(0);
+                break;
+            case "back" : currentPanel.actionPerformed(e);
+        }
     }
 }

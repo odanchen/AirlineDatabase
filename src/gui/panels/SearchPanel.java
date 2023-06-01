@@ -15,6 +15,7 @@ Version #3
 
 package gui.panels;
 
+import gui.components.CustomButton;
 import gui.components.CustomPanel;
 import gui.components.CustomRadioButton;
 import logic.data_record.Calendar;
@@ -81,7 +82,6 @@ public class SearchPanel extends ScreenPanel {
     public SearchPanel(ApplicationFrame applicationFrame, Calendar calendar) {
         super(applicationFrame, new GridLayout(1, 5));
         this.calendar = calendar;
-        flightSearchButton.setColor(CustomRadioButton.SELECTED_COLOR);
 
         departurePanel.setLayout(new BoxLayout(departurePanel, BoxLayout.Y_AXIS));
         destinationPanel.setLayout(new BoxLayout(destinationPanel, BoxLayout.Y_AXIS));
@@ -97,6 +97,7 @@ public class SearchPanel extends ScreenPanel {
         centerPanel.add(addCenterButtons());
         centerPanel.add(verticalCenterAlign(destinationPanel, "Destination"));
         centerPanel.add(new JLabel(""));
+
     }
 
     /**
@@ -185,13 +186,11 @@ public class SearchPanel extends ScreenPanel {
         CustomPanel innerCenterButtonPanel = new CustomPanel(BoxLayout.Y_AXIS);
 
         CustomPanel searchButtonPanel = new CustomPanel(new GridLayout(1, 1));
-        addButton("Search", "Search", searchButtonPanel);
-        searchButtonPanel.setPreferredSize(new Dimension(80, 70));
+        searchButtonPanel.add(new CustomButton("Search", "Search", this));
         innerCenterButtonPanel.add(searchButtonPanel);
 
         CustomPanel swapButtonPanel = new CustomPanel(new GridLayout(1, 1));
-        addButton("Swap", "Swap", swapButtonPanel);
-        swapButtonPanel.setPreferredSize(new Dimension(80, 70));
+        swapButtonPanel.add(new CustomButton("Swap", "Swap", this));
         innerCenterButtonPanel.add(swapButtonPanel);
 
         centerButtonPanel.add(innerCenterButtonPanel);
@@ -201,10 +200,12 @@ public class SearchPanel extends ScreenPanel {
     /**
      * A method for resetting the selection of the departure and destination buttons to All
      */
+    @Override
     public void makeVisible() {
+        super.makeVisible();
         departureButtons.get(0).setSelected(true);
         destinationButtons.get(0).setSelected(true);
-        setVisible(true);
+        applicationFrame.setBackButtonVisibility(false);
     }
 
     /**
@@ -242,6 +243,11 @@ public class SearchPanel extends ScreenPanel {
      */
     private String getSelectedDestination() {
         return destinationGroup.getSelection().getActionCommand();
+    }
+
+    @Override
+    public String getTitle() {
+        return "Search for a Flight";
     }
 
     /**

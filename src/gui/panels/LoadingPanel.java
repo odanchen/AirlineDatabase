@@ -33,9 +33,21 @@ public class LoadingPanel extends ScreenPanel {
      */
     public LoadingPanel(ApplicationFrame applicationFrame) {
         super(applicationFrame, new BorderLayout());
-        topPanel.setVisible(false);
-        buttonPanel.setVisible(false);
+        //buttonPanel.setVisible(false);
         centerPanel.add(loadingBar, BorderLayout.CENTER);
+    }
+
+    @Override
+    public String getTitle() {
+        return "Loading";
+    }
+
+    @Override
+    public void makeVisible() {
+        super.makeVisible();
+        applicationFrame.setBackButtonVisibility(false);
+        applicationFrame.setHoodVisibility(false);
+        showSplashScreen();
     }
 
     /**
@@ -49,6 +61,7 @@ public class LoadingPanel extends ScreenPanel {
         for (int i = 0; i < 2000000000; i++) {
             if (i % 800000 == 0) loadingBar.update(i / 6000000);
         }
+        applicationFrame.setHoodVisibility(true);
         applicationFrame.switchToHome();
     }
 }

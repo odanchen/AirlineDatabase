@@ -13,7 +13,6 @@ package gui.panels;
 import gui.ApplicationFrame;
 import gui.components.CustomButton;
 import gui.components.CustomPanel;
-import gui.components.CustomRadioButton;
 import gui.graphics.HomeImage;
 import logic.data_record.Route;
 
@@ -56,8 +55,6 @@ public class HomePanel extends ScreenPanel {
      */
     public HomePanel(ApplicationFrame applicationFrame) {
         super(applicationFrame, BoxLayout.Y_AXIS);
-        homeButton.setColor(CustomRadioButton.SELECTED_COLOR);
-        setTitle("Home");
         //screen message
         CustomPanel messagePanel = new CustomPanel();
         screenMessage.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 25));
@@ -83,6 +80,18 @@ public class HomePanel extends ScreenPanel {
      */
     public String getRandomizesMessage() {
         return MESSAGES[(int) (Math.random() * MESSAGES.length)];
+    }
+
+    @Override
+    public void makeVisible() {
+        super.makeVisible();
+        updateScreenMessage();
+        applicationFrame.setBackButtonVisibility(false);
+    }
+
+    @Override
+    public String getTitle() {
+        return "Home";
     }
 
     /**
