@@ -2,11 +2,19 @@
 Author: Oleksandr Danchenko
 time spent: 40 minutes
 Date: 17 May 2023
-version #2
+version #4
 changes: added methods to switch back to certain screens to be used when a back button is pressed
     Author: Aidan baker
     time spent: 10 minutes
     Date: 23 May 2023
+Changes: transferred the top panel and the button panel to the ApplicationFrame from the Screen panel for optimization.
+    Author: Oleksandr Danchenko
+    time spent: 50 minutes
+    Date: 31 May 2023
+Changes: cleaned up the code, fixed bugs that appeared after transferring the top and the button panel to the frame
+    Author Oleksandr Danchenko
+    time spent: 35 minutes
+    Date 1 June 2023
  */
 
 package gui;
@@ -88,9 +96,18 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      */
     protected CustomPanel buttonPanel = new CustomPanel(new GridLayout(1, 5));
 
-    public CustomButton homeButton;
-    public CustomButton searchButton;
-    public CustomButton calendarButton;
+    /**
+     * The home button on the buttons panel
+     */
+    private CustomButton homeButton;
+    /**
+     * The flight search button on the buttons panel
+     */
+    private CustomButton searchButton;
+    /**
+     * The calendar button on the buttons panel
+     */
+    private CustomButton calendarButton;
     /**
      * The link to the user manual.
      */
@@ -111,15 +128,8 @@ public class ApplicationFrame extends JFrame implements ActionListener {
         CustomPanel centerPanel = new CustomPanel();
         Calendar calendar = DataReader.getCalendar();
 
+        addButtonPanel();
         add(topPanel = new TopPanel(this), BorderLayout.NORTH);
-        buttonPanel.add(homeButton = new CustomButton("Home", "home", this, 25, new Dimension(150, 55)));
-        buttonPanel.add(searchButton = new CustomButton("Search for a Flight", "search", this, 25, new Dimension(150, 55)));
-        buttonPanel.add(calendarButton = new CustomButton("Calendar", "calendar", this, 25, new Dimension(150, 55)));
-        buttonPanel.add(new CustomButton("User Manual", "manual", this, 25, new Dimension(150, 55)));
-        buttonPanel.add(new CustomButton("Exit", "exit", this, 25, new Dimension(150, 55)));
-        //add button panel to bottom of frame
-        add(buttonPanel, BorderLayout.SOUTH);
-
         centerPanel.add(loadingPanel = new LoadingPanel(this));
         centerPanel.add(homePanel = new HomePanel(this));
         centerPanel.add(calendarPanel = new CalendarPanel(this, calendar));
@@ -128,17 +138,36 @@ public class ApplicationFrame extends JFrame implements ActionListener {
         centerPanel.add(seatPanel = new SeatPanel(this));
         centerPanel.add(userInputPanel = new UserInputPanel(this, calendar));
         centerPanel.add(exportPanel = new ExportPanel(this));
-        currentPanel = loadingPanel;
         add(centerPanel, BorderLayout.CENTER);
+        currentPanel = loadingPanel;
         setSize(1400, 750);
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
 
-        repaint();
         loadingPanel.makeVisible();
     }
 
+    /**
+     * Adds the button panel to the bottom of the frame.
+     *
+     * @author Oleksandr Danchenko
+     */
+    private void addButtonPanel() {
+        buttonPanel.add(homeButton = new CustomButton("Home", "home", this, 25, new Dimension(150, 55)));
+        buttonPanel.add(searchButton = new CustomButton("Search for a Flight", "search", this, 25, new Dimension(150, 55)));
+        buttonPanel.add(calendarButton = new CustomButton("Calendar", "calendar", this, 25, new Dimension(150, 55)));
+        buttonPanel.add(new CustomButton("User Manual", "manual", this, 25, new Dimension(150, 55)));
+        buttonPanel.add(new CustomButton("Exit", "exit", this, 25, new Dimension(150, 55)));
+        add(buttonPanel, BorderLayout.SOUTH);
+    }
+
+    /**
+     * A basic method that is called every time the screen is switched.
+     *
+     * @param newScreen the screen to be switched to.
+     * @author Oleksandr Danchenko
+     */
     private void switchScreen(ScreenPanel newScreen) {
         deSelectButtons();
         currentPanel.setVisible(false);
@@ -262,25 +291,54 @@ public class ApplicationFrame extends JFrame implements ActionListener {
         switchScreen(exportPanel);
     }
 
+    /**
+     * A method that makes all the buttons in the button panel have the deselected color.
+     *
+     * @author Oleksandr Danchenko
+     */
     private void deSelectButtons() {
         homeButton.setColor(CustomButton.BUTTON_BLUE);
         searchButton.setColor(CustomButton.BUTTON_BLUE);
         calendarButton.setColor(CustomButton.BUTTON_BLUE);
     }
 
+    /**
+     * Sets a specific title on the top panel.
+     *
+     * @param text the title to be displayed in the frame's border.
+     * @author Oleksandr Danchenko
+     */
     public void setTitle(String text) {
         topPanel.setTitle(text);
     }
 
+    /**
+     * Sets the visibility for the back button on the top panel.
+     *
+     * @param visibility the visibility of the back button.
+     * @author Oleksandr Danchenko
+     */
     public void setBackButtonVisibility(boolean visibility) {
         topPanel.setBackButtonVisibility(visibility);
     }
 
-    public void setHoodVisibility(boolean visibility) {
+    /**
+     * Sets the visibility for the top and the bottom panels.
+     *
+     * @param visibility the visibility of the top and the bottom panels
+     * @author Oleksandr Danchenko
+     */
+    public void setHudVisibility(boolean visibility) {
         topPanel.setVisible(visibility);
         buttonPanel.setVisible(visibility);
     }
 
+    /**
+     * The method that is called when an event occurred.
+     *
+     * @param e the event to be processed
+     * @author Oleksandr Danchenko
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {

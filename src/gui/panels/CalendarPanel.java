@@ -1,8 +1,12 @@
 /*
 Author: Aidan Baker
-time spent: 20 minutes
+time spent: 35 minutes
 Date: 18 May 2023
-version #1
+version #2
+Changes: implemented the getTitle() and makeVisible() methods added to the ScreenPanel in the process of cleaning up the code.
+    time spent: 5 minutes
+    Date 1 June 2023
+    Author: Oleksandr Danchenko
 */
 
 package gui.panels;
@@ -22,6 +26,9 @@ import java.awt.event.ActionEvent;
  * @see ScreenPanel
  */
 public class CalendarPanel extends ScreenPanel {
+    /**
+     * The reference to the instance of the calendar.
+     */
     private final Calendar calendar;
 
     /**
@@ -35,17 +42,11 @@ public class CalendarPanel extends ScreenPanel {
         this.calendar = calendar;
 
         //day labels
-        JLabel[] dayLabels = new JLabel[7];
-        dayLabels[0] = new JLabel("         Sunday");
-        dayLabels[1] = new JLabel("         Monday");
-        dayLabels[2] = new JLabel("         Tuesday");
-        dayLabels[3] = new JLabel("         Wednesday");
-        dayLabels[4] = new JLabel("         Thursday");
-        dayLabels[5] = new JLabel("         Friday");
-        dayLabels[6] = new JLabel("         Saturday");
-
-        for (JLabel dayLabel : dayLabels) {
-            dayLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        String[] days = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+        for (String day : days) {
+            JLabel dayLabel = new JLabel(day);
+            dayLabel.setForeground(CustomButton.BUTTON_BLUE);
+            dayLabel.setHorizontalAlignment(JLabel.CENTER);
             centerPanel.add(dayLabel);
         }
         //blank labels to fill in empty space to get calendar to start on the right day
@@ -72,11 +73,22 @@ public class CalendarPanel extends ScreenPanel {
         }
     }
 
+    /**
+     * Returns the title of the calendar panel.
+     *
+     * @return "August 2023".
+     * @author Oleksandr Danchenko
+     */
     @Override
     public String getTitle() {
         return "August 2023";
     }
 
+    /**
+     * Makes the panel visible.
+     *
+     * @author Oleksandr Danchenko
+     */
     @Override
     public void makeVisible() {
         super.makeVisible();

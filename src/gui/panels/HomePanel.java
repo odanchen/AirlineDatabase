@@ -2,10 +2,14 @@
 Author: Aidan Baker
 time spent: 25 minutes
 Date: 17 May 2023
-version #2
+version #3
 Changes: redesigned the panel. Added images of the destinations to it, added more greeting messages.
     Date: 25 May 2023
     time spent: 40 minutes
+    Author: Oleksandr Danchenko
+Changes: implemented the getTitle() and makeVisible() methods added to the ScreenPanel in the process of cleaning up the code.
+    time spent: 5 minutes
+    Date 1 June 2023
     Author: Oleksandr Danchenko
  */
 package gui.panels;
@@ -82,6 +86,11 @@ public class HomePanel extends ScreenPanel {
         return MESSAGES[(int) (Math.random() * MESSAGES.length)];
     }
 
+    /**
+     * Makes the screen visible.
+     *
+     * @author Oleksandr Danchenko
+     */
     @Override
     public void makeVisible() {
         super.makeVisible();
@@ -89,6 +98,12 @@ public class HomePanel extends ScreenPanel {
         applicationFrame.setBackButtonVisibility(false);
     }
 
+    /**
+     * Returns the title for the screen.
+     *
+     * @return "Home"
+     * @author Oleksandr Danchenko
+     */
     @Override
     public String getTitle() {
         return "Home";

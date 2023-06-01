@@ -140,7 +140,7 @@ public class FlightInfo implements DatabaseItem {
      * @author Oleksandr Danchenko
      */
     public String getUserDepartureTime() {
-        if (departureTime <= 60 * 12) return departureTime / 60 + ":" + fixTime(departureTime % 60) + " a.m.";
+        if (departureTime <= 60 * 13) return departureTime / 60 + ":" + fixTime(departureTime % 60) + " a.m.";
         return (departureTime % (60 * 12)) / 60 + ":" + fixTime(departureTime % 60) + " p.m.";
     }
 

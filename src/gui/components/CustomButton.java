@@ -2,7 +2,13 @@
 Author: Oleksandr Danchenko
 time spent: 25 minutes
 Date: 24 May 2023
-version #1
+version #2
+Citations: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html
+            https://docs.oracle.com/javase/8/docs/api/java/awt/Dimension.html
+Changes: added overloaded constructors for convenience
+    time spent: 10 minutes.
+    Date: 31 May 2023
+    Author Oleksandr Danchenko
  */
 
 package gui.components;
@@ -13,6 +19,8 @@ import java.awt.event.ActionListener;
 
 /**
  * A custom button class, a button that is designed to look in the style of the app.
+ *
+ * @author Oleksandr Danchenko
  */
 public class CustomButton extends JButton {
     /**
@@ -50,22 +58,50 @@ public class CustomButton extends JButton {
      *
      * @param text     the text on the button.
      * @param fontSize the font size of the text on the button.
+     * @author Oleksandr Danchenko
      */
     public CustomButton(String text, ActionListener listener, int fontSize) {
         this(text, listener);
         setFont(new Font(Font.SANS_SERIF, Font.BOLD, fontSize));
     }
 
+    /**
+     * Creates a button with the selected parameters.
+     *
+     * @param text     the text displayed on the button.
+     * @param command  the action command of the button.
+     * @param listener the action listener of the button.
+     * @param fontSize the font size of the text on the button.
+     * @author Oleksandr Danchenko
+     */
     public CustomButton(String text, String command, ActionListener listener, int fontSize) {
         this(text, listener, fontSize);
         setActionCommand(command);
     }
 
+    /**
+     * Creates a button with the selected parameters.
+     *
+     * @param text     the text displayed on the button.
+     * @param command  the action command of the button.
+     * @param listener the action listener of the button.
+     * @author Oleksandr Danchenko
+     */
     public CustomButton(String text, String command, ActionListener listener) {
         this(text, listener);
         setActionCommand(command);
     }
 
+    /**
+     * Creates a button with the selected parameters.
+     *
+     * @param text      the text displayed on the button.
+     * @param command   the action command of the button.
+     * @param listener  the action listener of the button.
+     * @param fontSize  the font size of the text on the button.
+     * @param dimension the preferred size of the button.
+     * @author Oleksandr Danchenko
+     */
     public CustomButton(String text, String command, ActionListener listener, int fontSize, Dimension dimension) {
         this(text, command, listener, fontSize);
         setPreferredSize(dimension);
@@ -73,6 +109,7 @@ public class CustomButton extends JButton {
 
     /**
      * Sets the color used to paint the button.
+     *
      * @param color the color to be used to paint the button.
      */
     public void setColor(Color color) {

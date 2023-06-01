@@ -2,11 +2,15 @@
 Author: Aidan Baker
 time spent: 35 minutes
 Date: 19 May 2023
-version #1.5
+version #3
 changes: Added a method to color the seat buttons based on their availability
         Date: 28 May 2023
         time spent: 5 minutes
         Author: Aidan Baker
+Changes: implemented the getTitle() and makeVisible() methods added to the ScreenPanel in the process of cleaning up the code.
+    time spent: 5 minutes
+    Date 1 June 2023
+    Author: Oleksandr Danchenko
  */
 package gui.panels;
 
@@ -81,7 +85,7 @@ public class SeatPanel extends ScreenPanel {
     public void makeVisible(Flight flight) {
         super.makeVisible();
         this.flight = flight;
-        flightInfo.setText(flight.getDeparture() + " -> " + flight.getDestination() +
+        flightInfo.setText(flight.getDeparture() + " → " + flight.getDestination() +
                 ", " + flight.getDate() + ", " + flight.getUserDepartureTime());
 
         flightInfo.setFont(new Font("Arial", Font.BOLD, 36));
@@ -135,6 +139,12 @@ public class SeatPanel extends ScreenPanel {
         }
     }
 
+    /**
+     * Returns the title of the screen.
+     *
+     * @return "Seat Selection"
+     * @author Oleksandr Danchenko
+     */
     @Override
     public String getTitle() {
         return "Seat Selection";

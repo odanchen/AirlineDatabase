@@ -2,11 +2,15 @@
 Author: Aidan Baker
 time spent: 5 minutes
 Date: 23 May 2023
+version #3
 Changes: Added the functionality to the panel, so you can actually see the manifest and sort it.
         Date: 26 May 2023
         Time: 30 minutes
         Author: Aidan Baker
-version #2
+Changes: implemented the getTitle() and makeVisible() methods added to the ScreenPanel in the process of cleaning up the code.
+    time spent: 5 minutes
+    Date 1 June 2023
+    Author: Oleksandr Danchenko
  */
 
 package gui.panels;
@@ -81,7 +85,7 @@ public class ExportPanel extends ScreenPanel {
      * Makes the panel visible.
      *
      * @param seats The seats on the flight of the manifest to be displayed.
-     * @author Aidan Baker
+     * @author Aidan Baker, Oleksandr Danchenko
      */
     public void makeVisible(Seat[] seats, ScreenPanel previousPanel) {
         super.makeVisible();
@@ -91,6 +95,12 @@ public class ExportPanel extends ScreenPanel {
         loadManifest(seats);
     }
 
+    /**
+     * Returns the title of the screen.
+     *
+     * @return "Flight Manifest".
+     * @author Oleksandr Danchenko
+     */
     @Override
     public String getTitle() {
         return "Flight Manifest";
