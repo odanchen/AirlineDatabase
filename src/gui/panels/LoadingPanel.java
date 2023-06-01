@@ -46,6 +46,8 @@ public class LoadingPanel extends ScreenPanel {
     public void makeVisible() {
         super.makeVisible();
         applicationFrame.setBackButtonVisibility(false);
+        applicationFrame.setHoodVisibility(false);
+        showSplashScreen();
     }
 
     /**
@@ -59,6 +61,7 @@ public class LoadingPanel extends ScreenPanel {
         for (int i = 0; i < 2000000000; i++) {
             if (i % 800000 == 0) loadingBar.update(i / 6000000);
         }
+        applicationFrame.setHoodVisibility(true);
         applicationFrame.switchToHome();
     }
 }

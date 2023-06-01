@@ -134,11 +134,10 @@ public class ApplicationFrame extends JFrame implements ActionListener {
         setSize(1400, 750);
         setResizable(false);
         setLocationRelativeTo(null);
-        currentPanel.setVisible(true);
         setVisible(true);
 
         repaint();
-        ((LoadingPanel) loadingPanel).showSplashScreen();
+        loadingPanel.makeVisible();
     }
 
     private void switchScreen(ScreenPanel newScreen) {
@@ -276,6 +275,11 @@ public class ApplicationFrame extends JFrame implements ActionListener {
 
     public void setBackButtonVisibility(boolean visibility) {
         topPanel.setBackButtonVisibility(visibility);
+    }
+
+    public void setHoodVisibility(boolean visibility) {
+        topPanel.setVisible(visibility);
+        buttonPanel.setVisible(visibility);
     }
 
     @Override
