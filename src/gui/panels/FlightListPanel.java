@@ -138,8 +138,11 @@ public class FlightListPanel extends ScreenPanel {
         table.setGridColor(Color.BLACK);
 
         JTableHeader header = table.getTableHeader();
-        header.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+        header.setFont(new Font(Font.SERIF, Font.BOLD, 25));
         header.setBackground(Color.lightGray);
+
+        table.setFont(new Font(Font.SERIF, Font.PLAIN, 18));
+        table.setRowHeight(30);
 
         JScrollPane scrollPane = new JScrollPane(table);
 

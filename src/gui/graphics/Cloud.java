@@ -1,6 +1,6 @@
 /*
 Author: Aidan Baker
-Time Spent: 35 minutes
+Time Spent: 40 minutes
 Date: 31 May 2023
 version# 1
 */
@@ -109,6 +109,28 @@ public class Cloud {
     }
 
     /**
+     * A helper method to scale numbers to fit the screen properly.
+     *
+     * @param n The number to scale to fit the screen properly
+     * @return The scaled number
+     */
+    private int scale(int n) {
+        return n/10;
+    }
+
+    /**
+     * Draws a plane on the screen.
+     * @param g the Graphics object used for drawing
+     * @author Aidan Baker
+     */
+    private void drawPlane(Graphics g) {
+        Boolean isFacingRight = speed > 0;
+
+        g.setColor(new Color(48, 77, 173));
+        g.fillOval(xPos+scale(16), yPos+scale(368), scale(254), scale(285));
+    }
+
+    /**
      * Moves the cloud horizontally based on its speed.
      *
      * @author Aidan Baker
@@ -136,11 +158,14 @@ public class Cloud {
      */
     public void paint(Graphics g) {
         switch (type) {
-            case 1: drawType1(g);
+            case 1:
+                drawType1(g);
                 break;
-            case 2: drawType2(g);
+            case 2:
+                drawType2(g);
                 break;
-            default: drawType3(g);
+            default:
+                drawType3(g);
                 break;
         }
     }
