@@ -98,12 +98,15 @@ public class TopPanel extends CustomPanel {
 
     /**
      * Paints the content on the panel.
+     * Citation: https://docs.oracle.com/javase/tutorial/essential/concurrency/syncmeth.html
+     *      The method is made synchronized to not produce an error when the Cloud object
+     *      is modified and accessed by different threads simultaneously
      *
      * @param g the instance of the Graphics class.
      * @author Oleksandr Danchenko
      */
     @Override
-    public void paint(Graphics g) {
+    public synchronized void paint(Graphics g) {
         g.setColor(CustomPanel.BACKGROUND_WHITE);
         g.fillRect(0, 0, getWidth(), getHeight());
 

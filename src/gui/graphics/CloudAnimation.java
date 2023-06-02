@@ -1,5 +1,5 @@
 /*
-Author: Aidan Baker
+Author: Oleksandr Danchenko
 Time Spent: 25 minutes
 Date: 1 June 2023
 version# 1
@@ -49,13 +49,13 @@ public class CloudAnimation extends Thread {
                 for (Cloud cloud : clouds) cloud.move();
                 for (int j = 0; j < clouds.size(); j++) if (clouds.get(j).isOverScreen()) clouds.remove(j--);
                 try {
-                    Thread.sleep(50);
+                    Thread.sleep(45);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
                 topPanel.repaint();
             }
-            if (Math.random() * 10 > 6) clouds.add(new Cloud((int) ((Math.random() * 45) + 5)));
+            if (Math.random() * 10 > 3) clouds.add(new Cloud((int) (Math.random() * 30)));
         }
     }
 }
