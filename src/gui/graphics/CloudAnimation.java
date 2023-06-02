@@ -55,7 +55,7 @@ public class CloudAnimation extends Thread {
                 }
                 topPanel.repaint();
             }
-            if (Math.random() * 10 > 6) clouds.add(new Cloud((int) (Math.random() * 45)));
+            if (Math.random() * 10 > 6) clouds.add(new Cloud((int) ((Math.random() * 45) + 5)));
         }
     }
 }

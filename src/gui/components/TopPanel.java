@@ -54,19 +54,21 @@ public class TopPanel extends CustomPanel {
     public TopPanel(ApplicationFrame applicationFrame) {
         super(BoxLayout.X_AXIS);
         setPreferredSize(new Dimension(1400, 120));
+        setBackground(new Color(0, 0, 0, 0));
         backButton = new CustomButton("<", "back", applicationFrame, 20);
         backButton.setVisible(false);
         backButton.setPreferredSize(new Dimension(75, 50));
         placeholder.setPreferredSize(new Dimension(76, 50));
-
         add(placeholder);
         add(backButton);
         add(new Logo());
         title.setBackground(CustomPanel.BACKGROUND_WHITE);
-        title.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 55));
+        title.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 60));
         title.setForeground(CustomButton.BUTTON_BLUE);
         title.setEditable(false);
         title.setHorizontalAlignment(JTextField.CENTER);
+        title.setBackground(new Color(0, 0, 0, 0));
+        title.setBorder(null);
         add(title);
         CloudAnimation animation = new CloudAnimation(this, clouds);
         animation.start();
@@ -102,9 +104,12 @@ public class TopPanel extends CustomPanel {
      */
     @Override
     public void paint(Graphics g) {
-        super.paint(g);
+        g.setColor(CustomPanel.BACKGROUND_WHITE);
+        g.fillRect(0, 0, getWidth(), getHeight());
+
         for (Cloud cloud : clouds) {
             cloud.paint(g);
         }
+        super.paint(g);
     }
 }

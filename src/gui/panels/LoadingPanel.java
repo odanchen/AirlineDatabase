@@ -13,8 +13,12 @@ package gui.panels;
 
 import gui.ApplicationFrame;
 import gui.graphics.LoadingBar;
+import gui.graphics.Logo;
+import gui.graphics.Logo_2;
+import resource.DataReader;
 
-import java.awt.BorderLayout;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * The LoadingPanel class represents a custom panel that displays a splash screen with a loading bar.
@@ -36,9 +40,13 @@ public class LoadingPanel extends ScreenPanel {
      * @author Oleksandr Dacnehnko
      */
     public LoadingPanel(ApplicationFrame applicationFrame) {
-        super(applicationFrame, new BorderLayout());
+        super(applicationFrame, 1);
         //buttonPanel.setVisible(false);
-        centerPanel.add(loadingBar, BorderLayout.CENTER);
+
+        centerPanel.add(new Logo_2());
+
+        loadingBar.setPreferredSize(new Dimension(334, 40));
+        centerPanel.add(loadingBar);
     }
 
     /**

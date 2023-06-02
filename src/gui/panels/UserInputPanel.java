@@ -284,7 +284,7 @@ public class UserInputPanel extends ScreenPanel {
      */
     @Override
     public String getTitle() {
-        return "Enter your information";
+        return "Enter your Information";
     }
 
     /**

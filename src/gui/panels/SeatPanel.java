@@ -65,7 +65,7 @@ public class SeatPanel extends ScreenPanel {
         CustomPanel optionButtons = new CustomPanel(new GridLayout(1, 2));
 
         optionButtons.add(new CustomButton("View Manifest", "export", this));
-        optionButtons.add(new CustomButton("Cancel Flight", "cacnel", this));
+        optionButtons.add(new CustomButton("Cancel Flight", "cancel", this));
 
         upperSection.add(optionButtons);
         upperSection.add(flightInfo);

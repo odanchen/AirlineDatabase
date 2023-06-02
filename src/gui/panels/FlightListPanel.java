@@ -237,7 +237,7 @@ public class FlightListPanel extends ScreenPanel {
      * @author Oleksandr Danchenko
      */
     private boolean isActionButtonPressed(String command) {
-        return command.equals("renew") || command.equals("cancel") || command.equals("bookFlight");
+        return command.equals("renew") || command.equals("cancel") || command.equals("bookFlight") || command.equals("viewManifest");
     }
 
     /**

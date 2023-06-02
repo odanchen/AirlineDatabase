@@ -66,6 +66,7 @@ public class HomePanel extends ScreenPanel {
         screenMessage.setBackground(BACKGROUND_WHITE);
         screenMessage.setForeground(CustomButton.BUTTON_BLUE);
         screenMessage.setHorizontalAlignment(JTextField.CENTER);
+        screenMessage.setBorder(null);
         messagePanel.add(screenMessage);
         centerPanel.add(messagePanel);
 

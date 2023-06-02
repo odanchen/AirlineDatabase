@@ -53,9 +53,9 @@ public class LoadingBar extends JComponent {
     @Override
     public void paint(Graphics g) {
         g.setColor(Color.BLACK);
-        g.drawRect(getWidth() / 3, getHeight() / 2, 334, 40);
+        g.drawRect((getWidth()/2)-167, getHeight() / 2, 334, 40);
         g.setColor(CustomButton.BUTTON_BLUE);
-        g.fillRect(getWidth() / 3, getHeight() / 2, pixelCnt, 40);
+        g.fillRect((getWidth()/2)-167, getHeight() / 2, pixelCnt, 40);
     }
 }
 

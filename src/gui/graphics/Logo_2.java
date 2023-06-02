@@ -21,7 +21,7 @@ import java.awt.image.BufferedImage;
  * The Logo class, creates a logo for the application.
  * @author Aidan Baker
  */
-public class Logo extends JComponent {
+public class Logo_2 extends JComponent {
     /**
      * The imported logo of the company.
      */
@@ -30,9 +30,9 @@ public class Logo extends JComponent {
      * The constructor of the class, initializes the object.
      * @author Aidan Baker
      */
-    public Logo() {
-        setPreferredSize(new Dimension(600, 120));
-        image = DataReader.readImage("logo");
+    public Logo_2() {
+        setPreferredSize(new Dimension(600, 400));
+        image = DataReader.readImage("lLogo");
     }
 
     /**
@@ -43,8 +43,6 @@ public class Logo extends JComponent {
     @Override
     public void paint(Graphics g) {
         g.setColor(CustomButton.BUTTON_BLUE);
-        g.fillRoundRect(305, 20, 85, 100, 45, 45);
-        g.drawImage(image, 0, 0, null);
+        g.drawImage(image, (getWidth()/2)-300, 0, null);
     }
 }
-
