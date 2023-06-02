@@ -123,10 +123,28 @@ public class Seat implements DatabaseItem {
         return number + "=" + price;
     }
 
+    /**
+     * Fixes the price of the seat to have two decimal places.
+     *
+     * @return the price of the seat with two decimal places.
+     * @author Oleksandr Danchenko
+     */
+    private String fixPrice() {
+        if (price % 100 < 10) return price / 100 + ".0" + price % 100 + "$";
+        return price / 100 + "." + price % 100 + "$";
+    }
+
+    /**
+     * Gets a String representation of the Seat.
+     *
+     * @return the String representation of the Seat.
+     * @author Aidan Baker
+     */
     @Override
     public String toString() {
-        if (passenger == null) return "Seat #" + number + ", Empty";
+        if (passenger == null) return "Seat #" + number + ", Empty, Price: " + fixPrice();
         return "Seat #" + number + ", Name: " + passenger.getFirstName() + " " + passenger.getLastName() +
-                ", Phone number: " + passenger.getPhoneNumber() + ", Email: " + passenger.getEmail() + ", DOB: " + passenger.getDateOfBirth();
+                ", Phone number: " + passenger.getPhoneNumber() + ", Email: " + passenger.getEmail() +
+                ", DOB: " + passenger.getDateOfBirth() + ", Price: " + fixPrice();
     }
 }

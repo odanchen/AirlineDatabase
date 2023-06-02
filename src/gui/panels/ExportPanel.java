@@ -74,10 +74,7 @@ public class ExportPanel extends ScreenPanel {
      */
     private void loadManifest(Seat[] seats) {
         for (int i = 0; i < customerInfoFields.length; i++) {
-            if (seats[i].getPassenger() != null)
-                customerInfoFields[i].setText(seats[i].toString());
-            else
-                customerInfoFields[i].setText("Seat #" + seats[i].getNumber() + ", Empty");
+            customerInfoFields[i].setText(seats[i].toString());
         }
     }
 
