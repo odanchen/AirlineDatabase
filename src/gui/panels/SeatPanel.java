@@ -2,7 +2,7 @@
 Author: Aidan Baker
 time spent: 35 minutes
 Date: 19 May 2023
-version #3
+version #4
 changes: Added a method to color the seat buttons based on their availability
         Date: 28 May 2023
         time spent: 5 minutes
@@ -11,6 +11,10 @@ Changes: implemented the getTitle() and makeVisible() methods added to the Scree
     time spent: 5 minutes
     Date 1 June 2023
     Author: Oleksandr Danchenko
+Changes: reordered the components for a more appealing look.
+    time spent: 15 minutes
+    Date 2 June 2023
+    Author: Oleksandr Danchenko.
  */
 package gui.panels;
 
@@ -45,7 +49,7 @@ public class SeatPanel extends ScreenPanel {
     /**
      * The panel that contains the seat buttons.
      */
-    private final CustomPanel seatButtonPanel = new CustomPanel(new GridLayout(2, 9));
+    private final CustomPanel seatButtonPanel = new CustomPanel(new GridLayout(2, 10));
 
     /**
      * The array of seat buttons.
@@ -59,19 +63,22 @@ public class SeatPanel extends ScreenPanel {
      * @author Aidan Baker
      */
     public SeatPanel(ApplicationFrame applicationFrame) {
-        super(applicationFrame, new GridLayout(3, 1));
+        super(applicationFrame, new GridLayout(4, 1));
 
         CustomPanel upperSection = new CustomPanel(new GridLayout(2, 1));
-        CustomPanel optionButtons = new CustomPanel(new GridLayout(1, 2));
+        CustomPanel optionButtons = new CustomPanel(new GridLayout(1, 4));
 
+        optionButtons.add(new JLabel());
         optionButtons.add(new CustomButton("View Manifest", "export", this));
         optionButtons.add(new CustomButton("Cancel Flight", "cancel", this));
+        optionButtons.add(new JLabel());
 
-        upperSection.add(optionButtons);
         upperSection.add(flightInfo);
+        upperSection.add(optionButtons);
 
         setupSeatButtons();
         centerPanel.add(upperSection);
+        centerPanel.add(new JLabel());
         centerPanel.add(seatButtonPanel);
         flightInfo.setEditable(false);
     }
@@ -87,8 +94,9 @@ public class SeatPanel extends ScreenPanel {
         this.flight = flight;
         flightInfo.setText(flight.getDeparture() + " → " + flight.getDestination() +
                 ", " + flight.getDate() + ", " + flight.getUserDepartureTime());
-
-        flightInfo.setFont(new Font("Arial", Font.BOLD, 36));
+        flightInfo.setBackground(BACKGROUND_WHITE);
+        flightInfo.setForeground(CustomButton.BUTTON_BLUE);
+        flightInfo.setFont(new Font("Arial", Font.BOLD, 28));
         flightInfo.setHorizontalAlignment(JTextField.CENTER);
         applicationFrame.setBackButtonVisibility(true);
         colorSeatButtons();
@@ -104,7 +112,7 @@ public class SeatPanel extends ScreenPanel {
             seatButtons[i] = new CustomButton(String.valueOf(i + 1), String.valueOf(i + 1), this);
             seatButtonPanel.add(seatButtons[i]);
 
-            if (i != 4 && i != 9) seatButtonPanel.add(new JLabel());
+            seatButtonPanel.add(new JLabel());
         }
     }
 

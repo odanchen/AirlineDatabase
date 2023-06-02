@@ -45,7 +45,7 @@ public class CloudAnimation extends Thread {
      */
     public void run() {
         while (true) {
-            for (int i = 0; i < 50; i++) {
+            for (int i = 0; i < 45; i++) {
                 for (Cloud cloud : clouds) cloud.move();
                 for (int j = 0; j < clouds.size(); j++) if (clouds.get(j).isOverScreen()) clouds.remove(j--);
                 try {
