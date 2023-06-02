@@ -130,12 +130,14 @@ public class FlightListPanel extends ScreenPanel {
 
     /**
      * Sets up the table for displaying flight information.
+     * <br>Citations: <a href="https://forums.oracle.com/ords/apexds/post/disabling-multiple-row-selection-in-jtable-2395">disabling multiple row selection</a>
      *
      * @author Aidan Baker
      */
     public void setupTable() {
         table.setDefaultEditor(Object.class, null);
         table.setGridColor(Color.BLACK);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         JTableHeader header = table.getTableHeader();
         header.setFont(new Font(Font.SERIF, Font.BOLD, 25));
