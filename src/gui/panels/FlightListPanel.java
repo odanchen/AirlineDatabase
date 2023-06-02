@@ -80,11 +80,12 @@ public class FlightListPanel extends ScreenPanel {
         actionButtons.add(new CustomButton("Renew the flight", "renew", this));
 
         CustomPanel sortingButtons = new CustomPanel(new GridLayout(1, 5));
-        sortingButtons.add(new CustomButton("Sort by remaining seats", "sortSeats", this));
-        sortingButtons.add(new CustomButton("Sort by status", "sortStatus", this));
         sortingButtons.add(new CustomButton("Sort by departure", "sortDeparture", this));
         sortingButtons.add(new CustomButton("Sort by destination", "sortDestination", this));
         sortingButtons.add(new CustomButton("Sort by date and time", "sortDate", this));
+        sortingButtons.add(new CustomButton("Sort by remaining seats", "sortSeats", this));
+        sortingButtons.add(new CustomButton("Sort by status", "sortStatus", this));
+
 
         centerPanel.add(actionButtons);
         centerPanel.add(sortingButtons);
