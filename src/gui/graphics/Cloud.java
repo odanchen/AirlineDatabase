@@ -1,8 +1,12 @@
 /*
 Author: Aidan Baker
-Time Spent: 40 minutes
+Time Spent: 30 minutes
 Date: 31 May 2023
-version# 1
+Changes: Added a plane that can fly across the screen.
+    Time Spent: 50 minutes
+    Date: 3 June 2023
+    Author: Aidan Baker
+version# 2
 */
 
 package gui.graphics;
