@@ -80,11 +80,12 @@ public class FlightListPanel extends ScreenPanel {
         actionButtons.add(new CustomButton("Renew the flight", "renew", this));
 
         CustomPanel sortingButtons = new CustomPanel(new GridLayout(1, 5));
-        sortingButtons.add(new CustomButton("Sort by remaining seats", "sortSeats", this));
-        sortingButtons.add(new CustomButton("Sort by status", "sortStatus", this));
         sortingButtons.add(new CustomButton("Sort by departure", "sortDeparture", this));
         sortingButtons.add(new CustomButton("Sort by destination", "sortDestination", this));
         sortingButtons.add(new CustomButton("Sort by date and time", "sortDate", this));
+        sortingButtons.add(new CustomButton("Sort by remaining seats", "sortSeats", this));
+        sortingButtons.add(new CustomButton("Sort by status", "sortStatus", this));
+
 
         centerPanel.add(actionButtons);
         centerPanel.add(sortingButtons);
@@ -130,16 +131,21 @@ public class FlightListPanel extends ScreenPanel {
 
     /**
      * Sets up the table for displaying flight information.
+     * <br>Citations: <a href="https://forums.oracle.com/ords/apexds/post/disabling-multiple-row-selection-in-jtable-2395">disabling multiple row selection</a>
      *
      * @author Aidan Baker
      */
     public void setupTable() {
         table.setDefaultEditor(Object.class, null);
         table.setGridColor(Color.BLACK);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         JTableHeader header = table.getTableHeader();
-        header.setFont(new Font(Font.SERIF, Font.BOLD, 20));
+        header.setFont(new Font(Font.SERIF, Font.BOLD, 25));
         header.setBackground(Color.lightGray);
+
+        table.setFont(new Font(Font.SERIF, Font.PLAIN, 18));
+        table.setRowHeight(30);
 
         JScrollPane scrollPane = new JScrollPane(table);
 
