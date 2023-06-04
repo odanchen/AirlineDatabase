@@ -2,7 +2,7 @@
 Author: Aidan Baker
 time spent: 35 minutes
 Date: 19 May 2023
-version #4
+version #5
 changes: Added a method to color the seat buttons based on their availability
         Date: 28 May 2023
         time spent: 5 minutes
@@ -15,12 +15,17 @@ Changes: reordered the components for a more appealing look.
     time spent: 15 minutes
     Date 2 June 2023
     Author: Oleksandr Danchenko.
+Changes: separated the seat buttons in a separate panel with a drawing of a plane on it.
+    time spent: 20 minutes
+    Date: 3 June 2023
+    Author: Oleksandr Danchenko.
  */
 package gui.panels;
 
 import gui.ApplicationFrame;
 import gui.components.CustomButton;
 import gui.components.CustomPanel;
+import gui.graphics.SeatButtonPanel;
 import logic.data_record.Flight;
 
 import javax.swing.*;
@@ -46,15 +51,7 @@ public class SeatPanel extends ScreenPanel {
      */
     private final JTextField flightInfo = new JTextField();
 
-    /**
-     * The panel that contains the seat buttons.
-     */
-    private final CustomPanel seatButtonPanel = new CustomPanel(new GridLayout(2, 10));
-
-    /**
-     * The array of seat buttons.
-     */
-    private final CustomButton[] seatButtons = new CustomButton[10];
+    private final SeatButtonPanel seatButtonPanel;
 
     /**
      * Constructs a SeatPanel object.
@@ -63,22 +60,19 @@ public class SeatPanel extends ScreenPanel {
      * @author Aidan Baker
      */
     public SeatPanel(ApplicationFrame applicationFrame) {
-        super(applicationFrame, new GridLayout(4, 1));
+        super(applicationFrame, BoxLayout.Y_AXIS);
 
         CustomPanel upperSection = new CustomPanel(new GridLayout(2, 1));
         CustomPanel optionButtons = new CustomPanel(new GridLayout(1, 4));
 
-        optionButtons.add(new JLabel());
         optionButtons.add(new CustomButton("View Manifest", "export", this));
         optionButtons.add(new CustomButton("Cancel Flight", "cancel", this));
-        optionButtons.add(new JLabel());
 
         upperSection.add(flightInfo);
         upperSection.add(optionButtons);
 
-        setupSeatButtons();
+        seatButtonPanel = new SeatButtonPanel(this);
         centerPanel.add(upperSection);
-        centerPanel.add(new JLabel());
         centerPanel.add(seatButtonPanel);
         flightInfo.setEditable(false);
     }
@@ -99,37 +93,22 @@ public class SeatPanel extends ScreenPanel {
         flightInfo.setFont(new Font("Arial", Font.BOLD, 28));
         flightInfo.setHorizontalAlignment(JTextField.CENTER);
         applicationFrame.setBackButtonVisibility(true);
-        colorSeatButtons();
+        seatButtonPanel.colorSeatButtons();
+    }
+
+    public Flight getFlight() {
+        return flight;
     }
 
     /**
-     * Sets up the seat buttons and adds them to the seat button panel.
+     * Returns the title of the screen.
      *
-     * @author Aidan Baker
+     * @return "Seat Selection"
+     * @author Oleksandr Danchenko
      */
-    private void setupSeatButtons() {
-        for (int i = 0; i < 10; i++) {
-            seatButtons[i] = new CustomButton(String.valueOf(i + 1), String.valueOf(i + 1), this);
-            seatButtonPanel.add(seatButtons[i]);
-
-            seatButtonPanel.add(new JLabel());
-        }
-    }
-
-    /**
-     * Colors the seat buttons based on whether they are booked.
-     * If the seat is booked, the button is colored light gray otherwise it is colored blue.
-     *
-     * @author Aidan Baker
-     */
-    private void colorSeatButtons() {
-        for (int i = 0; i < 10; i++) {
-            if (!((flight.getSeating())[i].isEmpty())) {
-                seatButtons[i].setColor(Color.LIGHT_GRAY);
-            } else {
-                seatButtons[i].setColor(CustomButton.BUTTON_BLUE);
-            }
-        }
+    @Override
+    public String getTitle() {
+        return "Seat Selection";
     }
 
     /**
@@ -145,17 +124,6 @@ public class SeatPanel extends ScreenPanel {
         } catch (Exception ex) {
             return false;
         }
-    }
-
-    /**
-     * Returns the title of the screen.
-     *
-     * @return "Seat Selection"
-     * @author Oleksandr Danchenko
-     */
-    @Override
-    public String getTitle() {
-        return "Seat Selection";
     }
 
     /**
