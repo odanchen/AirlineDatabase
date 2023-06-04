@@ -38,6 +38,11 @@ public class CustomButton extends JButton {
     private Color color = BUTTON_BLUE;
 
     /**
+     * The background color of the button.
+     */
+    private Color background = CustomPanel.BACKGROUND_WHITE;
+
+    /**
      * A constructor for the CustomButton class.
      *
      * @param text the text to be displayed on the button.
@@ -111,9 +116,21 @@ public class CustomButton extends JButton {
      * Sets the color used to paint the button.
      *
      * @param color the color to be used to paint the button.
+     * @author Oleksandr Danchenko
      */
     public void setColor(Color color) {
         this.color = color;
+        repaint();
+    }
+
+    /**
+     * Sets the background color used to paint the button.
+     *
+     * @param color the color to be used to paint the button.
+     * @author Oleksandr Danchenko
+     */
+    public void setBackgroundColor(Color color) {
+        this.background = color;
         repaint();
     }
 
@@ -126,7 +143,7 @@ public class CustomButton extends JButton {
     @Override
     public void paint(Graphics g) {
         int w = getWidth(), h = getHeight();
-        g.setColor(CustomPanel.BACKGROUND_WHITE);
+        g.setColor(background);
         g.fillRect(0, 0, w, h);
         g.setColor(color);
         g.fillRoundRect((int) (w * 0.05), (int) (h * 0.05), (int) (w * 0.9), (int) (h * 0.9), 7, 7);
