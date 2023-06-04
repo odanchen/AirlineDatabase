@@ -114,6 +114,7 @@ public class Cloud {
 
     /**
      * Draws a plane on the screen.
+     *
      * @param g the Graphics object used for drawing
      * @author Aidan Baker
      */
@@ -123,18 +124,18 @@ public class Cloud {
 
         if (speed < 0) {
             //wings
-            int[] topWingX = {x+117, x+128, x+139, x+133};
-            int[] topWingY = {63-y, 36-y, 35-y, 61-y};
-            int[] bottomWingX = {x+117, x+132, x+143, x+133};
-            int[] bottomWingY = {79-y, 106-y, 107-y, 81-y};
+            int[] topWingX = {x + 117, x + 128, x + 139, x + 133};
+            int[] topWingY = {63 - y, 36 - y, 35 - y, 61 - y};
+            int[] bottomWingX = {x + 117, x + 132, x + 143, x + 133};
+            int[] bottomWingY = {79 - y, 106 - y, 107 - y, 81 - y};
 
             //tail fins
-            int[] mainTailFinX = {x+180, x+203, x+213, x+190};
-            int[] mainTailFinY = {65-y, 48-y, 50-y, 73-y};
-            int[] bottomTailFinX = {x+182, x+199, x+204, x+190};
-            int[] bottomTailFinY = {79-y, 88-y, 85-y, 73-y};
-            int[] topTailFinX = {x+178, x+186, x+190, x+189};
-            int[] topTailFinY = {64-y, 51-y, 51-y, 67-y};
+            int[] mainTailFinX = {x + 180, x + 203, x + 213, x + 190};
+            int[] mainTailFinY = {65 - y, 48 - y, 50 - y, 73 - y};
+            int[] bottomTailFinX = {x + 182, x + 199, x + 204, x + 190};
+            int[] bottomTailFinY = {79 - y, 88 - y, 85 - y, 73 - y};
+            int[] topTailFinX = {x + 178, x + 186, x + 190, x + 189};
+            int[] topTailFinY = {64 - y, 51 - y, 51 - y, 67 - y};
 
             g.setColor(GRAY);
             g.fillPolygon(topWingX, topWingY, 4);
@@ -143,9 +144,9 @@ public class Cloud {
 
             //body of plane
             g.setColor(GRAY);
-            g.fillOval(x+90, 60-y, 100, 25);
+            g.fillOval(x + 90, 60 - y, 100, 25);
             g.setColor(BLACK);
-            g.drawOval(x+90, 60-y, 100, 25);
+            g.drawOval(x + 90, 60 - y, 100, 25);
 
             //top tail fin
             g.setColor(GRAY);
@@ -163,11 +164,11 @@ public class Cloud {
 
             //cockpit
             g.setColor(Color.cyan);
-            g.fillArc(x+90, 65-y, 33, 15, 90, 90);
+            g.fillArc(x + 90, 65 - y, 33, 15, 90, 90);
             g.setColor(BLACK);
-            g.drawArc(x+90, 65-y, 33, 15, 90, 90);
-            g.drawLine(x+106, 66-y, x+106, 73-y);
-            g.drawLine(x+91, 73-y, x+106, 73-y);
+            g.drawArc(x + 90, 65 - y, 33, 15, 90, 90);
+            g.drawLine(x + 106, 66 - y, x + 106, 73 - y);
+            g.drawLine(x + 91, 73 - y, x + 106, 73 - y);
 
             //bottom wing
             g.setColor(GRAY);
@@ -177,33 +178,32 @@ public class Cloud {
 
             //windows
             g.setColor(Color.cyan);
-            g.fillRoundRect(x+120, 67-y, 5, 7, 4, 4);
-            g.fillRoundRect(x+130, 67-y, 5, 7, 4, 4);
-            g.fillRoundRect(x+140, 67-y, 5, 7, 4, 4);
-            g.fillRoundRect(x+150, 67-y, 5, 7, 4, 4);
-            g.fillRoundRect(x+160, 67-y, 5, 7, 4, 4);
+            g.fillRoundRect(x + 120, 67 - y, 5, 7, 4, 4);
+            g.fillRoundRect(x + 130, 67 - y, 5, 7, 4, 4);
+            g.fillRoundRect(x + 140, 67 - y, 5, 7, 4, 4);
+            g.fillRoundRect(x + 150, 67 - y, 5, 7, 4, 4);
+            g.fillRoundRect(x + 160, 67 - y, 5, 7, 4, 4);
 
             g.setColor(BLACK);
-            g.drawRoundRect(x+120, 67-y, 5, 7, 4, 4);
-            g.drawRoundRect(x+130, 67-y, 5, 7, 4, 4);
-            g.drawRoundRect(x+140, 67-y, 5, 7, 4, 4);
-            g.drawRoundRect(x+150, 67-y, 5, 7, 4, 4);
-            g.drawRoundRect(x+160, 67-y, 5, 7, 4, 4);
-        }
-        else {
+            g.drawRoundRect(x + 120, 67 - y, 5, 7, 4, 4);
+            g.drawRoundRect(x + 130, 67 - y, 5, 7, 4, 4);
+            g.drawRoundRect(x + 140, 67 - y, 5, 7, 4, 4);
+            g.drawRoundRect(x + 150, 67 - y, 5, 7, 4, 4);
+            g.drawRoundRect(x + 160, 67 - y, 5, 7, 4, 4);
+        } else {
             // Wings
-            int[] topWingX = {x+183, x+172, x+161, x+167};
-            int[] topWingY = {63-y, 36-y, 35-y, 61-y};
-            int[] bottomWingX = {x+183, x+168, x+157, x+167};
-            int[] bottomWingY = {79-y, 106-y, 107-y, 81-y};
+            int[] topWingX = {x + 183, x + 172, x + 161, x + 167};
+            int[] topWingY = {63 - y, 36 - y, 35 - y, 61 - y};
+            int[] bottomWingX = {x + 183, x + 168, x + 157, x + 167};
+            int[] bottomWingY = {79 - y, 106 - y, 107 - y, 81 - y};
 
             // Tail fins
-            int[] mainTailFinX = {x+120, x+97, x+87, x+110};
-            int[] mainTailFinY = {65-y, 48-y, 50-y, 73-y};
-            int[] bottomTailFinX = {x+118, x+101, x+96, x+110};
-            int[] bottomTailFinY = {79-y, 88-y, 85-y, 73-y};
-            int[] topTailFinX = {x+122, x+114, x+110, x+111};
-            int[] topTailFinY = {64-y, 51-y, 51-y, 67-y};
+            int[] mainTailFinX = {x + 120, x + 97, x + 87, x + 110};
+            int[] mainTailFinY = {65 - y, 48 - y, 50 - y, 73 - y};
+            int[] bottomTailFinX = {x + 118, x + 101, x + 96, x + 110};
+            int[] bottomTailFinY = {79 - y, 88 - y, 85 - y, 73 - y};
+            int[] topTailFinX = {x + 122, x + 114, x + 110, x + 111};
+            int[] topTailFinY = {64 - y, 51 - y, 51 - y, 67 - y};
 
             g.setColor(GRAY);
             g.fillPolygon(topWingX, topWingY, 4);
@@ -212,9 +212,9 @@ public class Cloud {
 
             // Body of plane
             g.setColor(GRAY);
-            g.fillOval(x+110, 60-y, 100, 25);
+            g.fillOval(x + 110, 60 - y, 100, 25);
             g.setColor(BLACK);
-            g.drawOval(x+110, 60-y, 100, 25);
+            g.drawOval(x + 110, 60 - y, 100, 25);
 
             // Top tail fin
             g.setColor(GRAY);
@@ -232,11 +232,11 @@ public class Cloud {
 
             // Cockpit
             g.setColor(Color.CYAN);
-            g.fillArc(x+177, 65-y, 33, 15, 0, 90);
+            g.fillArc(x + 177, 65 - y, 33, 15, 0, 90);
             g.setColor(BLACK);
-            g.drawArc(x+177, 65-y, 33, 15, 0, 90);
-            g.drawLine(x+193, 66-y, x+193, 73-y);
-            g.drawLine(x+193, 73-y, x+208, 73-y);
+            g.drawArc(x + 177, 65 - y, 33, 15, 0, 90);
+            g.drawLine(x + 193, 66 - y, x + 193, 73 - y);
+            g.drawLine(x + 193, 73 - y, x + 208, 73 - y);
 
             // Bottom wing
             g.setColor(GRAY);
@@ -246,18 +246,18 @@ public class Cloud {
 
             // Windows
             g.setColor(Color.CYAN);
-            g.fillRoundRect(x+180, 67-y, 5, 7, 4, 4);
-            g.fillRoundRect(x+170, 67-y, 5, 7, 4, 4);
-            g.fillRoundRect(x+160, 67-y, 5, 7, 4, 4);
-            g.fillRoundRect(x+150, 67-y, 5, 7, 4, 4);
-            g.fillRoundRect(x+140, 67-y, 5, 7, 4, 4);
+            g.fillRoundRect(x + 180, 67 - y, 5, 7, 4, 4);
+            g.fillRoundRect(x + 170, 67 - y, 5, 7, 4, 4);
+            g.fillRoundRect(x + 160, 67 - y, 5, 7, 4, 4);
+            g.fillRoundRect(x + 150, 67 - y, 5, 7, 4, 4);
+            g.fillRoundRect(x + 140, 67 - y, 5, 7, 4, 4);
 
             g.setColor(BLACK);
-            g.drawRoundRect(x+180, 67-y, 5, 7, 4, 4);
-            g.drawRoundRect(x+170, 67-y, 5, 7, 4, 4);
-            g.drawRoundRect(x+160, 67-y, 5, 7, 4, 4);
-            g.drawRoundRect(x+150, 67-y, 5, 7, 4, 4);
-            g.drawRoundRect(x+140, 67-y, 5, 7, 4, 4);
+            g.drawRoundRect(x + 180, 67 - y, 5, 7, 4, 4);
+            g.drawRoundRect(x + 170, 67 - y, 5, 7, 4, 4);
+            g.drawRoundRect(x + 160, 67 - y, 5, 7, 4, 4);
+            g.drawRoundRect(x + 150, 67 - y, 5, 7, 4, 4);
+            g.drawRoundRect(x + 140, 67 - y, 5, 7, 4, 4);
         }
     }
 
@@ -270,7 +270,7 @@ public class Cloud {
         x += speed;
 
         if (type == 7 || type == 0) {
-            y = (int) (Math.sin(x/50.0) * 15);
+            y = (int) (Math.sin(x / 50.0) * 15) + 6;
         }
     }
 
@@ -292,19 +292,9 @@ public class Cloud {
      * @author Aidan Baker
      */
     public void paint(Graphics g) {
-        switch (type) {
-            case 1, 2:
-                drawType1(g);
-                break;
-            case 3, 4:
-                drawType2(g);
-                break;
-            case 5, 6:
-                drawType3(g);
-                break;
-            default:
-                drawPlane(g);
-                break;
-        }
+        if (type == 1 || type == 2) drawType1(g);
+        else if (type == 3 || type == 4) drawType2(g);
+        else if (type == 5 || type == 6) drawType3(g);
+        else drawPlane(g);
     }
 }
