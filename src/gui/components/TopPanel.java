@@ -17,7 +17,7 @@ Changes: fixed the error with multiple threads accessing the list of objects dra
 package gui.components;
 
 import gui.ApplicationFrame;
-import gui.graphics.Cloud;
+import gui.graphics.FlyingObjects;
 import gui.graphics.CloudAnimation;
 import gui.graphics.Logo;
 
@@ -39,7 +39,7 @@ public class TopPanel extends CustomPanel {
     /**
      * The list of clouds.
      */
-    private List<Cloud> clouds;
+    private List<FlyingObjects> flyingObjects;
     /**
      * A placeholder label to take space when the back button is invisible.
      */
@@ -103,11 +103,11 @@ public class TopPanel extends CustomPanel {
     /**
      * Updates the drawing of the animation.
      *
-     * @param clouds the current list of objects in the animation.
+     * @param flyingObjects the current list of objects in the animation.
      * @author Oleksandr Danchenko
      */
-    public void updateAnimation(List<Cloud> clouds) {
-        this.clouds = clouds;
+    public void updateAnimation(List<FlyingObjects> flyingObjects) {
+        this.flyingObjects = flyingObjects;
         repaint();
     }
 
@@ -125,8 +125,8 @@ public class TopPanel extends CustomPanel {
         g.setColor(CustomPanel.BACKGROUND_WHITE);
         g.fillRect(0, 0, getWidth(), getHeight());
 
-        for (Cloud cloud : clouds) {
-            cloud.paint(g);
+        for (FlyingObjects flyingObjects : this.flyingObjects) {
+            flyingObjects.paint(g);
         }
         super.paint(g);
     }
