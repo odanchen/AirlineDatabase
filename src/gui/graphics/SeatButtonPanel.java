@@ -2,7 +2,8 @@
 Author: Oleksandr Danchenko
 time spent: 110 minutes
 Date: 3 June 2023
-version #1
+version #2
+Changes: added wings to the plane
  */
 
 package gui.graphics;
@@ -111,6 +112,8 @@ public class SeatButtonPanel extends CustomPanel implements ActionListener {
         g.fillRect(150, 100, 900, 150);
         g.fillArc(900, 100, 300, 150, 90, -180);
         g.fillArc(100, 100, 110, 150, 90, 180);
+        g.fillPolygon(new int[]{550, 550, 400, 450, 900}, new int[]{250, 270, 330, 340, 250}, 5);
+        g.fillPolygon(new int[]{550, 550, 400, 450, 900}, new int[]{100, 80, 20, 10, 100}, 5);
         g.setColor(Color.CYAN);
         g.fillPolygon(new int[]{1115, 1130, 1160, 1145}, new int[]{140, 125, 140, 155}, 4);
         g.fillPolygon(new int[]{1115, 1130, 1160, 1145}, new int[]{212, 227, 212, 197}, 4);
@@ -125,6 +128,8 @@ public class SeatButtonPanel extends CustomPanel implements ActionListener {
         g2d.drawLine(150, 250, 1050, 250);
         g2d.drawArc(900, 100, 300, 150, 90, -180);
         g2d.drawArc(100, 100, 110, 150, 90, 180);
+        g.drawPolygon(new int[]{550, 550, 400, 450, 900}, new int[]{250, 270, 330, 340, 250}, 5);
+        g.drawPolygon(new int[]{550, 550, 400, 450, 900}, new int[]{100, 80, 20, 10, 100}, 5);
         g2d.drawLine(150, 100, 1050, 100);
         g2d.drawLine(150, 250, 1050, 250);
         g2d.drawArc(900, 100, 300, 150, 90, -180);
