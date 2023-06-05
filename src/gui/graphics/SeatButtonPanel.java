@@ -4,6 +4,9 @@ time spent: 110 minutes
 Date: 3 June 2023
 version #2
 Changes: added wings to the plane
+    time spent: 10 minutes
+    Date 5 june 2023
+    Author Oleksandr Danchenko
  */
 
 package gui.graphics;
