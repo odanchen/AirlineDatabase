@@ -2,11 +2,16 @@
 Author: Aidan Baker
 Time Spent: 30 minutes
 Date: 31 May 2023
+version# 3
 Changes: Added a plane that can fly across the screen.
     Time Spent: 50 minutes
     Date: 3 June 2023
     Author: Aidan Baker
-version# 2
+Changes: fixed the error with multiple threads accessing the list of objects drawn on the top panel
+        by adding the copyOf() method that is used in the CloudAnimation class to copy the list of clouds.
+    Time spent: 10 minutes
+    Date: 5 June 2023
+    Author Oleksandr Danchenko
 */
 
 package gui.graphics;
@@ -33,7 +38,7 @@ public class Cloud {
     /**
      * The type of the cloud.
      */
-    private final int type = (int) (Math.random() * 7);
+    private final int type;
 
     /**
      * The speed at which the cloud moves.
@@ -53,6 +58,7 @@ public class Cloud {
      */
     public Cloud(int y) {
         this.y = y;
+        this.type = (int) (Math.random() * 7);
 
         if ((int) (Math.random() * 2) == 1) {
             speed = (int) (Math.random() * 4) + 2;
@@ -61,6 +67,33 @@ public class Cloud {
             speed = ((int) -(Math.random() * 4) + 2);
             x = 1600;
         }
+    }
+
+    /**
+     * A constructor that creates the object with all specific parameters.
+     *
+     * @param x the x position of the object.
+     * @param y the y position of the object.
+     * @param type the type of the object.
+     * @param speed the speed of the object.
+     * @author Oleksandr Danchenko
+     */
+    private Cloud(int x, int y, int type, int speed) {
+        this.x = x;
+        this.y = y;
+        this.type = type;
+        this.speed = speed;
+    }
+
+    /**
+     * The method that creates a copy of the provided instance.
+     *
+     * @param cloud the instance to be copied.
+     * @return the complete copy of the provided instance.
+     * @author Oleksandr Danchenko
+     */
+    public static Cloud copyOf(Cloud cloud) {
+        return new Cloud(cloud.x, cloud.y, cloud.type, cloud.speed);
     }
 
     /**

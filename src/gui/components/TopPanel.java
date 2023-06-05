@@ -7,6 +7,11 @@ Changes: added the cloud animation.
     time spent: 30 minutes
     Date 1 June 2023
     author Oleksandr Danchenko
+Changes: fixed the error with multiple threads accessing the list of objects drawn on the top panel
+        by adding the updateAnimation() method that is used in the CloudAnimation class to copy the list of clouds.
+    Time spent: 7 minutes
+    Date: 5 June 2023
+    Author Oleksandr Danchenko
 */
 
 package gui.components;
@@ -18,7 +23,6 @@ import gui.graphics.Logo;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,7 +39,7 @@ public class TopPanel extends CustomPanel {
     /**
      * The list of clouds.
      */
-    private final List<Cloud> clouds = new ArrayList<>();
+    private List<Cloud> clouds;
     /**
      * A placeholder label to take space when the back button is invisible.
      */
@@ -70,7 +74,7 @@ public class TopPanel extends CustomPanel {
         title.setBackground(new Color(0, 0, 0, 0));
         title.setBorder(null);
         add(title);
-        CloudAnimation animation = new CloudAnimation(this, clouds);
+        CloudAnimation animation = new CloudAnimation(this);
         animation.start();
     }
 
@@ -94,6 +98,17 @@ public class TopPanel extends CustomPanel {
     public void setBackButtonVisibility(boolean visible) {
         backButton.setVisible(visible);
         placeholder.setVisible(!visible);
+    }
+
+    /**
+     * Updates the drawing of the animation.
+     *
+     * @param clouds the current list of objects in the animation.
+     * @author Oleksandr Danchenko
+     */
+    public void updateAnimation(List<Cloud> clouds) {
+        this.clouds = clouds;
+        repaint();
     }
 
     /**
