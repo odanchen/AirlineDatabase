@@ -31,6 +31,8 @@ public class LoadingBar extends JComponent {
      * @author Oleksandr Dacnehnko
      */
     public LoadingBar() {
+        setBackground(new Color(0, 0, 0, 0));
+        setPreferredSize(new Dimension(334, 40));
     }
 
     /**

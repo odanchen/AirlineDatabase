@@ -30,7 +30,7 @@ public class CloudAnimation extends Thread {
     /**
      * The list of active clouds.
      */
-    private final List<Cloud> clouds;
+    private final List<FlyingObjects> flyingObjects;
 
     /**
      * Constructs a CloudAnimation object with the specified TopPanel and list of clouds.
@@ -40,7 +40,7 @@ public class CloudAnimation extends Thread {
      */
     public CloudAnimation(TopPanel topPanel) {
         this.topPanel = topPanel;
-        this.clouds = new ArrayList<Cloud>();
+        this.flyingObjects = new ArrayList<FlyingObjects>();
     }
 
     /**
@@ -49,8 +49,8 @@ public class CloudAnimation extends Thread {
      * @author Oleksandr Danchenko
      */
     private void updateDrawing() {
-        List<Cloud> listCopy = new ArrayList<>(clouds.size());
-        for (Cloud cloud : clouds) listCopy.add(Cloud.copyOf(cloud));
+        List<FlyingObjects> listCopy = new ArrayList<>(flyingObjects.size());
+        for (FlyingObjects flyingObjects : this.flyingObjects) listCopy.add(FlyingObjects.copyOf(flyingObjects));
         topPanel.updateAnimation(listCopy);
     }
 
@@ -62,8 +62,8 @@ public class CloudAnimation extends Thread {
     public void run() {
         while (true) {
             for (int i = 0; i < 45; i++) {
-                for (Cloud cloud : clouds) cloud.move();
-                for (int j = 0; j < clouds.size(); j++) if (clouds.get(j).isOverScreen()) clouds.remove(j--);
+                for (FlyingObjects flyingObjects : this.flyingObjects) flyingObjects.move();
+                for (int j = 0; j < flyingObjects.size(); j++) if (flyingObjects.get(j).isOverScreen()) flyingObjects.remove(j--);
                 try {
                     Thread.sleep(45);
                 } catch (InterruptedException e) {
@@ -71,7 +71,7 @@ public class CloudAnimation extends Thread {
                 }
                 updateDrawing();
             }
-            if (Math.random() * 10 > 3) clouds.add(new Cloud((int) (Math.random() * 30)));
+            if (Math.random() * 10 > 3) flyingObjects.add(new FlyingObjects((int) (Math.random() * 30)));
         }
     }
 }

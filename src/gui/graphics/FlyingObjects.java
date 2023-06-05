@@ -19,12 +19,11 @@ package gui.graphics;
 import java.awt.*;
 
 /**
- * The Cloud class represents a cloud object in a graphical user interface.
- * Clouds have various types and positions and can move across the screen.
+ * The FlyingObjects class represents a cloud or a plane that flies across the top of the screen.
  *
  * @author Aidan Baker
  */
-public class Cloud {
+public class FlyingObjects {
     /**
      * The x-position of the cloud.
      */
@@ -56,7 +55,7 @@ public class Cloud {
      * @param y the y-position of the cloud
      * @author Aidan Baker
      */
-    public Cloud(int y) {
+    public FlyingObjects(int y) {
         this.y = y;
         this.type = (int) (Math.random() * 7);
 
@@ -78,7 +77,7 @@ public class Cloud {
      * @param speed the speed of the object.
      * @author Oleksandr Danchenko
      */
-    private Cloud(int x, int y, int type, int speed) {
+    private FlyingObjects(int x, int y, int type, int speed) {
         this.x = x;
         this.y = y;
         this.type = type;
@@ -88,12 +87,12 @@ public class Cloud {
     /**
      * The method that creates a copy of the provided instance.
      *
-     * @param cloud the instance to be copied.
+     * @param flyingObjects the instance to be copied.
      * @return the complete copy of the provided instance.
      * @author Oleksandr Danchenko
      */
-    public static Cloud copyOf(Cloud cloud) {
-        return new Cloud(cloud.x, cloud.y, cloud.type, cloud.speed);
+    public static FlyingObjects copyOf(FlyingObjects flyingObjects) {
+        return new FlyingObjects(flyingObjects.x, flyingObjects.y, flyingObjects.type, flyingObjects.speed);
     }
 
     /**
@@ -175,7 +174,7 @@ public class Cloud {
             g.setColor(BLACK);
             g.drawPolygon(topWingX, topWingY, 4);
 
-            //body of plane
+            //Body of plane
             g.setColor(GRAY);
             g.fillOval(x + 90, 60 - y, 100, 25);
             g.setColor(BLACK);
