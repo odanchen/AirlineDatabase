@@ -23,7 +23,6 @@ import gui.ApplicationFrame;
 import gui.components.CustomButton;
 import gui.components.CustomPanel;
 import logic.data_record.Flight;
-import logic.data_record.FlightInfo;
 import logic.data_record.Seat;
 import logic.sorting.seats.SeatSorter;
 import logic.sorting.seats.SortByName;
@@ -65,19 +64,19 @@ public class ExportPanel extends ScreenPanel {
         flightInfo.setFont(new Font("Arial", Font.BOLD, 24));
         flightInfo.setBackground(CustomPanel.BACKGROUND_WHITE);
         flightInfo.setBorder(null);
-        centerPanel.add(flightInfo);
+        add(flightInfo);
 
         CustomPanel optionButtons = new CustomPanel(BoxLayout.X_AXIS);
         optionButtons.add(new CustomButton("Sort by Name", "sortName", this));
         optionButtons.add(new CustomButton("Sort by seat #", "sortSeat", this));
-        centerPanel.add(optionButtons);
+        add(optionButtons);
 
         for (int i = 0; i < customerInfoFields.length; i++) {
             customerInfoFields[i] = new JTextField();
             customerInfoFields[i].setEditable(false);
             customerInfoFields[i].setPreferredSize(new Dimension(1000, 40));
             customerInfoFields[i].setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 15));
-            centerPanel.add(customerInfoFields[i]);
+            add(customerInfoFields[i]);
         }
     }
 

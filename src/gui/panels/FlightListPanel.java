@@ -86,12 +86,11 @@ public class FlightListPanel extends ScreenPanel {
         sortingButtons.add(new CustomButton("Sort by remaining seats", "sortSeats", this));
         sortingButtons.add(new CustomButton("Sort by status", "sortStatus", this));
 
-
-        centerPanel.add(actionButtons);
-        centerPanel.add(sortingButtons);
+        add(actionButtons);
+        add(sortingButtons);
 
         setupTable();
-        centerPanel.add(tablePanel);
+        add(tablePanel);
     }
 
     /**

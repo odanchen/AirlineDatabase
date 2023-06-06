@@ -68,13 +68,13 @@ public class HomePanel extends ScreenPanel {
         screenMessage.setHorizontalAlignment(JTextField.CENTER);
         screenMessage.setBorder(null);
         messagePanel.add(screenMessage);
-        centerPanel.add(messagePanel);
+        add(messagePanel);
 
         CustomPanel imagePanel = new CustomPanel(new GridLayout(1, 3));
         imagePanel.add(new HomeImage(Route.TORONTO));
         imagePanel.add(new HomeImage(Route.VANCOUVER));
         imagePanel.add(new HomeImage(Route.OTTAWA));
-        centerPanel.add(imagePanel);
+        add(imagePanel);
     }
 
     /**

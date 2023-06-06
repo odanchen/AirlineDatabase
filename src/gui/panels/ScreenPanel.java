@@ -27,11 +27,6 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
      * A reference to the application frame.
      */
     protected ApplicationFrame applicationFrame;
-    /**
-     * The panel in the center of the ScreenPanel
-     */
-    protected CustomPanel centerPanel = new CustomPanel();
-
 
     /**
      * The constructor for the CustomPanel class.
@@ -43,8 +38,7 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
         this.applicationFrame = applicationFrame;
         setLayout(new BorderLayout());
 
-        centerPanel.setPreferredSize(new Dimension(1350, 530));
-        add(centerPanel, BorderLayout.CENTER);
+        setPreferredSize(new Dimension(1350, 530));
         setVisible(false);
     }
 
@@ -57,7 +51,7 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
      */
     public ScreenPanel(ApplicationFrame applicationFrame, LayoutManager centerPanelManager) {
         this(applicationFrame);
-        centerPanel.setLayout(centerPanelManager);
+        setLayout(centerPanelManager);
     }
 
     /**
@@ -69,7 +63,7 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
      */
     public ScreenPanel(ApplicationFrame applicationFrame, int axis) {
         this(applicationFrame);
-        centerPanel.setLayout(new BoxLayout(centerPanel, axis));
+        setLayout(new BoxLayout(this, axis));
     }
 
     /**

@@ -96,11 +96,11 @@ public class SearchPanel extends ScreenPanel {
         addButtons(Route.VANCOUVER, false);
 
         //adding content to the main panel
-        centerPanel.add(new JLabel(""));
-        centerPanel.add(verticalCenterAlign(departurePanel, "Departure"));
-        centerPanel.add(addCenterButtons());
-        centerPanel.add(verticalCenterAlign(destinationPanel, "Destination"));
-        centerPanel.add(new JLabel(""));
+        add(new JLabel(""));
+        add(verticalCenterAlign(departurePanel, "Departure"));
+        add(addCenterButtons());
+        add(verticalCenterAlign(destinationPanel, "Destination"));
+        add(new JLabel(""));
 
     }
 

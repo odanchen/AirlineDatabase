@@ -127,7 +127,7 @@ public class UserInputPanel extends ScreenPanel {
         fieldPanel.add(inputField);
         fieldPanel.add(errorField);
         holdPanel.add(fieldPanel);
-        centerPanel.add(holdPanel);
+        add(holdPanel);
     }
 
     /**
@@ -148,7 +148,7 @@ public class UserInputPanel extends ScreenPanel {
         buttonPanel.add(cancelButton = new CustomButton("Cancel booking", "cancel", this));
         buttonPanel.add(bookButton = new CustomButton("Book a Seat", "book", this));
         pricePanel.add(buttonPanel);
-        centerPanel.add(pricePanel);
+        add(pricePanel);
     }
 
     /**

@@ -72,8 +72,8 @@ public class SeatPanel extends ScreenPanel {
         upperSection.add(optionButtons);
 
         seatButtonPanel = new SeatButtonPanel(this);
-        centerPanel.add(upperSection);
-        centerPanel.add(seatButtonPanel);
+        add(upperSection);
+        add(seatButtonPanel);
         flightInfo.setEditable(false);
     }
 
