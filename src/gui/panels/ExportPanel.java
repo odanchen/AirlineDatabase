@@ -22,6 +22,8 @@ import java.awt.event.ActionEvent;
 import gui.ApplicationFrame;
 import gui.components.CustomButton;
 import gui.components.CustomPanel;
+import logic.data_record.Flight;
+import logic.data_record.FlightInfo;
 import logic.data_record.Seat;
 import logic.sorting.seats.SeatSorter;
 import logic.sorting.seats.SortByName;
@@ -44,6 +46,11 @@ public class ExportPanel extends ScreenPanel {
     public JPanel previousPanel = new JPanel();
 
     /**
+     * `The text area to display the flight information.
+     */
+    JTextField flightInfo = new JTextField();
+
+    /**
      * Constructs an ExportPanel object.
      *
      * @param applicationFrame The application frame.
@@ -52,8 +59,16 @@ public class ExportPanel extends ScreenPanel {
     public ExportPanel(ApplicationFrame applicationFrame) {
         super(applicationFrame, BoxLayout.Y_AXIS);
 
+        flightInfo.setEditable(false);
+        flightInfo.setPreferredSize(new Dimension(1000, 60));
+        flightInfo.setHorizontalAlignment(JTextField.CENTER);
+        flightInfo.setFont(new Font("Arial", Font.BOLD, 24));
+        flightInfo.setBackground(CustomPanel.BACKGROUND_WHITE);
+        flightInfo.setBorder(null);
+        centerPanel.add(flightInfo);
+
         CustomPanel optionButtons = new CustomPanel(BoxLayout.X_AXIS);
-        optionButtons.add(new CustomButton("SortByName", "sortName", this));
+        optionButtons.add(new CustomButton("Sort by Name", "sortName", this));
         optionButtons.add(new CustomButton("Sort by seat #", "sortSeat", this));
         centerPanel.add(optionButtons);
 
@@ -80,13 +95,15 @@ public class ExportPanel extends ScreenPanel {
     /**
      * Makes the panel visible.
      *
-     * @param seats The seats on the flight of the manifest to be displayed.
+     * @param flight The flight you want to display the manifest for.
      * @author Aidan Baker, Oleksandr Danchenko
      */
-    public void makeVisible(Seat[] seats, ScreenPanel previousPanel) {
+    public void makeVisible(Flight flight, ScreenPanel previousPanel) {
         super.makeVisible();
-        this.seats = seats;
+        this.seats = flight.getSeating();
         this.previousPanel = previousPanel;
+        flightInfo.setText(flight.getDeparture() + " → " + flight.getDestination() +
+                ", " + flight.getDate() + ", " + flight.getUserDepartureTime());
         applicationFrame.setBackButtonVisibility(true);
         loadManifest(seats);
     }
