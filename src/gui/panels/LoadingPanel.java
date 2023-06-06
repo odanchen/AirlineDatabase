@@ -7,8 +7,8 @@ Changes: implemented the getTitle() and makeVisible() methods added to the Scree
     time spent: 5 minutes
     Date 1 June 2023
     Author: Oleksandr Danchenko
-Changes: added a circular pattern drawing on the screen.
-    time spent: 30 minutes
+Changes: added a circular pattern drawing on the screen and animated it to spin.
+    time spent: 50 minutes
     Date 6 June 2023
     Author Oleksandr Danchenko
  */
