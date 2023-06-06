@@ -18,7 +18,7 @@ package gui.panels;
 import gui.ApplicationFrame;
 import gui.components.CustomPanel;
 import gui.graphics.LoadingBar;
-import gui.graphics.Loading_Logo;
+import gui.graphics.LoadingLogo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,7 +51,7 @@ public class LoadingPanel extends ScreenPanel {
         super(applicationFrame, BoxLayout.Y_AXIS);
         centerPanel.setPreferredSize(new Dimension(1400, 800));
         centerPanel.setBackground(new Color(0, 0, 0, 0));
-        centerPanel.add(new Loading_Logo());
+        centerPanel.add(new LoadingLogo());
         centerPanel.add(loadingBar);
     }
 

@@ -21,7 +21,7 @@ import java.awt.image.BufferedImage;
  * The Loading_Logo class, creates a logo for the application.
  * @author Aidan Baker
  */
-public class Loading_Logo extends JComponent {
+public class LoadingLogo extends JComponent {
     /**
      * The imported logo of the company.
      */
@@ -30,7 +30,7 @@ public class Loading_Logo extends JComponent {
      * The constructor of the class, initializes the object.
      * @author Aidan Baker
      */
-    public Loading_Logo() {
+    public LoadingLogo() {
         setPreferredSize(new Dimension(600, 400));
         image = DataReader.readImage("lLogo");
     }
