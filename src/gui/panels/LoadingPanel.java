@@ -92,10 +92,10 @@ public class LoadingPanel extends ScreenPanel {
      * @author Oleksandr Dacnehnko
      */
     public void showSplashScreen() {
-        for (int i = 0; i < 2000000000; i++) {
+        for (long i = 0; i < 4000000000L; i++) {
             if (i % 800000 == 0) {
-                loadingBar.update(i / 6000000);
-                offset = ((double) i / 2000000000) * 0.75;
+                loadingBar.update((int) (i / 12000000));
+                offset = ((double) i / 4000000000L) * 0.75;
                 repaint();
             }
         }
