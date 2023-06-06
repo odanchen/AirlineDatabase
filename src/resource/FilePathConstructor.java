@@ -63,6 +63,11 @@ public class FilePathConstructor {
     /**
      * Creates the unchangeable part of the relative path to a file in the database
      *
+     * Citation: https://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getProperty-java.lang.String-
+     *      The method getProperty() of the System class is used with the key "user.dir"
+     *      to get the absolute path to the root of the project. This is needed because the path is slightly different
+     *      if the program is launched using jGRASP or IntelliJ IDEA and should be corrected in order for a correct path
+     *      to be constructed regardless of the IDE used to launch the program.
      * @return the unchangeable part of the relative path to a file in the database
      * @author Oleksandr Danchenko
      */

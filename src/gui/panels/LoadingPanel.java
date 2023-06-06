@@ -54,7 +54,8 @@ public class LoadingPanel extends ScreenPanel {
      */
     public LoadingPanel(ApplicationFrame applicationFrame) {
         super(applicationFrame, BoxLayout.Y_AXIS);
-        centerPanel.setPreferredSize(new Dimension(1400, 800));
+        setPreferredSize(new Dimension(1400, 750));
+        centerPanel.setPreferredSize(new Dimension(1400, 750));
         centerPanel.setBackground(new Color(0, 0, 0, 0));
         centerPanel.add(new LoadingLogo());
         centerPanel.add(loadingBar);

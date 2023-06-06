@@ -19,11 +19,11 @@ package gui.graphics;
 import java.awt.*;
 
 /**
- * The FlyingObjects class represents a cloud or a plane that flies across the top of the screen.
+ * The FlyingObject class represents a cloud or a plane that flies across the top of the screen.
  *
  * @author Aidan Baker
  */
-public class FlyingObjects {
+public class FlyingObject {
     /**
      * The x-position of the cloud.
      */
@@ -55,7 +55,7 @@ public class FlyingObjects {
      * @param y the y-position of the cloud
      * @author Aidan Baker
      */
-    public FlyingObjects(int y) {
+    public FlyingObject(int y) {
         this.y = y;
         this.type = (int) (Math.random() * 7);
 
@@ -77,7 +77,7 @@ public class FlyingObjects {
      * @param speed the speed of the object.
      * @author Oleksandr Danchenko
      */
-    private FlyingObjects(int x, int y, int type, int speed) {
+    private FlyingObject(int x, int y, int type, int speed) {
         this.x = x;
         this.y = y;
         this.type = type;
@@ -87,12 +87,12 @@ public class FlyingObjects {
     /**
      * The method that creates a copy of the provided instance.
      *
-     * @param flyingObjects the instance to be copied.
+     * @param flyingObject the instance to be copied.
      * @return the complete copy of the provided instance.
      * @author Oleksandr Danchenko
      */
-    public static FlyingObjects copyOf(FlyingObjects flyingObjects) {
-        return new FlyingObjects(flyingObjects.x, flyingObjects.y, flyingObjects.type, flyingObjects.speed);
+    public static FlyingObject copyOf(FlyingObject flyingObject) {
+        return new FlyingObject(flyingObject.x, flyingObject.y, flyingObject.type, flyingObject.speed);
     }
 
     /**

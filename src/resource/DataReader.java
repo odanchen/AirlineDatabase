@@ -90,6 +90,8 @@ public class DataReader {
     /**
      * Reads an image with the specified file name.
      *
+     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/imageio/ImageIO.html#read-java.io.File-
+     *      The method read() is used from the ImageIO class to read an image file.
      * @param filename the name of the image file.
      * @return the image stored at that file.
      */

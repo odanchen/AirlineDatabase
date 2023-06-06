@@ -42,10 +42,6 @@ public abstract class ScreenPanel extends CustomPanel implements ActionListener 
     private ScreenPanel(ApplicationFrame applicationFrame) {
         this.applicationFrame = applicationFrame;
         setLayout(new BorderLayout());
-        //bottom button bar
-
-        CustomPanel backAndLogoPanel = new CustomPanel(new GridLayout(1, 2));
-        backAndLogoPanel.setLayout(new GridLayout(1, 2));
 
         centerPanel.setPreferredSize(new Dimension(1350, 530));
         add(centerPanel, BorderLayout.CENTER);

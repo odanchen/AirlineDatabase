@@ -30,7 +30,7 @@ public class CloudAnimation extends Thread {
     /**
      * The list of active clouds.
      */
-    private final List<FlyingObjects> flyingObjects;
+    private final List<FlyingObject> flyingObjects;
 
     /**
      * Constructs a CloudAnimation object with the specified TopPanel and list of clouds.
@@ -40,7 +40,7 @@ public class CloudAnimation extends Thread {
      */
     public CloudAnimation(TopPanel topPanel) {
         this.topPanel = topPanel;
-        this.flyingObjects = new ArrayList<FlyingObjects>();
+        this.flyingObjects = new ArrayList<FlyingObject>();
     }
 
     /**
@@ -49,8 +49,8 @@ public class CloudAnimation extends Thread {
      * @author Oleksandr Danchenko
      */
     private void updateDrawing() {
-        List<FlyingObjects> listCopy = new ArrayList<>(flyingObjects.size());
-        for (FlyingObjects flyingObjects : this.flyingObjects) listCopy.add(FlyingObjects.copyOf(flyingObjects));
+        List<FlyingObject> listCopy = new ArrayList<>(flyingObjects.size());
+        for (FlyingObject flyingObject : this.flyingObjects) listCopy.add(FlyingObject.copyOf(flyingObject));
         topPanel.updateAnimation(listCopy);
     }
 
@@ -62,7 +62,7 @@ public class CloudAnimation extends Thread {
     public void run() {
         while (true) {
             for (int i = 0; i < 45; i++) {
-                for (FlyingObjects flyingObjects : this.flyingObjects) flyingObjects.move();
+                for (FlyingObject flyingObject : this.flyingObjects) flyingObject.move();
                 for (int j = 0; j < flyingObjects.size(); j++) if (flyingObjects.get(j).isOverScreen()) flyingObjects.remove(j--);
                 try {
                     Thread.sleep(45);
@@ -71,7 +71,7 @@ public class CloudAnimation extends Thread {
                 }
                 updateDrawing();
             }
-            if (Math.random() * 10 > 3) flyingObjects.add(new FlyingObjects((int) (Math.random() * 30)));
+            if (Math.random() * 10 > 3) flyingObjects.add(new FlyingObject((int) (Math.random() * 30)));
         }
     }
 }
