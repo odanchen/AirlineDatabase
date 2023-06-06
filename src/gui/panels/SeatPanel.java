@@ -139,7 +139,7 @@ public class SeatPanel extends ScreenPanel {
         if (e.getActionCommand().equals("back")) {
             applicationFrame.switchBackToList();
         } else if (e.getActionCommand().equals("export")) {
-            applicationFrame.switchToExport(flight.getSeating());
+            applicationFrame.switchToExport(flight);
         }
 
         else if (isSeatButtonPressed(e)) {
