@@ -104,32 +104,14 @@ public class LoadingPanel extends ScreenPanel {
      * @author Oleksandr Danchenko
      */
     private void drawPattern(Graphics g) {
-        int x1 = 0, y1 = 0, x2 = 60, y2 = 0, x = getWidth() / 2, y = getHeight() / 2, step = 60;
+        int x0 = getWidth() / 2, y0 = getHeight() / 2, len = 830;
+        double angle = 0;
         g.setColor(PATTERN_COLOR);
-        while (x2 < getWidth()) {
-            g.fillPolygon(new int[]{x, x1, x2}, new int[]{y, y1, y2}, 3);
-            x1 += step * 2;
-            x2 += step * 2;
-        }
-        y2 = step;
-        while (y2 < getHeight()) {
-            g.fillPolygon(new int[]{x, x1, x2}, new int[]{y, y1, y2}, 3);
-            y1 += step * 2;
-            y2 += step * 2;
-        }
-        y1 = getHeight(); y2 = getHeight();
-        x1 = getWidth() - 60; x2 = getWidth();
-        while (x1 > 0) {
-            g.fillPolygon(new int[]{x, x1, x2}, new int[]{y, y1, y2}, 3);
-            x1 -= step * 2;
-            x2 -= step * 2;
-        }
-        x1 = 0;x2 = 0;
-        y1 = getHeight() - step;
-        while (y1 > 0) {
-            g.fillPolygon(new int[]{x, x1, x2}, new int[]{y, y1, y2}, 3);
-            y1 -= step * 2;
-            y2 -= step * 2;
+        while (angle < Math.PI * 2) {
+            int[] xs = new int[]{x0, x0 + (int) (len * Math.cos(angle)), x0 + (int) (len * Math.cos(angle + Math.PI / 16))};
+            int[] ys = new int[]{y0, y0 + (int) (len * Math.sin(angle)), y0 + (int) (len * Math.sin(angle + Math.PI / 16))};
+            g.fillPolygon(xs, ys, 3);
+            angle += Math.PI / 8;
         }
     }
 
