@@ -123,8 +123,8 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      */
     public ApplicationFrame() {
         super();
-        getContentPane().setBackground(CustomPanel.BACKGROUND_WHITE);
-        getContentPane().setLayout(new BorderLayout());
+        setBackground(CustomPanel.BACKGROUND_WHITE);
+        setLayout(new BorderLayout());
         CustomPanel centerPanel = new CustomPanel();
         Calendar calendar = DataReader.getCalendar();
 

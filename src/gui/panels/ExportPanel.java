@@ -52,8 +52,6 @@ public class ExportPanel extends ScreenPanel {
     public ExportPanel(ApplicationFrame applicationFrame) {
         super(applicationFrame, BoxLayout.Y_AXIS);
 
-        //setBackButtonVisibility(true);
-
         CustomPanel optionButtons = new CustomPanel(BoxLayout.X_AXIS);
         optionButtons.add(new CustomButton("SortByName", "sortName", this));
         optionButtons.add(new CustomButton("Sort by seat #", "sortSeat", this));
@@ -63,6 +61,7 @@ public class ExportPanel extends ScreenPanel {
             customerInfoFields[i] = new JTextField();
             customerInfoFields[i].setEditable(false);
             customerInfoFields[i].setPreferredSize(new Dimension(1000, 40));
+            customerInfoFields[i].setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 15));
             centerPanel.add(customerInfoFields[i]);
         }
     }
