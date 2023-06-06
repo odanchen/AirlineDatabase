@@ -17,23 +17,23 @@ public class Person implements DatabaseItem {
     /**
      * A String field, represents the first name of the person.
      */
-    private String firstName;
+    private final String firstName;
     /**
      * A String field, represents the last name of the person.
      */
-    private String lastName;
+    private final String lastName;
     /**
      * A String field, represents the first date of birth of the person in the "DD-MM-YYYY" format.
      */
-    private Date dateOfBirth;
+    private final Date dateOfBirth;
     /**
      * A String field, represents the phone number of the person.
      */
-    private String phoneNumber;
+    private final String phoneNumber;
     /**
      * A String field, represents the email of the person.
      */
-    private String email;
+    private final String email;
 
     /**
      * Constructs a person object with the specified information.
@@ -101,56 +101,6 @@ public class Person implements DatabaseItem {
      */
     public String getEmail() {
         return email;
-    }
-
-    /**
-     * Sets the first name of the person.
-     *
-     * @param firstName The new first name of the person.
-     * @author Oleksandr Danchenko
-     */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    /**
-     * Sets the last name of the person.
-     *
-     * @param lastName The new last name of the person.
-     * @author Oleksandr Danchenko
-     */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    /**
-     * Sets the date of birth of the person.
-     *
-     * @param dateOfBirth The new date of birth of the person in the format "DD-MM-YYYY".
-     * @author Oleksandr Danchenko
-     */
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    /**
-     * Sets the phone number of the person.
-     *
-     * @param phoneNumber The new phone number of the person.
-     * @author Oleksandr Danchenko
-     */
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    /**
-     * Sets the email address of the person.
-     *
-     * @param email The new email address of the person.
-     * @author Oleksandr Danchenko
-     */
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     /**

@@ -11,6 +11,8 @@ import logic.data_record.Seat;
 
 /**
  * An implementation of the SeatComparator interface, which compares the two seats by their number.
+ *
+ * @author Oleksandr Danchenko
  */
 public class SortByNumber implements SeatComparator {
     /**

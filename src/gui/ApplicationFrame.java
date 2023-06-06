@@ -85,6 +85,9 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      */
     private final ScreenPanel exportPanel;
 
+    /**
+     * The top panel o the program. Contains the company logo, the title of the screen, and the back button.
+     */
     private final TopPanel topPanel;
     /**
      * A reference to the currently active panel in the application.
@@ -119,6 +122,8 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      * Initializes the frame and sets the loading panel as the initial visible panel.
      * Displays the splash screen and performs the initialization process.
      *
+     * Citation: https://docs.oracle.com/javase/8/docs/api/java/awt/Window.html#setLocationRelativeTo-java.awt.Component-
+     *      The method setLocationRelativeTo() is used so that the frame appears in the middle of the screen.
      * @author Oleksandr Dacnehnko
      */
     public ApplicationFrame() {
@@ -337,6 +342,10 @@ public class ApplicationFrame extends JFrame implements ActionListener {
     /**
      * The method that is called when an event occurred.
      *
+     * Citation: https://docs.oracle.com/javase/8/docs/api/java/net/URI.html#create-java.lang.String-
+     * Citation: https://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html#getDesktop--
+     * Citation: https://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html#browse-java.net.URI-
+     *      The three methods are used to open the link to the user manual in the user's browser.
      * @param e the event to be processed
      * @author Oleksandr Danchenko
      */
