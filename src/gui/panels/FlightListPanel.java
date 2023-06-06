@@ -282,7 +282,7 @@ public class FlightListPanel extends ScreenPanel {
         }
         if (e.getActionCommand().equals("viewManifest")) {
             FlightInfo flight = getSelectedFlight();
-            if(flight != null) applicationFrame.switchToExport((new Flight(flight, DataReader.getSeating(flight.getFileName()))).getSeating());
+            if(flight != null) applicationFrame.switchToExport(new Flight(flight, DataReader.getSeating(flight.getFileName())));
         }
     }
 }

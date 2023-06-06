@@ -287,8 +287,8 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      *
      * @author Oleksandr Dacnehnko
      */
-    public void switchToExport(Seat[] seats) {
-        ((ExportPanel) exportPanel).makeVisible(seats, currentPanel);
+    public void switchToExport(Flight flight) {
+        ((ExportPanel) exportPanel).makeVisible(flight, currentPanel);
         switchScreen(exportPanel);
     }
 
