@@ -117,8 +117,8 @@ public class LoadingPanel extends ScreenPanel {
             y1 += step * 2;
             y2 += step * 2;
         }
-        y1 = getHeight();y2 = getHeight();
-        x1 = getWidth() - 60;x2 = getHeight();
+        y1 = getHeight(); y2 = getHeight();
+        x1 = getWidth() - 60; x2 = getWidth();
         while (x1 > 0) {
             g.fillPolygon(new int[]{x, x1, x2}, new int[]{y, y1, y2}, 3);
             x1 -= step * 2;
