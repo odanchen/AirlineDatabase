@@ -42,6 +42,11 @@ public class LoadingPanel extends ScreenPanel {
     private final Color PATTERN_COLOR = new Color(190, 200, 230);
 
     /**
+     * The field that represents the offset of the circular pattern drawing from 0 in radians.
+     */
+    private double offset = 0;
+
+    /**
      * Creates a new instance of LoadingPanel.
      *
      * @param applicationFrame The ApplicationFrame instance to which this panel belongs.
@@ -90,6 +95,7 @@ public class LoadingPanel extends ScreenPanel {
         for (int i = 0; i < 2000000000; i++) {
             if (i % 800000 == 0) {
                 loadingBar.update(i / 6000000);
+                offset = ((double) i / 2000000000) * 0.75;
                 repaint();
             }
         }
@@ -105,9 +111,9 @@ public class LoadingPanel extends ScreenPanel {
      */
     private void drawPattern(Graphics g) {
         int x0 = getWidth() / 2, y0 = getHeight() / 2, len = 830;
-        double angle = 0;
+        double angle = offset;
         g.setColor(PATTERN_COLOR);
-        while (angle < Math.PI * 2) {
+        while (angle < Math.PI * 2 + offset) {
             int[] xs = new int[]{x0, x0 + (int) (len * Math.cos(angle)), x0 + (int) (len * Math.cos(angle + Math.PI / 16))};
             int[] ys = new int[]{y0, y0 + (int) (len * Math.sin(angle)), y0 + (int) (len * Math.sin(angle + Math.PI / 16))};
             g.fillPolygon(xs, ys, 3);
