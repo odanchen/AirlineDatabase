@@ -28,6 +28,11 @@ public class LoadingBar extends JComponent {
     /**
      * Creates a new instance of LoadingBar.
      *
+     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setPreferredSize-java.awt.Dimension-
+     * Citation: https://docs.oracle.com/javase/8/docs/api/java/awt/Dimension.html
+     *      The setPreferredSize() method is used to specify the preferred size of the component.
+     *      Here, it is used to specify the approximate size of the loading bar for its container's layout manager.
+     *      The Dimension class is used as a parameter and contains the preferred width and height of the component respectively.
      * @author Oleksandr Dacnehnko
      */
     public LoadingBar() {
