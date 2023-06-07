@@ -7,6 +7,11 @@ version #1
 
 package logic.data_checking;
 
+/**
+ * A DataChecker abstract class. Provides the basic functionality of a generic data checker.
+ *
+ * @author Oleksandr Danchenko
+ */
 public abstract class DataChecker {
     /**
      * The message when the entered piece of data is correct.

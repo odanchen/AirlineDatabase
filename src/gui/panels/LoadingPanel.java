@@ -49,6 +49,11 @@ public class LoadingPanel extends ScreenPanel {
     /**
      * Creates a new instance of LoadingPanel.
      *
+     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setPreferredSize-java.awt.Dimension-
+     * Citation: https://docs.oracle.com/javase/8/docs/api/java/awt/Dimension.html
+     *      The setPreferredSize() method is used to specify the preferred size of the component.
+     *      Here, it is used to specify the approximate size of the screen panel to be the size of the entire frame.
+     *      The Dimension class is used as a parameter and contains the preferred width and height of the component respectively.
      * @param applicationFrame The ApplicationFrame instance to which this panel belongs.
      * @author Oleksandr Dacnehnko
      */

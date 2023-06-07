@@ -28,6 +28,11 @@ import logic.sorting.seats.SeatSorter;
 import logic.sorting.seats.SortByName;
 import logic.sorting.seats.SortByNumber;
 
+/**
+ * The ExportPanel screen that shows the complete information about a flight, including the seating and all the passengers of that flight.
+ *
+ * @author Aidan Baker
+ */
 public class ExportPanel extends ScreenPanel {
     /**
      * The information for each customer on the flight.
@@ -47,11 +52,18 @@ public class ExportPanel extends ScreenPanel {
     /**
      * `The text area to display the flight information.
      */
-    JTextField flightInfo = new JTextField();
+    private final JTextField flightInfo = new JTextField();
 
     /**
      * Constructs an ExportPanel object.
      *
+     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setPreferredSize-java.awt.Dimension-
+     * Citation: https://docs.oracle.com/javase/8/docs/api/java/awt/Dimension.html
+     *      The setPreferredSize() method is used to specify the preferred size of the component.
+     *      Here, it is used to specify the approximate size of the text field components to the layout manager of the container that stores the objects.
+     *      The Dimension class is used as a parameter and contains the preferred width and height of the component respectively.
+     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setBorder-javax.swing.border.Border-
+     *      The setBorder() method is used to get rid of the border painted by the text field for a more appealing look.
      * @param applicationFrame The application frame.
      * @author Aidan Baker
      */
