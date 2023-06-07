@@ -3,8 +3,6 @@ Author: Oleksandr Danchenko
 time spent: 25 minutes
 Date: 24 May 2023
 version #2
-Citations: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html
-            https://docs.oracle.com/javase/8/docs/api/java/awt/Dimension.html
 Changes: added overloaded constructors for convenience
     time spent: 10 minutes.
     Date: 31 May 2023
@@ -45,14 +43,15 @@ public class CustomButton extends JButton {
     /**
      * A constructor for the CustomButton class.
      *
-     * @citations: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/AbstractButton.html#setFocusPainted-boolean-">JButton Documentation</a>
-     *      isFocusPainted() – Used to prevent the button to have an outline when it is clicked, which would appear slightly off of the button due to its styling.
+     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/AbstractButton.html#setBorderPainted-boolean-
+     *      The setBorderPainted() method is used to disable the painting of the button border.
+     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setForeground-java.awt.Color-
+     *      The setForeground() method is used to change the color of text on the button.
      * @param text the text to be displayed on the button.
      * @author Oleksandr Danchenko
      */
     public CustomButton(String text, ActionListener listener) {
         super(text);
-        setFocusPainted(false);
         addActionListener(listener);
         setBorderPainted(false);
         setForeground(Color.WHITE);
@@ -96,13 +95,17 @@ public class CustomButton extends JButton {
      * @author Oleksandr Danchenko
      */
     public CustomButton(String text, String command, ActionListener listener) {
-        this(text, listener);
-        setActionCommand(command);
+        this(text, command, listener, DEFAULT_FONT_SIZE);
     }
 
     /**
      * Creates a button with the selected parameters.
      *
+     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setPreferredSize-java.awt.Dimension-
+     * Citation: https://docs.oracle.com/javase/8/docs/api/java/awt/Dimension.html
+     *      The setPreferredSize() method is used to specify the preferred size of the component.
+     *      Here, it is used to specify the approximate size of the button for its container's layout manager.
+     *      The Dimension class is used as a parameter and contains the preferred width and height of the component respectively.
      * @param text      the text displayed on the button.
      * @param command   the action command of the button.
      * @param listener  the action listener of the button.

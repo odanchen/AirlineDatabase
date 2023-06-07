@@ -25,6 +25,8 @@ import java.awt.event.ActionEvent;
 /**
  * The UserInputPanel class represents a panel for entering customer information and booking or updating a seat reservation.
  * It extends the ScreenPanel class.
+ *
+ * @author Oleksandr Danchenko
  */
 public class UserInputPanel extends ScreenPanel {
     /**

@@ -34,6 +34,10 @@ public class CalendarPanel extends ScreenPanel {
     /**
      * The constructor for the CalendarPanel class.
      *
+     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setForeground-java.awt.Color-
+     *      The setForeground() method is used to specify the color of the text on the text field.
+     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JLabel.html#setHorizontalAlignment-int-
+     *      The setHorizontalAlignment() method is used to center the text inside the JLabel
      * @param applicationFrame the frame that the panel is displayed on
      * @author Aidan Baker
      */

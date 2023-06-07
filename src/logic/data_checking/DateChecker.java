@@ -11,6 +11,11 @@ Changes: implemented logic to check that the date entered is not in the future a
 
 package logic.data_checking;
 
+/**
+ * A class that inherits from the DataChecker class. Used to verify the correctness of the entered date.
+ *
+ * @author Oleksandr Danchenko
+ */
 public class DateChecker extends DataChecker {
     /**
      * The message when the entered date of birth has a wrong length.
