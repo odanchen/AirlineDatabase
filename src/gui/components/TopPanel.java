@@ -52,6 +52,17 @@ public class TopPanel extends CustomPanel {
     /**
      * Constructs a TopPanel object.
      *
+     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setPreferredSize-java.awt.Dimension-
+     * Citation: https://docs.oracle.com/javase/8/docs/api/java/awt/Dimension.html
+     *      The setPreferredSize() method is used to specify the preferred size of the component.
+     *      Here, it is used to specify the approximate size of the buttons ond the panel itself to the layout manager of the container that stores the objects.
+     *      The Dimension class is used as a parameter and contains the preferred width and height of the component respectively.
+     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JLabel.html#setHorizontalAlignment-int-
+     *      The setHorizontalAlignment() method is used to center the text inside the JTextField, the title.
+     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setForeground-java.awt.Color-
+     *      The setForeground() method is used to change the color of text on the title.
+     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setBorder-javax.swing.border.Border-
+     *      The setBorder() method is used to make the border of the title invisible for a more appealing look.
      * @param applicationFrame the application frame to which this panel belongs
      * @author Oleksandr Danchenko
      */

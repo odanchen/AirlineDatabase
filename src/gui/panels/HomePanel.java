@@ -54,6 +54,12 @@ public class HomePanel extends ScreenPanel {
     /**
      * The constructor for the HomePanel class.
      *
+     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JLabel.html#setHorizontalAlignment-int-
+     *      The setHorizontalAlignment() method is used to center the text inside the JTextField
+     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setForeground-java.awt.Color-
+     *      The setForeground() method is used to change the color of text on the JTextField.
+     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setBorder-javax.swing.border.Border-
+     *      The setBorder() method is used to make the border of the text field invisible for a more appealing look.
      * @param applicationFrame the frame that the panel is displayed on.
      * @author Aidan Baker, Oleksandr Danchenko
      */

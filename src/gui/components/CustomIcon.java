@@ -3,6 +3,7 @@ Author: Aidan Baker
 Time Spent: 10 minutes
 Date: 29 May 2023
 Citations: https://docs.oracle.com/javase/8/docs/api/javax/swing/Icon.html
+        A class that implements an Icon for the CustomRadioButton class to get rid of the default selection icon on the JRadioButton
  */
 
 package gui.components;

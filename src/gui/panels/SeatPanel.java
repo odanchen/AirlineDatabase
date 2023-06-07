@@ -51,6 +51,9 @@ public class SeatPanel extends ScreenPanel {
      */
     private final JTextField flightInfo = new JTextField();
 
+    /**
+     * The reference to the seat button panel.
+     */
     private final SeatButtonPanel seatButtonPanel;
 
     /**
@@ -96,6 +99,12 @@ public class SeatPanel extends ScreenPanel {
         seatButtonPanel.colorSeatButtons();
     }
 
+    /**
+     * Returns the current selected flight.
+     *
+     * @return the current selected flight.
+     * @author Aidan Baker
+     */
     public Flight getFlight() {
         return flight;
     }

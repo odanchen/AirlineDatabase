@@ -66,7 +66,7 @@ public class CloudAnimation extends Thread {
                 for (int j = 0; j < flyingObjects.size(); j++) if (flyingObjects.get(j).isOverScreen()) flyingObjects.remove(j--);
                 try {
                     Thread.sleep(45);
-                } catch (InterruptedException e) {
+                } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
                 updateDrawing();

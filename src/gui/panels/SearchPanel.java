@@ -147,6 +147,8 @@ public class SearchPanel extends ScreenPanel {
     /**
      * A method for making a subtitle
      *
+     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JLabel.html#setHorizontalAlignment-int-
+     *      The setHorizontalAlignment() method is used to center the text inside the JLabel
      * @param text the text to be displayed on the subtitle
      * @return a JLabel with the text and the correct formatting
      * @author Aidan Baker

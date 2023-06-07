@@ -3,6 +3,12 @@ Author: Oleksandr Danchenko
 time spent: 110 minutes
 Date: 3 June 2023
 version #2
+Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setPreferredSize-java.awt.Dimension-
+Citation: https://docs.oracle.com/javase/8/docs/api/java/awt/Dimension.html
+        The setPreferredSize() method is used to specify the preferred size of the component.
+        Here, it is used to specify the approximate size of the component to the layout manager of the container that stores them.
+        So that the component fits into the screen properly, and the buttons are located right inside of the plane drawing.
+        The Dimension class is used as a parameter and contains the preferred width and height of the component respectively.
 Changes: added wings to the plane
     time spent: 10 minutes
     Date 5 june 2023
