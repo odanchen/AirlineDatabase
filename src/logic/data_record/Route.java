@@ -8,7 +8,7 @@ version #1
 package logic.data_record;
 
 /**
- * A Route class. Represents the two places a flight happens between and the time it takes for the flight.
+ * A Route class. Represents the departure and destination location as well as the length of the flight.
  */
 public class Route implements DatabaseItem {
     /**

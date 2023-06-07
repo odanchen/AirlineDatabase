@@ -10,7 +10,7 @@ package logic.data_record;
 import java.util.List;
 
 /**
- * A Calendar data class which is supposed to store accurate current data about each flight in each day of the month.
+ * A Calendar data class which stores accurate current data about each flight in each day of the month.
  *
  * @author Oleksandr Danchenko
  */
@@ -19,9 +19,10 @@ public class Calendar {
      * A constant, representing the total number of days in the month.
      */
     public static final int NUMBER_OF_DAYS = 31;
+
     /**
-     * An instance field, an array of lists of flights.
-     * Each list of flights is supposed to store accurate information about every flight at that day.
+     * An instance field of an array of lists of flights.
+     * Each list of flights stores accurate information about every flight on that day.
      */
     private final List<FlightInfo>[] days;
 

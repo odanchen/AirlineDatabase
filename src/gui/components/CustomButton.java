@@ -45,11 +45,14 @@ public class CustomButton extends JButton {
     /**
      * A constructor for the CustomButton class.
      *
+     * @citations: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/AbstractButton.html#setFocusPainted-boolean-">JButton Documentation</a>
+     *      isFocusPainted() – Used to prevent the button to have an outline when it is clicked, which would appear slightly off of the button due to its styling.
      * @param text the text to be displayed on the button.
      * @author Oleksandr Danchenko
      */
     public CustomButton(String text, ActionListener listener) {
         super(text);
+        setFocusPainted(false);
         addActionListener(listener);
         setBorderPainted(false);
         setForeground(Color.WHITE);

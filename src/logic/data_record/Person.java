@@ -5,7 +5,6 @@ Date: 16 May 2023
 version #1
 */
 
-
 package logic.data_record;
 
 /**
@@ -23,7 +22,7 @@ public class Person implements DatabaseItem {
      */
     private String lastName;
     /**
-     * A String field, represents the first date of birth of the person in the "DD-MM-YYYY" format.
+     * A String field, represents the date of birth of the person in the "DD-MM-YYYY" format.
      */
     private Date dateOfBirth;
     /**
@@ -151,7 +150,7 @@ public class Person implements DatabaseItem {
      */
     public void setEmail(String email) {
         this.email = email;
-    }
+    } //todo delete set methods?
 
     /**
      * Converts the person into a String in the way it is supposed to be represented in a database.

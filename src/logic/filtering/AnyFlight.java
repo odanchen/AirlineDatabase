@@ -10,7 +10,7 @@ package logic.filtering;
 import logic.data_record.FlightInfo;
 
 /**
- * A class, implementation of the FlightFilter class, used to pass a flight with any characteristics.
+ * A class, implementation of the FlightFilter interface, used to pass a flight with any characteristics.
  *
  * @author Oleksandr Danchenko
  */

@@ -1,8 +1,8 @@
 /*
 Author: Aidan Baker
-Time Spent: 20 minutes
+Time Spent: 25 minutes
 Date: 29 May 2023
-citations: https://docs.oracle.com/javase/tutorial/uiswing/components/button.html
+Version: 1
  */
 package gui.components;
 
@@ -22,21 +22,21 @@ public class CustomRadioButton extends JRadioButton {
 
     /**
      * Constructs a CustomRadioButton object.
+     * @citations: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JRadioButton.html">JRadioButton Documentation</a>
+     *      setAlignmentX() – used to align the button on the center of the panel horizontally.
+     *      setIcon() – used to remove the icon from the button.
      * @param message The message to be displayed on the button.
      * @param isSelected Whether the button is selected.
      */
     public CustomRadioButton(String message, boolean isSelected) {
         super(message);
         setBackground(new Color(0, 0, 0, 0));
-        setBorderPainted(false);
         setForeground(Color.WHITE);
         setFont(new Font("Arial", Font.PLAIN, 32));
         setSelected(isSelected);
         setAlignmentX(Component.CENTER_ALIGNMENT);
         setActionCommand(message);
         setIcon(new CustomIcon());
-        setPressedIcon(new CustomIcon());
-        setSelectedIcon(new CustomIcon());
         repaint();
     }
 

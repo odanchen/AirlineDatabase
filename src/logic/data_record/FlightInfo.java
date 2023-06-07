@@ -1,23 +1,28 @@
 /*
 Author: Oleksandr Danchenko
 time spent: 40 minutes
-Date 16 May 2023
+Date: 16 May 2023
 version #1
 */
 
 package logic.data_record;
 
+/**
+ * A data record class representing the information about a flight.
+ *
+ * @author Oleksandr Danchenko
+ */
 public class FlightInfo implements DatabaseItem {
     /**
      * A field representing the route of the flight.
      */
     private final Route route;
     /**
-     * The name of the file the seating information is going to be stored in.
+     * The name of the file the seating information is stored in.
      */
     private final String fileName;
     /**
-     * A flag indicating whether the flight is cancelled.
+     * A boolean indicating whether the flight is cancelled.
      */
     private boolean isCancelled;
     /**
@@ -54,17 +59,7 @@ public class FlightInfo implements DatabaseItem {
     }
 
     /**
-     * Returns the Route object representing the flight route.
-     *
-     * @return The Route object representing the flight route.
-     * @author Oleksandr Danchenko
-     */
-    public Route getRoute() {
-        return route;
-    }
-
-    /**
-     * Returns the departure airport of the flight.
+     * Returns the departure location of the flight.
      *
      * @return The departure airport of the flight.
      * @author Oleksandr Danchenko
@@ -74,7 +69,7 @@ public class FlightInfo implements DatabaseItem {
     }
 
     /**
-     * Returns the destination airport of the flight.
+     * Returns the destination of the flight.
      *
      * @return The destination airport of the flight.
      * @author Oleksandr Danchenko
@@ -207,7 +202,7 @@ public class FlightInfo implements DatabaseItem {
     /**
      * Converts the flight info into a String in the way it is supposed to be represented in a database.
      *
-     * @return a database String representation of the flight inf object.
+     * @return a database String representation of the flight info object.
      * @author Oleksandr Danchenko
      */
     @Override

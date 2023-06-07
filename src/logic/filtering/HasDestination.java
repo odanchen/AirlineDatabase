@@ -10,7 +10,7 @@ package logic.filtering;
 import logic.data_record.FlightInfo;
 
 /**
- * A class, implementation of the FlightFilter class, used to check a flight for a specific place of destination.
+ * A class, implementation of the FlightFilter interface, used to check a flight for a specific place of destination.
  *
  * @author Oleksandr Danchenko
  */
