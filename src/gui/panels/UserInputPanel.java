@@ -259,7 +259,15 @@ public class UserInputPanel extends ScreenPanel {
             showErrorMessage("The provided input contains errors");
             return;
         }
-
+        if (seat.isEmpty()) {
+            Person person = getEnteredPassengerInfo();
+            for (Seat seating : flight.getSeating()) {
+                if (person.equals(seating.getPassenger())) {
+                    showErrorMessage("The specified person already has a booking of this flight.");
+                    return;
+                }
+            }
+        }
         String[] messages = new String[2];
         if (seat.isEmpty()) {
             messages[0] = "Please confirm booking of the seat";

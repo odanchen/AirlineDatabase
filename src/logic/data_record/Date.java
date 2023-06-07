@@ -125,4 +125,16 @@ public class Date implements DatabaseItem {
         if (date < 10) return "0" + date;
         return String.valueOf(date);
     }
+
+    /**
+     * Checks if the provided date is equal to the current instance.
+     *
+     * @param date the date for comparison.
+     * @return true if the dates match, false - otherwise.
+     * @author Oleksandr Danchenko
+     */
+    public boolean equals(Date date) {
+        if (date == null) return false;
+        return day == date.day && month == date.month && year == date.year;
+    }
 }

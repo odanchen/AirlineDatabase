@@ -113,4 +113,16 @@ public class Person implements DatabaseItem {
     public String data() {
         return firstName + "=" + lastName + "=" + dateOfBirth.data() + "=" + phoneNumber + "=" + email;
     }
+
+    /**
+     * Checks if the current instance of the Person equals to the provided one.
+     *
+     * @param person the instance for comparison.
+     * @return true if both people are the same person, false - otherwise.
+     * @author Oleksandr Danchenko
+     */
+    public boolean equals(Person person) {
+        if (person == null) return false;
+        return (firstName.equals(person.firstName) && lastName.equals(person.lastName) && dateOfBirth.equals(person.dateOfBirth));
+    }
 }
