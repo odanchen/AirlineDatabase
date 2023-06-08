@@ -21,12 +21,10 @@ import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.awt.print.Printable;
 import java.awt.print.PrinterJob;
-import java.util.Arrays;
 
 import gui.ApplicationFrame;
 import gui.components.CustomButton;
 import gui.components.CustomPanel;
-import gui.graphics.Logo;
 import logic.data_record.Flight;
 import logic.data_record.Person;
 import logic.data_record.Seat;
@@ -64,12 +62,12 @@ public class ExportPanel extends ScreenPanel {
     /**
      * Constructs an ExportPanel object.
      *
-     * @citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setPreferredSize-java.awt.Dimension-
-     * @Citation: https://docs.oracle.com/javase/8/docs/api/java/awt/Dimension.html
+     * @citation: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setPreferredSize-java.awt.Dimension-">setPreferredSize method Documentation</a>
+     * @Citation: <a href="https://docs.oracle.com/javase/8/docs/api/java/awt/Dimension.html">Dimension class documentation</a>
      *      The setPreferredSize() method is used to specify the preferred size of the component.
      *      Here, it is used to specify the approximate size of the text field components to the layout manager of the container that stores the objects.
      *      The Dimension class is used as a parameter and contains the preferred width and height of the component respectively.
-     * @citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setBorder-javax.swing.border.Border-
+     * @citation: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setBorder-javax.swing.border.Border-">setBorder method documentations</a>
      *      The setBorder() method is used to get rid of the border painted by the text field for a more appealing look.
      * @param applicationFrame The application frame.
      * @author Aidan Baker
@@ -141,6 +139,8 @@ public class ExportPanel extends ScreenPanel {
     /**
      * Processes the action events.
      *
+     * @citation: <a href=https://docs.oracle.com/javase/8/docs/api/java/awt/print/PrinterJob.html">PrinterJob documentation</a>
+     *     The PrinterJob class is used to print the flight manifest to a printer or save it as a pdf
      * @param e the event to be processed
      * @author Aidan Baker
      */
