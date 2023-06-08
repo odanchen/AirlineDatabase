@@ -109,7 +109,7 @@ public class UserInputPanel extends ScreenPanel {
         addInputSection("Enter your phone number in one of the following formats - " +
                 "\"XXXXXXXXXX\", \"XXX XXX XXXX\", \"XXX-XXX-XXXX\"", phoneNumberField, phoneNumberErrorField);
         addInputSection("Enter your email", emailField, emailErrorField);
-        addInputSection("Enter your date of birth in the following format = \"dd/mm/yyyy\"", dateOfBirthField, dateOfBirthErrorField);
+        addInputSection("Enter your date of birth in the following format - \"dd/mm/yyyy\"", dateOfBirthField, dateOfBirthErrorField);
         addPricePanel();
     }
 

@@ -35,7 +35,6 @@ import java.util.List;
  * The FlightListPanel class, displays the list of flights.
  *
  * @author Aidan Baker, Oleksandr Danchenko
- * @see ScreenPanel
  */
 public class FlightListPanel extends ScreenPanel {
     /**
@@ -106,8 +105,10 @@ public class FlightListPanel extends ScreenPanel {
     }
 
     /**
-     * Empties the table from the previously stored data and fills it with the new.
+     * Empties the table from the previously stored data and fills it with the new data.
      *
+     * @citations: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JTable.html">JTable Documentation</a>
+     *      Used for displaying the list of flights in a table.
      * @param flightList the new list of data.
      * @author Oleksandr Danchenko
      */
@@ -130,8 +131,9 @@ public class FlightListPanel extends ScreenPanel {
 
     /**
      * Sets up the table for displaying flight information.
-     * <br>Citations: <a href="https://forums.oracle.com/ords/apexds/post/disabling-multiple-row-selection-in-jtable-2395">disabling multiple row selection</a>
      *
+     * @citations: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JTable.html">JTable Documentation</a>
+     *      Used for setting up the JTable being used to display the list of flights
      * @author Aidan Baker
      */
     public void setupTable() {
@@ -226,6 +228,7 @@ public class FlightListPanel extends ScreenPanel {
     /**
      * Gets the flight that is currently selected in the table.
      *
+     * @citations: <a href="https://stackoverflow.com/questions/12546320/get-selected-row-in-jtable">get selected row in JTable</a>
      * @return the selected instance of the FlightInfo class or null is nothing is selected.
      * @author Oleksandr Danchenko
      */

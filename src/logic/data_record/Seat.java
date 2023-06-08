@@ -129,8 +129,8 @@ public class Seat implements DatabaseItem {
      * @return the price of the seat with two decimal places.
      * @author Oleksandr Danchenko
      */
-    private String fixPrice() {
-        if (price % 100 < 10) return price / 100 + ".0" + price % 100 + "$";
+    public String fixPrice() {
+        if (price % 100 < 10) return "$" + price / 100 + ".0" + price % 100;
         return price / 100 + "." + price % 100 + "$";
     }
 
@@ -145,6 +145,6 @@ public class Seat implements DatabaseItem {
         if (passenger == null) return "Seat #" + number + ", Empty, Price: " + fixPrice();
         return "Seat #" + number + ", Name: " + passenger.getFirstName() + " " + passenger.getLastName() +
                 ", Phone number: " + passenger.getPhoneNumber() + ", Email: " + passenger.getEmail() +
-                ", DOB: " + passenger.getDateOfBirth() + ", Price: " + fixPrice();
+                ", DOB: " + passenger.getDateOfBirth();
     }
 }

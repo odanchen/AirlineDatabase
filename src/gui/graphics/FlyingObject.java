@@ -25,22 +25,22 @@ import java.awt.*;
  */
 public class FlyingObject {
     /**
-     * The x-position of the cloud.
+     * The x-position of the cloud/plane.
      */
     private int x;
 
     /**
-     * The y-position of the cloud.
+     * The y-position of the cloud/plane.
      */
     private int y;
 
     /**
-     * The type of the cloud.
+     * The type of the object (cloud or plane).
      */
     private final int type;
 
     /**
-     * The speed at which the cloud moves.
+     * The speed at which the cloud/plane moves.
      */
     private final int speed;
 
@@ -50,7 +50,7 @@ public class FlyingObject {
     private final Color WHITE = Color.WHITE;
 
     /**
-     * Constructs a Cloud object with the specified y-position.
+     * Constructs a FlyingObject object with the specified y-position.
      *
      * @param y the y-position of the cloud
      * @author Aidan Baker
@@ -294,7 +294,7 @@ public class FlyingObject {
     }
 
     /**
-     * Moves the cloud horizontally based on its speed.
+     * Moves the FlyingObject based on its speed.
      *
      * @author Aidan Baker
      */
@@ -318,7 +318,7 @@ public class FlyingObject {
     }
 
     /**
-     * Paints the cloud on the screen based on its type.
+     * Paints the cloud/plane on the screen based on its type.
      *
      * @param g the Graphics object used for drawing
      * @author Aidan Baker
