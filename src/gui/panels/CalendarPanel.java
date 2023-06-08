@@ -51,7 +51,7 @@ public class CalendarPanel extends ScreenPanel {
             JLabel dayLabel = new JLabel(day);
             dayLabel.setForeground(CustomButton.BUTTON_BLUE);
             dayLabel.setHorizontalAlignment(JLabel.CENTER);
-            dayLabel.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
+            dayLabel.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 24));
             add(dayLabel);
         }
         //blank labels to fill in empty space to get calendar to start on the right day
@@ -60,7 +60,7 @@ public class CalendarPanel extends ScreenPanel {
 
         //day buttons
         for (int i = 1; i <= Calendar.NUMBER_OF_DAYS; i++) {
-            add(new CustomButton(String.valueOf(i), String.valueOf(i), this));
+            add(new CustomButton(String.valueOf(i), String.valueOf(i), this, 24));
         }
     }
 

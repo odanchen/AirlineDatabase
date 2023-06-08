@@ -47,6 +47,8 @@ public class CustomButton extends JButton {
      *      The setBorderPainted() method is used to disable the painting of the button border.
      * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setForeground-java.awt.Color-
      *      The setForeground() method is used to change the color of text on the button.
+     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/AbstractButton.html#setFocusPainted-boolean-
+     *      The setFocusPainted() method is used to disable the painting of the focus indicator.
      * @param text the text to be displayed on the button.
      * @author Oleksandr Danchenko
      */
@@ -56,6 +58,7 @@ public class CustomButton extends JButton {
         setBorderPainted(false);
         setForeground(Color.WHITE);
         setBackground(new Color(0, 0, 0, 0));
+        setFocusPainted(false);
         setFont(new Font(Font.SANS_SERIF, Font.BOLD, DEFAULT_FONT_SIZE));
         repaint();
     }
