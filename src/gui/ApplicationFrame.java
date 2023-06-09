@@ -2,7 +2,7 @@
 Author: Oleksandr Danchenko
 time spent: 40 minutes
 Date: 17 May 2023
-version #4
+version #5
 changes: added methods to switch back to certain screens to be used when a back button is pressed
     Author: Aidan baker
     time spent: 10 minutes
@@ -15,6 +15,10 @@ Changes: cleaned up the code, fixed bugs that appeared after transferring the to
     Author Oleksandr Danchenko
     time spent: 35 minutes
     Date 1 June 2023
+Changes: changed the function of the User Manual button to open a PDF document instead of a link to a google doc.
+    Author Oleksandr Danchenko
+    time spent: 5 minutes
+    Date 8 June 2023
  */
 
 package gui;
@@ -31,6 +35,7 @@ import gui.panels.*;
 import logic.data_record.Flight;
 import logic.data_record.FlightInfo;
 import logic.data_record.Seat;
+import resource.FilePathConstructor;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -342,10 +347,10 @@ public class ApplicationFrame extends JFrame implements ActionListener {
     /**
      * The method that is called when an event occurred.
      *
-     * Citation: https://docs.oracle.com/javase/8/docs/api/java/net/URI.html#create-java.lang.String-
      * Citation: https://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html#getDesktop--
-     * Citation: https://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html#browse-java.net.URI-
-     *      The three methods are used to open the link to the user manual in the user's browser.
+     * Citation: https://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html#open-java.io.File-
+     *      The method open() opens the selected file. Here, it is used to open the PDF document - the user manual.
+     *      The getDesktop() method is used to get the instance of the Desktop class.
      * @param e the event to be processed
      * @author Oleksandr Danchenko
      */
@@ -360,7 +365,7 @@ public class ApplicationFrame extends JFrame implements ActionListener {
                 break;
             case "manual" :
                 try {
-                    Desktop.getDesktop().browse(URI.create(MANUAL_URL));
+                    Desktop.getDesktop().open(FilePathConstructor.getManualFile());
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

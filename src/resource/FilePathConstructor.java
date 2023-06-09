@@ -2,13 +2,17 @@
 Author: Oleksandr Danchenko
 time spent: 15 minutes
 Date: 18 May 2023
-version #3
+version #4
 Changes: Added a method that constructs a file path to the imported images in the resources folder
        Date: 25 May 2023
        time spent: 7 minutes
 Changes: Changed the location of the database and image files, updated the class to construct the correct paths.
        Date: 26 May 2023
        time spent: 15 minutes
+Changes: Added the getManualFile() method/
+        Date: 8 June 2023
+        time spent: 3 minutes
+        Author: Oleksandr Danchenko
  */
 
 package resource;
@@ -86,6 +90,16 @@ public class FilePathConstructor {
      */
     public static File getImageFile(String filename) {
         return new File(String.join(File.separator, new String[]{getDefaultPath(), "images", filename + ".png"}));
+    }
+
+    /**
+     * Constructs the file path to the user manual file.
+     *
+     * @return the file of the user manual.
+     * @author Oleksandr Danchenko
+     */
+    public static File getManualFile() {
+        return new File(String.join(File.separator, new String[]{getDefaultPath(), "User Manual.pdf"}));
     }
 }
 
