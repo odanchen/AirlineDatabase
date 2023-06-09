@@ -7,7 +7,7 @@ version #1
 
 package logic.filtering;
 
-import logic.data_record.FlightInfo;
+import logic.records.FlightInfo;
 
 /**
  * A class, implementation of the FlightFilter interface, used to check a flight for a specific place of departure.

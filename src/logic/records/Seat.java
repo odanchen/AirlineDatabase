@@ -5,7 +5,7 @@ Date: 16 May 2023
 version #1
 */
 
-package logic.data_record;
+package logic.records;
 
 /**
  * A Seat data class, represents a seat on a flight.
@@ -85,7 +85,7 @@ public class Seat implements DatabaseItem {
 
     /**
      * A setter method for the price of the seat.
-     *
+     * @param passenger the passenger occupying the seat.
      * @author Oleksandr Danchenko
      */
     public void setPassenger(Person passenger) {

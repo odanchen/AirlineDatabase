@@ -5,7 +5,7 @@ Date: 16 May 2023
 version #1
 */
 
-package logic.data_record;
+package logic.records;
 
 /**
  * A data record class representing the information about a flight.

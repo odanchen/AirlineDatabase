@@ -15,8 +15,8 @@ import resource.DataWriter;
 import gui.ApplicationFrame;
 import gui.components.CustomButton;
 import gui.components.CustomPanel;
-import logic.data_checking.*;
-import logic.data_record.*;
+import logic.checking.*;
+import logic.records.*;
 
 import javax.swing.*;
 import java.awt.*;

@@ -7,7 +7,7 @@ version #1
 
 package logic.sorting.flights;
 
-import logic.data_record.FlightInfo;
+import logic.records.FlightInfo;
 
 /**
  * The SortByRemainingSeats class implements the FlightComparator interface and provides a way of comparing flights by the number of remaining seats.

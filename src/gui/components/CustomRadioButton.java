@@ -22,7 +22,7 @@ public class CustomRadioButton extends JRadioButton {
 
     /**
      * Constructs a CustomRadioButton object.
-     * @citations: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JRadioButton.html">JRadioButton Documentation</a>
+     * @citation: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JRadioButton.html">JRadioButton Documentation</a>
      *      setAlignmentX() – used to align the button on the center of the panel horizontally.
      *      setIcon() – used to remove the icon from the button.
      * @param message The message to be displayed on the button.

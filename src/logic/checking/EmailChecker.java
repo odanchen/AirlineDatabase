@@ -8,7 +8,7 @@ changes: changed the class to be a descendant of the DataChecker abstract class.
         time spent : 10 minutes.
 */
 
-package logic.data_checking;
+package logic.checking;
 
 /**
  * The EmailChecker class provides methods to validate and check the correctness of an email address.

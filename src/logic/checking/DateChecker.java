@@ -9,7 +9,7 @@ Changes: implemented logic to check that the date entered is not in the future a
     Author: Oleksandr Danchenko
 */
 
-package logic.data_checking;
+package logic.checking;
 
 /**
  * A class that inherits from the DataChecker class. Used to verify the correctness of the entered date.
@@ -94,6 +94,7 @@ public class DateChecker extends DataChecker {
      * Checks if the date exists.
      * Verifies that the date could be someone's date of birth - not in the future and not too far in the past.
      *
+     * @param date the date to be checked.
      * @return the error message for the existence of the date.
      * @author Oleksandr Danchenko
      */

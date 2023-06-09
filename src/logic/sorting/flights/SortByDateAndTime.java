@@ -7,8 +7,8 @@ version #1
 
 package logic.sorting.flights;
 
-import logic.data_record.Date;
-import logic.data_record.FlightInfo;
+import logic.records.Date;
+import logic.records.FlightInfo;
 
 /**
  * The SortByDateAndTime class implements the FlightComparator interface and provides a way to compare flights by date and time.

@@ -11,7 +11,7 @@ Changes: fixed the comparator to be null safe.
 
 package logic.sorting.seats;
 
-import logic.data_record.Seat;
+import logic.records.Seat;
 
 /**
  * An implementation of the SeatComparator interface, which compares the two seats by their passenger's names lexicographically.
@@ -19,6 +19,12 @@ import logic.data_record.Seat;
  * @author Aidan Baker, Oleksandr Danchenko
  */
 public class SortByName implements SeatComparator {
+    /**
+     * A constructor of the class, initializes the object.
+     */
+    public SortByName() {
+
+    }
 
     /**
      * compares the two seats by their passenger's names lexicographically.

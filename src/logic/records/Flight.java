@@ -5,7 +5,7 @@ Date: 22 May 2023
 version #1
 */
 
-package logic.data_record;
+package logic.records;
 
 /**
  * The Flight class represents a flight, which consists of flight information and seating data.

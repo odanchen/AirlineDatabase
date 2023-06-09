@@ -7,9 +7,9 @@ version #1
 
 package resource;
 
-import logic.data_record.Calendar;
-import logic.data_record.FlightInfo;
-import logic.data_record.Seat;
+import logic.records.Calendar;
+import logic.records.FlightInfo;
+import logic.records.Seat;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

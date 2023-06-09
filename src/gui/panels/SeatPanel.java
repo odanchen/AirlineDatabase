@@ -26,7 +26,7 @@ import gui.ApplicationFrame;
 import gui.components.CustomButton;
 import gui.components.CustomPanel;
 import gui.graphics.SeatButtonPanel;
-import logic.data_record.Flight;
+import logic.records.Flight;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,7 +42,7 @@ public class SeatPanel extends ScreenPanel {
     /**
      * The flight to be booked.
      *
-     * @see logic.data_record.FlightInfo
+     * @see logic.records.FlightInfo
      */
     private Flight flight;
 

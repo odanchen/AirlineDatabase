@@ -8,8 +8,13 @@ change: transferred the data checking part into the DateChecker class.
     Date: 22 May 2023
 */
 
-package logic.data_record;
+package logic.records;
 
+/**
+ * A Date data class, represents a date.
+ *
+ * @author Oleksandr Danchenko
+ */
 public class Date implements DatabaseItem {
     /**
      * The day in the current date.
