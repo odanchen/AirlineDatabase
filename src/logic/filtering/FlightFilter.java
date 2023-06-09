@@ -7,7 +7,7 @@ version #1
 
 package logic.filtering;
 
-import logic.data_record.FlightInfo;
+import logic.records.FlightInfo;
 
 /**
  * An interface to filter flights depending on different characteristics.

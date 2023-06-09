@@ -12,7 +12,7 @@ Changes: implemented the getTitle() and makeVisible() methods added to the Scree
 package gui.panels;
 
 import gui.components.CustomButton;
-import logic.data_record.Calendar;
+import logic.records.Calendar;
 import gui.ApplicationFrame;
 
 import javax.swing.*;
@@ -34,9 +34,9 @@ public class CalendarPanel extends ScreenPanel {
     /**
      * The constructor for the CalendarPanel class.
      *
-     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setForeground-java.awt.Color-
+     * @citation: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setForeground-java.awt.Color-">setForeground Documentation</a>
      *      The setForeground() method is used to specify the color of the text on the text field.
-     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JLabel.html#setHorizontalAlignment-int-
+     * @citation: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JLabel.html#setHorizontalAlignment-int-">setHorizontalAlignment Documentation</a>
      *      The setHorizontalAlignment() method is used to center the text inside the JLabel
      * @param applicationFrame the frame that the panel is displayed on
      * @param calendar the calendar that the panel is displaying

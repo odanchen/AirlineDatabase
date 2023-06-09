@@ -5,7 +5,7 @@ Date: 16 May 2023
 version #1
 */
 
-package logic.data_record;
+package logic.records;
 
 /**
  * A Route class. Represents the departure and destination location as well as the length of the flight.

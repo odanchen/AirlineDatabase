@@ -7,7 +7,7 @@ version #1
 
 package logic.sorting.flights;
 
-import logic.data_record.FlightInfo;
+import logic.records.FlightInfo;
 
 /**
  * The SortByStatus class implements the FlightComparator interface and provides a way of comparing flights by their cancellation status.

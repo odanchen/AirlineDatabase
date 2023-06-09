@@ -5,7 +5,7 @@ Date: 23 May 2023
 version #1
 */
 
-package logic.data_checking;
+package logic.checking;
 
 /**
  * The NameChecker class extends the DataChecker class and provides validation and error checking functionality for names.

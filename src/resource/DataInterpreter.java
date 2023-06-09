@@ -7,7 +7,7 @@ version #1
 
 package resource;
 
-import logic.data_record.*;
+import logic.records.*;
 
 /**
  * The resource.DataInterpreter class provides methods for interpreting data strings and converting them into corresponding objects.

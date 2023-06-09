@@ -18,7 +18,7 @@ import gui.ApplicationFrame;
 import gui.components.CustomButton;
 import gui.components.CustomPanel;
 import gui.graphics.HomeImage;
-import logic.data_record.Route;
+import logic.records.Route;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,11 +54,11 @@ public class HomePanel extends ScreenPanel {
     /**
      * The constructor for the HomePanel class.
      *
-     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JLabel.html#setHorizontalAlignment-int-
+     * @citation: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JLabel.html#setHorizontalAlignment-int-">setHorizontalAlignment Documentation</a>
      *      The setHorizontalAlignment() method is used to center the text inside the JTextField
-     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setForeground-java.awt.Color-
+     * @citation: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setForeground-java.awt.Color-">setForeground Documentation</a>
      *      The setForeground() method is used to change the color of text on the JTextField.
-     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setBorder-javax.swing.border.Border-
+     * @citation: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JComponent.html#setBorder-javax.swing.border.Border-">setBorder Documentation</a>
      *      The setBorder() method is used to make the border of the text field invisible for a more appealing look.
      * @param applicationFrame the frame that the panel is displayed on.
      * @author Aidan Baker, Oleksandr Danchenko

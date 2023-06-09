@@ -6,7 +6,7 @@ version #1
 */
 
 
-package logic.data_record;
+package logic.records;
 
 /**
  * Represents a person with basic information such as name, date of birth, phone number, and email.

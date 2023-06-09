@@ -29,18 +29,17 @@ import gui.components.CustomButton;
 import gui.components.CustomPanel;
 import gui.components.CustomRadioButton;
 import gui.components.TopPanel;
-import logic.data_record.Calendar;
+import logic.records.Calendar;
 import resource.DataReader;
 import gui.panels.*;
-import logic.data_record.Flight;
-import logic.data_record.FlightInfo;
-import logic.data_record.Seat;
+import logic.records.Flight;
+import logic.records.FlightInfo;
+import logic.records.Seat;
 import resource.FilePathConstructor;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URI;
 import java.util.List;
 
 /**
@@ -116,19 +115,12 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      * The calendar button on the buttons panel
      */
     private CustomButton calendarButton;
-    /**
-     * The link to the user manual.
-     */
-    private static final String MANUAL_URL = "https://docs.google.com/document/d/1MoQYM9OzFQPjyVoqWxH3KVLu8QRYIB-3qXgkCfCr4uc/edit?usp=sharing";
-
 
     /**
      * Creates a new instance of ApplicationFrame.
      * Initializes the frame and sets the loading panel as the initial visible panel.
      * Displays the splash screen and performs the initialization process.
      *
-     * Citation: https://docs.oracle.com/javase/8/docs/api/java/awt/Window.html#setLocationRelativeTo-java.awt.Component-
-     *      The method setLocationRelativeTo() is used so that the frame appears in the middle of the screen.
      * @author Oleksandr Dacnehnko
      */
     public ApplicationFrame() {
@@ -351,8 +343,8 @@ public class ApplicationFrame extends JFrame implements ActionListener {
     /**
      * The method that is called when an event occurred.
      *
-     * Citation: https://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html#getDesktop--
-     * Citation: https://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html#open-java.io.File-
+     * Citation: <a href="https://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html#getDesktop--">getDesktop method Documentation</a>
+     * Citation: <a href="https://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html#open-java.io.File-">open method Documentation</a>
      *      The method open() opens the selected file. Here, it is used to open the PDF document - the user manual.
      *      The getDesktop() method is used to get the instance of the Desktop class.
      * @param e the event to be processed

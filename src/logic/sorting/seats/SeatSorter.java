@@ -1,8 +1,11 @@
 /*
-Author: Aidan Baker
-time spent: 20 minutes
+Author: Oleksandr Danchenko
+time spent: 30 minutes
 Date: 15 May 2023
-version #2
+version #3
+Changes: Changed to selection sort and fixed null safety.
+    time spent: 30 minutes
+    Date: 27 May 2023
 Changes: changed the algorithm to be quicksort and improved the comparators for cleaner null safety.
     time spent: 30 minutes.
     Date: 29 May 2023
@@ -11,7 +14,7 @@ Changes: changed the algorithm to be quicksort and improved the comparators for 
 
 package logic.sorting.seats;
 
-import logic.data_record.Seat;
+import logic.records.Seat;
 
 /**
  * A SeatSorter class, used to sort seats in a specific order, determined by the comparator used with it.

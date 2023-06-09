@@ -7,7 +7,7 @@ version #1
 
 package logic.sorting.flights;
 
-import logic.data_record.FlightInfo;
+import logic.records.FlightInfo;
 
 import java.util.ArrayList;
 import java.util.List;

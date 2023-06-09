@@ -5,7 +5,7 @@ Date: 23 May 2023
 version #1
 */
 
-package logic.data_checking;
+package logic.checking;
 
 /**
  * A DataChecker abstract class. Provides the basic functionality of a generic data checker.

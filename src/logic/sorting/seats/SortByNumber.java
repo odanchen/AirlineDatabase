@@ -7,7 +7,7 @@ version #1
 
 package logic.sorting.seats;
 
-import logic.data_record.Seat;
+import logic.records.Seat;
 
 /**
  * An implementation of the SeatComparator interface, which compares the two seats by their number.

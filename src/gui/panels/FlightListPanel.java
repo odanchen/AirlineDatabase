@@ -19,9 +19,9 @@ import resource.DataReader;
 import resource.DataWriter;
 import gui.ApplicationFrame;
 import gui.components.CustomPanel;
-import logic.data_record.Calendar;
-import logic.data_record.Flight;
-import logic.data_record.FlightInfo;
+import logic.records.Calendar;
+import logic.records.Flight;
+import logic.records.FlightInfo;
 import logic.sorting.flights.*;
 
 import javax.swing.*;

@@ -7,7 +7,7 @@ version #1
 
 package logic.sorting.flights;
 
-import logic.data_record.FlightInfo;
+import logic.records.FlightInfo;
 
 /**
  * A SeatComparator interface, used to provide a way to compare two flights.

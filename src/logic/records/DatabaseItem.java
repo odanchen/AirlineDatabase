@@ -5,7 +5,7 @@ Date: 18 May 2023
 version #1
 */
 
-package logic.data_record;
+package logic.records;
 
 /**
  * The DatabaseItem interface represents an item that can be stored in a database.

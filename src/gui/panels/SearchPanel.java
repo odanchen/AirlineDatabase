@@ -22,10 +22,10 @@ package gui.panels;
 import gui.components.CustomButton;
 import gui.components.CustomPanel;
 import gui.components.CustomRadioButton;
-import logic.data_record.Calendar;
+import logic.records.Calendar;
 import gui.ApplicationFrame;
-import logic.data_record.FlightInfo;
-import logic.data_record.Route;
+import logic.records.FlightInfo;
+import logic.records.Route;
 import logic.filtering.*;
 
 import javax.swing.*;
@@ -147,7 +147,7 @@ public class SearchPanel extends ScreenPanel {
     /**
      * A method for making a subtitle
      *
-     * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JLabel.html#setHorizontalAlignment-int-
+     * @citation: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JLabel.html#setHorizontalAlignment-int-">setHorizontalAlignment Documentation</a>
      *      The setHorizontalAlignment() method is used to center the text inside the JLabel
      * @param text the text to be displayed on the subtitle
      * @return a JLabel with the text and the correct formatting
