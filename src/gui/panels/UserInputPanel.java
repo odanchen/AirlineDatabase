@@ -147,7 +147,7 @@ public class UserInputPanel extends ScreenPanel {
         pricePanel.add(infoPanel);
 
         CustomPanel buttonPanel = new CustomPanel(new GridLayout(1, 2));
-        buttonPanel.add(cancelButton = new CustomButton("Cancel booking", "cancel", this));
+        buttonPanel.add(cancelButton = new CustomButton("Cancel Booking", "cancel", this));
         buttonPanel.add(bookButton = new CustomButton("Book a Seat", "book", this));
         pricePanel.add(buttonPanel);
         add(pricePanel);
@@ -215,7 +215,7 @@ public class UserInputPanel extends ScreenPanel {
      */
     private void loadData() {
         if (seat.isEmpty()) {
-            bookButton.setText("Book the seat");
+            bookButton.setText("Book the Seat");
 
             firstNameField.setText("");
             lastNameField.setText("");

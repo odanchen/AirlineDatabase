@@ -1,11 +1,12 @@
 /*
-Author: Oleksandr Danchenko
-time spent: 30 minutes
+Author: Aidan Baker
+time spent: 20 minutes
 Date: 15 May 2023
 version #2
-Changes: changed the algorithm to be quicksort and improved the comparators for null safety.
-    time spent: 20 minutes.
-    Date 29 May 2023.
+Changes: changed the algorithm to be quicksort and improved the comparators for cleaner null safety.
+    time spent: 30 minutes.
+    Date: 29 May 2023
+    Author: Oleksandr Danchenko
 */
 
 package logic.sorting.seats;

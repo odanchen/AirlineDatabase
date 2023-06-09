@@ -2,15 +2,19 @@
 Author: Aidan Baker
 time spent: 5 minutes
 Date: 23 May 2023
-version #3
+version #4
 Changes: Added the functionality to the panel, so you can actually see the manifest and sort it.
         Date: 26 May 2023
         Time: 30 minutes
         Author: Aidan Baker
-Changes: implemented the getTitle() and makeVisible() methods added to the ScreenPanel in the process of cleaning up the code.
-    time spent: 5 minutes
-    Date 1 June 2023
-    Author: Oleksandr Danchenko
+Changes: Implemented the getTitle() and makeVisible() methods added to the ScreenPanel in the process of cleaning up the code.
+        time spent: 5 minutes
+        Date: 1 June 2023
+        Author: Oleksandr Danchenko
+Changes: Implemented the ability to print and save the manifest.
+        time spent: 20 minutes
+        Date: 8 June 2023
+        Author: Aidan Baker
  */
 
 package gui.panels;
