@@ -343,8 +343,8 @@ public class ApplicationFrame extends JFrame implements ActionListener {
     /**
      * The method that is called when an event occurred.
      *
-     * Citation: <a href="https://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html#getDesktop--">getDesktop method Documentation</a>
-     * Citation: <a href="https://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html#open-java.io.File-">open method Documentation</a>
+     * @citation: <a href="https://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html#getDesktop--">getDesktop method Documentation</a>
+     * @citation: <a href="https://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html#open-java.io.File-">open method Documentation</a>
      *      The method open() opens the selected file. Here, it is used to open the PDF document - the user manual.
      *      The getDesktop() method is used to get the instance of the Desktop class.
      * @param e the event to be processed
