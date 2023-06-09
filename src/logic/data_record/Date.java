@@ -10,6 +10,11 @@ change: transferred the data checking part into the DateChecker class.
 
 package logic.data_record;
 
+/**
+ * A Date data class, represents a date.
+ *
+ * @author Oleksandr Danchenko
+ */
 public class Date implements DatabaseItem {
     /**
      * The day in the current date.

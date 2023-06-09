@@ -117,6 +117,7 @@ public class ExportPanel extends ScreenPanel {
      * Makes the panel visible.
      *
      * @param flight The flight you want to display the manifest for.
+     * @param previousPanel The panel that you want to return to when you press the back button.
      * @author Aidan Baker, Oleksandr Danchenko
      */
     public void makeVisible(Flight flight, ScreenPanel previousPanel) {
@@ -145,6 +146,10 @@ public class ExportPanel extends ScreenPanel {
      *
      * @citation: <a href=https://docs.oracle.com/javase/8/docs/api/java/awt/print/PrinterJob.html">PrinterJob documentation</a>
      *     The PrinterJob class is used to print the flight manifest to a printer or save it as a pdf
+     *     <br>setPrintable() invokes the painter (an object of Printable) to render the pages for printing.
+     *     <br>printDialog() method is used to display a dialog box that allows the user to change the print settings, including the printer they would like it to be printed to, if they would like to save it as a pdf instead of printing, amount of copies to print, etc.
+     *     <br>print() method is used to execute the printing based on the options the user chose in the printDialog.
+     *
      * @param e the event to be processed
      * @author Aidan Baker
      */

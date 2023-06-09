@@ -26,6 +26,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The ScreenPanel class is the parent class for all the main panels that are used in the application.
+ *
+ * @author Aidan Baker and Oleksandr Danchenko
+ */
 public abstract class ScreenPanel extends CustomPanel implements ActionListener {
     /**
      * A reference to the application frame.

@@ -66,6 +66,7 @@ public class FlightListPanel extends ScreenPanel {
      * Constructs a FlightListPanel object with the specified ApplicationFrame reference.
      *
      * @param applicationFrame the ApplicationFrame object.
+     * @param calendar        the calendar of flights that month.
      * @author Aidan Baker
      */
     public FlightListPanel(ApplicationFrame applicationFrame, Calendar calendar) {
@@ -131,9 +132,16 @@ public class FlightListPanel extends ScreenPanel {
 
     /**
      * Sets up the table for displaying flight information.
-     *
-     * @citations: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JTable.html">JTable Documentation</a>
+     * @citation: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JTable.html">JTable Documentation</a>
      *      Used for setting up the JTable being used to display the list of flights
+     * @citation: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JTable.html#setDefaultEditor-java.lang.Class-javax.swing.table.TableCellEditor-">JTable (setDefaultEditor method) Documentation</a>
+     *      Used to disable editing of the data in the table.
+     * @citation: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JTable.html#setSelectionMode-int-">setSelectionMode method documentation</a>
+     *     Used to make it so that only one row can be selected at a time.
+     * @citation: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/table/JTableHeader.html">JTableHeader Documentation</a>
+     *      Used for modifying properties of the table header, such as its font and background color.
+     * @citation: <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JScrollPane.html">JScrollPane Documentation</a>
+     *      Used for making it so the user can scroll through the table. This is necessary because the table may contain more rows of data than can fit on the screen.
      * @author Aidan Baker
      */
     public void setupTable() {
@@ -228,7 +236,7 @@ public class FlightListPanel extends ScreenPanel {
     /**
      * Gets the flight that is currently selected in the table.
      *
-     * @citations: <a href="https://stackoverflow.com/questions/12546320/get-selected-row-in-jtable">get selected row in JTable</a>
+     * @citation: <a href="https://stackoverflow.com/questions/12546320/get-selected-row-in-jtable">get selected row in JTable</a>
      * @return the selected instance of the FlightInfo class or null is nothing is selected.
      * @author Oleksandr Danchenko
      */

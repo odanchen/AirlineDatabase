@@ -15,6 +15,11 @@ import logic.data_record.Seat;
  * @author Oleksandr Danchenko
  */
 public class SortByNumber implements SeatComparator {
+
+    /**
+     * A constructor of the class, initializes the object.
+     */
+    public SortByNumber() {}
     /**
      * A method, which is supposed to return a number which represents the relationship between the two seats provided
      *

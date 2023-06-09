@@ -39,6 +39,7 @@ public class CalendarPanel extends ScreenPanel {
      * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/JLabel.html#setHorizontalAlignment-int-
      *      The setHorizontalAlignment() method is used to center the text inside the JLabel
      * @param applicationFrame the frame that the panel is displayed on
+     * @param calendar the calendar that the panel is displaying
      * @author Aidan Baker
      */
     public CalendarPanel(ApplicationFrame applicationFrame, Calendar calendar) {

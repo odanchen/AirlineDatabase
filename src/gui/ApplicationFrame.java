@@ -282,6 +282,9 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      * Switches the current panel to the user input panel.
      * Hides the current panel and shows the user input panel.
      *
+     * @param flight the flight the seat is being booked on.
+     * @param seat the seat being booked on the flight.
+     *
      * @author Oleksandr Dacnehnko
      */
     public void switchToInput(Flight flight, Seat seat) {
@@ -295,6 +298,7 @@ public class ApplicationFrame extends JFrame implements ActionListener {
      * Switches the current panel to the export panel.
      * Hides the current panel and shows the export panel.
      *
+     * @param flight the flight to be exported to a file.
      * @author Oleksandr Dacnehnko
      */
     public void switchToExport(Flight flight) {

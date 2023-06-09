@@ -85,7 +85,7 @@ public class Seat implements DatabaseItem {
 
     /**
      * A setter method for the price of the seat.
-     *
+     * @param passenger the passenger occupying the seat.
      * @author Oleksandr Danchenko
      */
     public void setPassenger(Person passenger) {

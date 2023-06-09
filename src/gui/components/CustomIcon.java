@@ -19,6 +19,13 @@ import java.awt.*;
  */
 public class CustomIcon implements Icon {
     /**
+     * A constructor of the class, initializes the object.
+     */
+    public CustomIcon() {
+
+    }
+
+    /**
      * Overridden empty paintIcon method to get rid of the icon
      *
      * @param c  a {@code Component} to get properties useful for painting

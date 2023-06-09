@@ -50,6 +50,7 @@ public class CustomButton extends JButton {
      * Citation: https://docs.oracle.com/javase/8/docs/api/javax/swing/AbstractButton.html#setFocusPainted-boolean-
      *      The setFocusPainted() method is used to disable the painting of the focus indicator.
      * @param text the text to be displayed on the button.
+     * @param listener the action listener of the button.
      * @author Oleksandr Danchenko
      */
     public CustomButton(String text, ActionListener listener) {
@@ -67,6 +68,7 @@ public class CustomButton extends JButton {
      * An overloaded constructor, creates a button with a specified font size.
      *
      * @param text     the text on the button.
+     * @param listener the action listener of the button.
      * @param fontSize the font size of the text on the button.
      * @author Oleksandr Danchenko
      */
