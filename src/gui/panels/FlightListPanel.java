@@ -40,7 +40,7 @@ public class FlightListPanel extends ScreenPanel {
     /**
      * An array of columns in the table.
      */
-    private final String[] columnNames = {"Origin", "Destination", "Date", "Time (est)", "Flight Duration", "# Seats Available", "Status"};
+    private final String[] columnNames = {"Origin", "Destination", "Date", "Time (EST)", "Flight Duration", "# Seats Available", "Status"};
     /**
      * The data model of the table.
      */
