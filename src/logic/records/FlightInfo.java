@@ -109,6 +109,17 @@ public class FlightInfo implements DatabaseItem {
     }
 
     /**
+     * Determines the flights status based on the number of seats left or if it is cancelled.
+     * @return The status of the flight.
+     * @author Aidan Baker
+     */
+    public String getStatus() {
+        if (isCancelled) return "Cancelled";
+        if (seatsLeft == 0) return "Full";
+        return "Available";
+    }
+
+    /**
      * Returns the number of seats left on the flight.
      *
      * @return The number of seats left on the flight.

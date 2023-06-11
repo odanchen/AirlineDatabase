@@ -40,7 +40,7 @@ public class FlightListPanel extends ScreenPanel {
     /**
      * An array of columns in the table.
      */
-    private final String[] columnNames = {"Origin", "Destination", "Date", "Time (est)", "Flight Duration", "# Seats Available", "Status"};
+    private final String[] columnNames = {"Origin", "Destination", "Date", "Time (EST)", "Flight Duration", "# Seats Available", "Status"};
     /**
      * The data model of the table.
      */
@@ -125,7 +125,7 @@ public class FlightListPanel extends ScreenPanel {
             contents[3] = flightInfo.getUserDepartureTime();
             contents[4] = interpretFlightTime(flightInfo.getFlightTime());
             contents[5] = flightInfo.getSeatsLeft();
-            contents[6] = interpretStatus(flightInfo.isCancelled());
+            contents[6] = flightInfo.getStatus();
             model.addRow(contents);
         }
     }
@@ -159,18 +159,6 @@ public class FlightListPanel extends ScreenPanel {
         JScrollPane scrollPane = new JScrollPane(table);
 
         tablePanel.add(scrollPane);
-    }
-
-    /**
-     * Interprets the flight status and returns a corresponding string representation.
-     *
-     * @param status the flight status.
-     * @return the interpreted status string.
-     * @author Oleksandr Danchenko
-     */
-    private String interpretStatus(boolean status) {
-        if (status) return "Cancelled";
-        return "Available";
     }
 
     /**

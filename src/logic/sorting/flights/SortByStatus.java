@@ -25,7 +25,7 @@ public class SortByStatus implements FlightComparator {
     }
 
     /**
-     * Compares two FlightInfo objects based on their cancellation status.
+     * Compares two FlightInfo objects based on their status (Available, Full, or Cancelled).
      *
      * @param flight1 the first FlightInfo object to compare.
      * @param flight2 the second FlightInfo object to compare.
@@ -34,8 +34,11 @@ public class SortByStatus implements FlightComparator {
      */
     @Override
     public int compare(FlightInfo flight1, FlightInfo flight2) {
-        if (!flight1.isCancelled() && flight2.isCancelled()) return LESSER;
-        if (flight1.isCancelled() == flight2.isCancelled()) return EQUAL;
+        if (flight1.getStatus().equals(flight2.getStatus())) return EQUAL;
+        if (flight1.getStatus().equals("Cancelled")) return GREATER;
+        if (flight2.getStatus().equals("Cancelled")) return LESSER;
+        if (flight1.getStatus().equals("Full")) return GREATER;
+        if (flight2.getStatus().equals("Full")) return LESSER;
         return GREATER;
     }
 }
