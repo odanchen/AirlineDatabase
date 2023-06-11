@@ -34,7 +34,7 @@ public class SortByStatus implements FlightComparator {
      */
     @Override
     public int compare(FlightInfo flight1, FlightInfo flight2) {
-        if (flight1.getStatus().equals(flight2.getStatus())) return new SortByDateAndTime().compare(flight1, flight2);
+        if (flight1.getStatus().equals(flight2.getStatus())) return EQUAL;
         if (flight1.getStatus().equals("Cancelled")) return GREATER;
         if (flight2.getStatus().equals("Cancelled")) return LESSER;
         if (flight1.getStatus().equals("Full")) return GREATER;
